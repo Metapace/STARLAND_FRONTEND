@@ -1,0 +1,324 @@
+.workplace {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  background-color: var(--background-color);
+  padding-bottom: 24px;
+}
+.welcome-title {
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 100%;
+  /* identical to box height, or 24px */
+  letter-spacing: -0.02em;
+  color: #2d70f1;
+  margin-bottom: 13px;
+}
+.common-item {
+  box-shadow: var(--primary-box-shadow);
+  border-radius: var(--primary-border-radius);
+  padding: 10px 0 0 15px;
+  position: relative;
+}
+
+.top-item-list {
+  display: flex;
+  column-gap: 27px;
+  > div {
+    height: 149px;
+  }
+  .account-item {
+    flex: 438;
+  }
+  .activity-item {
+    flex: 300;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .totla-number {
+      margin: 12px auto 0;
+      display: flex;
+      align-items: baseline;
+      font-family: 'PingFang SC';
+      font-style: normal;
+      font-weight: 600;
+      font-size: 48px;
+      line-height: 100%;
+      /* identical to box height, or 48px */
+      letter-spacing: -0.02em;
+      color: #ffa800;
+      span {
+        font-size: 20px;
+        color: #2b3674;
+        margin-left: 4px;
+      }
+    }
+    .activity-number {
+      font-family: 'PingFang SC';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 10px;
+      line-height: 100%;
+      /* identical to box height, or 10px */
+
+      letter-spacing: -0.02em;
+
+      color: #2b3674;
+    }
+  }
+  .cost-item {
+    flex: 365;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+.item-title {
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 100%;
+  /* identical to box height, or 20px */
+  letter-spacing: -0.02em;
+  color: var(--black-text-color);
+  margin-top: 32px;
+  margin-bottom: 7px;
+}
+.message-item {
+  width: 99%;
+  height: 101px;
+  .read-more {
+    color: #2d70f1;
+    font-weight: 600;
+    font-size: 14px;
+    float: right;
+    margin-right: 15px;
+    cursor: pointer;
+  }
+}
+.info-item-list {
+  margin-top: 16px;
+}
+.common-info-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  .left {
+    width: 157px;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    letter-spacing: -0.02em;
+    color: #000000;
+  }
+  .activity {
+    background-color: #f4ddaa;
+  }
+  .info {
+    background-color: #aae6f4;
+  }
+  .right {
+    margin-left: 13px;
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 100%;
+    /* identical to box height, or 13px */
+
+    letter-spacing: -0.02em;
+
+    color: #2b3674;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+.data-item-list {
+  display: flex;
+  column-gap: 20px;
+}
+.title-image-item {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: 27px;
+  img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin-bottom: 4px;
+  }
+  .img-title {
+    color: #2b3674;
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 9px;
+  }
+}
+.account-item-inner {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+.bottom-item {
+  margin-top: 15px;
+}
+.account-item-inner-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  .tip-text {
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 9px;
+    line-height: 100%;
+    /* identical to box height, or 9px */
+    letter-spacing: -0.02em;
+    margin-top: 6px;
+    color: rgba(43, 54, 116, 0.51);
+    span {
+      color: #2d70f1;
+    }
+  }
+}
+.dollar-item {
+  display: flex;
+  align-items: baseline;
+  .dollar-number {
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 600;
+    margin-right: 8px;
+    line-height: 100%;
+  }
+  .blue {
+    color: #2d70f1;
+  }
+  .purple {
+    color: #4318ff;
+  }
+  .orange {
+    color: #ffa800;
+  }
+  .normal {
+    font-size: 32px;
+  }
+  .large {
+    font-size: 48px;
+  }
+  .unit {
+    color: #11bf42;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+  }
+}
+.common-button {
+  background: #e9ecf4;
+  box-shadow: -3px -3px 5px #ffffff, 2px 4px 5px rgba(0, 0, 0, 0.08);
+  border-radius: 6px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  padding: 0 20px;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 10px;
+  /* identical to box height, or 10px */
+  cursor: pointer;
+  letter-spacing: -0.02em;
+  img {
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    margin-right: 9px;
+  }
+}
+.account-button {
+  position: absolute;
+  bottom: 18px;
+  right: 16px;
+  color: #2d70f1;
+}
+.activity-button {
+  color: #ffa800;
+  margin-top: 26px;
+}
+.cost-button {
+  margin-top: 36px;
+  color: #4318ff;
+}
+
+.creat-title-imgae {
+  position: absolute;
+  top: 10px;
+  left: 15px;
+}
+
+.market-item {
+  height: 170px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.channel-item {
+  padding: 30px 20px;
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+.channel-item-left {
+  border-radius: 8px;
+  margin-right: 24px;
+}
+.channel-item-right {
+  font-family: 'PingFang SC';
+  font-style: normal;
+  letter-spacing: -0.02em;
+  .top {
+    font-weight: 600;
+    font-size: 20px;
+    color: #2b3674;
+  }
+  .middle {
+    color: rgba(43, 54, 116, 0.69);
+    font-weight: 400;
+    font-size: 15px;
+    margin-top: 10px;
+  }
+  .bottom {
+    box-shadow: var(--primary-box-shadow);
+    border-radius: var(--primary-border-radius);
+    display: flex;
+    width: 103px;
+    height: 39px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 28px;
+    cursor: pointer;
+    img {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}
+.channel-item-list {
+  display: flex;
+  margin-top: 11px;
+  column-gap: 20px;
+}

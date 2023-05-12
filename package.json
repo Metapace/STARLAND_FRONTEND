@@ -1,0 +1,38 @@
+{
+  "name": "starland-frontend",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start:web": "turbo run dev --scope='web'",
+    "lint": "eslint --ext .ts --ext .tsx src --fix"
+  },
+  "devDependencies": {
+    "@commitlint/config-conventional": "^17.6.3",
+    "cz-git": "^1.6.1",
+    "eslint": "^8.4.1",
+    "husky": "^8.0.1",
+    "pre-commit": "^1.2.2",
+    "prettier": "^2.5.1",
+    "turbo": "latest"
+  },
+  "lint-staged": {
+    "*.{js,jsx,tsx, ts}": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-git"
+    }
+  },
+  "packageManager": "pnpm@7.15.0",
+  "dependencies": {
+    "ahooks": "^3.7.7",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-react": "^7.24.0"
+  }
+}
