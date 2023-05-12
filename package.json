@@ -3,12 +3,15 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start:web": "turbo run dev --scope='web'",
+    "start:web": "cross-env SERVICES_ENV=development turbo run dev --scope='web'",
     "lint": "eslint --ext .ts --ext .tsx src --fix"
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^17.6.3",
+    "cross-env": "^7.0.3",
     "cz-git": "^1.6.1",
+    "dotenv": "^16.0.3",
+    "dotenv-webpack": "^8.0.1",
     "eslint": "^8.4.1",
     "husky": "^8.0.1",
     "pre-commit": "^1.2.2",

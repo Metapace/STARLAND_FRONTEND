@@ -74,7 +74,6 @@ const Index: React.FC = () => {
     exampleRef.current?.scrollIntoView({ block: 'end' });
   };
   const scroll = useScroll(document);
-
   useEffect(() => {
     if (scroll && advantageRef?.current && marketRef?.current && exampleRef?.current) {
       const { top } = scroll;
