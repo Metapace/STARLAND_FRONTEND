@@ -7,10 +7,10 @@ const zh: {
   'header.leaveFullScreenMode': '退出全屏模式',
   'header.userSetting': '用户设置',
   'header.logout': '退出登录',
-
   'menu.dashboard': '仪表盘',
   'menu.dashboard.workplace': '工作台',
   'menu.dashboard.monitor': '实时监控',
+  'menu.DataInfo': '投后数据',
   'menu.visualization': '数据可视化',
   'menu.visualization.dataAnalysis': '分析页',
   'menu.visualization.multiDimensionDataAnalysis': '多维数据分析',

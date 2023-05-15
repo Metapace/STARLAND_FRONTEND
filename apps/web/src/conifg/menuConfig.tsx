@@ -31,6 +31,20 @@ export const menuConfig: IMenu = {
       ],
     },
     {
+      name: 'menu.DataInfo',
+      key: '/datainfo',
+      path: '/datainfo',
+      icon: 'IconDashboard',
+      children: [
+        {
+          name: 'menu.DataInfo',
+          key: '/datainfo',
+          path: '/datainfo',
+          icon: 'IconDashboard',
+        },
+      ],
+    },
+    {
       name: 'menu.market',
       key: '/channel-market',
       path: '/channel-market',

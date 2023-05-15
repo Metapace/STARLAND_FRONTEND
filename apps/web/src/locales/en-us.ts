@@ -10,6 +10,7 @@ const en: {
   'menu.dashboard': 'Dashboard',
   'menu.dashboard.workplace': 'Workplace',
   'menu.dashboard.monitor': 'Monitor',
+  'menu.DataInfo': 'Data Info',
   'menu.visualization': 'Data Visualization',
   'menu.visualization.dataAnalysis': 'Analysis',
   'menu.visualization.multiDimensionDataAnalysis': 'Multi-D Analysis',

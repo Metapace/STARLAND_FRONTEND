@@ -5,6 +5,7 @@ import Result500 from 'src/app/Exception/500';
 
 const Welcome = React.lazy(() => import('../app/Welcome'));
 const Workplace = React.lazy(() => import('../app/Dashboard/WorkPlace/WorkPlace'));
+const Datainfo = React.lazy(() => import('../app/DataInfo/index'));
 
 const UserCenter = React.lazy(() => import('../app/User/index'));
 
@@ -28,6 +29,11 @@ const RouterConfig: IRouterConfig[] = [
     path: '/dashboard/workplace',
     text: '工作台',
     page: <Workplace />,
+  },
+  {
+    path: '/datainfo',
+    text: '投后数据',
+    page: <Datainfo/>,
   },
   {
     path: '/channel-market',
