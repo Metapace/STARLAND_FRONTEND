@@ -27,6 +27,7 @@ const en: {
   'menu.exception.404': '404',
   'menu.exception.500': '500',
   'menu.usercenter': 'User Center',
+  'menu.publish.demand': 'Publish Demand',
   'menu.user.info': 'User Info',
   'menu.user.setting': 'User Setting',
   'menu.market': 'Channel Market',

@@ -1,0 +1,70 @@
+.container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+}
+
+.title {
+  color: #2b3674;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  display: flex;
+}
+.top {
+  border: 0.5px solid #adadad;
+  border-radius: 13px;
+  width: 100%;
+  height: 232.79px;
+  display: flex;
+  margin-bottom: 32px;
+  margin-top: 17px;
+  img {
+    height: 100%;
+  }
+  .top-intro {
+    text-align: center;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    > div {
+      text-align: left;
+      width: fit-content;
+    }
+  }
+}
+.top-intro-item {
+  margin-bottom: 20px;
+  color: #2b3674;
+  font-weight: 500;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+.top-icon {
+  font-size: 20px;
+  color: #2d70f1;
+  margin-right: 22px;
+}
+.create-button {
+  margin-top: 48px;
+  width: 332px;
+}
+.select-demand {
+  margin-left: 12px;
+  :global {
+    .arco-select-view {
+      border: 1px solid rgba(0, 0, 0, 0.23);
+      border-radius: 8px;
+    }
+  }
+}
+.item-list {
+  display: flex;
+  column-gap: 36px;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}

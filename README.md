@@ -1,6 +1,6 @@
 # Turborepo Starland App
 
-This is an officialStarland App.
+This is an Official Starland App.
 
 ## Using this example
 

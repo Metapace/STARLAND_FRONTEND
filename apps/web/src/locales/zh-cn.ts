@@ -30,6 +30,7 @@ const zh: {
   'menu.user.info': '用户信息',
   'menu.user.setting': '用户设置',
   'menu.market': '渠道市场',
+  'menu.publish.demand': '发布需求',
   'system.tip.ok': '确定',
   'system.tip.cancel': '取消',
   'system.tip.config': '页面基本配置',

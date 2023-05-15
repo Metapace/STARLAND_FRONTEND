@@ -71,5 +71,18 @@ export const menuConfig: IMenu = {
         },
       ],
     },
+    {
+      name: 'menu.publish.demand',
+      key: '/publish-demand',
+      path: '/publish-demand',
+      icon: 'IconUser',
+      children: [
+        {
+          name: 'menu.publish.demand',
+          key: '/publish-demand',
+          path: '/publish-demand',
+        },
+      ],
+    },
   ],
 };

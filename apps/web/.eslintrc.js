@@ -5,7 +5,7 @@ module.exports = {
     es6: true,
   },
   parser: 'babel-eslint',
-  extends: ['eslint:recommended', 'plugin:react/recommended'],
+  extends: ['eslint:recommended', 'plugin:react/recommended', 'plugin:@typescript-eslint/recommended'],
   parserOptions: {
     ecmaVersion: 7,
     // 开启实验属性

@@ -13,6 +13,8 @@ const ChannelMarket = React.lazy(() => import('../app/Market/index'));
 
 const ShoppingCart = React.lazy(() => import('../app/ShopCart/index'));
 
+const PublishDemand = React.lazy(() => import('../app/PublishDemand/index'));
+
 export interface IRouterConfig {
   path: string;
   text: string;
@@ -65,6 +67,11 @@ const RouterConfig: IRouterConfig[] = [
     path: '/shopping-cart',
     text: '购物车',
     page: <ShoppingCart />,
+  },
+  {
+    path: '/publish-demand',
+    text: '发布需求',
+    page: <PublishDemand />,
   },
 ];
 
