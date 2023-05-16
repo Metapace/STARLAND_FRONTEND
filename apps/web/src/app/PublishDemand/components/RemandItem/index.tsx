@@ -16,7 +16,7 @@ export enum DemandType {
 
 const DemandMap: Record<DemandType, string> = {
   [DemandType.NeedDeposite]: '待充值',
-  [DemandType.NeedPay]: '待支付',
+  [DemandType.NeedPay]: '待授权',
   [DemandType.NeedVerify]: '待审核',
   [DemandType.VerifyFail]: '审核失败',
   [DemandType.Channel]: '渠道分发',

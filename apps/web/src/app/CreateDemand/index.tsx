@@ -1,9 +1,11 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
+import { useToggle } from 'ahooks';
 import styles from './index.module.less';
 import classNames from 'classnames';
 import FormStep from './FormStep';
 import UploadMaterial from './UploadMaterial';
 import { Form } from '@arco-design/web-react';
+import PayModal from 'src/components/PayModal';
 interface CircleItemProps {
   index: number;
   step: number;
@@ -38,6 +40,7 @@ const ProgressLine = () => {
 
 const Index = () => {
   const [step, setStep] = useState<number>(2);
+  const [open, { toggle, setLeft, setRight }] = useToggle(true);
   const [form] = Form.useForm();
   const handleNextStep = () => {
     form?.validate().then((res: any) => {
@@ -45,9 +48,13 @@ const Index = () => {
       setStep(2);
     });
   };
+  const handleCloseModal = () => {
+    setLeft();
+  };
 
   return (
     <div className={styles.container}>
+      <PayModal open={open} handleCloseModal={handleCloseModal} />
       <div className={styles.title}>创建表单</div>
       <div className={styles['progress-container']}>
         <div className={styles['progress-container-inner']}>

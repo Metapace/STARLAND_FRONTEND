@@ -10,7 +10,7 @@ const s3 = new AWS.S3({
   region: bucketRegion,
 });
 
-const uploadAws = async (file: any, getProgress?: (percent: number) => void) => {
+const uploadAws = async (file: File, getProgress?: (percent: number) => void) => {
   const suffix = `${new Date()}-${file.name}`;
   const uploadParams = {
     Bucket: albumBucketName,
