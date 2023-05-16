@@ -24,7 +24,7 @@ import { IconLink } from '@arco-design/web-react/icon';
 import userlogo from 'src/assets/images/usercenter-userlogo.png';
 import closemodal from 'src/assets/images/usercenter-assets-closemodal.png';
 import upload from 'src/assets/images/usercenter-assets-upload.png';
-import uploadAws from './uploadAws';
+import uploadAws from 'src/utils/uploadAws';
 
 const FormItem = Form.Item;
 const RadioGroup = Radio.Group;

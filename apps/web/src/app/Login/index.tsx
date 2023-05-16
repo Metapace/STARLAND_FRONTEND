@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 // import axios from 'axios';
 import { Form, Input, Button, Tabs, Grid } from '@arco-design/web-react';
 import { useNavigate } from 'react-router-dom';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+// import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { useLocalStorageState, useCountDown } from 'ahooks';
 import useI18n from 'src/ahooks/useI18n';
 import locales from './locales';
 import styles from './index.module.less';
-import LoginLeftPng from 'src/assets/images/login-left.png';
-import LoginLogPng from 'src/assets/images/login-logo.png';
+// import LoginLeftPng from 'src/assets/images/login-left.png';
+// import LoginLogPng from 'src/assets/images/login-logo.png';
 
 const TabPane = Tabs.TabPane;
 

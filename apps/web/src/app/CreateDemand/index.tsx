@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import styles from './index.module.less';
 import classNames from 'classnames';
-
+import FormStep from './FormStep';
+import UploadMaterial from './UploadMaterial';
+import { Form } from '@arco-design/web-react';
 interface CircleItemProps {
   index: number;
   step: number;
@@ -35,7 +37,15 @@ const ProgressLine = () => {
 };
 
 const Index = () => {
-  const [step, setStep] = useState<number>(1);
+  const [step, setStep] = useState<number>(2);
+  const [form] = Form.useForm();
+  const handleNextStep = () => {
+    form?.validate().then((res: any) => {
+      console.log(res);
+      setStep(2);
+    });
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.title}>创建表单</div>
@@ -48,6 +58,8 @@ const Index = () => {
           <CircleItem title="选择基础信息" index={3} step={step} />
         </div>
       </div>
+      {step === 1 && <FormStep form={form} handleNextStep={handleNextStep} />}
+      {step === 2 && <UploadMaterial />}
     </div>
   );
 };

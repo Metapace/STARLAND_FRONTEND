@@ -10,14 +10,19 @@ const s3 = new AWS.S3({
   region: bucketRegion,
 });
 
-const uploadAws = async (file: any) => {
-  const suffix = `${file.name}`;
+const uploadAws = async (file: any, getProgress?: (percent: number) => void) => {
+  const suffix = `${new Date()}-${file.name}`;
   const uploadParams = {
     Bucket: albumBucketName,
     Body: file,
     Key: `starland/${suffix}`,
   };
   const manageUpload = s3.upload(uploadParams);
+  manageUpload.on('httpUploadProgress', (res) => {
+    if (getProgress) {
+      getProgress((res.loaded * 100) / res.total);
+    }
+  });
   const res = await manageUpload.promise();
   return res;
 };
