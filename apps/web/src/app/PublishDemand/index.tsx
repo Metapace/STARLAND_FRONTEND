@@ -16,7 +16,7 @@ const Index = () => {
   const { lang, i18n } = useI18n(locale);
   return (
     <div className={styles.container}>
-      <div className={styles.title}>发布需求</div>
+      <div className={styles.title}>{i18n[lang]['publish.demand']}</div>
       <LongProgress step={1}></LongProgress>
       <div className={styles['top']}>
         <img src={web2Banner} alt="" />
@@ -33,12 +33,12 @@ const Index = () => {
               <IconCheckCircle className={styles['top-icon']}></IconCheckCircle>
               {i18n[lang]['market.top3']}
             </div>
-            <div className={classNames('common-button', styles['create-button'])}>创建活动</div>
+            <div className={classNames('common-button', styles['create-button'])}>{i18n[lang]['create.campagin']}</div>
           </div>
         </div>
       </div>
       <div className={classNames(styles.title)}>
-        需求列表
+        {i18n[lang]['demand.list']}
         <div className={styles['select-demand']}>
           <Select placeholder="Please select" style={{ width: 154 }} onChange={(value) => console.log(value)}>
             {options.map((option) => (

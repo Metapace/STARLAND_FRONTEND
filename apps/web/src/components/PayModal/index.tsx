@@ -4,6 +4,8 @@ import { Modal } from '@arco-design/web-react';
 import web2logo from 'src/assets/images/usercenter-assets-web2logo.png';
 import hookIcon from 'src/assets/images/hook-icon.png';
 import classNames from 'classnames';
+import useI18n from 'src/ahooks/useI18n';
+import locale from './locales';
 
 interface PayModalProps {
   open: boolean;
@@ -11,6 +13,7 @@ interface PayModalProps {
 }
 
 const index: React.FC<PayModalProps> = ({ open, handleCloseModal }) => {
+  const { lang, i18n } = useI18n(locale);
   return (
     <Modal
       wrapClassName={styles.moadlwrap}
@@ -32,16 +35,17 @@ const index: React.FC<PayModalProps> = ({ open, handleCloseModal }) => {
       <div className={styles.content}>
         <div className={styles.amount}>
           <div className={styles['left-title']}>CPC:</div>
-          <div className={styles['right-amount']}>以实际消耗为准</div>
+          <div className={styles['right-amount']}>{i18n[lang]['base.on.cost']}</div>
         </div>
         <div className={styles['split-line']}></div>
         <div className={styles.account}>
-          <div className={styles['left-title']}>账户余额：</div>
+          <div className={styles['left-title']}>{i18n[lang]['account.balance']}：</div>
           <div className={styles['account-value']}>
             <img src={web2logo} alt="" />
             <div className={styles['account-value-title']}>
               <div>
-                法币资产<span>(USD)</span>
+                {i18n[lang]['fiat.assets']}
+                <span>(USD)</span>
               </div>
               <div>23,423</div>
             </div>
@@ -52,7 +56,7 @@ const index: React.FC<PayModalProps> = ({ open, handleCloseModal }) => {
         </div>
         <div className={styles['split-line']}></div>
         <div className={styles['button-wrrap']}>
-          <div className={classNames('common-button', styles['confirm-button'])}>确认</div>
+          <div className={classNames('common-button', styles['confirm-button'])}>{i18n[lang]['r.confirm']}</div>
         </div>
       </div>
     </Modal>

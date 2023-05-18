@@ -28,7 +28,7 @@ import uploadAws from 'src/utils/uploadAws';
 
 const FormItem = Form.Item;
 const RadioGroup = Radio.Group;
-const index = ({ open, handleCloseVoucherModal }) => {
+const index = ({ open, handleCloseVoucherModal }: any) => {
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [form] = Form.useForm();
 
@@ -125,7 +125,7 @@ const index = ({ open, handleCloseVoucherModal }) => {
                 title: 'Preview',
                 content: (
                   <img
-                    src={file.url || URL.createObjectURL(file.originFile)}
+                    src={file.url || URL.createObjectURL(file.originFile as Blob | MediaSource)}
                     style={{
                       maxWidth: '100%',
                     }}
@@ -252,7 +252,7 @@ const index = ({ open, handleCloseVoucherModal }) => {
                     title: 'Preview',
                     content: (
                       <img
-                        src={file.url || URL.createObjectURL(file.originFile)}
+                        src={file.url || URL.createObjectURL(file.originFile as Blob | MediaSource)}
                         style={{
                           maxWidth: '100%',
                         }}
@@ -348,7 +348,7 @@ const index = ({ open, handleCloseVoucherModal }) => {
                     title: 'Preview',
                     content: (
                       <img
-                        src={file.url || URL.createObjectURL(file.originFile)}
+                        src={file.url || URL.createObjectURL(file.originFile as Blob | MediaSource)}
                         style={{
                           maxWidth: '100%',
                         }}

@@ -7,6 +7,8 @@ import UploadFile from 'src/assets/images/upload-file.png';
 import downloadIcon from 'src/assets/images/download-icon.png';
 import fileIcon from 'src/assets/images/file-icon.png';
 import uploadAws from 'src/utils/uploadAws';
+import useI18n from 'src/ahooks/useI18n';
+import locales from '../locales';
 
 interface DownloadItemProps {
   name: string;
@@ -30,6 +32,7 @@ const DownloadItem: React.FC<DownloadItemProps> = ({ name, url, hasBottomBorder 
 
 const Index = () => {
   const [fileList, setFileList] = useState([]);
+  const { lang, i18n } = useI18n(locales);
   const handleUpload = async (option: any) => {
     const { onProgress, onError, onSuccess, file } = option;
     try {
@@ -47,12 +50,12 @@ const Index = () => {
       <div className={styles.container}>
         <div className={styles.left}>
           <div className={styles.title}>Step1</div>
-          <div className={styles['sub-title']}>Web2渠道需求明细文档</div>
-          <DownloadItem name="Web2投放所需物料明细" url="sad" hasBottomBorder />
-          <DownloadItem name="Web2投放开户信息表" url="sad" />
-          <div className={classNames(styles['sub-title'], styles['margin-top'])}>Web3渠道需求明细文档</div>
-          <DownloadItem name="项目对接（PC类）" url="sad" hasBottomBorder />
-          <DownloadItem name="游戏数据分析常用指标（广告业务方向）" url="sad" />
+          <div className={styles['sub-title']}>{i18n[lang]['web2.channel.doc']}</div>
+          <DownloadItem name={i18n[lang]['web2.launch.doc']} url="sad" hasBottomBorder />
+          <DownloadItem name={i18n[lang]['web2.launch.info']} url="sad" />
+          <div className={classNames(styles['sub-title'], styles['margin-top'])}>{i18n[lang]['web3.channel.doc']}</div>
+          <DownloadItem name={i18n[lang]['project.docking']} url="sad" hasBottomBorder />
+          <DownloadItem name={i18n[lang]['common.indicators']} url="sad" />
         </div>
         <div className={styles.middle}></div>
         <div className={styles.right}>
@@ -83,14 +86,14 @@ const Index = () => {
                 <div className={styles['action-type']}>
                   Drag file here，or <span>click upload</span>
                 </div>
-                <div className={styles['action-type']}>物料展示【不限于文档/视频/图片/PSD/AI等】</div>
+                <div className={styles['action-type']}>{i18n[lang]['material.display.tip']}</div>
               </div>
             </Upload>
           </div>
         </div>
       </div>
       <div className={styles['button-wrrap']}>
-        <div className={classNames('common-button', styles['next-step'])}>下一步</div>
+        <div className={classNames('common-button', styles['next-step'])}>{i18n[lang]['next.step']}</div>
       </div>
     </div>
   );

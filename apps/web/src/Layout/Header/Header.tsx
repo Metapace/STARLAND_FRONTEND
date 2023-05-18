@@ -1,53 +1,43 @@
 import { useNavigate } from 'react-router-dom';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Logo from 'src/assets/images/starland-log.png';
-import { Button, Dropdown, Menu, Tooltip, Message, Avatar } from '@arco-design/web-react';
-import {
-  IconFullscreen,
-  IconFullscreenExit,
-  IconMoonFill,
-  IconPoweroff,
-  IconSettings,
-  IconSunFill,
-  IconLanguage,
-} from '@arco-design/web-react/icon';
-import { useFullscreen, useLocalStorageState } from 'ahooks';
+import MessageIcon from 'src/assets/images/messageLin.png';
+import { Button, Dropdown, Menu, Divider, Message, Avatar } from '@arco-design/web-react';
+import { IconPoweroff, IconSettings, IconLanguage } from '@arco-design/web-react/icon';
+import { useLocalStorageState, useInterval } from 'ahooks';
 import { useTheme } from 'src/ahooks';
-import PageConfig from 'src/components/PageConifg/PageConfig';
+import dayjs from 'dayjs';
 import useI18n from 'src/ahooks/useI18n';
 import styles from './index.module.less';
+import { use } from 'echarts/core';
 
 const themeStyle = {
   background: 'var(--theme-color)',
   color: '#fff',
 };
+
+const splitStyle = {
+  height: '17px',
+  borderLeft: '1px solid #2B3674',
+};
+
 const Header = () => {
   useTheme();
   const navigate = useNavigate();
   const { lang, i18n, setLang } = useI18n();
+  const [nowTime, setNowtime] = useState(dayjs().format('YYYY-MM-DD hh:mm:ss'));
   const [, setLanguage] = useLocalStorageState('language');
-  const [arcoThem, setArcoThem] = useLocalStorageState('arco-theme');
-  const [them, setThem] = useState('');
-  const [fullscreen, { toggleFullscreen }] = useFullscreen(() => document.documentElement);
   const loginOut = () => {
     localStorage.removeItem('userToken');
     navigate('/login');
   };
 
-  useEffect(() => {
-    if (arcoThem) {
-      setThem('dark');
-    } else {
-      setThem('');
-    }
-  }, []);
+  useInterval(() => {
+    setNowtime(dayjs().format('YYYY-MM-DD hh:mm:ss'));
+  }, 1000);
 
   const goHome = () => {
     navigate('/weclome');
-  };
-
-  const fullscreenEvent = () => {
-    toggleFullscreen();
   };
 
   const changeLanguage = (lang: string) => {
@@ -86,59 +76,11 @@ const Header = () => {
             </Button>
           </Dropdown>
         </li>
-        {/* <li>
-          {them === 'dark' ? (
-            <Tooltip position="bottom" content={i18n[lang]['header.toggletoLight']}>
-              <Button
-                shape="circle"
-                size="default"
-                onClick={() => {
-                  setThem('');
-                  setArcoThem(undefined);
-                  document.body.setAttribute('arco-theme', '');
-                }}
-              >
-                <IconSunFill />
-              </Button>
-            </Tooltip>
-          ) : (
-            <Tooltip position="bottom" content={i18n[lang]['header.toggletoDark']}>
-              <Button
-                shape="circle"
-                size="default"
-                onClick={() => {
-                  setThem('dark');
-                  setArcoThem('dark');
-                  document.body.setAttribute('arco-theme', 'dark');
-                }}
-              >
-                <IconMoonFill />
-              </Button>
-            </Tooltip>
-          )}
-        </li> */}
-        {/* <li>
-          <PageConfig>
-            <Button shape="circle" size="default" onClick={() => {}}>
-              <IconSettings />
-            </Button>
-          </PageConfig>
-        </li> */}
-        <li className={styles.fullscreen} onClick={fullscreenEvent}>
-          {!fullscreen ? (
-            <Tooltip position="bottom" trigger="hover" content={i18n[lang]['header.enterFullScreenMode']}>
-              <Button shape="circle" size="default">
-                <IconFullscreen />
-              </Button>
-            </Tooltip>
-          ) : (
-            <Tooltip position="bottom" trigger="hover" content={i18n[lang]['header.leaveFullScreenMode']}>
-              <Button shape="circle" size="default">
-                <IconFullscreenExit />
-              </Button>
-            </Tooltip>
-          )}
-        </li>
+        <Divider type={'vertical'} style={splitStyle} />
+        <img src={MessageIcon} alt="" className={styles['message-icon']} />
+        <Divider type={'vertical'} style={splitStyle} />
+        <div className={styles['now-time']}>{nowTime}</div>
+        <Divider type={'vertical'} style={splitStyle} />
         <li className={styles.avatar}>
           <Dropdown
             trigger="click"

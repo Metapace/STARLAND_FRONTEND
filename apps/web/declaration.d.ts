@@ -24,3 +24,10 @@ declare module '*.svg' {
 declare module '*.png';
 
 declare module 'react-lazy-load-image-component';
+
+declare module '*.svg' {
+  import React = require('react');
+  export const ReactComponent: React.FC<React.SVGProps<SVGSVGElement>>;
+  const src: string;
+  export default src;
+}

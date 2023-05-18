@@ -21,7 +21,9 @@ const Index = () => {
         <div className={styles['top-left']}>
           <div className={classNames(styles['step-text'])}>Step1</div>
           <LazyLoadImage src={'src/assets/images/web3-step1.png'} effect="blur" alt=""></LazyLoadImage>
-          <div className={classNames('active-button', 'common-button', styles['web3-button'])}>创建物料</div>
+          <div className={classNames('active-button', 'common-button', styles['web3-button'])}>
+            {i18n[lang]['create.material']}
+          </div>
         </div>
         <div className={styles['top-middle']}></div>
         <div className={styles['top-right']}>
@@ -29,18 +31,20 @@ const Index = () => {
           <LazyLoadImage src={'src/assets/images/web3-step2.png'} effect="blur" alt=""></LazyLoadImage>
           <div className={styles['shop-cart-content']}>
             <div className={styles['cart-top']}>
-              总额： <span>$23,217.00</span>
+              {i18n[lang]['all.pay']}： <span>$23,217.00</span>
             </div>
-            <div className={styles['cart-middle']}>已选中12件商品</div>
+            <div className={styles['cart-middle']}>
+              {i18n[lang]['have.selected1']}12 {i18n[lang]['have.selected2']}
+            </div>
             <div className={classNames('common-button', styles['to-pay-button'])} onClick={handleToShoppingCart}>
-              去结算
+              {i18n[lang]['go.pay']}
             </div>
           </div>
         </div>
       </div>
       <CreateItem
-        title="新闻稿"
-        tip="新闻稿/区块链与加密货币"
+        title={i18n[lang]['news.paper']}
+        tip={i18n[lang]['market-web3-describe']}
         imgList={[web2Banner, web2Banner]}
         countNumber={21}
         price="$5,400.00"
@@ -48,8 +52,8 @@ const Index = () => {
         buttonFunction={() => console.log(1111)}
       />
       <CreateItem
-        title="横幅广告"
-        tip="新闻稿/区块链与加密货币"
+        title={i18n[lang]['ads.line']}
+        tip={i18n[lang]['market-web3-describe']}
         imgList={[web2Banner, web2Banner, web2Banner, web2Banner]}
         countNumber={21}
         price="$5,400.00"
@@ -57,8 +61,8 @@ const Index = () => {
         buttonFunction={() => console.log(1111)}
       />
       <CreateItem
-        title="社交媒体"
-        tip="新闻稿/区块链与加密货币"
+        title={i18n[lang]['social.media']}
+        tip={i18n[lang]['market-web3-describe']}
         imgList={[web2Banner, web2Banner, web2Banner]}
         countNumber={21}
         price="$5,400.00"
@@ -66,7 +70,7 @@ const Index = () => {
         buttonFunction={() => console.log(1111)}
       />
       <div className={styles['bottom']}>
-        <div className={styles['flag']}>投放示例</div>
+        <div className={styles['flag']}>{i18n[lang]['market.launch.example']}</div>
       </div>
     </div>
   );

@@ -10,7 +10,8 @@
   margin-bottom: 39px;
 }
 .tag {
-  width: 95px;
+  min-width: 68px;
+  padding: 0 12px;
   height: 35px;
   line-height: 35px;
   text-align: center;
@@ -73,10 +74,17 @@
   font-size: 14px;
   letter-spacing: -0.02em;
   color: rgba(43, 54, 116, 0.6);
+  display: flex;
+  align-items: center;
 }
 
 .content-item-value {
   color: #2b3674;
+  width: 170px;
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .bottom-button {

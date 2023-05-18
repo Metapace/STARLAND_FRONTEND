@@ -11,6 +11,18 @@ import blueAdd from 'src/assets/images/dashbord/blue-add.png';
 import orangeAdd from 'src/assets/images/dashbord/orange-add.png';
 import web2Channel from 'src/assets/images/dashbord/web2-channel.png';
 import leftArrow from 'src/assets/images/arrow-left.png';
+import BIGO from 'src/assets/images/dashbord/c-BIGO.png';
+import Dable from 'src/assets/images/dashbord/c-Dable.png';
+import Meta from 'src/assets/images/dashbord/c-Meta.png';
+import Snapchat from 'src/assets/images/dashbord/c-Snapchat.png';
+import TikTok from 'src/assets/images/dashbord/c-TikTok.png';
+import Yandex from 'src/assets/images/dashbord/c-Yandex.png';
+import eagllwin from 'src/assets/images/dashbord/c-eagllwin.png';
+import googleAds from 'src/assets/images/dashbord/c-googleAds.png';
+import huawei from 'src/assets/images/dashbord/c-huawei.png';
+import prokwai from 'src/assets/images/dashbord/c-prokwai.png';
+import Taboola from 'src/assets/images/dashbord/c-Taboola.png';
+import Mytarget from 'src/assets/images/dashbord/c-Mytarget.png';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import CountUp from 'react-countup';
 import 'react-lazy-load-image-component/src/effects/blur.css';
@@ -82,10 +94,25 @@ const ChannelItem: React.FC<ChannelItemProps> = (props) => {
       <div className={styles['channel-item-right']}>
         <div className={styles.top}>{title}</div>
         <div className={styles.middle}>{describle}</div>
-        <div className={styles.bottom}>
+        <div className={classNames('common-button', styles.bottom)}>
           <img src={leftArrow} alt="" />
         </div>
       </div>
+    </div>
+  );
+};
+
+interface MarketItemProps {
+  src: string;
+}
+
+const marketItemList1 = [BIGO, Dable, Meta, Snapchat, TikTok, Yandex];
+const marketItemList2 = [eagllwin, googleAds, huawei, prokwai, Taboola, Mytarget];
+
+const MarketItem: React.FC<MarketItemProps> = ({ src }) => {
+  return (
+    <div className={styles['market-item-one']}>
+      <LazyLoadImage src={src} alt={'web2'} effect="blur" width={'72px'} height={'22px'} />
     </div>
   );
 };
@@ -99,41 +126,46 @@ const Workplace = () => {
       <div className={styles['top-item-list']}>
         <div className={classNames(styles['account-item'], styles['common-item'])}>
           <div className={classNames(styles['top-item'], styles['account-item-inner'])}>
-            <TitleImageItem img={avalibleImage} title="账户资产" />
+            <TitleImageItem img={avalibleImage} title={i18n[lang]['account.number']} />
             <div className={styles['account-item-inner-text']}>
               <DollarItem color="blue" dollar={3723.22} />
               <div className={styles['tip-text']}>
-                账户资产含平台服务运营费用为<span>10%</span>，每季度以实际消耗结算为准。
+                {i18n[lang]['account.number.describe1']}
+                <span>10%</span>，{i18n[lang]['account.number.describe2']}
               </div>
             </div>
           </div>
           <div className={classNames(styles['bottom-item'], styles['account-item-inner'])}>
-            <TitleImageItem img={avalibleImage} title="可用资产" />
+            <TitleImageItem img={avalibleImage} title={i18n[lang]['avalible.number']} />
             <div className={styles['account-item-inner-text']}>
               <DollarItem color="orange" dollar={3723.22} />
             </div>
           </div>
-          <div className={classNames(styles['account-button'], styles['common-button'])}>
+          <div className={classNames('common-button', styles['account-button'], styles['common-button'])}>
             <img src={blueAdd} alt="" />
-            增加资金
+            {i18n[lang]['add.money']}
           </div>
         </div>
         <div className={classNames(styles['activity-item'], styles['common-item'])}>
-          <TitleImageItem img={createImage} title="创建活动" classname="creat-title-imgae" />
+          <TitleImageItem img={createImage} title={i18n[lang]['create.campagin']} classname="creat-title-imgae" />
           <div className={styles['totla-number']}>
-            8 <span>个</span>
+            8 <span>{i18n[lang]['pcs.pcs']}</span>
           </div>
-          <div className={styles['activity-number']}>正常运行：6个</div>
-          <div className={classNames(styles['activity-button'], styles['common-button'])}>
+          <div className={styles['activity-number']}>
+            {i18n[lang]['process.number']}：6{i18n[lang]['pcs.pcs']}
+          </div>
+          <div className={classNames('common-button', styles['activity-button'], styles['common-button'])}>
             <img src={orangeAdd} alt="" />
-            添加活动
+            {i18n[lang]['add.campagin']}
           </div>
         </div>
         <div className={classNames(styles['cost-item'], styles['common-item'])}>
           <div style={{ marginTop: '24px' }}></div>
-          <TitleImageItem img={costImage} title="昨日消耗" classname="creat-title-imgae" />
+          <TitleImageItem img={costImage} title={i18n[lang]['yesterday.cost']} classname="creat-title-imgae" />
           <DollarItem color="purple" dollar={3723.22} size="large"></DollarItem>
-          <div className={classNames(styles['cost-button'], styles['common-button'])}>查看详情</div>
+          <div className={classNames('common-button', styles['cost-button'], styles['common-button'])}>
+            {i18n[lang]['view.detail']}
+          </div>
         </div>
       </div>
       <div className={styles['item-title']}>{`${i18n[lang]['dashbord.info']}`}</div>
@@ -146,23 +178,48 @@ const Workplace = () => {
       </div>
       <div className={styles['item-title']}>{`${i18n[lang]['dashbord.lastDayData']}`}</div>
       <div className={styles['data-item-list']}>
-        <DataItem title="categaory" dataList={[50, 32, 21, 34, 76, 56, 13]} />
-        <DataItem title="categaory" dataList={[23, 4, 21, 34, 76, 56, 21]} />
-        <DataItem title="categaory" dataList={[12, 32, 21, 34, 76, 56, 72]} />
-        <DataItem title="categaory" dataList={[1, 32, 21, 34, 76, 56, 99]} chartType={ChartType.Bar} />
+        <DataItem title={i18n[lang]['yesterday-data-1']} dataList={[50, 32, 21, 34, 76, 56, 13]} />
+        <DataItem title={i18n[lang]['yesterday-data-2']} dataList={[23, 4, 21, 34, 76, 56, 21]} />
+        <DataItem title={i18n[lang]['yesterday-data-3']} dataList={[12, 32, 21, 34, 76, 56, 72]} />
+        <DataItem
+          title={i18n[lang]['yesterday-data-4']}
+          dataList={[1, 32, 21, 34, 76, 56, 99]}
+          chartType={ChartType.Bar}
+        />
       </div>
 
       <div className={styles['item-title']}>{`${i18n[lang]['dashbord.marketChannel']}`}</div>
       <div className={classNames(styles['common-item'], styles['market-item'])}>
-        <LazyLoadImage src={web2Channel} alt={'web2'} effect="blur" width={'96%'} />
+        <div>
+          {marketItemList1.map((src: string) => (
+            <MarketItem src={src} key={src}></MarketItem>
+          ))}
+        </div>
+        <div>
+          {marketItemList2.map((src: string) => (
+            <MarketItem src={src} key={src}></MarketItem>
+          ))}
+        </div>
       </div>
       <div className={styles['channel-item-list']}>
-        <ChannelItem title="DEX Screener 上的搜索栏广告-20万次展示" describle="文字广告/区块链和加密货币"></ChannelItem>
-        <ChannelItem title="BSC新闻上的社交媒体帖子（推特、电报）" describle="文字广告/区块链和加密货币"></ChannelItem>
+        <ChannelItem
+          title={`${i18n[lang]['channel-item-title1']}`}
+          describle={`${i18n[lang]['channel-item-decribe']}`}
+        ></ChannelItem>
+        <ChannelItem
+          title={`${i18n[lang]['channel-item-title2']}`}
+          describle={`${i18n[lang]['channel-item-decribe']}`}
+        ></ChannelItem>
       </div>
       <div className={styles['channel-item-list']}>
-        <ChannelItem title="MarkeCapOf上的原生广告（桌面+移动）" describle="文字广告/区块链和加密货币"></ChannelItem>
-        <ChannelItem title="CoinGape上的有机文章" describle="文字广告/区块链和加密货币"></ChannelItem>
+        <ChannelItem
+          title={`${i18n[lang]['channel-item-title3']}`}
+          describle={`${i18n[lang]['channel-item-decribe']}`}
+        ></ChannelItem>
+        <ChannelItem
+          title={`${i18n[lang]['channel-item-title4']}`}
+          describle={`${i18n[lang]['channel-item-decribe']}`}
+        ></ChannelItem>
       </div>
     </div>
   );

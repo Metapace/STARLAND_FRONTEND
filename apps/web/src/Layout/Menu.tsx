@@ -1,42 +1,41 @@
 import React, { useEffect, useState } from 'react';
 import { Menu } from '@arco-design/web-react';
-import {
-  IconHome,
-  IconCalendar,
-  IconDashboard,
-  IconDice,
-  IconApps,
-  IconList,
-  IconFile,
-  IconCheckCircle,
-  IconUser,
-  IconExclamationCircle,
-} from '@arco-design/web-react/icon';
 import { IMenusItem, menuConfig } from '../conifg/menuConfig';
 import { useLocation, Link } from 'react-router-dom';
 import useI18n from 'src/ahooks/useI18n';
+import { ReactSVG } from 'react-svg';
+import DashbordIcon from 'src/assets/images/menu/dashbord-menu.svg';
+import AfterDataIcon from 'src/assets/images/menu/after-data-menu.svg';
+import ChannelIcon from 'src/assets/images/menu/channel-menu.svg';
+import InviteIcon from 'src/assets/images/menu/invite-menu.svg';
+import PublishIcon from 'src/assets/images/menu/publish-menu.svg';
+import UserIcon from 'src/assets/images/menu/user-menu.svg';
 import styles from './menu.module.less';
+import classNames from 'classnames';
 const MenuItem = Menu.Item;
 const SubMenu = Menu.SubMenu;
 
 interface IconsPros {
   [key: string]: React.ReactElement;
 }
+
+const MenuSvgIcon = ({ src }: { src: string | React.FunctionComponent<React.SVGAttributes<SVGElement>> }) => (
+  <ReactSVG src={src as string} wrapper="span" className={classNames(styles.ReactSVG)} />
+);
+
 const icons: IconsPros = {
-  IconHome: <IconHome />,
-  IconCalendar: <IconCalendar />,
-  IconDashboard: <IconDashboard />,
-  IconDice: <IconDice />,
-  IconApps: <IconApps />,
-  IconList: <IconList />,
-  IconFile: <IconFile />,
-  IconCheckCircle: <IconCheckCircle />,
-  IconUser: <IconUser />,
-  IconExclamationCircle: <IconExclamationCircle />,
+  IconDashboard: <MenuSvgIcon src={DashbordIcon} />,
+  IconAfterData: <MenuSvgIcon src={AfterDataIcon} />,
+  IconChannel: <MenuSvgIcon src={ChannelIcon} />,
+  IconInvite: <MenuSvgIcon src={InviteIcon} />,
+  IconPublish: <MenuSvgIcon src={PublishIcon} />,
+  IconUser: <MenuSvgIcon src={UserIcon} />,
 };
 const menu: IMenusItem[] = menuConfig.menu;
 
 const getMenu = (menus: IMenusItem[]) => {
+  console.log(DashbordIcon);
+
   const { lang, i18n } = useI18n();
   const list = menus.map((item) => {
     if (item.children && item.children.length > 1) {

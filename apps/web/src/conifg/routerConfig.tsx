@@ -17,6 +17,10 @@ const PublishDemand = React.lazy(() => import('../app/PublishDemand/index'));
 
 const CreateDemand = React.lazy(() => import('../app/CreateDemand/index'));
 
+const VerifyError = React.lazy(() => import('../app/VerifyError/index'));
+
+const CreateSuccess = React.lazy(() => import('../app/CreateSuccess/index'));
+
 export interface IRouterConfig {
   path: string;
   text: string;
@@ -79,6 +83,16 @@ const RouterConfig: IRouterConfig[] = [
     path: '/create-demand',
     text: '创建需求',
     page: <CreateDemand />,
+  },
+  {
+    path: '/verify-fail',
+    text: '审核失败',
+    page: <VerifyError />,
+  },
+  {
+    path: '/create-success',
+    text: '创建成功',
+    page: <CreateSuccess />,
   },
 ];
 

@@ -1,21 +1,27 @@
 import React from 'react';
 import styles from './index.module.less';
 import classNames from 'classnames';
-
+import useI18n from 'src/ahooks/useI18n';
+import locale from '../../locales';
+import { IconCheck } from '@arco-design/web-react/icon';
 interface StepItemProps {
   title: string;
   describe: string;
   isActive?: boolean;
+  isDone?: boolean;
   stepIndex: number;
 }
 
-const StepItem: React.FC<StepItemProps> = ({ title, describe, isActive = false, stepIndex }) => {
+const StepItem: React.FC<StepItemProps> = ({ title, describe, isActive = false, stepIndex, isDone = false }) => {
+  const { lang, i18n } = useI18n(locale);
   return (
     <div className={styles['item-wrrape']}>
-      <div className={classNames(styles['item-left'], !isActive && styles['item-left-active'])}>{stepIndex}</div>
+      <div className={classNames(styles['item-left'], !isActive && styles['item-left-active'])}>
+        {!isDone ? stepIndex : <IconCheck className={styles['check-icon']}></IconCheck>}
+      </div>
       <div className={styles['item-right']}>
-        <div className={styles['item-title']}>{title}</div>
-        <div className={styles['item-describe']}>{describe}</div>
+        <div className={styles['item-title']}>{i18n[lang][title]}</div>
+        <div className={styles['item-describe']}>{i18n[lang][describe]}</div>
       </div>
     </div>
   );
@@ -27,24 +33,24 @@ interface LongProgress {
 
 const StepItemList: Array<Pick<StepItemProps, 'title' | 'describe'>> = [
   {
-    title: '素材信息上传',
-    describe: '创建渠道物料活动信息',
+    title: 'material.upload',
+    describe: 'create.material.info',
   },
   {
-    title: '充值支付',
-    describe: '进行充值及预付费用',
+    title: 'deposite.pay',
+    describe: 'going.deposit.pay',
   },
   {
-    title: '等待审核',
-    describe: '资料及渠道分发审核',
+    title: 'wait.review',
+    describe: 'wait.review.descibe',
   },
   {
-    title: '渠道投放',
-    describe: '渠道审核及数据测试',
+    title: 'channel.launch',
+    describe: 'channel.launch.describe',
   },
   {
-    title: '广告上线',
-    describe: '查看相关投放数据明细',
+    title: 'launage.porgress',
+    describe: 'launage.porgress.describe',
   },
 ];
 
@@ -52,7 +58,7 @@ const Index: React.FC<LongProgress> = ({ step = 1 }) => {
   return (
     <div className={styles.container}>
       {StepItemList.map((item, index) => (
-        <StepItem {...item} stepIndex={index + 1} key={index} isActive={index < step} />
+        <StepItem {...item} stepIndex={index + 1} key={index} isActive={index + 1 === step} isDone={index + 1 < step} />
       ))}
     </div>
   );

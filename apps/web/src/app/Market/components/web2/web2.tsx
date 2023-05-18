@@ -29,17 +29,17 @@ const Index = () => {
         </div>
       </div>
       <CreateItem
-        title="渠道类型"
-        tip="精准策略，智能投放，素材精细化，投放效果最大化"
-        buttonText="创建活动"
+        title={i18n[lang]['market.type']}
+        tip={i18n[lang]['market.type.describe']}
+        buttonText={i18n[lang]['create.campagin']}
         imgList={[web2Banner, web2Banner, web2Banner]}
         countNumber={21}
-        price="CPC计费"
+        price={i18n[lang]['cpc.count']}
         channelType={ChannelType.Web2}
         buttonFunction={() => console.log(1111)}
       />
       <div className={styles['bottom']}>
-        <div className={styles['flag']}>投放示例</div>
+        <div className={styles['flag']}>{i18n[lang]['market.launch.example']}</div>
       </div>
     </div>
   );
