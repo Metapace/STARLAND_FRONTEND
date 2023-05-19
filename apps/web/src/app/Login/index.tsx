@@ -1,21 +1,20 @@
-import React, { useState } from 'react';
-// import axios from 'axios';
-import { Form, Input, Button, Tabs, Grid } from '@arco-design/web-react';
+import React, { useState, useEffect } from 'react';
+import { Form, Input, Tabs, Grid, Message } from '@arco-design/web-react';
 import { useNavigate } from 'react-router-dom';
-// import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { useLocalStorageState, useCountDown } from 'ahooks';
+import { TokenName } from 'src/utils/localSet';
+import Sbutton from 'src/components/Sbutton';
 import useI18n from 'src/ahooks/useI18n';
 import locales from './locales';
 import styles from './index.module.less';
-// import LoginLeftPng from 'src/assets/images/login-left.png';
-// import LoginLogPng from 'src/assets/images/login-logo.png';
-
+import { useMutation } from '@tanstack/react-query';
+import { sendCodeRequest, loginRequest } from 'src/api/user';
 const TabPane = Tabs.TabPane;
 
 type IUserParams = {
-  username: string;
-  password: string;
+  email: string;
+  code: string;
 };
 const FormItem = Form.Item;
 
@@ -24,53 +23,48 @@ export const Login: React.FC = () => {
   const { lang, i18n } = useI18n(locales);
   const [leftTime, setLeftTime] = useState<number>(0);
   const navigate = useNavigate();
-  const [userToken, setUserToken] = useLocalStorageState('userToken');
+  const [userToken, setUserToken] = useLocalStorageState(TokenName);
   const [_, formattedRes] = useCountDown({ leftTime, onEnd: () => setLeftTime(0) });
   //   const [loading, setLoading] = useState(false);
+  const navigateTo = () => navigate('/dashboard/workplace');
 
-  //   useEffect(() => {
-  //     // 判断是否登陆
-  //     if (userToken) {
-  //       navigate('/weclome');
-  //     }
-  //   }, []);
+  useEffect(() => {
+    // 判断是否登陆
+    if (userToken) {
+      navigateTo();
+    }
+  }, []);
+
+  const handleSendCode = async () => {
+    await form.validate(['email']);
+    const email = form.getFieldValue('email');
+    await sendCodeRequest(email);
+    Message.success('Code has been send');
+    setLeftTime(60 * 1000);
+  };
+
+  const login = async (params: IUserParams) => {
+    const res = await loginRequest(params);
+    if (res?.token) {
+      setUserToken(res.token);
+      navigateTo();
+    }
+  };
+
+  const mutation = useMutation({
+    mutationFn: handleSendCode,
+  });
+  const mutationlogin = useMutation({
+    mutationFn: login,
+  });
 
   const onSubmit = () => {
     form.validate((err, values) => {
       if (err) {
         return;
       }
-      const { username, password } = values;
-      login({ username, password });
+      mutationlogin.mutate(values);
     });
-  };
-
-  const login = (params: IUserParams) => {
-    navigate('/weclome');
-    console.log(params);
-    console.log(userToken);
-    setUserToken('qdasdasdasdasdasdasd');
-    // setLoading(true);
-    // axios
-    //   .post('/api/user/login', params)
-    //   .then((res) => {
-    //     const {
-    //       status,
-    //       msg,
-    //       data: { token },
-    //     } = res.data;
-    //     console.log(msg);
-    //     if (status === 'ok') {
-    //       Message.success('登录成功');
-    //       navigate('/weclome');
-    //       setUserToken(token);
-    //     } else {
-    //       Message.error(msg);
-    //     }
-    //   })
-    //   .finally(() => {
-    //     setLoading(false);
-    //   });
   };
 
   return (
@@ -104,41 +98,45 @@ export const Login: React.FC = () => {
                 wrapperCol={{
                   span: 24,
                 }}
-                initialValues={{
-                  username: '',
-                  password: '',
-                }}
                 onSubmit={onSubmit}
               >
                 <FormItem
-                  field="username"
-                  rules={[{ required: true, message: `${i18n[lang]['login.username.isNotEmpty']}` }]}
+                  field="email"
+                  rules={[
+                    { required: true, message: `${i18n[lang]['login.username.isNotEmpty']}` },
+                    {
+                      type: 'email',
+                      validateLevel: 'error',
+                      message: 'please enter right email',
+                    },
+                  ]}
                 >
                   <Input type="text" placeholder="Enter Email" />
                 </FormItem>
                 <FormItem>
                   <Grid.Row align="center">
                     <FormItem
-                      field="password"
+                      field="code"
                       noStyle={{ showErrorTip: true }}
                       rules={[{ required: true, message: `${i18n[lang]['login.password.isNotEmpty']}` }]}
                     >
                       <Input placeholder="Enter Verification Code" style={{ flex: 1 }} />
                     </FormItem>
-                    <div
+                    <Sbutton
+                      loading={mutation.isLoading}
                       className={styles['send-code-button']}
-                      onClick={() => {
-                        setLeftTime(60 * 1000);
-                      }}
-                    >
-                      {leftTime > 0 ? `${formattedRes.seconds}s` : `${i18n[lang]['login.sendCode']}`}
-                    </div>
+                      onClick={mutation.mutateAsync}
+                      text={leftTime > 0 ? `${formattedRes.seconds}s` : `${i18n[lang]['login.sendCode']}`}
+                    />
                   </Grid.Row>
                 </FormItem>
                 <FormItem>
-                  <Button type="primary" htmlType="submit" long className={'active-button'}>
-                    {i18n[lang]['login.login']}
-                  </Button>
+                  <Sbutton
+                    onClick={onSubmit}
+                    loading={mutationlogin.isLoading}
+                    text={i18n[lang]['login.login']}
+                    className={styles['submit-button']}
+                  />
                 </FormItem>
               </Form>
             </TabPane>

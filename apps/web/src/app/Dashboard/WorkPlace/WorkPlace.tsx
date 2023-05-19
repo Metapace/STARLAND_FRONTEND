@@ -104,15 +104,17 @@ const ChannelItem: React.FC<ChannelItemProps> = (props) => {
 
 interface MarketItemProps {
   src: string;
+  width?: string;
+  height?: string;
 }
 
 const marketItemList1 = [BIGO, Dable, Meta, Snapchat, TikTok, Yandex];
 const marketItemList2 = [eagllwin, googleAds, huawei, prokwai, Taboola, Mytarget];
 
-const MarketItem: React.FC<MarketItemProps> = ({ src }) => {
+const MarketItem: React.FC<MarketItemProps> = ({ src, width = '72px', height = '22px' }) => {
   return (
     <div className={styles['market-item-one']}>
-      <LazyLoadImage src={src} alt={'web2'} effect="blur" width={'72px'} height={'22px'} />
+      <LazyLoadImage src={src} alt={'web2'} effect="blur" width={width} />
     </div>
   );
 };

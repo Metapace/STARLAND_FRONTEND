@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import axios, { AxiosRequestConfig, AxiosRequestHeaders } from 'axios';
 import { Message } from '@arco-design/web-react';
-import { TokenName } from './localSet';
+import { getLocalToken } from './localSet';
 
 const baseURL = process.env.REACT_APP_base_url;
 
@@ -16,7 +17,7 @@ service.interceptors.request.use(
   (config: AxiosRequestConfig) => {
     // 配置自定义请求头
     let customHeaders: AxiosRequestHeaders = {
-      token: window.localStorage.getItem(TokenName) || '',
+      token: getLocalToken() || '',
     };
     config.headers = customHeaders;
     return config;
@@ -66,15 +67,12 @@ const requestHandler = <T>(
   return new Promise<T>((resolve, reject) => {
     response
       .then((res) => {
-        // 业务代码 可根据需求自行处理
-
         const data = res.data;
         if (data.code !== 200) {
-          // 特定状态码 处理特定的需求
-          if (data.code == 401) {
-            Message.warning('您的账号已登出或超时，即将登出...');
-            console.log('登录异常，执行登出...');
-          }
+          //   if (data.code == 401) {
+          //     Message.warning('您的账号已登出或超时，即将登出...');
+          //     console.log('登录异常，执行登出...');
+          //   }
 
           let e = JSON.stringify(data);
           Message.warning(`请求错误：${e}`);
@@ -95,7 +93,7 @@ const requestHandler = <T>(
   });
 };
 
-// 使用 request 统一调用，包括封装的get、post、put、delete等方法
+// 使用 request 统一调用，包括封装的get、post方法
 const request = {
   get: <T>(url: string, params?: Record<string, any>, config?: AxiosRequestConfig) =>
     requestHandler<T>('get', url, params, config),
