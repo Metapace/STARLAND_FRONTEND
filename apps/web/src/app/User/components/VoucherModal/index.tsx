@@ -26,9 +26,14 @@ import closemodal from 'src/assets/images/usercenter-assets-closemodal.png';
 import upload from 'src/assets/images/usercenter-assets-upload.png';
 import uploadAws from 'src/utils/uploadAws';
 
+
 const FormItem = Form.Item;
 const RadioGroup = Radio.Group;
-const index = ({ open, handleCloseVoucherModal }: any) => {
+interface VoucherModalProps {
+  open: boolean;
+  handleCloseVoucherModal: any;
+}
+const index:React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal }) => {
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [form] = Form.useForm();
 
@@ -120,7 +125,7 @@ const index = ({ open, handleCloseVoucherModal }: any) => {
             customRequest={handleUpload}
             limit={1}
             drag
-            onPreview={(file) => {
+            onPreview={(file:any) => {
               Modal.info({
                 title: 'Preview',
                 content: (
@@ -247,7 +252,7 @@ const index = ({ open, handleCloseVoucherModal }: any) => {
                 customRequest={handleUpload}
                 limit={1}
                 drag
-                onPreview={(file) => {
+                onPreview={(file:any) => {
                   Modal.info({
                     title: 'Preview',
                     content: (
@@ -343,7 +348,7 @@ const index = ({ open, handleCloseVoucherModal }: any) => {
                 customRequest={handleUpload}
                 limit={1}
                 drag
-                onPreview={(file) => {
+                onPreview={(file:any) => {
                   Modal.info({
                     title: 'Preview',
                     content: (
