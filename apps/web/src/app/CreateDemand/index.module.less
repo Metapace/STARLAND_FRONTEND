@@ -1,0 +1,83 @@
+.container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+}
+
+.title {
+  color: #2b3674;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+}
+.progress-container {
+  border-bottom: 1px solid rgba(114, 123, 164, 0.15);
+  padding-bottom: 28px;
+  margin-top: 39px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress-container-inner {
+  display: flex;
+  align-items: center;
+}
+.circle-item-wrrape {
+  display: flex;
+  align-items: center;
+}
+
+.circle-item {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(45, 112, 241, 0.31);
+  border-radius: 50%;
+  color: #ffffff;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.circle-active {
+  background: #2d70f1;
+}
+
+.circle-done {
+  border: 2px solid #2d70f1;
+  background-color: #e9ecf4;
+  color: #2d70f1;
+}
+
+.circle-item-text {
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: -0.02em;
+  color: #2b3674;
+  margin-left: 12px;
+}
+
+.progress-line {
+  display: flex;
+  align-items: center;
+  margin: 0 38px 0 19px;
+  .line {
+    width: 166px;
+    height: 1px;
+    background-color: #2d70f1;
+  }
+  .dot {
+    width: 4px;
+    height: 4px;
+    background-color: #2d70f1;
+    border-radius: 50%;
+  }
+}

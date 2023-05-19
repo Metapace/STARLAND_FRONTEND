@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 // import axios from 'axios';
 import { Form, Input, Button, Tabs, Grid } from '@arco-design/web-react';
 import { useNavigate } from 'react-router-dom';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+// import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { useLocalStorageState, useCountDown } from 'ahooks';
 import useI18n from 'src/ahooks/useI18n';
 import locales from './locales';
 import styles from './index.module.less';
-import LoginLeftPng from 'src/assets/images/login-left.png';
-import LoginLogPng from 'src/assets/images/login-logo.png';
+// import LoginLeftPng from 'src/assets/images/login-left.png';
+// import LoginLogPng from 'src/assets/images/login-logo.png';
 
 const TabPane = Tabs.TabPane;
 
@@ -76,9 +76,12 @@ export const Login: React.FC = () => {
   return (
     <div className={styles.login}>
       <div className={styles.left}>
-        <LazyLoadImage alt={'pan'} effect="blur" src={LoginLeftPng} />
+        <video muted loop className={styles['back-video']} autoPlay>
+          <source src="src/assets/video/login-back.mp4" type="video/mp4" />
+        </video>
+        {/* <LazyLoadImage alt={'pan'} effect="blur" src={LoginLeftPng} /> */}
         {/* <img src={LoginLeftPng} className={styles['background-imgae']} /> */}
-        <div className={styles['background-content']}>
+        {/* <div className={styles['background-content']}>
           <div className={styles['background-content-inner']}>
             <div className={styles['login-png-container']}>
               <img src={LoginLogPng} alt="" />
@@ -87,7 +90,7 @@ export const Login: React.FC = () => {
             <div className={styles['background-content-inner-text']}>{`${i18n[lang]['login.slogan']}`}</div>
             <div className={styles['slogan-bottom-line']}></div>
           </div>
-        </div>
+        </div> */}
       </div>
       <div className={styles.right}>
         <div className={styles['right-inner']}>

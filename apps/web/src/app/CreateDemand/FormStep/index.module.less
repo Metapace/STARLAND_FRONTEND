@@ -1,0 +1,41 @@
+.container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 37px;
+  :global {
+    .arco-select-size-default.arco-select-single .arco-select-view {
+      border-radius: 7px;
+      border: 1px solid #d2d5dc;
+    }
+    .arco-select-multiple {
+      border-radius: 7px;
+      border: 1px solid #d2d5dc;
+      overflow: hidden;
+    }
+    .arco-form-item-symbol {
+      color: #4318ff;
+      display: inline-block;
+      transform: translate(-6px, -2px);
+    }
+  }
+}
+
+.next-button {
+  width: 232px;
+  height: 36px;
+  line-height: 36px;
+  margin-top: 17px;
+}
+.channel-list {
+  display: flex;
+  column-gap: 7px;
+  > div {
+    width: 54px;
+    height: 54px;
+    background: #cbced8;
+    border-radius: 6px;
+  }
+}

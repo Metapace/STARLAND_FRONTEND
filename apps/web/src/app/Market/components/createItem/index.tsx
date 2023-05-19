@@ -3,6 +3,8 @@ import styles from './index.module.less';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import ShoppingCart from 'src/assets/images/shopping-cart.png';
+import useI18n from 'src/ahooks/useI18n';
+import locale from '../../locales';
 
 export enum ChannelType {
   Web2 = 'web2',
@@ -17,7 +19,7 @@ interface IndexProps {
   countNumber: number;
   price: string;
   buttonText?: string;
-  buttonFunction: (params?: any) => void;
+  buttonFunction: (params?: unknown) => void;
 }
 
 const Index: React.FC<IndexProps> = ({
@@ -30,6 +32,7 @@ const Index: React.FC<IndexProps> = ({
   title,
   tip,
 }) => {
+  const { lang, i18n } = useI18n(locale);
   return (
     <div className={styles['container']}>
       <div className={styles['top-title']}>
@@ -43,11 +46,11 @@ const Index: React.FC<IndexProps> = ({
           ))}
         </div>
         <div className={styles['count-number']}>
-          <div className={styles['count-number-top']}>数量</div>
+          <div className={styles['count-number-top']}>{i18n[lang]['market.count']}</div>
           <div className={styles['count-number-bottom']}>{countNumber}</div>
         </div>
         <div className={styles['price']}>
-          <div className={styles['price-top']}>价格</div>
+          <div className={styles['price-top']}>{i18n[lang]['market.price']}</div>
           <div className={styles['price-bottom']}>{price}</div>
         </div>
         <div className={styles['right-button']} onClick={() => buttonFunction()}>

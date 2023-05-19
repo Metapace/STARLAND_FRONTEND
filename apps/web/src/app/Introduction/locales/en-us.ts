@@ -2,24 +2,23 @@ const en: {
   [k: string]: string;
 } = {
   'intro.home': 'Home',
-  'intro.advantage': 'Product Advantage',
+  'intro.advantage': 'Product Advantages',
   'intro.market': 'Market',
-  'intro.example': 'Customer Case',
+  'intro.example': 'Customer Cases',
   'intro.login': 'Login',
-  'intro.home.title1': 'Starland is a launch platform that integrates web2 and web3 channels. ',
-  'intro.home.title2': ' One-stop cross-channel smart delivery tool',
-  'intro.home.describle': `Integrating the tools of global advertising channels, MMPs, and monetization platforms, StarLand simplifies complex operations
-    through extremely fast batch building of advertisements, refined operation of materials,
-     access to ROAS data, and precise expansion of SDK platforms, allowing your projects to gain comprehensive strength Strong exposure and precise user growth.`,
-  'intro.advantage.title': 'Full platform access, one-stop integration',
+  'intro.home.title1': 'Starland is an integrated web2 and web3 channel placement middleware. ',
+  'intro.home.title2': ' One-stop cross-channel intelligent placement tool',
+  'intro.home.describle':
+    'StarLand is a tool that integrates global advertising channels, MMPs, and monetization platforms.Simplify operations, so that your project can obtain strong exposure and accurate user growth.',
+  'intro.advantage.title': 'Overseas platform, one-stop integration',
   'intro.market.pan': 'Material sharing cloud disk',
   'intro.market.allpalte': 'Full platform reach',
-  'intro.market.ads': 'Advertise in bulk',
-  'intro.market.sdk': 'SDK platform Sub-channel expansion',
-  'intro.market.assitate': 'Collaborate across teams',
-  'intro.market.ai': 'AI automatic hosting',
-  'intro.market.echart': 'Multidimensional Visualization Data',
-  'intro.case.title': 'Customer Case',
+  'intro.market.ads': 'Batch advertising',
+  'intro.market.sdk': 'SDK platform sub-channel to expand the volume',
+  'intro.market.assitate': 'Cross-team collaboration',
+  'intro.market.ai': 'AI auto-hosting',
+  'intro.market.echart': 'Multi-dimensional visualization of data',
+  'intro.case.title': 'Customer Cases',
 };
 
 export default en;

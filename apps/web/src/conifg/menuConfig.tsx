@@ -14,6 +14,13 @@ interface IMenu {
   menu: IMenusItem[];
 }
 
+// IconDashboard: <DashbordIcon />,
+//   IconAfterData: <AfterDataIcon />,
+//   IconChannel: <ChannelIcon />,
+//   IconInvite: <InviteIcon />,
+//   IconPublish: <PublishIcon />,
+//   IconUser: <UserIcon />,
+
 export const menuConfig: IMenu = {
   menu: [
     {
@@ -34,13 +41,13 @@ export const menuConfig: IMenu = {
       name: 'menu.DataInfo',
       key: '/datainfo',
       path: '/datainfo',
-      icon: 'IconDashboard',
+      icon: 'IconAfterData',
       children: [
         {
           name: 'menu.DataInfo',
           key: '/datainfo',
           path: '/datainfo',
-          icon: 'IconDashboard',
+          icon: 'IconAfterData',
         },
       ],
     },
@@ -48,13 +55,13 @@ export const menuConfig: IMenu = {
       name: 'menu.market',
       key: '/channel-market',
       path: '/channel-market',
-      icon: 'IconDashboard',
+      icon: 'IconChannel',
       children: [
         {
           name: 'menu.market',
           key: '/channel-market',
           path: '/channel-market',
-          icon: 'IconDashboard',
+          icon: 'IconChannel',
         },
       ],
     },
@@ -75,7 +82,7 @@ export const menuConfig: IMenu = {
       name: 'menu.publish.demand',
       key: '/publish-demand',
       path: '/publish-demand',
-      icon: 'IconUser',
+      icon: 'IconPublish',
       children: [
         {
           name: 'menu.publish.demand',
