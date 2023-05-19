@@ -29,8 +29,7 @@ const Header = () => {
   const { lang, i18n, setLang } = useI18n();
   const [nowTime, setNowtime] = useState(dayjs().format('YYYY-MM-DD hh:mm:ss'));
   const [, setLanguage] = useLocalStorageState('language');
-  const query = useQuery(['usernfo'], userInfoRequest);
-  console.log(query, 'useQuery');
+  //   const query = useQuery(['usernfo'], userInfoRequest);
 
   const loginOut = () => {
     removeLocalToken();

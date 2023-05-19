@@ -24,7 +24,7 @@ export const Login: React.FC = () => {
   const [leftTime, setLeftTime] = useState<number>(0);
   const navigate = useNavigate();
   const [userToken, setUserToken] = useLocalStorageState(TokenName);
-  const [_, formattedRes] = useCountDown({ leftTime, onEnd: () => setLeftTime(0) });
+  const [, formattedRes] = useCountDown({ leftTime, onEnd: () => setLeftTime(0) });
   //   const [loading, setLoading] = useState(false);
   const navigateTo = () => navigate('/dashboard/workplace');
 
