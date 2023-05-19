@@ -54,7 +54,12 @@ const CompanyBox: React.FC<CompanyBoxProps> = ({ title, info }) => {
   );
 };
 
-const index = ({ handleOpenVoucherModal, handleCloseVoucherModal }) => {
+interface PropertyProps {
+  handleOpenVoucherModal: any;
+  handleCloseVoucherModal: any;
+}
+
+const index:React.FC<PropertyProps> = ({ handleOpenVoucherModal, handleCloseVoucherModal }) => {
   const { lang, i18n } = useI18n(locale);
   return (
     <div className={styles['container']}>
@@ -126,7 +131,10 @@ const index = ({ handleOpenVoucherModal, handleCloseVoucherModal }) => {
           <img src={QRcode} alt="QRcode" />
           <p>{i18n[lang]['usercenter.USDTQRCodeRecharge']}</p>
         </div>
-        <CompanyBox title={i18n[lang]['usercenter.USDTDepositAddress']} info={i18n[lang]['usercenter.USDTDepositAddress']} />
+        <CompanyBox
+          title={i18n[lang]['usercenter.USDTDepositAddress']}
+          info={i18n[lang]['usercenter.USDTDepositAddress']}
+        />
       </div>
     </div>
   );

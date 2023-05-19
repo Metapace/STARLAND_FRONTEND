@@ -36,7 +36,6 @@ const Index = () => {
       xAxis: [
         {
           type: 'category',
-          boundaryGap: false,
           data: ['12.11', '12.12', '12.13', '12.14', '12.15', '12.16', '12.17'],
         },
       ],
