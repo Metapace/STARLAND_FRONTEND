@@ -1,5 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
-import { dashBoardInfoRequest, userInfoRequest, reportGet, ReportGetReturnItem } from 'src/api/user';
+import {
+  dashBoardInfoRequest,
+  userInfoRequest,
+  reportGet,
+  ReportGetReturnItem,
+  AlertListParams,
+  getAlertLsit,
+} from 'src/api/user';
 
 const useRequestUserIndfo = () => {
   const query = useQuery(['userinfo'], userInfoRequest);
@@ -17,8 +24,13 @@ const useRequestDashboardInfo = () => {
  * @returns
  */
 const useRequestreportGet = (date_type: 10 | 4) => {
-  const query = useQuery(['report'], () => reportGet({ date_type }));
+  const query = useQuery([`report${date_type}`], () => reportGet({ date_type }));
   return query;
 };
 
-export { useRequestUserIndfo, useRequestDashboardInfo, useRequestreportGet };
+const useRequestAlertList = (params: AlertListParams) => {
+  const query = useQuery([`alertList${JSON.stringify(params)}`], () => getAlertLsit(params));
+  return query;
+};
+
+export { useRequestUserIndfo, useRequestDashboardInfo, useRequestreportGet, useRequestAlertList };
