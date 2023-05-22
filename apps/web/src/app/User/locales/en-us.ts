@@ -13,10 +13,11 @@ const en: {
   'usercenter.bankAddress': 'Bank address',
   'usercenter.swiftCode': 'SWIFT code',
   'usercenter.fedWireABANumber': 'Fed Wire ABA Number',
+  'usercenter.receiptAccountNumber': 'Receipt Account Number',
   'usercenter.payeeName': "Recipient's name",
   'usercenter.countryOfRecipient': "Recipient's country/region",
   'usercenter.pleaseNote': 'Please note!',
-  'usercenter.note1': '1. Only international wire transfers and Fedwire transfers in US dollars are supported.',
+  'usercenter.note1': '1. Only international wire transfers in US dollars is supported.',
   'usercenter.note2':
     '2. Only wire transfers from approved remitters are accepted. Please contact us to submit your credentials and relevant information.',
   'usercenter.note3': '3. The minimum amount of top-up is $1100 (including tax), which is required to open an account.',
@@ -46,6 +47,9 @@ const en: {
   'usercenter.modalNote': 'Your details will be used for billing purposes in invoices and receipts',
   'usercenter.submit': 'Submit',
   'usercenter.uploadPassport': 'Upload passport',
+  'usercenter.noRewards': 'No Rewards',
+  'usercenter.depositConfirmation': 'Deposit confirmation in progress',
+  'usercenter.successfulTop-up': 'Successful top-up',
 };
 
 export default en;

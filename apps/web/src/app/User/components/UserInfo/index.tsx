@@ -10,7 +10,6 @@ const index = () => {
   const { lang, i18n } = useI18n(locale);
   const { data } = useRequestUserIndfo();
   const { data: data2 } = useRequestDashboardInfo();
-  console.log(data2)
   return (
     <div className={styles['container']}>
       <div className={styles['basic-info']}>
@@ -33,12 +32,13 @@ const index = () => {
       </div>
       <div className={styles['assets-info']}>
         <span className={styles['assets-info-span1']}>
-          {i18n[lang]['usercenter.totalAssets']}：<span style={{ color: '#2D70F1', fontSize: '20px' }}>$3721.23 </span>
+          {i18n[lang]['usercenter.totalAssets']}：
+          <span style={{ color: '#2D70F1', fontSize: '20px' }}>${data2?.balance} </span>
           <span style={{ color: '#33B803', fontSize: '12px' }}>USD</span>
         </span>
         <span>
           {i18n[lang]['usercenter.totalAssetsAvaiable']}：
-          <span style={{ color: '#F2A534', fontSize: '20px' }}>$3721.23 </span>
+          <span style={{ color: '#F2A534', fontSize: '20px' }}>${data2?.available_balance} </span>
           <span style={{ color: '#33B803', fontSize: '12px' }}>USD</span>
         </span>
       </div>

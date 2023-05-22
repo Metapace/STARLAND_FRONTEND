@@ -29,7 +29,7 @@ const Header = () => {
   const [nowTime, setNowtime] = useState(dayjs().format('YYYY-MM-DD hh:mm:ss'));
   const [, setLanguage] = useLocalStorageState('language');
   const { data } = useRequestAlertList({ page: 1, page_size: 10, status: 2 });
-  console.log(data, 'data');
+  // console.log(data, 'data');
   const loginOut = () => {
     removeLocalToken();
     navigate('/login');

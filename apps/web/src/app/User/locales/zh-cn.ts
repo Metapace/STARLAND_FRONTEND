@@ -13,10 +13,11 @@ const zh: {
   'usercenter.bankAddress': '银行地址',
   'usercenter.swiftCode': 'SWIFT代码',
   'usercenter.fedWireABANumber': 'Fed Wire ABA号码',
+  'usercenter.receiptAccountNumber': '收款账号',
   'usercenter.payeeName': '收款人姓名',
   'usercenter.countryOfRecipient': '收款人所在的国家/地区',
   'usercenter.pleaseNote': '请注意',
-  'usercenter.note1': '1.仅支持美元为单位的国际电汇和Fedwire转账。',
+  'usercenter.note1': '1.仅支持美元为单位的国际电汇转账。',
   'usercenter.note2': '2.仅接受来自批准的汇款人的电汇。请联系我们提交您的凭证及相关信息。',
   'usercenter.note3': '3.充值金额最小限额为$1100 (含税)，达到才能进行开户操作。',
   'usercenter.digitalAssets': '数字资产',
@@ -44,7 +45,9 @@ const zh: {
   'usercenter.modalNote': '您的详细信息将用于发票和收据中的计费目的',
   'usercenter.submit': '提交',
   'usercenter.uploadPassport': '上传护照',
-  
+  'usercenter.noRewards': '暂无记录',
+  'usercenter.depositConfirmation': '入账确认中',
+  'usercenter.successfulTop-up': '充值成功',
 };
 
 export default zh;
