@@ -21,7 +21,8 @@ export const loginRequest = (params: { email: string; code: string }) =>
  *
  * @description 获取用户信息
  */
-export const userInfoRequest = () => request.get('user/get', {}) as Promise<{ email: string }>;
+export const userInfoRequest = () =>
+  request.get('user/get', {}) as Promise<{ email: string; card_id: number; create_time: number; avatar_uri: string }>;
 
 /**
  *
