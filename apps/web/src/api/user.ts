@@ -1,5 +1,13 @@
 import { request } from 'src/utils/request';
 
+export interface ReportGetReturnItem {
+  data: string;
+  impression: number;
+  click: number;
+  cost: number;
+  ctr: number;
+}
+
 /**
  *
  * @param email 邮箱
@@ -45,7 +53,6 @@ export const dashBoardInfoRequest = () =>
  * @returns cost 花费成本
  *@returns ctr 点击率
  */
+
 export const reportGet = (params: { date_type: number }) =>
-  request.get('/report/get', params) as Promise<
-    Array<{ data: string; impression: number; click: number; cost: number; ctr: number }>
-  >;
+  request.get('/report/get', params) as Promise<Array<ReportGetReturnItem>>;
