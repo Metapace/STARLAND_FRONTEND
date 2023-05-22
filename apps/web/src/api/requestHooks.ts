@@ -3,7 +3,6 @@ import {
   dashBoardInfoRequest,
   userInfoRequest,
   reportGet,
-  ReportGetReturnItem,
   AlertListParams,
   getAlertLsit,
 } from 'src/api/user';

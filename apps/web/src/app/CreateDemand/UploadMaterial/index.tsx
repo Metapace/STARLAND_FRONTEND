@@ -1,14 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './index.module.less';
 import classNames from 'classnames';
-import { Upload, Message } from '@arco-design/web-react';
+import { Upload } from '@arco-design/web-react';
 import UploadFile from 'src/assets/images/upload-file.png';
 import downloadIcon from 'src/assets/images/download-icon.png';
 import fileIcon from 'src/assets/images/file-icon.png';
 import uploadAws from 'src/utils/uploadAws';
 import useI18n from 'src/ahooks/useI18n';
 import locales from '../locales';
+import Sbutton from 'src/components/Sbutton';
 
 interface DownloadItemProps {
   name: string;
@@ -30,8 +31,7 @@ const DownloadItem: React.FC<DownloadItemProps> = ({ name, url, hasBottomBorder 
   );
 };
 
-const Index = () => {
-  const [fileList, setFileList] = useState([]);
+const Index = ({ fileList, setFileList, handleSubmit, isLoading }: any) => {
   const { lang, i18n } = useI18n(locales);
   const handleUpload = async (option: any) => {
     const { onProgress, onError, onSuccess, file } = option;
@@ -93,7 +93,12 @@ const Index = () => {
         </div>
       </div>
       <div className={styles['button-wrrap']}>
-        <div className={classNames('common-button', styles['next-step'])}>{i18n[lang]['next.step']}</div>
+        <Sbutton
+          loading={isLoading}
+          className={styles['next-step']}
+          onClick={handleSubmit}
+          text={i18n[lang]['next.step']}
+        />
       </div>
     </div>
   );
