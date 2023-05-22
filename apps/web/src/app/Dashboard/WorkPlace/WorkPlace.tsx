@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './index.module.less';
 import useI18n from 'src/ahooks/useI18n';
 import locales from './locales';
@@ -26,7 +26,8 @@ import Mytarget from 'src/assets/images/dashbord/c-Mytarget.png';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import CountUp from 'react-countup';
 import 'react-lazy-load-image-component/src/effects/blur.css';
-import { dashBoardInfoRequest, userInfoRequest, reportGet } from 'src/api/user';
+import { dashBoardInfoRequest, userInfoRequest, reportGet, ReportGetReturnItem } from 'src/api/user';
+import { useRequestUserIndfo, useRequestDashboardInfo, useRequestreportGet } from 'src/api/requestHooks';
 import { useQuery } from '@tanstack/react-query';
 interface InfoItemProps {
   type: 'activity' | 'info';
@@ -123,10 +124,17 @@ const MarketItem: React.FC<MarketItemProps> = ({ src, width = '72px', height = '
 
 const Workplace = () => {
   const { lang, i18n } = useI18n(locales);
-  const { data } = useQuery(['userinfo'], userInfoRequest);
-  const { data: data2 } = useQuery(['dashbord'], dashBoardInfoRequest);
-  const { data: data3 } = useQuery(['report'], () => reportGet({ date_type: 4 }));
-  console.log(data3, '------');
+  const { data } = useRequestUserIndfo();
+  const { data: data2 } = useRequestDashboardInfo();
+  const { data: data3 } = useRequestreportGet(4);
+  const [lastDayDate, setlastDayDate] = useState<Omit<ReportGetReturnItem, 'data'>>();
+  useEffect(() => {
+    if (data3 && Array.isArray(data3) && data3.length > 0) {
+      const lastItem = data3[length - 1];
+      setlastDayDate(lastItem);
+    }
+  }, [data3]);
+
   return (
     <div className={styles.workplace}>
       <div className={styles['welcome-title']}>{`${i18n[lang]['dashbord.welcome']}, ${data?.email}!`}</div>
@@ -170,7 +178,7 @@ const Workplace = () => {
         <div className={classNames(styles['cost-item'], styles['common-item'])}>
           <div style={{ marginTop: '24px' }}></div>
           <TitleImageItem img={costImage} title={i18n[lang]['yesterday.cost']} classname="creat-title-imgae" />
-          <DollarItem color="purple" dollar={3723.22} size="large"></DollarItem>
+          <DollarItem color="purple" dollar={lastDayDate?.cost || 0} size="large"></DollarItem>
           <div className={classNames('common-button', styles['cost-button'], styles['common-button'])}>
             {i18n[lang]['view.detail']}
           </div>
