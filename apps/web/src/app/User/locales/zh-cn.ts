@@ -29,6 +29,22 @@ const zh: {
   'usercenter.pre': '上一页',
   'usercenter.next': '下一页',
   'usercenter.copied': '已复制',
+  'usercenter.uploadVoucher': '上传凭证及相关信息',
+  'usercenter.rechargeamount': '充值金额（USD)',
+  'usercenter.enterrechargeamount': '输入充值金额',
+  'usercenter.uploadPaymentVoucher': '上传支付凭证',
+  'usercenter.representative': '代表',
+  'usercenter.company': '公司',
+  'usercenter.individual': '个人',
+  'usercenter.companyName': '公司名称',
+  'usercenter.companyAddress': '公司地址',
+  'usercenter.companyRegistrationNumber': '公司注册号码',
+  'usercenter.companyEmail': '公司邮箱',
+  'usercenter.uploadBusinessLicense': '上传营业执照',
+  'usercenter.modalNote': '您的详细信息将用于发票和收据中的计费目的',
+  'usercenter.submit': '提交',
+  'usercenter.uploadPassport': '上传护照',
+  
 };
 
 export default zh;
