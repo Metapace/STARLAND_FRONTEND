@@ -7,8 +7,11 @@ import press from 'src/assets/images/datainfo-press.png';
 import pressweb3 from 'src/assets/images/datainfo-press-web3.png';
 import ReactECharts from 'echarts-for-react';
 import * as echarts from 'echarts/core';
+import useI18n from 'src/ahooks/useI18n';
+import locale from '../../locales';
 
 const Index = () => {
+  const { lang, i18n } = useI18n(locale);
   const getOption = () => {
     const options = {
       color: ['#71DFE0', '#E88B40', '#8150BF'],
@@ -25,7 +28,11 @@ const Index = () => {
       },
       // 筛选器
       legend: {
-        data: ['内容曝光量', '内容点击量', '产品下载量'],
+        data: [
+          `${i18n[lang]['datainfo.contentExposure']}`,
+          `${i18n[lang]['datainfo.contentClicks']}`,
+          `${i18n[lang]['datainfo.productDownloads']}`,
+        ],
       },
       grid: {
         left: '30px',
@@ -46,7 +53,7 @@ const Index = () => {
       ],
       series: [
         {
-          name: '产品下载量',
+          name: `${i18n[lang]['datainfo.productDownloads']}`,
           type: 'line',
           stack: 'Total',
           smooth: true,
@@ -73,7 +80,7 @@ const Index = () => {
           data: [3392, 4392, 5392, 6392, 5392, 4392, 3392],
         },
         {
-          name: '内容点击量',
+          name: `${i18n[lang]['datainfo.contentClicks']}`,
           type: 'line',
           stack: 'Total',
           smooth: true,
@@ -100,7 +107,7 @@ const Index = () => {
           data: [2392, 3392, 4392, 5392, 4392, 3392, 2392],
         },
         {
-          name: '内容曝光量',
+          name: `${i18n[lang]['datainfo.contentExposure']}`,
           type: 'line',
           stack: 'Total',
           smooth: true,
@@ -137,10 +144,10 @@ const Index = () => {
     <div>
       <div className={styles['container']}>
         <div className={styles['dataovervie-left']}>
-          <p className={styles['dataovervie-left-title']}>数据总览</p>
+          <p className={styles['dataovervie-left-title']}>{i18n[lang]['datainfo.dataOverview']}</p>
           <div className={styles['dataovervie-left-content']}>
             <div className={styles['dataovervie-box1']}>
-              <p>总点击量</p>
+              <p>{i18n[lang]['datainfo.totalClicks']}</p>
               <div className={styles['dataovervie-box1-inner']}>
                 <img src={click} alt="click" />
                 <p style={{ color: '#00CD83' }}>1,902</p>
@@ -148,7 +155,7 @@ const Index = () => {
             </div>
             <div className={styles['dataovervie-left-content-middle']}>{/* <img src={middle} alt="middle" /> */}</div>
             <div className={styles['dataovervie-box1']}>
-              <p>总费用</p>
+              <p>{i18n[lang]['datainfo.totalFees']}</p>
               <div className={styles['dataovervie-box1-inner']}>
                 <img src={consume} alt="consume" />
                 <p style={{ color: '#E8A31F' }}>1,902</p>
@@ -159,36 +166,36 @@ const Index = () => {
         <div className={styles['dataovervie-right']}>
           <div className={styles['dataovervie-right-content']}>
             <div className={styles['dataovervie-box2']}>
-              <p>Web2点击量</p>
+              <p>{i18n[lang]['datainfo.web2Hits']}</p>
               <div className={styles['dataovervie-box2-inner']}>
                 <img src={press} alt="press" />
                 <p>2,4223</p>
               </div>
             </div>
             <div className={styles['dataovervie-box3']}>
-              <p>点击率</p>
+              <p>{i18n[lang]['datainfo.click-throughRate']}</p>
               <p style={{ color: '#6B0EDD', fontSize: '20px', fontWeight: '600' }}>40%</p>
             </div>
             <div>
-              <p>成本</p>
+              <p>{i18n[lang]['datainfo.cost']}</p>
               <p style={{ color: '#6B0EDD', fontSize: '20px', fontWeight: '600' }}>$90</p>
             </div>
           </div>
           <div className={styles['dataovervie-right-content-middle']}> </div>
           <div className={styles['dataovervie-right-content']}>
             <div className={styles['dataovervie-box2']}>
-              <p>Web3点击量</p>
+              <p>{i18n[lang]['datainfo.web3Hits']}</p>
               <div className={styles['dataovervie-box2-inner']}>
                 <img src={pressweb3} alt="press" />
                 <p style={{ color: '#F17D1F' }}>2,4223</p>
               </div>
             </div>
             <div className={styles['dataovervie-box3']}>
-              <p>点击率</p>
+              <p>{i18n[lang]['datainfo.click-throughRate']}</p>
               <p style={{ color: '#F17D1F', fontSize: '20px', fontWeight: '600' }}>40%</p>
             </div>
             <div>
-              <p>成本</p>
+              <p>{i18n[lang]['datainfo.cost']}</p>
               <p style={{ color: '#F17D1F', fontSize: '20px', fontWeight: '600' }}>$90</p>
             </div>
           </div>

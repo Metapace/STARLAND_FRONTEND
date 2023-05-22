@@ -1,31 +1,10 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styles from './index.module.less';
-import { useForm, Controller, set } from 'react-hook-form';
-import {
-  Form,
-  AutoComplete,
-  Input,
-  Select,
-  TreeSelect,
-  Button,
-  Checkbox,
-  Switch,
-  Radio,
-  Cascader,
-  Message,
-  InputNumber,
-  Rate,
-  Slider,
-  Upload,
-  DatePicker,
-  Modal,
-} from '@arco-design/web-react';
-import { IconLink } from '@arco-design/web-react/icon';
-import userlogo from 'src/assets/images/usercenter-userlogo.png';
-import closemodal from 'src/assets/images/usercenter-assets-closemodal.png';
+import { Form, Input, Radio, Message, Upload, Modal } from '@arco-design/web-react';
 import upload from 'src/assets/images/usercenter-assets-upload.png';
 import uploadAws from 'src/utils/uploadAws';
-
+import useI18n from 'src/ahooks/useI18n';
+import locale from '../../locales';
 
 const FormItem = Form.Item;
 const RadioGroup = Radio.Group;
@@ -33,7 +12,8 @@ interface VoucherModalProps {
   open: boolean;
   handleCloseVoucherModal: any;
 }
-const index:React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal }) => {
+const index: React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal }) => {
+  const { lang, i18n } = useI18n(locale);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [form] = Form.useForm();
 
@@ -67,7 +47,7 @@ const index:React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal }) =>
   return (
     <Modal
       wrapClassName={styles.moadlwrap}
-      title="上传凭证及相关信息"
+      title={i18n[lang]['usercenter.uploadVoucher']}
       visible={open}
       onOk={onOk}
       confirmLoading={confirmLoading}
@@ -82,12 +62,12 @@ const index:React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal }) =>
         paddingInline: '62px',
         paddingTop: '10px',
       }}
-      okText="提交"
+      okText={i18n[lang]['usercenter.submit']}
       // footer="您的详细信息将用于发票和收据中的计费目的。"
     >
       <Form form={form}>
         <FormItem
-          label="充值金额( USD )"
+          label={i18n[lang]['usercenter.rechargeamount']}
           field="inValue"
           rules={[{ required: true }]}
           labelCol={{ span: 6, offset: 0 }}
@@ -101,7 +81,7 @@ const index:React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal }) =>
           labelCol={{ span: 6, offset: 0 }}
           wrapperCol={{ span: 18, offset: 0 }}
           requiredSymbol={{ position: 'end' }}
-          label="上传支付凭证"
+          label={i18n[lang]['usercenter.uploadPaymentVoucher']}
           field="voucher"
           triggerPropName="fileList"
           rules={[{ required: true }]}
@@ -125,7 +105,7 @@ const index:React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal }) =>
             customRequest={handleUpload}
             limit={1}
             drag
-            onPreview={(file:any) => {
+            onPreview={(file: any) => {
               Modal.info({
                 title: 'Preview',
                 content: (
@@ -252,7 +232,7 @@ const index:React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal }) =>
                 customRequest={handleUpload}
                 limit={1}
                 drag
-                onPreview={(file:any) => {
+                onPreview={(file: any) => {
                   Modal.info({
                     title: 'Preview',
                     content: (
@@ -348,7 +328,7 @@ const index:React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal }) =>
                 customRequest={handleUpload}
                 limit={1}
                 drag
-                onPreview={(file:any) => {
+                onPreview={(file: any) => {
                   Modal.info({
                     title: 'Preview',
                     content: (
