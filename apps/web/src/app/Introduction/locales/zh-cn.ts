@@ -9,7 +9,7 @@ const zh: {
   'intro.home.title1': 'Starland是一个集成web2和web3渠道的投放中台。 ',
   'intro.home.title2': '一站式跨渠道智能投放工具',
   'intro.home.describle':
-    '整合全球广告渠道、MMP、变现平台的工具，StarLand通过极速批量搭建 广告、素材精细化运营、打通 ROAS 数据、SDK 平台精准拓量等功能 化繁为简的操作方式，让你的项目获得综合实力曝光极强以及精准的用户增长。',
+    '整合全球广告渠道、MMP、变现平台的工具，StarLand通过极速批量搭建广告、素材精细化运营、打通 ROAS 数据、SDK 平台精准拓量等功能 化繁为简的操作方式，让你的项目获得综合实力曝光极强以及精准的用户增长。',
   'intro.advantage.title': ' 全平台触达，一站集成',
   'intro.market.pan': '素材共享云盘',
   'intro.market.allpalte': '全平台触达',

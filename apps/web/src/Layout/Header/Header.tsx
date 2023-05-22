@@ -29,8 +29,8 @@ const Header = () => {
   const { lang, i18n, setLang } = useI18n();
   const [nowTime, setNowtime] = useState(dayjs().format('YYYY-MM-DD hh:mm:ss'));
   const [, setLanguage] = useLocalStorageState('language');
-  //   const query = useQuery(['usernfo'], userInfoRequest);
-
+  const query = useQuery(['usernfo'], userInfoRequest);
+  console.log(query, 'kkk');
   const loginOut = () => {
     removeLocalToken();
     navigate('/login');
@@ -41,7 +41,7 @@ const Header = () => {
   }, 1000);
 
   const goHome = () => {
-    navigate('/weclome');
+    navigate('/');
   };
 
   const changeLanguage = (lang: string) => {
@@ -94,7 +94,7 @@ const Header = () => {
                   <IconSettings />
                   <span>{i18n[lang]['header.userSetting']}</span>
                 </Menu.Item>
-                <Menu.Item key="2" onClick={loginOut}>
+                <Menu.Item key="2" onClick={() => loginOut()}>
                   <IconPoweroff />
                   <span>{i18n[lang]['header.logout']}</span>
                 </Menu.Item>

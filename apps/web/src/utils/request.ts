@@ -16,8 +16,9 @@ const service = axios.create({
 service.interceptors.request.use(
   (config: AxiosRequestConfig) => {
     // 配置自定义请求头
+    const token = getLocalToken() || '';
     let customHeaders: AxiosRequestHeaders = {
-      token: getLocalToken() || '',
+      token: token ? JSON.parse(token) : '',
     };
     config.headers = customHeaders;
     return config;

@@ -26,6 +26,8 @@ import Mytarget from 'src/assets/images/dashbord/c-Mytarget.png';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import CountUp from 'react-countup';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import { dashBoardInfoRequest, userInfoRequest } from 'src/api/user';
+import { useQuery } from '@tanstack/react-query';
 interface InfoItemProps {
   type: 'activity' | 'info';
   message: string;
@@ -121,16 +123,17 @@ const MarketItem: React.FC<MarketItemProps> = ({ src, width = '72px', height = '
 
 const Workplace = () => {
   const { lang, i18n } = useI18n(locales);
-  const name = 'Dan';
+  const { data } = useQuery(['userinfo'], userInfoRequest);
+  const { data: data2 } = useQuery(['dashbord'], dashBoardInfoRequest);
   return (
     <div className={styles.workplace}>
-      <div className={styles['welcome-title']}>{`${i18n[lang]['dashbord.welcome']}, ${name}!`}</div>
+      <div className={styles['welcome-title']}>{`${i18n[lang]['dashbord.welcome']}, ${data?.email}!`}</div>
       <div className={styles['top-item-list']}>
         <div className={classNames(styles['account-item'], styles['common-item'])}>
           <div className={classNames(styles['top-item'], styles['account-item-inner'])}>
             <TitleImageItem img={avalibleImage} title={i18n[lang]['account.number']} />
             <div className={styles['account-item-inner-text']}>
-              <DollarItem color="blue" dollar={3723.22} />
+              <DollarItem color="blue" dollar={+(data2?.balance || 0)} />
               <div className={styles['tip-text']}>
                 {i18n[lang]['account.number.describe1']}
                 <span>10%</span>，{i18n[lang]['account.number.describe2']}
@@ -140,7 +143,7 @@ const Workplace = () => {
           <div className={classNames(styles['bottom-item'], styles['account-item-inner'])}>
             <TitleImageItem img={avalibleImage} title={i18n[lang]['avalible.number']} />
             <div className={styles['account-item-inner-text']}>
-              <DollarItem color="orange" dollar={3723.22} />
+              <DollarItem color="orange" dollar={(data2?.balance || 0) * 0.9} />
             </div>
           </div>
           <div className={classNames('common-button', styles['account-button'], styles['common-button'])}>
@@ -174,8 +177,8 @@ const Workplace = () => {
       <div className={classNames(styles['message-item'], styles['common-item'])}>
         <div className={styles['read-more']}>{`${i18n[lang]['dashbord.readMore']}`}</div>
         <div className={styles['info-item-list']}>
-          <InfoItem type="activity" message="aasddd" />
-          <InfoItem type="info" message="aasadakjdajknsdjkansdjknaksdnakjnsdkjandajndkjnajsdnakjsnd" />
+          <InfoItem type="activity" message="it is a dashbord activity info" />
+          <InfoItem type="info" message="it is a dashbord message info" />
         </div>
       </div>
       <div className={styles['item-title']}>{`${i18n[lang]['dashbord.lastDayData']}`}</div>
