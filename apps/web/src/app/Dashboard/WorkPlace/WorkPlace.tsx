@@ -28,10 +28,15 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import CountUp from 'react-countup';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { ReportGetReturnItem } from 'src/api/user';
-import { useRequestUserIndfo, useRequestDashboardInfo, useRequestreportGet } from 'src/api/requestHooks';
+import {
+  useRequestUserIndfo,
+  useRequestDashboardInfo,
+  useRequestreportGet,
+  useRequestAlertList,
+} from 'src/api/requestHooks';
 interface InfoItemProps {
   type: 'activity' | 'info';
-  message: string;
+  message: string | undefined;
 }
 
 const InfoItem: React.FC<InfoItemProps> = ({ type, message }) => {
@@ -42,7 +47,7 @@ const InfoItem: React.FC<InfoItemProps> = ({ type, message }) => {
   return (
     <div className={styles['common-info-item']}>
       <div className={classNames(styles['left'], styles[type])}>{`${i18n[lang][name]}`}</div>
-      <div className={styles['right']}>{message}</div>
+      <div className={styles['right']}>{message || 'no message'}</div>
     </div>
   );
 };
@@ -136,6 +141,7 @@ const Workplace = () => {
   const { data } = useRequestUserIndfo();
   const { data: data2 } = useRequestDashboardInfo();
   const { data: data3 } = useRequestreportGet(4);
+  const { data: messageData } = useRequestAlertList({ page: 1, page_size: 10 });
   const [lastDayDate, setlastDayDate] = useState<Omit<ReportGetReturnItem, 'data'>>();
   const [allList, setAllList] = useState<AllList>({
     impressionList: empytyList,
@@ -218,7 +224,7 @@ const Workplace = () => {
         <div className={styles['read-more']}>{`${i18n[lang]['dashbord.readMore']}`}</div>
         <div className={styles['info-item-list']}>
           {/* <InfoItem type="activity" message="it is a dashbord activity info" /> */}
-          <InfoItem type="info" message="it is a dashbord message info" />
+          <InfoItem type="info" message={messageData?.messages[0]?.content} />
         </div>
       </div>
       <div className={styles['item-title']}>{`${i18n[lang]['dashbord.lastDayData']}`}</div>

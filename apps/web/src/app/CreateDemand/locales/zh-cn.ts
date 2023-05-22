@@ -50,6 +50,7 @@ const zh: {
   'lanuch.amount': '投放数量',
   'pay.number': '支付费用',
   'r.launguage': '语言',
+  'not.limited': '不限',
 };
 
 export default zh;

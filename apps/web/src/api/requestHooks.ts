@@ -1,12 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import {
-  dashBoardInfoRequest,
-  userInfoRequest,
-  reportGet,
-  ReportGetReturnItem,
-  AlertListParams,
-  getAlertLsit,
-} from 'src/api/user';
+import { dashBoardInfoRequest, userInfoRequest, reportGet, AlertListParams, getAlertLsit } from 'src/api/user';
 
 const useRequestUserIndfo = () => {
   const query = useQuery(['userinfo'], userInfoRequest);

@@ -50,6 +50,7 @@ const en: {
   'lanuch.amount': 'Quantity',
   'pay.number': 'to pay noun',
   'r.launguage': 'launguage',
+  'not.limited': 'Unlimited',
 };
 
 export default en;

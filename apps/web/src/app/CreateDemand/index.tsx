@@ -4,11 +4,14 @@ import styles from './index.module.less';
 import classNames from 'classnames';
 import FormStep from './FormStep';
 import UploadMaterial from './UploadMaterial';
-import { Form } from '@arco-design/web-react';
+import { Form, Message } from '@arco-design/web-react';
 import PayModal from 'src/components/PayModal';
 import useI18n from 'src/ahooks/useI18n';
 import { IconCheck } from '@arco-design/web-react/icon';
 import locales from './locales';
+import { useMutationCreateMaterial } from 'src/api/activityHooks';
+import { UploadItem } from 'src/types/arco';
+import { MaterialItem } from 'src/api/activity';
 interface CircleItemProps {
   index: number;
   step: number;
@@ -43,17 +46,38 @@ const ProgressLine = () => {
 
 const Index = () => {
   const { lang, i18n } = useI18n(locales);
-  const [step, setStep] = useState<number>(2);
-  const [open, { setLeft }] = useToggle(false);
+  const [fileList, setFileList] = useState<Array<UploadItem>>([]);
+  const [step, setStep] = useState<number>(1);
+  const [open, { setLeft, toggle }] = useToggle(false);
+  const createMutation = useMutationCreateMaterial();
   const [form] = Form.useForm();
   const handleNextStep = () => {
     form?.validate().then((res: unknown) => {
-      console.log(res);
+      console.log(res, 'res');
       setStep(2);
     });
   };
   const handleCloseModal = () => {
     setLeft();
+  };
+
+  const handleSubmit = async () => {
+    if (fileList.length > 0) {
+      const formValues = form.getFieldsValue() as Omit<MaterialItem, 'materials_url' | 'country'> & {
+        country: Array<string>;
+      };
+      const realFormValue = form.getFieldsValue() as Omit<MaterialItem, 'materials_url'>;
+      if (formValues.country.length > 0) {
+        realFormValue.country = formValues.country.join(',');
+      }
+
+      const materials_url = fileList.map((item) => item.response.Location).join(',');
+      const res = await createMutation.mutateAsync({ ...realFormValue, materials_url });
+      console.log(res, 'res');
+      toggle();
+    } else {
+      Message.warning('Please Upload Materials');
+    }
   };
 
   return (
@@ -69,8 +93,17 @@ const Index = () => {
           <CircleItem title={i18n[lang]['compelte.create']} index={3} step={step} />
         </div>
       </div>
-      {step === 1 && <FormStep form={form} handleNextStep={handleNextStep} />}
-      {step === 2 && <UploadMaterial />}
+      <div style={step === 2 ? { display: 'none' } : {}}>
+        <FormStep form={form} handleNextStep={handleNextStep} />
+      </div>
+      {step === 2 && (
+        <UploadMaterial
+          fileList={fileList}
+          setFileList={setFileList}
+          handleSubmit={handleSubmit}
+          isLoading={createMutation.isLoading}
+        />
+      )}
     </div>
   );
 };

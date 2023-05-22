@@ -18,13 +18,13 @@ export interface AlertListParams {
 
 export interface AlertReturn {
   count: number;
-  messages: {
+  messages: Array<{
     id: number;
     content: string;
     status: number;
     create_time: number;
     read_time: number;
-  };
+  }>;
 }
 
 /**
@@ -65,7 +65,7 @@ export const dashBoardInfoRequest = () =>
 /**
  *
  * @description 获取没有明细的投后数据
- * @param date_type number 10.所有的总值；4.近7日数据；
+ * @param date_type number 10:所有的总值；4:近7日数据；
  * @returns data 时间
  * @returns impression 访问量
  * @returns click 点击量
