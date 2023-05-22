@@ -39,7 +39,6 @@
     }
 
     button {
-      width: 102px;
       height: 29px;
       background: #e9ecf4;
       box-shadow: -3px -3px 5px #ffffff, 2px 4px 5px rgba(0, 0, 0, 0.14);
@@ -48,6 +47,10 @@
       color: #f2a534;
       border: none;
       cursor: pointer;
+      &:active {
+        box-shadow: none;
+        background-color: #ccced52a !important;
+      }
     }
   }
   .assets-web2-banner:after {
@@ -91,7 +94,6 @@
     }
 
     button {
-      width: 102px;
       height: 29px;
       background: #e9ecf4;
       border: 1px solid rgba(0, 0, 0, 0.06);
