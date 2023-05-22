@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from './index.module.less';
+import { useNavigate } from 'react-router-dom';
 import useI18n from 'src/ahooks/useI18n';
 import locales from './locales';
 import classNames from 'classnames';
@@ -26,9 +27,8 @@ import Mytarget from 'src/assets/images/dashbord/c-Mytarget.png';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import CountUp from 'react-countup';
 import 'react-lazy-load-image-component/src/effects/blur.css';
-import { dashBoardInfoRequest, userInfoRequest, reportGet, ReportGetReturnItem } from 'src/api/user';
+import { ReportGetReturnItem } from 'src/api/user';
 import { useRequestUserIndfo, useRequestDashboardInfo, useRequestreportGet } from 'src/api/requestHooks';
-import { useQuery } from '@tanstack/react-query';
 interface InfoItemProps {
   type: 'activity' | 'info';
   message: string;
@@ -122,16 +122,36 @@ const MarketItem: React.FC<MarketItemProps> = ({ src, width = '72px', height = '
   );
 };
 
+interface AllList {
+  impressionList: Array<number>;
+  costList: Array<number>;
+  clickList: Array<number>;
+  ctrList: Array<number>;
+}
+const empytyList = new Array(7).fill(0);
+
 const Workplace = () => {
   const { lang, i18n } = useI18n(locales);
+  const navigate = useNavigate();
   const { data } = useRequestUserIndfo();
   const { data: data2 } = useRequestDashboardInfo();
   const { data: data3 } = useRequestreportGet(4);
   const [lastDayDate, setlastDayDate] = useState<Omit<ReportGetReturnItem, 'data'>>();
+  const [allList, setAllList] = useState<AllList>({
+    impressionList: empytyList,
+    costList: empytyList,
+    clickList: empytyList,
+    ctrList: empytyList,
+  });
   useEffect(() => {
     if (data3 && Array.isArray(data3) && data3.length > 0) {
       const lastItem = data3[length - 1];
       setlastDayDate(lastItem);
+      const impressionList = data3.map((item: ReportGetReturnItem) => item.impression);
+      const costList = data3.map((item: ReportGetReturnItem) => item.cost);
+      const clickList = data3.map((item: ReportGetReturnItem) => item.click);
+      const ctrList = data3.map((item: ReportGetReturnItem) => item.ctr);
+      setAllList({ impressionList, costList, clickList, ctrList });
     }
   }, [data3]);
 
@@ -156,7 +176,10 @@ const Workplace = () => {
               <DollarItem color="orange" dollar={data2?.available_balance || 0} />
             </div>
           </div>
-          <div className={classNames('common-button', styles['account-button'], styles['common-button'])}>
+          <div
+            className={classNames('common-button', styles['account-button'], styles['common-button'])}
+            onClick={() => navigate('/usercenter')}
+          >
             <img src={blueAdd} alt="" />
             {i18n[lang]['add.money']}
           </div>
@@ -170,7 +193,10 @@ const Workplace = () => {
             {i18n[lang]['process.number']}：{data2?.running_activity}
             {i18n[lang]['pcs.pcs']}
           </div>
-          <div className={classNames('common-button', styles['activity-button'], styles['common-button'])}>
+          <div
+            className={classNames('common-button', styles['activity-button'], styles['common-button'])}
+            onClick={() => navigate('/publish-demand')}
+          >
             <img src={orangeAdd} alt="" />
             {i18n[lang]['add.campagin']}
           </div>
@@ -179,7 +205,10 @@ const Workplace = () => {
           <div style={{ marginTop: '24px' }}></div>
           <TitleImageItem img={costImage} title={i18n[lang]['yesterday.cost']} classname="creat-title-imgae" />
           <DollarItem color="purple" dollar={lastDayDate?.cost || 0} size="large"></DollarItem>
-          <div className={classNames('common-button', styles['cost-button'], styles['common-button'])}>
+          <div
+            className={classNames('common-button', styles['cost-button'], styles['common-button'])}
+            onClick={() => navigate('/datainfo')}
+          >
             {i18n[lang]['view.detail']}
           </div>
         </div>
@@ -188,20 +217,16 @@ const Workplace = () => {
       <div className={classNames(styles['message-item'], styles['common-item'])}>
         <div className={styles['read-more']}>{`${i18n[lang]['dashbord.readMore']}`}</div>
         <div className={styles['info-item-list']}>
-          <InfoItem type="activity" message="it is a dashbord activity info" />
+          {/* <InfoItem type="activity" message="it is a dashbord activity info" /> */}
           <InfoItem type="info" message="it is a dashbord message info" />
         </div>
       </div>
       <div className={styles['item-title']}>{`${i18n[lang]['dashbord.lastDayData']}`}</div>
       <div className={styles['data-item-list']}>
-        <DataItem title={i18n[lang]['yesterday-data-1']} dataList={[50, 32, 21, 34, 76, 56, 13]} />
-        <DataItem title={i18n[lang]['yesterday-data-2']} dataList={[23, 4, 21, 34, 76, 56, 21]} />
-        <DataItem title={i18n[lang]['yesterday-data-3']} dataList={[12, 32, 21, 34, 76, 56, 72]} />
-        <DataItem
-          title={i18n[lang]['yesterday-data-4']}
-          dataList={[1, 32, 21, 34, 76, 56, 99]}
-          chartType={ChartType.Bar}
-        />
+        <DataItem title={i18n[lang]['yesterday-data-1']} dataList={allList.impressionList} />
+        <DataItem title={i18n[lang]['yesterday-data-2']} dataList={allList.clickList} />
+        <DataItem title={i18n[lang]['yesterday-data-3']} dataList={allList.ctrList} />
+        <DataItem title={i18n[lang]['yesterday-data-4']} dataList={allList.costList} chartType={ChartType.Bar} />
       </div>
 
       <div className={styles['item-title']}>{`${i18n[lang]['dashbord.marketChannel']}`}</div>

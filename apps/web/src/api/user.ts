@@ -8,6 +8,25 @@ export interface ReportGetReturnItem {
   ctr: number;
 }
 
+export interface AlertListParams {
+  page?: number;
+  page_size?: number;
+  start?: number;
+  end?: number;
+  status?: 1 | 2;
+}
+
+export interface AlertReturn {
+  count: number;
+  messages: {
+    id: number;
+    content: string;
+    status: number;
+    create_time: number;
+    read_time: number;
+  };
+}
+
 /**
  *
  * @param email 邮箱
@@ -37,7 +56,7 @@ export const userInfoRequest = () =>
  * @description 获取仪表盘的资产和活动数量
  */
 export const dashBoardInfoRequest = () =>
-  request.get('/user/dashboard/get', {}) as Promise<{
+  request.get('user/dashboard/get', {}) as Promise<{
     balance: number;
     available_balance: number;
     total_activity: number;
@@ -47,7 +66,7 @@ export const dashBoardInfoRequest = () =>
 /**
  *
  * @description 获取没有明细的投后数据
- * @params date_type number 10.所有的总值；4.近7日数据；
+ * @param date_type number 10.所有的总值；4.近7日数据；
  * @returns data 时间
  * @returns impression 访问量
  * @returns click 点击量
@@ -56,4 +75,17 @@ export const dashBoardInfoRequest = () =>
  */
 
 export const reportGet = (params: { date_type: number }) =>
-  request.get('/report/get', params) as Promise<Array<ReportGetReturnItem>>;
+  request.get('report/get', params) as Promise<Array<ReportGetReturnItem>>;
+
+/**
+ *
+ * @param page： number
+ * @param page_size: number
+ * @param start: number
+ * @param end: number
+ * @param status: number 1: 未读 2: 已读
+ * @returns
+ * @description 根据不同的筛选条件获取所有通知列表
+ */
+
+export const getAlertLsit = (params: AlertListParams) => request.post('alert/list', params) as Promise<AlertReturn>;

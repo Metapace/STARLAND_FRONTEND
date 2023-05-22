@@ -20,6 +20,7 @@ const queryClient = new QueryClient({
     queries: {
       //  1 分钟内相同的接口不会重新请求
       staleTime: 1 * 60 * 1000,
+      retry: 0,
     },
   },
 });
