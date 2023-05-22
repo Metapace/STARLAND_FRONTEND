@@ -26,7 +26,7 @@ import Mytarget from 'src/assets/images/dashbord/c-Mytarget.png';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import CountUp from 'react-countup';
 import 'react-lazy-load-image-component/src/effects/blur.css';
-import { dashBoardInfoRequest, userInfoRequest } from 'src/api/user';
+import { dashBoardInfoRequest, userInfoRequest, reportGet } from 'src/api/user';
 import { useQuery } from '@tanstack/react-query';
 interface InfoItemProps {
   type: 'activity' | 'info';
@@ -125,6 +125,8 @@ const Workplace = () => {
   const { lang, i18n } = useI18n(locales);
   const { data } = useQuery(['userinfo'], userInfoRequest);
   const { data: data2 } = useQuery(['dashbord'], dashBoardInfoRequest);
+  const { data: data3 } = useQuery(['report'], () => reportGet({ date_type: 4 }));
+  console.log(data3, '------');
   return (
     <div className={styles.workplace}>
       <div className={styles['welcome-title']}>{`${i18n[lang]['dashbord.welcome']}, ${data?.email}!`}</div>
@@ -143,7 +145,7 @@ const Workplace = () => {
           <div className={classNames(styles['bottom-item'], styles['account-item-inner'])}>
             <TitleImageItem img={avalibleImage} title={i18n[lang]['avalible.number']} />
             <div className={styles['account-item-inner-text']}>
-              <DollarItem color="orange" dollar={(data2?.balance || 0) * 0.9} />
+              <DollarItem color="orange" dollar={data2?.available_balance || 0} />
             </div>
           </div>
           <div className={classNames('common-button', styles['account-button'], styles['common-button'])}>
@@ -154,10 +156,11 @@ const Workplace = () => {
         <div className={classNames(styles['activity-item'], styles['common-item'])}>
           <TitleImageItem img={createImage} title={i18n[lang]['create.campagin']} classname="creat-title-imgae" />
           <div className={styles['totla-number']}>
-            8 <span>{i18n[lang]['pcs.pcs']}</span>
+            {data2?.total_activity} <span>{i18n[lang]['pcs.pcs']}</span>
           </div>
           <div className={styles['activity-number']}>
-            {i18n[lang]['process.number']}：6{i18n[lang]['pcs.pcs']}
+            {i18n[lang]['process.number']}：{data2?.running_activity}
+            {i18n[lang]['pcs.pcs']}
           </div>
           <div className={classNames('common-button', styles['activity-button'], styles['common-button'])}>
             <img src={orangeAdd} alt="" />

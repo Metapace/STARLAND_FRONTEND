@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
+// import { useQuery } from '@tanstack/react-query';
 import Logo from 'src/assets/images/starland-log.png';
 import MessageIcon from 'src/assets/images/messageLin.png';
 import { Button, Dropdown, Menu, Divider, Message, Avatar } from '@arco-design/web-react';
@@ -8,7 +8,7 @@ import { IconPoweroff, IconSettings, IconLanguage } from '@arco-design/web-react
 import { useLocalStorageState, useInterval } from 'ahooks';
 import { useTheme } from 'src/ahooks';
 import { removeLocalToken } from 'src/utils/localSet';
-import { userInfoRequest } from 'src/api/user';
+// import { userInfoRequest } from 'src/api/user';
 import dayjs from 'dayjs';
 import useI18n from 'src/ahooks/useI18n';
 import styles from './index.module.less';
@@ -29,8 +29,6 @@ const Header = () => {
   const { lang, i18n, setLang } = useI18n();
   const [nowTime, setNowtime] = useState(dayjs().format('YYYY-MM-DD hh:mm:ss'));
   const [, setLanguage] = useLocalStorageState('language');
-  const query = useQuery(['usernfo'], userInfoRequest);
-  console.log(query, 'kkk');
   const loginOut = () => {
     removeLocalToken();
     navigate('/login');
