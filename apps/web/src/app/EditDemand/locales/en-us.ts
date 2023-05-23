@@ -35,7 +35,7 @@ const en: {
   'current.progress': 'Current progress',
   'in.progress': 'In progress',
   'basic.info': 'Basic Information',
-  'material.info': 'Material Information',
+  'material.info': 'Material information',
   'modify.save': 'Modify Save',
   'review.fail': 'Review failed',
   'form.submit.success': 'Form submitted successfully',
@@ -51,6 +51,11 @@ const en: {
   'pay.number': 'to pay noun',
   'r.launguage': 'launguage',
   'not.limited': 'Unlimited',
+  'waite.auth': 'Pending Authorization',
+  'Authorization.successful': 'Authorization successful',
+  'wait.review': 'Pending review',
+  'r.back': 'Back',
+  'save.changes': 'Save changes',
 };
 
 export default en;

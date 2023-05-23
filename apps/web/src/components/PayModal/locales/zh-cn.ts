@@ -7,6 +7,8 @@ const zh: {
   'total.amount': '总金额',
   'fiat.assets': '法币资产',
   'r.confirm': '确认',
+  'go.top.up': '去充值',
+  'go-person-center': '余额不足请前往个人中心充值',
 };
 
 export default zh;

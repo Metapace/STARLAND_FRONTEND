@@ -1,5 +1,13 @@
 import { useQuery, useMutation } from '@tanstack/react-query';
-import { getCountryList, getLanguageList, getChanList, createMaterial } from 'src/api/activity';
+import {
+  getCountryList,
+  getLanguageList,
+  getChanList,
+  createMaterial,
+  getActivityList,
+  updateActivity,
+  getActivityById,
+} from 'src/api/activity';
 
 /**
  *
@@ -19,9 +27,46 @@ const useRequestLanguage = (ty: 1 | 2) => useQuery([`language${ty}`], () => getL
  */
 const useRequestChanne = () => useQuery(['Chan'], () => getChanList());
 
+/**
+ *
+ *  @description 创建物料接口
+ */
 const useMutationCreateMaterial = () =>
   useMutation({
     mutationFn: createMaterial,
   });
 
-export { useRequestCountry, useRequestLanguage, useRequestChanne, useMutationCreateMaterial };
+/**
+ *
+ * @description  获取需求列表
+ */
+const useRequestActivity = () => useQuery(['activity'], () => getActivityList());
+
+/**
+ *
+ *  @description 更新物料接口
+ */
+const useMutationUpdateMaterial = () =>
+  useMutation({
+    mutationFn: updateActivity,
+  });
+
+/**
+ *
+ *  @description 更新物料接口
+ */
+/**
+ *
+ * @description  根据Id获取需求信息
+ */
+const useRequestActivityById = (id: number) => useQuery([`activityById${id}`], () => getActivityById(id));
+
+export {
+  useRequestCountry,
+  useRequestLanguage,
+  useRequestChanne,
+  useMutationCreateMaterial,
+  useRequestActivity,
+  useMutationUpdateMaterial,
+  useRequestActivityById,
+};

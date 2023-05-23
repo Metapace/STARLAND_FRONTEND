@@ -16,6 +16,7 @@ const en: {
   'channel.launch.describe': 'Channel audit and data testing',
   'launage.porgress': 'Ads are Live',
   'launage.porgress.describe': 'View relevant placement data details',
+  'r.all': 'All',
   'publish.demand': 'Posting Requirements',
   'create.campagin': 'Create Campaign',
   'demand.list': 'Demand List',
@@ -36,6 +37,11 @@ const en: {
   'launch.pepole': 'Target audience',
   'launch.number': 'Quantity',
   'launch.amount': 'Amount',
+  'r.male': 'male',
+  'r.female': 'female',
+  'not.limited': 'Unlimited',
+  'native.ads': 'Native ads',
+  'r.empyty': 'Empty',
 };
 
 export default en;

@@ -16,7 +16,7 @@ const zh: {
   'channel.launch.describe': '渠道审核及数据测试',
   'launage.porgress': '广告上线',
   'launage.porgress.describe': '查看相关投放数据明细',
-  // ;l
+  'r.all': '全部',
   'publish.demand': '发布需求',
   'create.campagin': '创建活动',
   'demand.list': '需求列表',
@@ -37,6 +37,11 @@ const zh: {
   'launch.pepole': '投放人群',
   'launch.number': '投放数量',
   'launch.amount': '投放金额',
+  'r.male': '男性',
+  'r.female': '女性',
+  'not.limited': '不限',
+  'native.ads': '原生广告',
+  'r.empyty': '空空如也',
 };
 
 export default zh;

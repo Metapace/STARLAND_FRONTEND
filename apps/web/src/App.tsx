@@ -1,13 +1,11 @@
-import React, { Suspense, useEffect, useMemo, useState } from 'react';
+import React, { Suspense, useMemo, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ConfigProvider } from '@arco-design/web-react';
 import enUS from '@arco-design/web-react/es/locale/en-US';
 import zhCN from '@arco-design/web-react/es/locale/zh-CN';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useColor, useTheme } from 'src/ahooks';
-import { useLocalStorageState, useMount } from 'ahooks';
-import { request } from 'src/utils/request';
-import userApi from 'src/api/userApi';
+import { useLocalStorageState } from 'ahooks';
 import { Login } from './app/Login';
 import { Home } from './app/Home';
 import Introduction from './app/Introduction';
@@ -43,21 +41,6 @@ const App = () => {
         return zhCN;
     }
   }, [lang]);
-  //   useMount(() => {
-  //     userApi.map((api) => {
-  //       console.log(api, 'ap');
-  //       if (api.method === 'get') {
-  //         const fn = (params: Record<string, any>) => {
-  //           console.log(params, 'params');
-  //           return request.get(api.url, params.pageParam);
-  //         };
-  //         queryClient.setQueryDefaults([api.queryKey], { queryFn: fn });
-  //       } else {
-  //         const fn = (params: Record<string, any>) => request.post(api.url, { params });
-  //         queryClient.setMutationDefaults([api.queryKey], { mutationFn: fn });
-  //       }
-  //     });
-  //   });
   return (
     <div className="app-land">
       <QueryClientProvider client={queryClient}>

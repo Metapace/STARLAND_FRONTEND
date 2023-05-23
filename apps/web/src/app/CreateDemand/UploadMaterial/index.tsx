@@ -19,19 +19,21 @@ interface DownloadItemProps {
 
 const DownloadItem: React.FC<DownloadItemProps> = ({ name, url, hasBottomBorder = false }) => {
   return (
-    <div className={classNames(styles['download-item'], hasBottomBorder && styles['download-item-border'])}>
-      <div className={styles['download-left']}>
-        <img src={fileIcon} alt="" />
-        <div>{name}</div>
+    <a href={url} download>
+      <div className={classNames(styles['download-item'], hasBottomBorder && styles['download-item-border'])}>
+        <div className={styles['download-left']}>
+          <img src={fileIcon} alt="" />
+          <div>{name}</div>
+        </div>
+        <div className={styles['download-right']}>
+          <img src={downloadIcon} alt="" />
+        </div>
       </div>
-      <div className={styles['download-right']}>
-        <img src={downloadIcon} alt="" />
-      </div>
-    </div>
+    </a>
   );
 };
 
-const Index = ({ fileList, setFileList, handleSubmit, isLoading }: any) => {
+const Index = ({ fileList, setFileList, handleSubmit, isLoading, isEdit = false, isDisable = false }: any) => {
   const { lang, i18n } = useI18n(locales);
   const handleUpload = async (option: any) => {
     const { onProgress, onError, onSuccess, file } = option;
@@ -48,24 +50,45 @@ const Index = ({ fileList, setFileList, handleSubmit, isLoading }: any) => {
   return (
     <div className={styles['out-container']}>
       <div className={styles.container}>
-        <div className={styles.left}>
-          <div className={styles.title}>Step1</div>
-          <div className={styles['sub-title']}>{i18n[lang]['web2.channel.doc']}</div>
-          <DownloadItem name={i18n[lang]['web2.launch.doc']} url="sad" hasBottomBorder />
-          <DownloadItem name={i18n[lang]['web2.launch.info']} url="sad" />
-          <div className={classNames(styles['sub-title'], styles['margin-top'])}>{i18n[lang]['web3.channel.doc']}</div>
-          <DownloadItem name={i18n[lang]['project.docking']} url="sad" hasBottomBorder />
-          <DownloadItem name={i18n[lang]['common.indicators']} url="sad" />
-        </div>
-        <div className={styles.middle}></div>
+        {!isEdit && (
+          <div className={styles.left}>
+            <div className={styles.title}>Step1</div>
+            <div className={styles['sub-title']}>{i18n[lang]['web2.channel.doc']}</div>
+            <DownloadItem
+              name={i18n[lang]['web2.launch.doc']}
+              url="https://starlands3.s3.ap-southeast-1.amazonaws.com/starland/1684749236622-favicon.ico"
+              hasBottomBorder
+            />
+            <DownloadItem
+              name={i18n[lang]['web2.launch.info']}
+              url="https://starlands3.s3.ap-southeast-1.amazonaws.com/starland/1684749236622-favicon.ico"
+            />
+            <div className={classNames(styles['sub-title'], styles['margin-top'])}>
+              {i18n[lang]['web3.channel.doc']}
+            </div>
+            <DownloadItem
+              name={i18n[lang]['project.docking']}
+              url="https://starlands3.s3.ap-southeast-1.amazonaws.com/starland/1684749236622-favicon.ico"
+              hasBottomBorder
+            />
+            <DownloadItem
+              name={i18n[lang]['common.indicators']}
+              url="https://starlands3.s3.ap-southeast-1.amazonaws.com/starland/1684749236622-favicon.ico"
+            />
+          </div>
+        )}
+        {!isEdit && <div className={styles.middle}></div>}
+
         <div className={styles.right}>
-          <div className={styles.title}>Step2</div>
-          <div className={styles.uploadContent}>
+          {!isEdit && <div className={styles.title}>Step2</div>}
+
+          <div className={classNames(styles.uploadContent, isEdit && styles['edit-upload-content'])}>
             <Upload
               drag
               multiple
               customRequest={handleUpload}
               fileList={fileList}
+              disabled={isDisable}
               onChange={setFileList as any}
               progressProps={{
                 size: 'small',
@@ -89,17 +112,32 @@ const Index = ({ fileList, setFileList, handleSubmit, isLoading }: any) => {
                 <div className={styles['action-type']}>{i18n[lang]['material.display.tip']}</div>
               </div>
             </Upload>
+            {isEdit && (
+              <div className={styles['web-des-edit']}>
+                <DownloadItem
+                  name={i18n[lang]['web2.launch.doc']}
+                  url="https://starlands3.s3.ap-southeast-1.amazonaws.com/starland/1684749236622-favicon.ico"
+                  hasBottomBorder
+                />
+                <DownloadItem
+                  name={i18n[lang]['web2.launch.info']}
+                  url="https://starlands3.s3.ap-southeast-1.amazonaws.com/starland/1684749236622-favicon.ico"
+                />
+              </div>
+            )}
           </div>
         </div>
       </div>
-      <div className={styles['button-wrrap']}>
-        <Sbutton
-          loading={isLoading}
-          className={styles['next-step']}
-          onClick={handleSubmit}
-          text={i18n[lang]['next.step']}
-        />
-      </div>
+      {handleSubmit && (
+        <div className={styles['button-wrrap']}>
+          <Sbutton
+            loading={isLoading}
+            className={styles['next-step']}
+            onClick={handleSubmit}
+            text={i18n[lang]['next.step']}
+          />
+        </div>
+      )}
     </div>
   );
 };

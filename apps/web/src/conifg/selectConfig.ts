@@ -14,10 +14,10 @@ export const ageRange: Array<{ label: string; value: number }> = [
 /**
  * @description 投放性别
  */
-export const gendarRange: Array<{ label: string; value: number }> = [
-  { label: 'r.male', value: 1 },
-  { label: 'r.female', value: 2 },
-  { label: 'not.limited', value: 3 },
+export const gendarRange: Array<{ label: string; value: string }> = [
+  { label: 'r.male', value: '1' },
+  { label: 'r.female', value: '2' },
+  { label: 'not.limited', value: '3' },
 ];
 
 /**

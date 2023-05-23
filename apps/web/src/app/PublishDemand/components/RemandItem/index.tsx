@@ -3,20 +3,13 @@ import styles from './index.module.less';
 import classNames from 'classnames';
 import useI18n from 'src/ahooks/useI18n';
 import locale from '../../locales';
-
+import { DemandType, ReturnRemandItem, ChannelType } from 'src/api/activity';
+import { gendarRange } from 'src/conifg/selectConfig';
 import dayjs from 'dayjs';
+import { useNavigate } from 'react-router-dom';
 
-export enum DemandType {
-  NeedDeposite = 1,
-  NeedPay = 2,
-  NeedVerify = 3,
-  VerifyFail = 4,
-  Channel = 5,
-  Going = 6,
-  Finished = 7,
-}
-
-const DemandMap: Record<DemandType, string> = {
+export const DemandMap: Record<DemandType, string> = {
+  [DemandType.All]: 'r.all',
   [DemandType.NeedDeposite]: 'waite.deposit',
   [DemandType.NeedPay]: 'waite.auth',
   [DemandType.NeedVerify]: 'waite.review',
@@ -26,106 +19,97 @@ const DemandMap: Record<DemandType, string> = {
   [DemandType.Finished]: 'already.finish',
 };
 
-interface RemandItem {
-  demandType: DemandType;
-  time: number;
-}
-
-const Index: React.FC<RemandItem> = ({ demandType, time }) => {
+const Index: React.FC<ReturnRemandItem> = ({ status, create_time, chan, country, price, crowd, id }) => {
   const { lang, i18n } = useI18n(locale);
+  const navigate = useNavigate();
   const tagColor: string = useMemo(() => {
-    if (
-      demandType === DemandType.NeedDeposite ||
-      demandType === DemandType.NeedVerify ||
-      demandType === DemandType.Channel
-    ) {
+    if (status === DemandType.NeedDeposite || status === DemandType.NeedVerify || status === DemandType.Channel) {
       return 'blue';
     }
-    if (demandType === DemandType.NeedPay) {
+    if (status === DemandType.NeedPay) {
       return 'gray-green';
     }
-    if (demandType === DemandType.VerifyFail) {
+    if (status === DemandType.VerifyFail) {
       return 'red';
     }
-    if (demandType === DemandType.Going) {
+    if (status === DemandType.Going) {
       return 'light-green';
     }
-    if (demandType === DemandType.Finished) {
+    if (status === DemandType.Finished) {
       return 'gray';
     }
     return 'blue';
-  }, [demandType]);
-
-  const renderType: number = useMemo(() => {
-    if (
-      demandType === DemandType.NeedDeposite ||
-      demandType === DemandType.NeedVerify ||
-      demandType === DemandType.VerifyFail
-    ) {
-      return 1;
-    }
-    return 2;
-  }, [demandType]);
+  }, [status]);
 
   const timeText = useMemo(() => {
-    return dayjs.unix(time).format('YYYY-MM-YY HH:mm:ss');
-  }, [time]);
+    return dayjs.unix(create_time).format('YYYY-MM-YY HH:mm:ss');
+  }, [create_time]);
+
+  const showCrowd = useMemo(() => {
+    const item = gendarRange.filter((v) => v.value === crowd);
+    return item[0]?.label;
+  }, [crowd]);
 
   return (
     <div className={styles.container}>
-      <div className={classNames(styles['tag'], styles[tagColor])}>{i18n[lang][DemandMap[demandType]]}</div>
-      <div className={styles.title}>Web2-原生广告</div>
+      <div className={classNames(styles['tag'], styles[tagColor])}>{i18n[lang][DemandMap[status]]}</div>
+      <div className={styles.title}>Web2-{i18n[lang]['native.ads']}</div>
       <div className={styles.time}>{timeText}</div>
       <div className={styles.content}>
-        {renderType === 1 && (
+        {chan === ChannelType.WEB2 && (
           <>
             {/* 投放国家 */}
             <div className={styles['content-item']}>
               <span>{i18n[lang]['launch.country']}：</span>
-              <span className={styles['content-item-value']}>新加坡/美国/泰国</span>
+              <span className={styles['content-item-value']}>{country}</span>
             </div>
             {/* 每日预算 */}
             <div className={styles['content-item']}>
               <span>{i18n[lang]['daily.cost']}：</span>
-              <span className={styles['content-item-value']}>新加坡/美国/泰国</span>
+              <span className={styles['content-item-value']}>${price}</span>
             </div>
             {/* 投放人群 */}
             <div className={styles['content-item']}>
               <span>{i18n[lang]['launch.pepole']}：</span>
-              <span className={styles['content-item-value']}>新加坡/美国/泰国</span>
+              <span className={styles['content-item-value']}>{i18n[lang][showCrowd]}</span>
             </div>
           </>
         )}
-        {renderType === 2 && (
+        {chan === ChannelType.WEB3 && (
           <>
             {/* 投放金额 */}
             <div className={styles['content-item']}>
               <span>{i18n[lang]['launch.amount']}：</span>
-              <span className={styles['content-item-value']}>新加坡/美国/泰国</span>
+              <span className={styles['content-item-value']}></span>
             </div>
             {/* 投放数量 */}
             <div className={styles['content-item']}>
               <span>{i18n[lang]['launch.number']}：</span>
-              <span className={styles['content-item-value']}>新加坡/美国/泰国</span>
+              <span className={styles['content-item-value']}></span>
             </div>
           </>
         )}
       </div>
       <div className={styles['bottom-button']}>
-        {demandType === DemandType.Finished && (
+        {status === DemandType.Finished && (
           <div className={classNames('common-button', styles['orange-button'])}>{i18n[lang]['re.launch']}</div>
         )}
 
-        {demandType === DemandType.NeedDeposite && (
+        {status === DemandType.NeedDeposite && (
           <div className={classNames('common-button', styles['orange-button'])}>{i18n[lang]['deposite.right']}</div>
         )}
-        {demandType === DemandType.NeedPay && (
+        {status === DemandType.NeedPay && (
           <div className={classNames('common-button', styles['orange-button'])}>{i18n[lang]['pay.auth']}</div>
         )}
-        {demandType === DemandType.Going ? (
+        {status === DemandType.Going ? (
           <div className={classNames('common-button', styles['read-detail'])}>{i18n[lang]['view.data']}</div>
         ) : (
-          <div className={classNames('common-button', styles['read-detail'])}>{i18n[lang]['view.detail']}</div>
+          <div
+            className={classNames('common-button', styles['read-detail'])}
+            onClick={() => navigate(`/edit-demand?id=${id} `)}
+          >
+            {i18n[lang]['view.detail']}
+          </div>
         )}
       </div>
     </div>

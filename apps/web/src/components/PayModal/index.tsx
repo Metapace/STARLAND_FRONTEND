@@ -6,20 +6,34 @@ import hookIcon from 'src/assets/images/hook-icon.png';
 import classNames from 'classnames';
 import useI18n from 'src/ahooks/useI18n';
 import locale from './locales';
+import { useRequestDashboardInfo } from 'src/api/requestHooks';
+import { useMutationUpdateMaterial } from 'src/api/activityHooks';
+import { useNavigate } from 'react-router-dom';
+import Sbutton from '../Sbutton';
+
+const passMount = 2000;
 
 interface PayModalProps {
   open: boolean;
   handleCloseModal: () => void;
+  activityId: number;
 }
 
-const index: React.FC<PayModalProps> = ({ open, handleCloseModal }) => {
+const index: React.FC<PayModalProps> = ({ open, handleCloseModal, activityId }) => {
   const { lang, i18n } = useI18n(locale);
+  const { data } = useRequestDashboardInfo();
+  const { mutateAsync: updataMaterial, isLoading } = useMutationUpdateMaterial();
+  const navigate = useNavigate();
+  const handleSubmit = async () => {
+    await updataMaterial({ id: activityId, status: 3, pay_time: parseInt((Date.now() / 1000).toString()) });
+    navigate('/create-success');
+  };
   return (
     <Modal
       wrapClassName={styles.moadlwrap}
-      title="支付授权"
+      title={i18n[lang]['pay.auth']}
       visible={open}
-      onCancel={() => handleCloseModal()}
+      onCancel={handleCloseModal}
       maskClosable={false}
       footer={null}
       style={{
@@ -47,7 +61,7 @@ const index: React.FC<PayModalProps> = ({ open, handleCloseModal }) => {
                 {i18n[lang]['fiat.assets']}
                 <span>(USD)</span>
               </div>
-              <div>23,423</div>
+              <div>{data?.balance}</div>
             </div>
             <div className={styles['select-item']}>
               <img src={hookIcon} alt="" />
@@ -56,8 +70,25 @@ const index: React.FC<PayModalProps> = ({ open, handleCloseModal }) => {
         </div>
         <div className={styles['split-line']}></div>
         <div className={styles['button-wrrap']}>
-          <div className={classNames('common-button', styles['confirm-button'])}>{i18n[lang]['r.confirm']}</div>
+          {data?.balance && data?.balance > passMount ? (
+            <Sbutton
+              className={classNames('common-button', styles['confirm-button'])}
+              onClick={handleSubmit}
+              loading={isLoading}
+              text={i18n[lang]['r.confirm']}
+            ></Sbutton>
+          ) : (
+            <div
+              className={classNames('common-button', styles['confirm-button'], styles['orange'])}
+              onClick={() => navigate('/usercenter')}
+            >
+              {i18n[lang]['go.top.up']}
+            </div>
+          )}
         </div>
+        {data?.balance && data?.balance < passMount && (
+          <div className={classNames(styles['orange'], styles['insuffient-tip'])}>{i18n[lang]['go-person-center']}</div>
+        )}
       </div>
     </Modal>
   );

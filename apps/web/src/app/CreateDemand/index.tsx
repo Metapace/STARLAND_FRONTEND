@@ -12,6 +12,8 @@ import locales from './locales';
 import { useMutationCreateMaterial } from 'src/api/activityHooks';
 import { UploadItem } from 'src/types/arco';
 import { MaterialItem } from 'src/api/activity';
+import { useNavigate } from 'react-router-dom';
+
 interface CircleItemProps {
   index: number;
   step: number;
@@ -48,8 +50,10 @@ const Index = () => {
   const { lang, i18n } = useI18n(locales);
   const [fileList, setFileList] = useState<Array<UploadItem>>([]);
   const [step, setStep] = useState<number>(1);
+  const [activityId, setActivityId] = useState<number>(0);
   const [open, { setLeft, toggle }] = useToggle(false);
   const createMutation = useMutationCreateMaterial();
+  const navigate = useNavigate();
   const [form] = Form.useForm();
   const handleNextStep = () => {
     form?.validate().then((res: unknown) => {
@@ -59,6 +63,7 @@ const Index = () => {
   };
   const handleCloseModal = () => {
     setLeft();
+    navigate('/create-success');
   };
 
   const handleSubmit = async () => {
@@ -70,10 +75,9 @@ const Index = () => {
       if (formValues.country.length > 0) {
         realFormValue.country = formValues.country.join(',');
       }
-
       const materials_url = fileList.map((item) => item.response.Location).join(',');
       const res = await createMutation.mutateAsync({ ...realFormValue, materials_url });
-      console.log(res, 'res');
+      setActivityId(res);
       toggle();
     } else {
       Message.warning('Please Upload Materials');
@@ -82,7 +86,7 @@ const Index = () => {
 
   return (
     <div className={styles.container}>
-      <PayModal open={open} handleCloseModal={handleCloseModal} />
+      <PayModal open={open} handleCloseModal={handleCloseModal} activityId={activityId} />
       <div className={styles.title}>{i18n[lang]['create.form']}</div>
       <div className={styles['progress-container']}>
         <div className={styles['progress-container-inner']}>
