@@ -13,6 +13,16 @@ import { useNavigate } from 'react-router-dom';
 import { useRequestActivity } from 'src/api/activityHooks';
 const Option = Select.Option;
 
+export const Web2Des = () => {
+  const { lang, i18n } = useI18n(locale);
+  return (
+    <div className={styles['img-text']}>
+      <div className={styles['img-text-top']}>{i18n[lang]['native.ad.series']}</div>
+      <div className={styles['img-text-bottom']}>{i18n[lang]['native.ad.series.des']}</div>
+    </div>
+  );
+};
+
 const Index = () => {
   const { lang, i18n } = useI18n(locale);
   const [demandType, setDemandType] = useState<DemandType>(DemandType.All);
@@ -35,6 +45,7 @@ const Index = () => {
       <div className={styles.title}>{i18n[lang]['publish.demand']}</div>
       <LongProgress step={1}></LongProgress>
       <div className={styles['top']}>
+        <Web2Des></Web2Des>
         <img src={web2Banner} alt="" />
         <div className={styles['top-intro']}>
           <div>

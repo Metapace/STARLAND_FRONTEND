@@ -9,7 +9,7 @@ import { ReturnRemandItem, DemandType, MaterialItem } from 'src/api/activity';
 import dayjs from 'dayjs';
 import FormStep from 'src/app/CreateDemand/FormStep';
 import { useMutationUpdateMaterial } from 'src/api/activityHooks';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import UploadMaterial from 'src/app/CreateDemand/UploadMaterial';
 import { UploadItem } from 'src/types/arco';
 import Sbutton from 'src/components/Sbutton';
@@ -80,6 +80,8 @@ const Index = () => {
   const [form] = Form.useForm();
   const navigate = useNavigate();
   const { data, id } = useGetActivityDataByUrlId();
+  const [params] = useSearchParams();
+  const isFromReVerify = parseInt(params.getAll('reVerify')[0]) === 1;
   const [fileList, setFileList] = useState<Array<UploadItem>>([]);
   const { mutateAsync: updataMaterial, isLoading } = useMutationUpdateMaterial();
   const handleBack = () => {
@@ -94,7 +96,11 @@ const Index = () => {
       realFormValue.country = formValues.country.join(',');
     }
     const materials_url = fileList.map((item) => item.response.Location).join(',');
-    await updataMaterial({ id, ...realFormValue, materials_url });
+    const params = { id, ...realFormValue, materials_url };
+    if (isFromReVerify) {
+      params.status = 9;
+    }
+    await updataMaterial(params);
     Message.success('Success !');
   };
 

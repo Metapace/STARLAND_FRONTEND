@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './index.module.less';
 import { Modal } from '@arco-design/web-react';
 import web2logo from 'src/assets/images/usercenter-assets-web2logo.png';

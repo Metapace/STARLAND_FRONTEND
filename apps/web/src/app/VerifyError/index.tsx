@@ -36,7 +36,12 @@ const Index = () => {
             loading={isLoading}
             text={i18n[lang]['re-publish']}
           ></Sbutton>
-          <div className={classNames('common-button', styles['review-button'])}>{i18n[lang]['re-modify']}</div>
+          <div
+            className={classNames('common-button', styles['review-button'])}
+            onClick={() => navigate(`/edit-demand?id=${id}&reVerify=${1}`)}
+          >
+            {i18n[lang]['re-modify']}
+          </div>
         </div>
         <div className={styles['error-reason']}>
           <div className={styles['error-reason-title']}>{i18n[lang]['error-reason']}</div>

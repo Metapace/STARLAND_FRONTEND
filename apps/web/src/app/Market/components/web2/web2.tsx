@@ -5,12 +5,14 @@ import locale from '../../locales';
 import web2Banner from 'src/assets/images/web2-banner.png';
 import { IconCheckCircle } from '@arco-design/web-react/icon';
 import CreateItem, { ChannelType } from '../createItem/index';
+import { Web2Des } from 'src/app/PublishDemand/index';
 
 const Index = () => {
   const { lang, i18n } = useI18n(locale);
   return (
     <div className={styles['container']}>
       <div className={styles['top']}>
+        <Web2Des></Web2Des>
         <img src={web2Banner} alt="" />
         <div className={styles['top-intro']}>
           <div>
