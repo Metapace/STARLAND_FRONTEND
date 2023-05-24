@@ -132,7 +132,7 @@ const index: React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal }) =
           </Upload>
         </Form.Item>
         <FormItem
-          label="代表"
+          label={i18n[lang]['usercenter.representative']}
           field="represent"
           rules={[{ required: true }]}
           labelCol={{ span: 6, offset: 0 }}
@@ -149,14 +149,14 @@ const index: React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal }) =
               }
             }}
           >
-            <Radio value="company">公司</Radio>
-            <Radio value="personal">个人</Radio>
+            <Radio value="company">{i18n[lang]['usercenter.company']}</Radio>
+            <Radio value="personal">{i18n[lang]['usercenter.individual']}</Radio>
           </RadioGroup>
         </FormItem>
         {delegateIsCompany ? (
           <>
             <FormItem
-              label="公司名称"
+              label={i18n[lang]['usercenter.companyName']}
               field="companyName"
               rules={[{ required: true }]}
               labelCol={{ span: 6, offset: 0 }}
@@ -166,7 +166,7 @@ const index: React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal }) =
               <Input />
             </FormItem>
             <FormItem
-              label="公司成立国家"
+              label={i18n[lang]['usercenter.countryOfIncorporation']}
               field="companyCountry"
               rules={[{ required: true }]}
               labelCol={{ span: 6, offset: 0 }}
@@ -176,7 +176,7 @@ const index: React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal }) =
               <Input />
             </FormItem>
             <FormItem
-              label="公司地址"
+              label={i18n[lang]['usercenter.companyAddress']}
               field="companyAddress"
               rules={[{ required: true }]}
               labelCol={{ span: 6, offset: 0 }}
@@ -186,7 +186,7 @@ const index: React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal }) =
               <Input />
             </FormItem>
             <FormItem
-              label="公司邮箱"
+              label={i18n[lang]['usercenter.companyEmail']}
               field="companyEmail"
               rules={[{ required: true }]}
               labelCol={{ span: 6, offset: 0 }}
@@ -196,7 +196,7 @@ const index: React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal }) =
               <Input />
             </FormItem>
             <FormItem
-              label="公司注册号码"
+              label={i18n[lang]['usercenter.companyRegistrationNumber']}
               field="companyNumber"
               rules={[{ required: true }]}
               labelCol={{ span: 6, offset: 0 }}
@@ -209,23 +209,11 @@ const index: React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal }) =
               labelCol={{ span: 6, offset: 0 }}
               wrapperCol={{ span: 18, offset: 0 }}
               requiredSymbol={{ position: 'end' }}
-              label="上传营业执照"
+              label={i18n[lang]['usercenter.uploadBusinessLicense']}
               field="license"
               triggerPropName="fileList"
               rules={[{ required: true }]}
             >
-              {/* <Upload limit={1} listType="picture-card" customRequest={handleUpload} drag>
-            <div className={styles['trigger']}>
-              <div className={styles['trigger-box']}>
-                <img src={upload} alt="upload" />
-              </div>
-
-              <div className={styles['trigger-text']}>
-                Drag the file here or
-                <span style={{ color: '#3370FF', padding: '0 4px' }}>Click to upload</span>
-              </div>
-            </div>
-          </Upload> */}
               <Upload
                 listType="picture-card"
                 multiple
@@ -262,7 +250,7 @@ const index: React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal }) =
         ) : (
           <>
             <FormItem
-              label="姓名"
+              label={i18n[lang]['usercenter.name']}
               field="userName"
               rules={[{ required: true }]}
               labelCol={{ span: 6, offset: 0 }}
@@ -272,7 +260,7 @@ const index: React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal }) =
               <Input />
             </FormItem>
             <FormItem
-              label="所在国家"
+              label={i18n[lang]['usercenter.countryOfUser']}
               field="userCountry"
               rules={[{ required: true }]}
               labelCol={{ span: 6, offset: 0 }}
@@ -282,7 +270,7 @@ const index: React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal }) =
               <Input />
             </FormItem>
             <FormItem
-              label="个人地址"
+              label={i18n[lang]['usercenter.addressOfUser']}
               field="userAddress"
               rules={[{ required: true }]}
               labelCol={{ span: 6, offset: 0 }}
@@ -292,7 +280,7 @@ const index: React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal }) =
               <Input />
             </FormItem>
             <FormItem
-              label="个人邮箱"
+              label={i18n[lang]['usercenter.emailOfUser']}
               field="userEmail"
               rules={[{ required: true }]}
               labelCol={{ span: 6, offset: 0 }}
@@ -305,7 +293,7 @@ const index: React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal }) =
               labelCol={{ span: 6, offset: 0 }}
               wrapperCol={{ span: 18, offset: 0 }}
               requiredSymbol={{ position: 'end' }}
-              label="上传护照"
+              label={i18n[lang]['usercenter.uploadPassport']}
               field="passport"
               triggerPropName="fileList"
               rules={[{ required: true }]}

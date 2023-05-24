@@ -1,5 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { dashBoardInfoRequest, userInfoRequest, reportGet, AlertListParams, getAlertLsit } from 'src/api/user';
+import { companyInfoRequest, minInAmountRequest } from 'src/api/company';
+import { transactionInfoRequest } from 'src/api/assets';
 
 const useRequestUserIndfo = () => {
   const query = useQuery(['userinfo'], userInfoRequest);
@@ -26,4 +28,29 @@ const useRequestAlertList = (params: AlertListParams) => {
   return query;
 };
 
-export { useRequestUserIndfo, useRequestDashboardInfo, useRequestreportGet, useRequestAlertList };
+// 公司信息获取
+const useRequestCompanyInfo = () => {
+  const query = useQuery(['companyinfo'], () => companyInfoRequest());
+  return query;
+};
+
+// 充值记录
+const useRequestTransactionsInfo = () => {
+  const query = useQuery(['transactionsinfo'], () => transactionInfoRequest());
+  return query;
+};
+
+const useRequestMinInAmount = () => {
+  const query = useQuery(['minInAmount'], () => minInAmountRequest());
+  return query;
+};
+
+export {
+  useRequestUserIndfo,
+  useRequestDashboardInfo,
+  useRequestreportGet,
+  useRequestAlertList,
+  useRequestCompanyInfo,
+  useRequestTransactionsInfo,
+  useRequestMinInAmount,
+};
