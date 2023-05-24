@@ -5,7 +5,7 @@ const zh: {
   'datainfo.totalFees': '总费用',
   'datainfo.totalClicks': '总点击量',
   'datainfo.web2Hits': 'Web2点击量',
-  'datainfo.we3Hits': 'Web3点击量',
+  'datainfo.web3Hits': 'Web3点击量',
   'datainfo.click-throughRate': '点击率',
   'datainfo.cost': '成本',
   'datainfo.contentExposure': '内容曝光量',

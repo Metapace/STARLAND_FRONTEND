@@ -23,12 +23,14 @@
   margin-top: 10px;
   margin-bottom: 40px;
   background: #e9ecf4;
+  height: 340px;
   box-shadow: -3px -3px 5px #ffffff, 2px 4px 5px rgba(0, 0, 0, 0.14);
   border-radius: 11px;
   padding: 30px;
   padding-bottom: 10px;
   display: flex;
   flex-direction: column;
+  position: relative;
   .transactionbox {
     display: flex;
     justify-content: space-between;
@@ -126,7 +128,7 @@
     align-items: center;
     padding-right: 70px;
     gap: 68px;
-  
+
     .datadetail-content-inner-right-state {
       border: 1px solid #3ccc09;
       border-radius: 5px;
@@ -147,12 +149,32 @@
   }
 }
 
+// .datadetail-content-page {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   margin-top: 10px;
+//   gap: 70px;
+//   button {
+//     border: 1px solid #dadee8;
+//     background-color: transparent;
+//     border-radius: 4px;
+//     height: 23px;
+//     cursor: pointer;
+//     color: rgba(43, 54, 116, 0.51);
+//     font-size: 12px;
+//   }
+// }
 .datadetail-content-page {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 10px;
   gap: 70px;
+  padding-top: 20px;
+  position: absolute;
+  top: 290px;
+  left: 30vw;
   button {
     border: 1px solid #dadee8;
     background-color: transparent;
@@ -161,5 +183,15 @@
     cursor: pointer;
     color: rgba(43, 54, 116, 0.51);
     font-size: 12px;
+  }
+  p {
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 100%;
+    /* identical to box height, or 12px */
+
+    letter-spacing: -0.02em;
   }
 }

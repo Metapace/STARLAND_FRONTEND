@@ -8,6 +8,8 @@ import {
   updateActivity,
   getActivityById,
   reLaunchActivity,
+  getActivityListBystatus,
+  getActivityListBystatusRequestParams,
 } from 'src/api/activity';
 
 /**
@@ -71,6 +73,11 @@ const useMutationRelaunch = () =>
     mutationFn: reLaunchActivity,
   });
 
+const useRequestActivityByStatus = (params: getActivityListBystatusRequestParams) =>
+  useQuery([`getActivityListBystatus${params.page}${params.page_size}${params.action}`], () =>
+    getActivityListBystatus(params),
+  );
+
 export {
   useRequestCountry,
   useRequestLanguage,
@@ -80,4 +87,5 @@ export {
   useMutationUpdateMaterial,
   useRequestActivityById,
   useMutationRelaunch,
+  useRequestActivityByStatus,
 };
