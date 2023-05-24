@@ -20,6 +20,11 @@
       display: inline-block;
       transform: translate(-6px, -2px);
     }
+    .arco-form-label-item > label {
+      color: #2b3674;
+      font-weight: 500;
+      font-size: 14px;
+    }
   }
 }
 
@@ -32,16 +37,21 @@
 .channel-list {
   display: flex;
   column-gap: 10px;
-  row-gap: 6px;
-  flex-wrap: wrap;
-  > div {
-    width: 54px;
-    height: 54px;
-    background: #cbced8;
-    border-radius: 6px;
+  overflow: scroll;
+  &::-webkit-scrollbar {
+    display: none; /* Chrome Safari */
+  }
+  .chan-icon-wrrap {
+    height: 41.88px;
+    border: 1px solid #b9babd;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
   }
   img {
-    height: 24px;
+    height: 30px;
     width: auto;
   }
 }

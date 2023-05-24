@@ -82,6 +82,7 @@
     background-color: #e2e4e8;
   }
 }
+
 .download-item-border {
   border-bottom: 1px solid rgba(114, 123, 164, 0.15);
 }
@@ -129,5 +130,15 @@
 .edit-upload-content {
   .inner-upload {
     margin-top: 0px;
+  }
+}
+.disable-download-item {
+  cursor: not-allowed;
+  pointer-events: none;
+  img {
+    filter: opacity(0.4);
+  }
+  .download-left {
+    color: #9bb8ee;
   }
 }

@@ -65,7 +65,14 @@ const Index: React.FC<FormStepProps> = ({
   }, [initialValues]);
   return (
     <div className={styles.container}>
-      <Form style={{ width: 640 }} {...formItemLayout} scrollToFirstError form={form} initialValues={initialValues}>
+      <Form
+        style={{ width: 640 }}
+        {...formItemLayout}
+        scrollToFirstError
+        form={form}
+        initialValues={initialValues}
+        labelAlign="left"
+      >
         <FormItem
           label={i18n[lang]['channel.type']}
           rules={[{ required: true }]}
@@ -86,7 +93,9 @@ const Index: React.FC<FormStepProps> = ({
                 <Form.Item label={i18n[lang]['channel.display']}>
                   <div className={styles['channel-list']}>
                     {ChannelList?.map((item) => (
-                      <img src={item.image_url} key={item.id}></img>
+                      <div key={item.id} className={styles['chan-icon-wrrap']}>
+                        <img src={item.image_url}></img>
+                      </div>
                     ))}
                   </div>
                 </Form.Item>
@@ -158,7 +167,12 @@ const Index: React.FC<FormStepProps> = ({
                     ))}
                   </Select>
                 </FormItem>
-                <Form.Item label={i18n[lang]['launch.person']} required requiredSymbol={{ position: 'end' }}>
+                <Form.Item
+                  label={i18n[lang]['launch.person']}
+                  required
+                  requiredSymbol={{ position: 'end' }}
+                  style={{ marginBottom: '0px' }}
+                >
                   <Grid.Row gutter={8}>
                     <Grid.Col span={12}>
                       <Form.Item field={'crowd'} rules={[{ required: true }]}>

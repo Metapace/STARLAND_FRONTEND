@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import styles from './index.module.less';
 import classNames from 'classnames';
 import { Upload } from '@arco-design/web-react';
@@ -15,12 +15,22 @@ interface DownloadItemProps {
   name: string;
   url: string;
   hasBottomBorder?: boolean;
+  disable?: boolean;
 }
 
-const DownloadItem: React.FC<DownloadItemProps> = ({ name, url, hasBottomBorder = false }) => {
+const DownloadItem: React.FC<DownloadItemProps> = ({ name, url, hasBottomBorder = false, disable = false }) => {
+  const aStyle: CSSProperties = disable
+    ? { textDecoration: 'none', pointerEvents: 'none' }
+    : { textDecoration: 'none' };
   return (
-    <a href={url} download>
-      <div className={classNames(styles['download-item'], hasBottomBorder && styles['download-item-border'])}>
+    <a href={url} download style={aStyle}>
+      <div
+        className={classNames(
+          styles['download-item'],
+          hasBottomBorder && styles['download-item-border'],
+          disable && styles['disable-download-item'],
+        )}
+      >
         <div className={styles['download-left']}>
           <img src={fileIcon} alt="" />
           <div>{name}</div>
@@ -70,10 +80,12 @@ const Index = ({ fileList, setFileList, handleSubmit, isLoading, isEdit = false,
               name={i18n[lang]['project.docking']}
               url="https://starlands3.s3.ap-southeast-1.amazonaws.com/starland/1684749236622-favicon.ico"
               hasBottomBorder
+              disable
             />
             <DownloadItem
               name={i18n[lang]['common.indicators']}
               url="https://starlands3.s3.ap-southeast-1.amazonaws.com/starland/1684749236622-favicon.ico"
+              disable
             />
           </div>
         )}
