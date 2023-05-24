@@ -140,4 +140,4 @@ export const getActivityById = (id: number) => request.get('activity/get', { id 
  */
 
 export const reLaunchActivity = ({ act_id, status }: { act_id: number; status: 1 | 3 }) =>
-  request.post('activity/get', { act_id, status }) as Promise<unknown>;
+  request.post('activity/copy', { act_id, status }) as Promise<unknown>;

@@ -56,6 +56,7 @@ const en: {
   'wait.review': 'Pending review',
   'r.back': 'Back',
   'save.changes': 'Save changes',
+  'r.placement': 'Re-placement',
 };
 
 export default en;

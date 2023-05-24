@@ -65,7 +65,7 @@ const Index: React.FC<FormStepProps> = ({
   }, [initialValues]);
   return (
     <div className={styles.container}>
-      <Form style={{ width: 600 }} {...formItemLayout} scrollToFirstError form={form} initialValues={initialValues}>
+      <Form style={{ width: 640 }} {...formItemLayout} scrollToFirstError form={form} initialValues={initialValues}>
         <FormItem
           label={i18n[lang]['channel.type']}
           rules={[{ required: true }]}
@@ -145,7 +145,7 @@ const Index: React.FC<FormStepProps> = ({
                   </Select>
                 </FormItem>
                 <FormItem
-                  label={i18n[lang]['r.launguage']}
+                  label={i18n[lang]['lanuage.chose']}
                   rules={[{ required: true }]}
                   field="lauguage"
                   requiredSymbol={{ position: 'end' }}

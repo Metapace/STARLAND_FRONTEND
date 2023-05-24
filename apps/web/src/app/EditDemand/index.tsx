@@ -5,7 +5,7 @@ import locale from './locales';
 import { IconLeft } from '@arco-design/web-react/icon';
 import { Form, Message } from '@arco-design/web-react';
 import useI18n from 'src/ahooks/useI18n';
-import { ReturnRemandItem, DemandType, MaterialItem } from 'src/api/activity';
+import { ReturnRemandItem, DemandType, MaterialItem, AllMaterialItem } from 'src/api/activity';
 import dayjs from 'dayjs';
 import FormStep from 'src/app/CreateDemand/FormStep';
 import { useMutationUpdateMaterial } from 'src/api/activityHooks';
@@ -32,7 +32,7 @@ const EditProgress: React.FC<ReturnRemandItem> = ({ status, create_time, pay_tim
   const { lang, i18n } = useI18n(locale);
 
   const descriptText = useMemo(() => {
-    if (status === DemandType.NeedPay) {
+    if (status === DemandType.NeedPay || status === DemandType.NeedDeposite) {
       return [
         { title: 'create.success', time: dayjs.unix(create_time).format('YYYY-MM-DD hh:mm:ss') },
         { title: 'waite.auth', timeText: 'in.progress' },
@@ -52,7 +52,7 @@ const EditProgress: React.FC<ReturnRemandItem> = ({ status, create_time, pay_tim
   return (
     <div className={styles['edit-container']}>
       <div className={styles['edit-container-inner']}>
-        {(status === DemandType.NeedPay || status === DemandType.NeedVerify) && (
+        {(status === DemandType.NeedPay || status === DemandType.NeedVerify || status === DemandType.NeedDeposite) && (
           <div className={styles['line-progress']}>
             <BlueDot />
             <div className={styles['blue-line']}></div>
@@ -96,7 +96,7 @@ const Index = () => {
       realFormValue.country = formValues.country.join(',');
     }
     const materials_url = fileList.map((item) => item.response.Location).join(',');
-    const params = { id, ...realFormValue, materials_url };
+    const params: AllMaterialItem = { id, ...realFormValue, materials_url };
     if (isFromReVerify) {
       params.status = 9;
     }

@@ -9,20 +9,22 @@ interface SbuttonProps {
   className?: string | string[];
   style?: CSSProperties;
   text?: string;
+  color?: string;
   onClick?: UseMutateAsyncFunction<void, unknown, void, unknown> | (() => void);
 }
 
-const Sbutton: React.FC<SbuttonProps> = ({ loading, className, style, onClick, text }) => {
+const Sbutton: React.FC<SbuttonProps> = ({ loading, className, style, onClick, text, color = '#2d70f1' }) => {
   return (
-    <Button
-      className={classNames(className, styles['common-button'])}
-      style={style}
-      loading={loading}
-      loadingFixedWidth
-      onClick={() => onClick?.()}
-    >
-      {text}
-    </Button>
+    <span className={styles['button-outer']}>
+      <Button
+        className={classNames(className, styles['common-button'])}
+        style={{ ...style, color }}
+        loading={loading}
+        onClick={() => onClick?.()}
+      >
+        {text}
+      </Button>
+    </span>
   );
 };
 

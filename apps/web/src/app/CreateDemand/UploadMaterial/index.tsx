@@ -112,19 +112,6 @@ const Index = ({ fileList, setFileList, handleSubmit, isLoading, isEdit = false,
                 <div className={styles['action-type']}>{i18n[lang]['material.display.tip']}</div>
               </div>
             </Upload>
-            {isEdit && (
-              <div className={styles['web-des-edit']}>
-                <DownloadItem
-                  name={i18n[lang]['web2.launch.doc']}
-                  url="https://starlands3.s3.ap-southeast-1.amazonaws.com/starland/1684749236622-favicon.ico"
-                  hasBottomBorder
-                />
-                <DownloadItem
-                  name={i18n[lang]['web2.launch.info']}
-                  url="https://starlands3.s3.ap-southeast-1.amazonaws.com/starland/1684749236622-favicon.ico"
-                />
-              </div>
-            )}
           </div>
         </div>
       </div>
