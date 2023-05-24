@@ -1,12 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import {
-  dashBoardInfoRequest,
-  userInfoRequest,
-  reportGet,
-  AlertListParams,
-  getAlertLsit,
-} from 'src/api/user';
-import { companyInfoRequest } from 'src/api/company';
+import { dashBoardInfoRequest, userInfoRequest, reportGet, AlertListParams, getAlertLsit } from 'src/api/user';
+import { companyInfoRequest, minInAmountRequest } from 'src/api/company';
 import { transactionInfoRequest } from 'src/api/assets';
 
 const useRequestUserIndfo = () => {
@@ -46,6 +40,11 @@ const useRequestTransactionsInfo = () => {
   return query;
 };
 
+const useRequestMinInAmount = () => {
+  const query = useQuery(['minInAmount'], () => minInAmountRequest());
+  return query;
+};
+
 export {
   useRequestUserIndfo,
   useRequestDashboardInfo,
@@ -53,4 +52,5 @@ export {
   useRequestAlertList,
   useRequestCompanyInfo,
   useRequestTransactionsInfo,
+  useRequestMinInAmount,
 };

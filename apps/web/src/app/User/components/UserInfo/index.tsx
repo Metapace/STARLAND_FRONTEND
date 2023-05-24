@@ -8,12 +8,12 @@ import dayjs from 'dayjs';
 
 const index = () => {
   const { lang, i18n } = useI18n(locale);
-  const { data } = useRequestUserIndfo();
+  const { data, isLoading } = useRequestUserIndfo();
   const { data: data2 } = useRequestDashboardInfo();
   return (
     <div className={styles['container']}>
       <div className={styles['basic-info']}>
-        <img src={data?.avatar_uri} alt="user-logo" />
+        {isLoading ? <img src={userlogo} alt="user-logo" /> : <img src={data?.avatar_uri} alt="user-logo" />}
         <div className={styles['basic-info-group1']}>
           <p>
             {i18n[lang]['usercenter.accountID']}：{data?.card_id}

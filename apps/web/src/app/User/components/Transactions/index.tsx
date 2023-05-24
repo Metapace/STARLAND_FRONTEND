@@ -43,9 +43,8 @@ const index = () => {
   const pageMax = 6;
   const [currentPage, setCurrentPage] = useState(1);
   const { data: transactionsInfoData } = useRequestTransactionsInfo();
-  console.log('transactionsInfoData', transactionsInfoData && transactionsInfoData);
   const handleNextPage = () => {
-    if (currentPage >= Math.ceil(transactionsInfoData.length / pageMax)) {
+    if (transactionsInfoData && currentPage >= Math.ceil(transactionsInfoData.length / pageMax)) {
       return;
     }
     setCurrentPage(currentPage + 1);
@@ -62,6 +61,7 @@ const index = () => {
       <div className={styles['transaction-inner']}>
         {transactionsInfoData?.slice((currentPage - 1) * pageMax, currentPage * pageMax).map((item) => (
           <TransactionBox
+            key={item?.id}
             type={item?.recharge_chan}
             time={item?.create_time}
             amount={item.amount}

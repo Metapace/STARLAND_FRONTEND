@@ -10,7 +10,7 @@ import QRcode from 'src/assets/images/usercenter-assets-QRcode.png';
 import Clipboard from 'clipboard';
 import useI18n from 'src/ahooks/useI18n';
 import locale from '../../locales';
-import { useRequestCompanyInfo, useRequestDashboardInfo } from 'src/api/requestHooks';
+import { useRequestCompanyInfo, useRequestDashboardInfo, useRequestMinInAmount } from 'src/api/requestHooks';
 
 interface CompanyBoxProps {
   title?: string;
@@ -21,7 +21,6 @@ const CompanyBox: React.FC<CompanyBoxProps> = ({ title, info }) => {
   const { lang, i18n } = useI18n(locale);
   const [isCopied, setIsCopied] = useState(false);
   const copy = new Clipboard('.copy-btn');
-  copy.on('success', (e) => {});
   //* Handle alerts
   useEffect(() => {
     if (isCopied) {
@@ -64,6 +63,9 @@ const index: React.FC<PropertyProps> = ({ handleOpenVoucherModal, handleCloseVou
   const { lang, i18n } = useI18n(locale);
   const { data } = useRequestCompanyInfo();
   const { data: data2 } = useRequestDashboardInfo();
+  const { data: data3 } = useRequestMinInAmount();
+
+
   return (
     <div className={styles['container']}>
       <div className={styles['assets-web2']}>
@@ -92,7 +94,7 @@ const index: React.FC<PropertyProps> = ({ handleOpenVoucherModal, handleCloseVou
           <p>{i18n[lang]['usercenter.pleaseNote']}!</p>
           <p>{i18n[lang]['usercenter.note1']}</p>
           <p>{i18n[lang]['usercenter.note2']}</p>
-          <p>{i18n[lang]['usercenter.note3']}</p>
+          <p>{i18n[lang]['usercenter.note3-before']}{data3}{i18n[lang]['usercenter.note3-after']}</p>
         </div>
       </div>
       <div className={styles['assets-web3']}>
@@ -104,7 +106,7 @@ const index: React.FC<PropertyProps> = ({ handleOpenVoucherModal, handleCloseVou
                 {i18n[lang]['usercenter.digitalAssets']}
                 <span style={{ fontSize: '12px', color: 'rgba(43, 54, 116, 0.32)' }}>（USDT）</span>
               </p>
-              <p style={{ fontSize: '14px', color: '#2B3674' }}>332.1</p>
+              <p style={{ fontSize: '14px', color: '#2B3674' }}>0</p>
             </div>
           </div>
           <button>{i18n[lang]['usercenter.chainPayment']}</button>

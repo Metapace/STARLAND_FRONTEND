@@ -9,3 +9,5 @@ export const companyInfoRequest = () =>
     name: string;
     swift: string;
   }>;
+
+export const minInAmountRequest = () => request.get('assets/get', {});
