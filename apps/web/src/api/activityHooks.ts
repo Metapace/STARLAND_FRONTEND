@@ -7,6 +7,8 @@ import {
   getActivityList,
   updateActivity,
   getActivityById,
+  getActivityListBystatus,
+  getActivityListBystatusRequestParams,
 } from 'src/api/activity';
 
 /**
@@ -61,6 +63,15 @@ const useMutationUpdateMaterial = () =>
  */
 const useRequestActivityById = (id: number) => useQuery([`activityById${id}`], () => getActivityById(id));
 
+/**
+ *
+ * @description
+ */
+const useRequestActivityByStatus = (params: getActivityListBystatusRequestParams) =>
+  useQuery([`getActivityListBystatus${params.page}${params.page_size}${params.action}`], () =>
+    getActivityListBystatus(params),
+  );
+
 export {
   useRequestCountry,
   useRequestLanguage,
@@ -69,4 +80,5 @@ export {
   useRequestActivity,
   useMutationUpdateMaterial,
   useRequestActivityById,
+  useRequestActivityByStatus,
 };

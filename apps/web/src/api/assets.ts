@@ -1,6 +1,6 @@
 import { request } from 'src/utils/request';
 
-interface IISomeInterface { 
+interface ITransactionInterface { 
     id : number; 
     user_id : number; 
     from : string; 
@@ -23,4 +23,4 @@ interface IISomeInterface {
     remark : string; 
   }
 
-export const transactionInfoRequest = () => request.get('assets/list', {}) as Promise<Array<IISomeInterface>>;
+export const transactionInfoRequest = () => request.get('assets/list', {}) as Promise<Array<ITransactionInterface>>;

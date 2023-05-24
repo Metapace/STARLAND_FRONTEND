@@ -27,6 +27,7 @@ const en: {
   'datainfo.lastThreeDays': 'Last three days',
   'datainfo.lastWeek': 'Last week',
   'datainfo.lastMonth': 'Last month',
+  'datainfo.lastSixMonths': 'Last Six Months',
   'datainfo.closingConfirmation': 'Closing Confirmation',
   'datainfo.note1':
     '1、Because the ads are placed in various channels, there is a time lag between the launch and the actual end of the placement, the closing operation is expected to be completed within 24 hours.',

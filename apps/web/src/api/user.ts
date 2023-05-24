@@ -7,6 +7,10 @@ export interface ReportGetReturnItem {
   cost: number;
   ctr: number;
 }
+export interface ReportGetClickReturnItem {
+  name: string;
+  click: number;
+}
 
 export interface AlertListParams {
   page?: number;
@@ -89,3 +93,17 @@ export const reportGet = (params: { date_type: number }) =>
  */
 
 export const getAlertLsit = (params: AlertListParams) => request.post('alert/list', params) as Promise<AlertReturn>;
+
+/**
+ *
+ * @description 获取没有明细的投后数据
+ * @param date_type number 10:所有的总值；4:近7日数据；
+ * @returns data 时间
+ * @returns impression 访问量
+ * @returns click 点击量
+ * @returns cost 花费成本
+ *@returns ctr 点击率
+ */
+
+export const reportGetClick = (params: { date_type: number }) =>
+  request.get('report/click/get', params) as Promise<Array<ReportGetClickReturnItem>>;

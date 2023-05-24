@@ -35,11 +35,96 @@
   }
 }
 
+// .chart-container {
+//   width: 100%;
+//   background: #e9ecf4;
+//   box-shadow: -3px -3px 5px #ffffff, 2px 4px 5px rgba(0, 0, 0, 0.14);
+//   border-radius: 11px;
+// }
 .chart-container {
-  width: 100%;
   background: #e9ecf4;
   box-shadow: -3px -3px 5px #ffffff, 2px 4px 5px rgba(0, 0, 0, 0.14);
   border-radius: 11px;
+  position: relative;
+  /* Body/Input - 14px - R */
+
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  /* or 157% */
+
+  /* Grey/40 */
+
+  color: #a2a3a5;
+  .chart-container-nodata-right {
+    display: flex;
+    flex-direction: column;
+    padding-left: 34px;
+    padding-top: 34px;
+    gap: 56px;
+  }
+  .chart-container-nodata-left {
+    padding-left: 84px;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 120px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    padding-right: 120px;
+  }
+  .chart-container-nodata-box {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 180px;
+    left: 42vw;
+  }
+  .chart-container-nodata-bbox {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 40px;
+    left: 60vw;
+    width: 230px;
+    height: 158.68px;
+    background: rgba(223, 235, 242, 0.01);
+    border: 1px solid #d9dce3;
+    backdrop-filter: blur(5.5px);
+    /* Note: backdrop-filter has minimal browser support */
+    padding-top: 12px;
+    padding-inline: 18px;
+    border-radius: 10px;
+    gap: 20px;
+    .chart-container-nodata-bbox-box {
+      display: flex;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(162, 163, 165, 0.33);
+      font-family: 'Poppins';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 22px;
+      /* identical to box height, or 157% */
+
+      color: #2b3674;
+
+      .chart-container-nodata-bbox-box-1 {
+        width: 22px;
+        height: 22px;
+        border-radius: 100%;
+        background: #8150bf;
+      }
+      .chart-container-nodata-bbox-box-2 {
+        padding-left: 14px;
+      }
+      .chart-container-nodata-bbox-box-3 {
+        padding-left: 47px;
+      }
+    }
+  }
 }
 
 

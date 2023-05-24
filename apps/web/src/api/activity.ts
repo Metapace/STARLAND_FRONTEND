@@ -45,6 +45,12 @@ export interface AllMaterialItem extends Partial<MaterialItem> {
   reason?: string;
 }
 
+export interface getActivityListBystatusRequestParams {
+  page: number;
+  page_size: number;
+  action: string;
+}
+
 export interface ReturnRemandItem {
   id: number;
   user_id: number;
@@ -111,6 +117,14 @@ export const createMaterial = (params: MaterialItem) => request.post('activity/c
  */
 
 export const getActivityList = () => request.get('activity/list', {}) as Promise<Array<ReturnRemandItem>>;
+/**
+ *
+ * @description 根据状态
+ *
+ */
+
+export const getActivityListBystatus = (params: getActivityListBystatusRequestParams) =>
+  request.post('activity/record/list', params) as Promise<{ num: number; list: Array<ReturnRemandItem> }>;
 
 /**
  *
