@@ -7,7 +7,7 @@ import LongProgress from './components/LongProgress';
 import { DemandType } from 'src/api/activity';
 import RemandItem, { DemandMap } from './components/RemandItem';
 import web2Banner from 'src/assets/images/web2-banner.png';
-import { IconCheckCircle } from '@arco-design/web-react/icon';
+import { IconCheckCircle, IconRight } from '@arco-design/web-react/icon';
 import { Select } from '@arco-design/web-react';
 import { useNavigate } from 'react-router-dom';
 import { useRequestActivity } from 'src/api/activityHooks';
@@ -23,7 +23,12 @@ const Index = () => {
     }
     return RemandList?.filter((item) => item.status === +demandType);
   }, [RemandList, demandType]);
-
+  const CreateButton = () => (
+    <div className={classNames('common-button', styles['create-button'])} onClick={() => navigate('/create-demand')}>
+      {i18n[lang]['create.campagin']}
+      <IconRight className={styles['right-to-icon']} />
+    </div>
+  );
   const navigate = useNavigate();
   return (
     <div className={styles.container}>
@@ -44,12 +49,7 @@ const Index = () => {
               <IconCheckCircle className={styles['top-icon']}></IconCheckCircle>
               {i18n[lang]['market.top3']}
             </div>
-            <div
-              className={classNames('common-button', styles['create-button'])}
-              onClick={() => navigate('/create-demand')}
-            >
-              {i18n[lang]['create.campagin']}
-            </div>
+            <CreateButton />
           </div>
         </div>
       </div>
@@ -65,7 +65,7 @@ const Index = () => {
           >
             {Object.keys(DemandMap).map((key) => (
               <Option key={key} value={key}>
-                {i18n[lang][DemandMap[key as unknown as DemandType]]}
+                {i18n[lang][DemandMap[key as unknown as Exclude<DemandType, DemandType.Remove>]]}
               </Option>
             ))}
           </Select>
@@ -75,8 +75,15 @@ const Index = () => {
         {showDemandList?.map((item) => (
           <RemandItem {...item} key={item.id} />
         ))}
-        {(!showDemandList || showDemandList.length === 0) && (
+        {(!showDemandList || showDemandList.length === 0) && demandType !== DemandType.All && (
           <div className={styles.empyty}>{i18n[lang]['r.empyty']}</div>
+        )}
+        {(!showDemandList || showDemandList.length === 0) && demandType === DemandType.All && (
+          <div className={styles['all-empyty']}>
+            <div className={styles['first-title']}>{i18n[lang]['not.have.activity']}</div>
+            <div className={styles['seconde-title']}>{i18n[lang]['not.have.ads']}</div>
+            <CreateButton />
+          </div>
         )}
       </div>
     </div>

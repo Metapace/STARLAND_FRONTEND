@@ -7,8 +7,11 @@ import { DemandType, ReturnRemandItem, ChannelType } from 'src/api/activity';
 import { gendarRange } from 'src/conifg/selectConfig';
 import dayjs from 'dayjs';
 import { useNavigate } from 'react-router-dom';
+import PayModal from 'src/components/PayModal';
+import { useToggle } from 'ahooks';
+import RelaunchButton from 'src/components/RelaunchButton';
 
-export const DemandMap: Record<DemandType, string> = {
+export const DemandMap: Record<Exclude<DemandType, DemandType.Remove>, string> = {
   [DemandType.All]: 'r.all',
   [DemandType.NeedDeposite]: 'waite.deposit',
   [DemandType.NeedPay]: 'waite.auth',
@@ -22,6 +25,7 @@ export const DemandMap: Record<DemandType, string> = {
 const Index: React.FC<ReturnRemandItem> = ({ status, create_time, chan, country, price, crowd, id }) => {
   const { lang, i18n } = useI18n(locale);
   const navigate = useNavigate();
+  const [open, { toggle }] = useToggle(false);
   const tagColor: string = useMemo(() => {
     if (status === DemandType.NeedDeposite || status === DemandType.NeedVerify || status === DemandType.Channel) {
       return 'blue';
@@ -91,27 +95,38 @@ const Index: React.FC<ReturnRemandItem> = ({ status, create_time, chan, country,
         )}
       </div>
       <div className={styles['bottom-button']}>
-        {status === DemandType.Finished && (
-          <div className={classNames('common-button', styles['orange-button'])}>{i18n[lang]['re.launch']}</div>
-        )}
+        {status === DemandType.Finished && <RelaunchButton id={id} />}
 
         {status === DemandType.NeedDeposite && (
-          <div className={classNames('common-button', styles['orange-button'])}>{i18n[lang]['deposite.right']}</div>
+          <div className={classNames('common-button', styles['orange-button'])} onClick={toggle}>
+            {i18n[lang]['deposite.right']}
+          </div>
         )}
         {status === DemandType.NeedPay && (
-          <div className={classNames('common-button', styles['orange-button'])}>{i18n[lang]['pay.auth']}</div>
+          <div className={classNames('common-button', styles['orange-button'])} onClick={toggle}>
+            {i18n[lang]['pay.auth']}
+          </div>
         )}
         {status === DemandType.Going ? (
-          <div className={classNames('common-button', styles['read-detail'])}>{i18n[lang]['view.data']}</div>
+          <div className={classNames('common-button', styles['read-detail'])} onClick={() => navigate('/datainfo')}>
+            {i18n[lang]['view.data']}
+          </div>
         ) : (
           <div
             className={classNames('common-button', styles['read-detail'])}
-            onClick={() => navigate(`/edit-demand?id=${id} `)}
+            onClick={() => {
+              if (status === DemandType.VerifyFail) {
+                navigate(`/verify-fail?id=${id}`);
+              } else {
+                navigate(`/edit-demand?id=${id}`);
+              }
+            }}
           >
             {i18n[lang]['view.detail']}
           </div>
         )}
       </div>
+      <PayModal activityId={id} open={open} handleCloseModal={toggle} />
     </div>
   );
 };

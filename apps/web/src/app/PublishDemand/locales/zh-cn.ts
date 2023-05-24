@@ -42,6 +42,8 @@ const zh: {
   'not.limited': '不限',
   'native.ads': '原生广告',
   'r.empyty': '空空如也',
+  'not.have.activity': '您还没有任何活动！',
+  'not.have.ads': '您似乎还没有制作任何广告系列',
 };
 
 export default zh;

@@ -8,11 +8,12 @@ import useI18n from 'src/ahooks/useI18n';
 import { ReturnRemandItem, DemandType, MaterialItem } from 'src/api/activity';
 import dayjs from 'dayjs';
 import FormStep from 'src/app/CreateDemand/FormStep';
-import { useRequestActivityById, useMutationUpdateMaterial } from 'src/api/activityHooks';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useMutationUpdateMaterial } from 'src/api/activityHooks';
+import { useNavigate } from 'react-router-dom';
 import UploadMaterial from 'src/app/CreateDemand/UploadMaterial';
 import { UploadItem } from 'src/types/arco';
 import Sbutton from 'src/components/Sbutton';
+import { useGetActivityDataByUrlId } from 'src/ahooks/index';
 
 const BlueDot = () => {
   return <div className={styles['blue-dot']}></div>;
@@ -78,9 +79,7 @@ const Index = () => {
   const { lang, i18n } = useI18n(locale);
   const [form] = Form.useForm();
   const navigate = useNavigate();
-  const [params] = useSearchParams();
-  const id = parseInt(params.getAll('id')[0]);
-  const { data } = useRequestActivityById(id);
+  const { data, id } = useGetActivityDataByUrlId();
   const [fileList, setFileList] = useState<Array<UploadItem>>([]);
   const { mutateAsync: updataMaterial, isLoading } = useMutationUpdateMaterial();
   const handleBack = () => {

@@ -12,7 +12,6 @@ import locales from './locales';
 import { useMutationCreateMaterial } from 'src/api/activityHooks';
 import { UploadItem } from 'src/types/arco';
 import { MaterialItem } from 'src/api/activity';
-import { useNavigate } from 'react-router-dom';
 
 interface CircleItemProps {
   index: number;
@@ -53,7 +52,6 @@ const Index = () => {
   const [activityId, setActivityId] = useState<number>(0);
   const [open, { setLeft, toggle }] = useToggle(false);
   const createMutation = useMutationCreateMaterial();
-  const navigate = useNavigate();
   const [form] = Form.useForm();
   const handleNextStep = () => {
     form?.validate().then((res: unknown) => {
@@ -63,7 +61,6 @@ const Index = () => {
   };
   const handleCloseModal = () => {
     setLeft();
-    navigate('/create-success');
   };
 
   const handleSubmit = async () => {

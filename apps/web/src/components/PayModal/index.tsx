@@ -26,7 +26,7 @@ const index: React.FC<PayModalProps> = ({ open, handleCloseModal, activityId }) 
   const navigate = useNavigate();
   const handleSubmit = async () => {
     await updataMaterial({ id: activityId, status: 3, pay_time: parseInt((Date.now() / 1000).toString()) });
-    navigate('/create-success');
+    navigate(`/create-success?id=${activityId}`);
   };
   return (
     <Modal

@@ -1,6 +1,8 @@
 import { useLocalStorageState } from 'ahooks';
 import { useEffect } from 'react';
 import { changePageColor } from 'src/utils';
+import { useRequestActivityById } from 'src/api/activityHooks';
+import { useSearchParams } from 'react-router-dom';
 
 export const useTheme = () => {
   const [arcoThem] = useLocalStorageState('arco-theme');
@@ -23,4 +25,11 @@ export const useColor = () => {
     changePageColor('#0037A1');
   }, [arcoThemColor]);
   return [arcoThemColor, setArcoThemColor];
+};
+
+export const useGetActivityDataByUrlId = () => {
+  const [params] = useSearchParams();
+  const id = parseInt(params.getAll('id')[0]);
+  const { data } = useRequestActivityById(id);
+  return { data, id };
 };

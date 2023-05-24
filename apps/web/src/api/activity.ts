@@ -33,10 +33,11 @@ export enum DemandType {
   Channel = 5,
   Going = 6,
   Finished = 7,
+  Remove = 8,
 }
 
 /**
- * @description status 0:全部 1:待充值 2:待授权 3:待审核 4:审核失败 5:渠道分发 6:投放中 7:已结束
+ * @description status 0:全部 1:待充值 2:待授权 3:待审核 4:审核失败 5:渠道分发 6:投放中 7:已结束 8: 删除
  */
 export interface AllMaterialItem extends Partial<MaterialItem> {
   id: number;
@@ -59,7 +60,7 @@ export interface ReturnRemandItem {
   start: number;
   end: number;
   price: string;
-  status: DemandType;
+  status: Exclude<DemandType, DemandType.Remove>;
   deliver: number;
   deliver_reason: string;
   deliver_time: number;
@@ -126,3 +127,12 @@ export const updateActivity = (params: AllMaterialItem) => request.post('activit
  */
 
 export const getActivityById = (id: number) => request.get('activity/get', { id }) as Promise<ReturnRemandItem>;
+
+/**
+ * @description 重新发布
+ * @params act_id 已经存在activity id信息
+ * @params status 发布的状态数据 1:待充值  3:待审核
+ */
+
+export const reLaunchActivity = ({ act_id, status }: { act_id: number; status: 1 | 3 }) =>
+  request.post('activity/get', { act_id, status }) as Promise<unknown>;

@@ -42,6 +42,8 @@ const en: {
   'not.limited': 'Unlimited',
   'native.ads': 'Native ads',
   'r.empyty': 'Empty',
+  'not.have.activity': "You don't have any campaigns yet !",
+  'not.have.ads': "Seems you haven't created any campaigns yet",
 };
 
 export default en;

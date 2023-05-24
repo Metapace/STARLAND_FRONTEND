@@ -7,6 +7,7 @@ import {
   getActivityList,
   updateActivity,
   getActivityById,
+  reLaunchActivity,
 } from 'src/api/activity';
 
 /**
@@ -61,6 +62,15 @@ const useMutationUpdateMaterial = () =>
  */
 const useRequestActivityById = (id: number) => useQuery([`activityById${id}`], () => getActivityById(id));
 
+/**
+ * @description 重新发布
+ */
+
+const useMutationRelaunch = () =>
+  useMutation({
+    mutationFn: reLaunchActivity,
+  });
+
 export {
   useRequestCountry,
   useRequestLanguage,
@@ -69,4 +79,5 @@ export {
   useRequestActivity,
   useMutationUpdateMaterial,
   useRequestActivityById,
+  useMutationRelaunch,
 };
