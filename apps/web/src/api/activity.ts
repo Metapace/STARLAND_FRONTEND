@@ -37,6 +37,7 @@ export enum DemandType {
 }
 export enum ElseDemandTypeType {
   ReVerify = 9,
+  CloseWait = 10,
 }
 
 export type SubmitDemandType = DemandType | ElseDemandTypeType;
@@ -148,5 +149,5 @@ export const getActivityById = (id: number) => request.get('activity/get', { id 
  * @params status 发布的状态数据 1:待充值  3:待审核
  */
 
-export const reLaunchActivity = ({ act_id, status }: { act_id: number; status: 1 | 3 }) =>
+export const reLaunchActivity = ({ act_id, status }: { act_id: number; status: 1 | 3   }) =>
   request.post('activity/copy', { act_id, status }) as Promise<unknown>;

@@ -62,6 +62,7 @@ const Index = () => {
         <p className={styles['dataclick-top-title']}>{i18n[lang]['datainfo.clickStats']}</p>
         <Select
           placeholder="Please select"
+          defaultValue={i18n[lang]['datainfo.yesterday']}
           style={{ width: 154 }}
           onChange={(value) => {
             setDays(value);

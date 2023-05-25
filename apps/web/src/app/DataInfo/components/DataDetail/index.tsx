@@ -1,107 +1,3 @@
-// import React, { useState } from 'react';
-// import styles from './index.module.less';
-// import assetsweb2logo from 'src/assets/images/usercenter-assets-web2logo.png';
-// import useI18n from 'src/ahooks/useI18n';
-// import locale from '../../locales';
-// import { useRequestActivity } from 'src/api/activityHooks';
-// import Item from '@arco-design/web-react/es/Breadcrumb/item';
-// import { AccessAnalyzer } from 'aws-sdk';
-// import dayjs from 'dayjs';
-
-// interface DataDetailBoxProps {
-//   startTime: number;
-//   endTime: number;
-//   channel: string;
-//   state: number;
-//   id: number;
-// }
-
-// const DataDetailBox: React.FC<DataDetailBoxProps> = ({ startTime, endTime, channel, state, id }) => {
-//   const { lang, i18n } = useI18n(locale);
-//   return (
-//     <div className={styles['datadetail-content-inner']}>
-//       <div className={styles['datadetail-content-inner-left']}>
-//         <div>{dayjs.unix(startTime).format('YYYY-MM-DD')}</div>
-//         <div>{dayjs.unix(endTime).format('YYYY-MM-DD')}</div>
-//         <div className={styles['datadetail-content-inner-left-channel']}>{channel}</div>
-//       </div>
-//       <div className={styles['datadetail-content-inner-right']}>
-//         <div className={styles['datadetail-content-inner-right-state']}>
-//           {state == 1 ? '待充值' : state == 2 ? '待支付' : state == 3 ? '待审核 ' : state == 4 ? '审核失败 ' :state == 5 ? '渠道分发 ' : ''}
-//         </div>
-//         <div className={styles['datadetail-content-inner-right-btn']}>"aaa"</div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// const Index = () => {
-//   const { lang, i18n } = useI18n(locale);
-//   const { data: RemandList } = useRequestActivity();
-//   const pageMax = 4;
-//   const [currentPage, setCurrentPage] = useState(1);
-//   const handleNextPage = () => {
-//     if (RemandList && currentPage >= Math.ceil(RemandList.length / pageMax)) {
-//       return;
-//     }
-//     setCurrentPage(currentPage + 1);
-//   };
-//   const handlePrePage = () => {
-//     if (currentPage === 1) {
-//       return;
-//     }
-//     setCurrentPage(currentPage - 1);
-//   };
-//   console.log('RemandList', RemandList);
-//   return (
-//     <div className={styles['container']}>
-//       <div className={styles['datadetail-top']}>{i18n[lang]['datainfo.detailedData']}</div>
-//       <div className={styles['datadetail-content']}>
-//         {/* 表头 */}
-//         <div className={styles['datadetail-content-header']}>
-//           <div className={styles['datadetail-content-header-left']}>
-//             <p>{i18n[lang]['datainfo.placementTime']}</p>
-//             <p>{i18n[lang]['datainfo.deadline']}</p>
-//             <p>{i18n[lang]['datainfo.placementChannel']}</p>
-//           </div>
-//           <div className={styles['datadetail-content-header-right']}>
-//             <p>{i18n[lang]['datainfo.status']}</p>
-//             <p>{i18n[lang]['datainfo.operation']}</p>
-//           </div>
-//         </div>
-//         <div>
-//           <>
-//             {RemandList?.length == 0 ? (
-//               <div>暂无数据</div>
-//             ) : (
-//               RemandList?.slice((currentPage - 1) * pageMax, currentPage * pageMax).map((item) => {
-//                 return (
-//                   <DataDetailBox
-//                     key={item.id}
-//                     startTime={item.start}
-//                     endTime={item.end}
-//                     channel={item.chan_list}
-//                     state={item.status}
-//                     id={item.id}
-//                   />
-//                 );
-//               })
-//             )}
-//             <div className={styles['datadetail-content-page']}>
-//               <button onClick={handlePrePage}>{i18n[lang]['datainfo.pre']}</button>
-//               <p>
-//                 {currentPage}/{RemandList && Math.ceil(RemandList?.length / pageMax)}
-//               </p>
-//               <button onClick={handleNextPage}>{i18n[lang]['datainfo.next']}</button>
-//             </div>
-//           </>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Index;
 import React, { useState } from 'react';
 import styles from './index.module.less';
 import assetsweb2logo from 'src/assets/images/usercenter-assets-web2logo.png';
@@ -112,6 +8,9 @@ import Item from '@arco-design/web-react/es/Breadcrumb/item';
 import { AccessAnalyzer } from 'aws-sdk';
 import dayjs from 'dayjs';
 import { getActivityListBystatusRequestParams } from 'src/api/activity';
+import RelaunchButton from 'src/components/RelaunchButton';
+import { color } from 'echarts';
+import { useMutationUpdateMaterial } from 'src/api/activityHooks';
 
 interface DataDetailBoxProps {
   startTime: number;
@@ -123,12 +22,19 @@ interface DataDetailBoxProps {
 
 const DataDetailBox: React.FC<DataDetailBoxProps> = ({ startTime, endTime, channel, state, id }) => {
   const { lang, i18n } = useI18n(locale);
+  const { mutateAsync: updataMaterial, isLoading } = useMutationUpdateMaterial();
+
+  const handleSubmit = async (activityId: number) => {
+    await updataMaterial({ id: activityId, status: 10 });
+  };
   return (
     <div className={styles['datadetail-content-inner']}>
       <div className={styles['datadetail-content-inner-left']}>
-        <div>{dayjs.unix(startTime).format('YYYY-MM-DD')}</div>
-        <div>{dayjs.unix(endTime).format('YYYY-MM-DD')}</div>
-        <div className={styles['datadetail-content-inner-left-channel']}>{channel}</div>
+        <div style={{ width: '100px' }}>{dayjs.unix(startTime).format('YYYY-MM-DD')}</div>
+        <div style={{ width: '100px' }}>{dayjs.unix(endTime).format('YYYY-MM-DD')}</div>
+        <div style={{ width: '200px' }} className={styles['datadetail-content-inner-left-channel']}>
+          {channel}
+        </div>
       </div>
       <div className={styles['datadetail-content-inner-right']}>
         {state == 6 ? (
@@ -143,9 +49,26 @@ const DataDetailBox: React.FC<DataDetailBoxProps> = ({ startTime, endTime, chann
         )}
 
         {state == 6 ? (
-          <div className={styles['datadetail-content-inner-right-btn']}>关闭投放</div>
+          <div
+            onClick={() => handleSubmit(id)}
+            style={{ width: '140px' }}
+            className={styles['datadetail-content-inner-right-btn']}
+          >
+            关闭投放
+          </div>
         ) : (
-          <div className={styles['datadetail-content-inner-right-btn']}>开启投放</div>
+          <RelaunchButton
+            id={id}
+            style={{
+              color: '#a2a7b5',
+              padding: '0',
+              width: '140px',
+              paddingInline: '20px',
+              borderRadius: '5px',
+              background: '#e9ecf4',
+              boxShadow: '-3px -3px 5px #ffffff, 2px 4px 5px rgba(0, 0, 0, 0.14)',
+            }}
+          />
         )}
       </div>
     </div>
@@ -162,6 +85,7 @@ const Index = () => {
     action: '6,7',
   };
   const { data: RemandListByStatus } = useRequestActivityByStatus(ActivityListBystatusRequestParams);
+
   // console.log('RemandListByStatus', RemandListByStatus);
   const handleNextPage = () => {
     if (RemandListByStatus && currentPage >= Math.ceil(RemandListByStatus?.num / pageMax)) {
@@ -183,13 +107,13 @@ const Index = () => {
         {/* 表头 */}
         <div className={styles['datadetail-content-header']}>
           <div className={styles['datadetail-content-header-left']}>
-            <p>{i18n[lang]['datainfo.placementTime']}</p>
-            <p>{i18n[lang]['datainfo.deadline']}</p>
-            <p>{i18n[lang]['datainfo.placementChannel']}</p>
+            <div className={styles['datadetail-content-header-left-1']}>{i18n[lang]['datainfo.placementTime']}</div>
+            <div className={styles['datadetail-content-header-left-2']}>{i18n[lang]['datainfo.deadline']}</div>
+            <div className={styles['datadetail-content-header-left-3']}>{i18n[lang]['datainfo.placementChannel']}</div>
           </div>
           <div className={styles['datadetail-content-header-right']}>
-            <p>{i18n[lang]['datainfo.status']}</p>
-            <p>{i18n[lang]['datainfo.operation']}</p>
+            <div style={{ width: '100px' }}>{i18n[lang]['datainfo.status']}</div>
+            <div style={{ width: '100px' }}>{i18n[lang]['datainfo.operation']}</div>
           </div>
         </div>
         <div>

@@ -18,7 +18,7 @@ const Sbutton: React.FC<SbuttonProps> = ({ loading, className, style, onClick, t
     <span className={styles['button-outer']}>
       <Button
         className={classNames(className, styles['common-button'])}
-        style={{ ...style, color }}
+        style={style}
         loading={loading}
         onClick={() => onClick?.()}
       >
