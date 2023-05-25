@@ -40,8 +40,8 @@ const Index = () => {
         ],
       },
       grid: {
-        left: '30px',
-        right: '30px',
+        left: '50px',
+        right: '50px',
         bottom: '20px',
         containLabel: true,
       },
@@ -50,12 +50,9 @@ const Index = () => {
           type: 'category',
           axisTick: {
             alignWithLabel: true,
+            show: false,
           },
-          nameTextStyle: {
-            fontStyle: 'italic',
-            color: 'red',
-            fontWeight: 'bold',
-          },
+
           boundaryGap: false,
           data: [
             dayjs().subtract(7, 'day').format('M.DD'),
@@ -66,12 +63,23 @@ const Index = () => {
             dayjs().subtract(2, 'day').format('M.DD'),
             dayjs().subtract(1, 'day').format('M.DD'),
           ],
+
+          axisLine: {
+            lineStyle: {
+              color: 'linear-gradient(180deg, rgba(239, 132, 50, 0.11) 0%, rgba(217, 217, 217, 0) 100%);',
+            },
+          },
+          axisLabel: {
+            padding: [16, 0, 0, 0],
+          },
         },
       ],
       yAxis: [
         {
           type: 'value',
+          offset: 20
         },
+        
       ],
       series: [
         // 下载量
@@ -206,14 +214,14 @@ const Index = () => {
         </div>
         <div className={styles['dataovervie-right']}>
           <div className={styles['dataovervie-right-content']}>
-            <div className={styles['dataovervie-box2']}>
+            <div style={{width:"200px"}} className={styles['dataovervie-box2']}>
               <p>{i18n[lang]['datainfo.web2Hits']}</p>
-              <div className={styles['dataovervie-box2-inner']}>
+              <div  className={styles['dataovervie-box2-inner']}>
                 <img src={press} alt="press" />
                 <p>{dataOverview == null ? '0' : dataOverview && dataOverview[0].click}</p>
               </div>
             </div>
-            <div className={styles['dataovervie-box3']}>
+            <div style={{width:"200px"}} className={styles['dataovervie-box3']}>
               <p>{i18n[lang]['datainfo.click-throughRate']}</p>
               <p style={{ color: '#6B0EDD', fontSize: '20px', fontWeight: '600' }}>
                 {dataOverview == null ? '0' : dataOverview && dataOverview[0].ctr.toFixed(2)}%
@@ -226,16 +234,16 @@ const Index = () => {
               </p>
             </div>
           </div>
-          <div className={styles['dataovervie-right-content-middle']}> </div>
+          <div className={styles['dataovervie-right-content-middle']}></div>
           <div className={styles['dataovervie-right-content']}>
-            <div className={styles['dataovervie-box2']}>
+            <div style={{width:"200px"}} className={styles['dataovervie-box2']}>
               <p>{i18n[lang]['datainfo.web3Hits']}</p>
               <div className={styles['dataovervie-box2-inner']}>
                 <img src={pressweb3} alt="press" />
                 <p style={{ color: '#F17D1F' }}>0</p>
               </div>
             </div>
-            <div className={styles['dataovervie-box3']}>
+            <div style={{width:"200px"}} className={styles['dataovervie-box3']}>
               <p>{i18n[lang]['datainfo.click-throughRate']}</p>
               <p style={{ color: '#F17D1F', fontSize: '20px', fontWeight: '600' }}>0.00%</p>
             </div>

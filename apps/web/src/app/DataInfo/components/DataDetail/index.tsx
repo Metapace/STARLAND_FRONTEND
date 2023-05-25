@@ -12,6 +12,7 @@ import RelaunchButton from 'src/components/RelaunchButton';
 import { color, use } from 'echarts';
 import { useMutationUpdateMaterial } from 'src/api/activityHooks';
 import { Modal, Button } from '@arco-design/web-react';
+import nodata from 'src/assets/images/datainfo-nodata.png';
 
 interface DataDetailBoxProps {
   startTime: number;
@@ -19,17 +20,17 @@ interface DataDetailBoxProps {
   channel: string;
   state: number;
   id: number;
-  refetch: () => Promise<unknown>
+  refetch: () => Promise<unknown>;
 }
 
-const DataDetailBox: React.FC<DataDetailBoxProps> = ({ startTime, endTime, channel, state, id,refetch }) => {
+const DataDetailBox: React.FC<DataDetailBoxProps> = ({ startTime, endTime, channel, state, id, refetch }) => {
   const { lang, i18n } = useI18n(locale);
   const { mutateAsync: updataMaterial, isLoading } = useMutationUpdateMaterial();
   const [visible, setVisible] = React.useState(false);
 
   const handleSubmit = async (activityId: number) => {
     await updataMaterial({ id: activityId, status: 10 });
-    refetch()
+    refetch();
   };
   return (
     <div className={styles['datadetail-content-inner']}>
@@ -79,10 +80,22 @@ const DataDetailBox: React.FC<DataDetailBoxProps> = ({ startTime, endTime, chann
       <Modal
         title="关闭投放确认"
         visible={visible}
+        okButtonProps={{}}
         onOk={() => handleSubmit(id)}
         onCancel={() => setVisible(false)}
         autoFocus={false}
         focusLock={true}
+        maskClosable={false}
+        style={{
+          background: '#E9ECF4',
+          border: '1px solid rgba(0, 0, 0, 0.15)',
+          borderRadius: '23px',
+          width: '500px',
+          boxSizing: 'border-box',
+          paddingInline: '42px',
+          paddingTop: '10px',
+        }}
+        wrapClassName={styles.moadlwrap}
       >
         <div>1、因广告在各个渠道投放中，发起结束到实际结束投放中间有时间差，预计24小时内完成结束操作。</div>
         <div>2、结束过程中因时效问题，投放数据及对应的费用存在数据回滚的问题，请以实际结算金额为准。</div>
@@ -102,8 +115,7 @@ const Index = () => {
   };
 
   const { data: RemandListByStatus, refetch } = useRequestActivityByStatus(ActivityListBystatusRequestParams);
-
-  console.log('RemandListByStatus', RemandListByStatus);
+  // console.log('RemandListByStatus', RemandListByStatus);
   const handleNextPage = () => {
     if (RemandListByStatus && currentPage >= Math.ceil(RemandListByStatus?.num / pageMax)) {
       return;
@@ -116,7 +128,6 @@ const Index = () => {
     }
     setCurrentPage(currentPage - 1);
   };
-
   return (
     <div className={styles['container']}>
       <div className={styles['datadetail-top']}>{i18n[lang]['datainfo.detailedData']}</div>
@@ -136,7 +147,10 @@ const Index = () => {
         <div>
           <>
             {RemandListByStatus?.list.length == 0 ? (
-              <div>暂无数据</div>
+              <div className={styles['chart-container-nodata-box']}>
+                <img src={nodata} alt="nodata" className={styles['chart-container-nodata-box-img']} />
+                <div className={styles['chart-container-nodata-box-note']}>无数据...</div>
+              </div>
             ) : (
               RemandListByStatus?.list.map((item) => {
                 return (

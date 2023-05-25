@@ -75,6 +75,11 @@
     }
   }
 }
+
+.chart-container-nodata-box{
+  position: absolute;
+  left: 40vw;
+}
 .datadetail-content-header {
   display: flex;
   align-items: center;
@@ -92,14 +97,14 @@
     display: flex;
     align-items: flex-start;
     gap: 140px;
-    .datadetail-content-header-left-1{
-       width: 100px;
-    }
-    .datadetail-content-header-left-2{
+    .datadetail-content-header-left-1 {
       width: 100px;
     }
-    .datadetail-content-header-left-3{
-      width: 200px; 
+    .datadetail-content-header-left-2 {
+      width: 100px;
+    }
+    .datadetail-content-header-left-3 {
+      width: 200px;
     }
   }
   .datadetail-content-header-right {
@@ -128,7 +133,6 @@
     display: flex;
     gap: 140px;
     .datadetail-content-inner-left-channel {
-     
     }
   }
   .datadetail-content-inner-right {
@@ -205,5 +209,72 @@
     /* identical to box height, or 12px */
 
     letter-spacing: -0.02em;
+  }
+}
+
+.moadlwrap {
+  :global {
+    .arco-modal-title {
+      font-family: 'PingFang SC';
+      font-style: normal;
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 100%;
+      /* identical to box height, or 20px */
+
+      letter-spacing: -0.02em;
+
+      color: #2b3674;
+    }
+    .arco-modal-content {
+      font-family: 'PingFang SC';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 146%;
+      /* or 20px */
+      color: #000000;
+      div{
+        padding-bottom: 20px;
+      }
+     
+    }
+    .arco-modal-footer {
+      padding: 0;
+      display: flex;
+      justify-content: space-between;
+      padding-top: -10px;
+      padding-bottom: 30px;
+      border: none;
+      padding-inline: 40px;
+    }
+    .arco-btn {
+      width: 130px;
+      height: 40px;
+      background: #e9ecf4;
+      box-shadow: -3px -3px 5px #ffffff, 2px 4px 5px rgba(0, 0, 0, 0.14);
+      border-radius: 11px;
+      font-family: 'PingFang SC';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 100%;
+      /* or 14px */
+
+      text-align: center;
+      letter-spacing: -0.02em;
+
+      color: #2d70f1;
+      padding: 0;
+      margin: 0;
+    }
+    .arco-btn-secondary{
+      color:#2B3674 ;
+    }
+    .arco-btn-primary:not(.arco-btn-disabled):not(.arco-btn-loading):hover{
+      border-color: transparent;
+      color: #2366E9;
+      background-color: #E1E2E8;
+    }
   }
 }
