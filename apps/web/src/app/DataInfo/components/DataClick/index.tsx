@@ -1,12 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styles from './index.module.less';
-
-import click from 'src/assets/images/datainfo-click.png';
-import consume from 'src/assets/images/datainfo-consume.png';
-import press from 'src/assets/images/datainfo-press.png';
-import pressweb3 from 'src/assets/images/datainfo-press-web3.png';
 import ReactECharts from 'echarts-for-react';
-import * as echarts from 'echarts/core';
 import { Select } from '@arco-design/web-react';
 import useI18n from 'src/ahooks/useI18n';
 import locale from '../../locales';
@@ -17,7 +11,7 @@ const Index = () => {
   const { lang, i18n } = useI18n(locale);
   const [days, setDays] = useState(2);
   const { data: dataClick } = useRequestreportGetClick(days);
-  // console.log('dataClick', dataClick);
+
   const Option = Select.Option;
 
   const launchPeriod: Array<{ label: string; value: number }> = [

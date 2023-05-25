@@ -1,7 +1,14 @@
-import { useQuery } from '@tanstack/react-query';
-import { dashBoardInfoRequest, userInfoRequest, reportGet, AlertListParams, getAlertLsit, reportGetClick } from 'src/api/user';
+import { useQuery, useMutation } from '@tanstack/react-query';
+import {
+  dashBoardInfoRequest,
+  userInfoRequest,
+  reportGet,
+  AlertListParams,
+  getAlertLsit,
+  reportGetClick,
+} from 'src/api/user';
 import { companyInfoRequest, minInAmountRequest } from 'src/api/company';
-import { transactionInfoRequest } from 'src/api/assets';
+import { transactionInfoRequest, updateVoucher } from 'src/api/assets';
 
 const useRequestUserIndfo = () => {
   const query = useQuery(['userinfo'], userInfoRequest);
@@ -55,6 +62,15 @@ const useRequestMinInAmount = () => {
   return query;
 };
 
+/**
+ *
+ *  @description 更新物料接口
+ */
+const useMutationUploadVoucher = () =>
+  useMutation({
+    mutationFn: updateVoucher,
+  });
+
 export {
   useRequestUserIndfo,
   useRequestDashboardInfo,
@@ -64,4 +80,5 @@ export {
   useRequestTransactionsInfo,
   useRequestMinInAmount,
   useRequestreportGetClick,
+  useMutationUploadVoucher,
 };
