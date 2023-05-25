@@ -3,7 +3,7 @@ import styles from './index.module.less';
 import classNames from 'classnames';
 import useI18n from 'src/ahooks/useI18n';
 import locale from '../../locales';
-import { DemandType, ReturnRemandItem, ChannelType } from 'src/api/activity';
+import { DemandType, ReturnRemandItem, ChannelType } from 'apis';
 import { gendarRange } from 'src/conifg/selectConfig';
 import dayjs from 'dayjs';
 import { useNavigate } from 'react-router-dom';

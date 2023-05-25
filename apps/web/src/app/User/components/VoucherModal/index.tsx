@@ -5,7 +5,7 @@ import upload from 'src/assets/images/usercenter-assets-upload.png';
 import uploadAws from 'src/utils/uploadAws';
 import useI18n from 'src/ahooks/useI18n';
 import locale from '../../locales';
-
+import { useMutationUploadVoucher, IVoucherInterface } from 'apis';
 const FormItem = Form.Item;
 const RadioGroup = Radio.Group;
 interface VoucherModalProps {
@@ -16,6 +16,7 @@ const index: React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal }) =
   const { lang, i18n } = useI18n(locale);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [form] = Form.useForm();
+  const { mutateAsync: uploadVoucherAsync, isLoading } = useMutationUploadVoucher();
 
   const [delegateIsCompany, setDelegateIsCompany] = useState(true);
   const [loading, setLoading] = useState(false);
@@ -34,14 +35,42 @@ const index: React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal }) =
     }
   };
   function onOk() {
-    form.validate().then((res) => {
+    form.validate().then(async (res) => {
       console.log('表单的数据', res);
       setConfirmLoading(true);
-      setTimeout(() => {
-        Message.success('Success !');
-        handleCloseVoucherModal(false);
-        setConfirmLoading(false);
-      }, 1500);
+      let data: IVoucherInterface;
+      if (res.represent === undefined || res.represent === 1) {
+        data = {
+          amount: res.inValue,
+          certificate: res.voucher[0].response,
+          represent: 1,
+          name: res.name,
+          country: res.country,
+          address: res.address,
+          email: res.email,
+          reg_num: res.represent || res.represent == 1 ? res.companyNumber : '',
+          license: res.license[0].response,
+          chan: 2,
+          type: 1,
+        };
+      } else {
+        data = {
+          amount: res.inValue,
+          certificate: res.voucher[0].response,
+          represent: 2,
+          name: res.name,
+          country: res.country,
+          address: res.address,
+          email: res.email,
+          license: res.license[0].response,
+          chan: 2,
+          type: 1,
+        };
+      }
+      console.log('data', data);
+      const result = await uploadVoucherAsync(data);
+      console.log(result);
+      setConfirmLoading(false);
     });
   }
   return (
@@ -134,30 +163,31 @@ const index: React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal }) =
         <FormItem
           label={i18n[lang]['usercenter.representative']}
           field="represent"
-          rules={[{ required: true }]}
+          // rules={[{ required: true }]}
           labelCol={{ span: 6, offset: 0 }}
           wrapperCol={{ span: 18, offset: 0 }}
           requiredSymbol={{ position: 'end' }}
         >
           <RadioGroup
-            defaultValue="company"
+            defaultValue={1}
             onChange={(res) => {
-              if (res === 'personal') {
+              console.log(res);
+              if (res !== 1) {
                 setDelegateIsCompany(false);
               } else {
                 setDelegateIsCompany(true);
               }
             }}
           >
-            <Radio value="company">{i18n[lang]['usercenter.company']}</Radio>
-            <Radio value="personal">{i18n[lang]['usercenter.individual']}</Radio>
+            <Radio value={1}>{i18n[lang]['usercenter.company']}</Radio>
+            <Radio value={2}>{i18n[lang]['usercenter.individual']}</Radio>
           </RadioGroup>
         </FormItem>
         {delegateIsCompany ? (
           <>
             <FormItem
               label={i18n[lang]['usercenter.companyName']}
-              field="companyName"
+              field="name"
               rules={[{ required: true }]}
               labelCol={{ span: 6, offset: 0 }}
               wrapperCol={{ span: 18, offset: 0 }}
@@ -167,7 +197,7 @@ const index: React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal }) =
             </FormItem>
             <FormItem
               label={i18n[lang]['usercenter.countryOfIncorporation']}
-              field="companyCountry"
+              field="country"
               rules={[{ required: true }]}
               labelCol={{ span: 6, offset: 0 }}
               wrapperCol={{ span: 18, offset: 0 }}
@@ -177,7 +207,7 @@ const index: React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal }) =
             </FormItem>
             <FormItem
               label={i18n[lang]['usercenter.companyAddress']}
-              field="companyAddress"
+              field="address"
               rules={[{ required: true }]}
               labelCol={{ span: 6, offset: 0 }}
               wrapperCol={{ span: 18, offset: 0 }}
@@ -187,7 +217,7 @@ const index: React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal }) =
             </FormItem>
             <FormItem
               label={i18n[lang]['usercenter.companyEmail']}
-              field="companyEmail"
+              field="email"
               rules={[{ required: true }]}
               labelCol={{ span: 6, offset: 0 }}
               wrapperCol={{ span: 18, offset: 0 }}
@@ -251,7 +281,7 @@ const index: React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal }) =
           <>
             <FormItem
               label={i18n[lang]['usercenter.name']}
-              field="userName"
+              field="name"
               rules={[{ required: true }]}
               labelCol={{ span: 6, offset: 0 }}
               wrapperCol={{ span: 18, offset: 0 }}
@@ -261,7 +291,7 @@ const index: React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal }) =
             </FormItem>
             <FormItem
               label={i18n[lang]['usercenter.countryOfUser']}
-              field="userCountry"
+              field="country"
               rules={[{ required: true }]}
               labelCol={{ span: 6, offset: 0 }}
               wrapperCol={{ span: 18, offset: 0 }}
@@ -271,7 +301,7 @@ const index: React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal }) =
             </FormItem>
             <FormItem
               label={i18n[lang]['usercenter.addressOfUser']}
-              field="userAddress"
+              field="address"
               rules={[{ required: true }]}
               labelCol={{ span: 6, offset: 0 }}
               wrapperCol={{ span: 18, offset: 0 }}
@@ -281,7 +311,7 @@ const index: React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal }) =
             </FormItem>
             <FormItem
               label={i18n[lang]['usercenter.emailOfUser']}
-              field="userEmail"
+              field="email"
               rules={[{ required: true }]}
               labelCol={{ span: 6, offset: 0 }}
               wrapperCol={{ span: 18, offset: 0 }}
@@ -294,7 +324,7 @@ const index: React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal }) =
               wrapperCol={{ span: 18, offset: 0 }}
               requiredSymbol={{ position: 'end' }}
               label={i18n[lang]['usercenter.uploadPassport']}
-              field="passport"
+              field="license"
               triggerPropName="fileList"
               rules={[{ required: true }]}
             >

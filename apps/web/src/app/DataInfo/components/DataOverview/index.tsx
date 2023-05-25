@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './index.module.less';
 import { useRequestreportGet } from 'apis';
 
@@ -11,13 +11,12 @@ import ReactECharts from 'echarts-for-react';
 import * as echarts from 'echarts/core';
 import useI18n from 'src/ahooks/useI18n';
 import locale from '../../locales';
+import dayjs from 'dayjs';
 
 const Index = () => {
   const { lang, i18n } = useI18n(locale);
   const { data: dataOverview } = useRequestreportGet(10);
-  // console.log("总览",dataOverview)
-  const { data: dataOverview_7 } = useRequestreportGet(4);
-  // console.log('dataOverview_7', dataOverview_7 && dataOverview_7[0]);
+  const { data: dataOverview_7, isLoading: dataOverview_7_loading } = useRequestreportGet(4);
   const getOption = () => {
     const options = {
       color: ['#EC7F41', '#7B47B2'],
@@ -41,24 +40,49 @@ const Index = () => {
         ],
       },
       grid: {
-        left: '30px',
-        right: '30px',
+        left: '50px',
+        right: '50px',
         bottom: '20px',
         containLabel: true,
       },
       xAxis: [
         {
           type: 'category',
+          axisTick: {
+            alignWithLabel: true,
+            show: false,
+          },
+
           boundaryGap: false,
-          data: ['12.11', '12.12', '12.13', '12.14', '12.15', '12.16', '12.17'],
+          data: [
+            dayjs().subtract(7, 'day').format('M.DD'),
+            dayjs().subtract(6, 'day').format('M.DD'),
+            dayjs().subtract(5, 'day').format('M.DD'),
+            dayjs().subtract(4, 'day').format('M.DD'),
+            dayjs().subtract(3, 'day').format('M.DD'),
+            dayjs().subtract(2, 'day').format('M.DD'),
+            dayjs().subtract(1, 'day').format('M.DD'),
+          ],
+
+          axisLine: {
+            lineStyle: {
+              color: 'linear-gradient(180deg, rgba(239, 132, 50, 0.11) 0%, rgba(217, 217, 217, 0) 100%);',
+            },
+          },
+          axisLabel: {
+            padding: [16, 0, 0, 0],
+          },
         },
       ],
       yAxis: [
         {
           type: 'value',
+          offset: 20
         },
+        
       ],
       series: [
+        // 下载量
         // {
         //   name: `${i18n[lang]['datainfo.productDownloads']}`,
         //   type: 'line',
@@ -190,14 +214,14 @@ const Index = () => {
         </div>
         <div className={styles['dataovervie-right']}>
           <div className={styles['dataovervie-right-content']}>
-            <div className={styles['dataovervie-box2']}>
+            <div style={{width:"200px"}} className={styles['dataovervie-box2']}>
               <p>{i18n[lang]['datainfo.web2Hits']}</p>
-              <div className={styles['dataovervie-box2-inner']}>
+              <div  className={styles['dataovervie-box2-inner']}>
                 <img src={press} alt="press" />
                 <p>{dataOverview == null ? '0' : dataOverview && dataOverview[0].click}</p>
               </div>
             </div>
-            <div className={styles['dataovervie-box3']}>
+            <div style={{width:"200px"}} className={styles['dataovervie-box3']}>
               <p>{i18n[lang]['datainfo.click-throughRate']}</p>
               <p style={{ color: '#6B0EDD', fontSize: '20px', fontWeight: '600' }}>
                 {dataOverview == null ? '0' : dataOverview && dataOverview[0].ctr.toFixed(2)}%
@@ -210,16 +234,16 @@ const Index = () => {
               </p>
             </div>
           </div>
-          <div className={styles['dataovervie-right-content-middle']}> </div>
+          <div className={styles['dataovervie-right-content-middle']}></div>
           <div className={styles['dataovervie-right-content']}>
-            <div className={styles['dataovervie-box2']}>
+            <div style={{width:"200px"}} className={styles['dataovervie-box2']}>
               <p>{i18n[lang]['datainfo.web3Hits']}</p>
               <div className={styles['dataovervie-box2-inner']}>
                 <img src={pressweb3} alt="press" />
                 <p style={{ color: '#F17D1F' }}>0</p>
               </div>
             </div>
-            <div className={styles['dataovervie-box3']}>
+            <div style={{width:"200px"}} className={styles['dataovervie-box3']}>
               <p>{i18n[lang]['datainfo.click-throughRate']}</p>
               <p style={{ color: '#F17D1F', fontSize: '20px', fontWeight: '600' }}>0.00%</p>
             </div>
@@ -231,7 +255,29 @@ const Index = () => {
         </div>
       </div>
       <div className={styles['chart-container']}>
-        {dataOverview_7 ? (
+        {dataOverview_7_loading ? (
+          <div className={styles['chart-container-nodata']}>
+            <div className={styles['chart-container-nodata-right']}>
+              <div>260M</div>
+              <div>220M</div>
+              <div>180M</div>
+              <div>140M</div>
+            </div>
+            <div className={styles['chart-container-nodata-left']}>
+              <div>{dayjs().subtract(7, 'day').format('M.DD')}</div>
+              <div>{dayjs().subtract(6, 'day').format('M.DD')}</div>
+              <div>{dayjs().subtract(5, 'day').format('M.DD')}</div>
+              <div>{dayjs().subtract(4, 'day').format('M.DD')}</div>
+              <div>{dayjs().subtract(3, 'day').format('M.DD')}</div>
+              <div>{dayjs().subtract(2, 'day').format('M.DD')}</div>
+              <div>{dayjs().subtract(1, 'day').format('M.DD')}</div>
+            </div>
+            <div className={styles['chart-container-nodata-box']}>
+              <img src={nodata} alt="nodata" className={styles['chart-container-nodata-box-img']} />
+              <div className={styles['chart-container-nodata-box-note']}>加载中...</div>
+            </div>
+          </div>
+        ) : dataOverview_7 ? (
           <ReactECharts option={getOption()} />
         ) : (
           <div className={styles['chart-container-nodata']}>

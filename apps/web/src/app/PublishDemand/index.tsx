@@ -4,13 +4,12 @@ import classNames from 'classnames';
 import useI18n from 'src/ahooks/useI18n';
 import locale from './locales';
 import LongProgress from './components/LongProgress';
-import { DemandType } from 'src/api/activity';
 import RemandItem, { DemandMap } from './components/RemandItem';
 import web2Banner from 'src/assets/images/web2-banner.png';
 import { IconCheckCircle, IconRight } from '@arco-design/web-react/icon';
 import { Select } from '@arco-design/web-react';
 import { useNavigate } from 'react-router-dom';
-import { useRequestActivity } from 'apis';
+import { useRequestActivity, DemandType } from 'apis';
 const Option = Select.Option;
 
 export const Web2Des = () => {
