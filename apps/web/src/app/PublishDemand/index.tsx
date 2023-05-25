@@ -10,7 +10,7 @@ import web2Banner from 'src/assets/images/web2-banner.png';
 import { IconCheckCircle, IconRight } from '@arco-design/web-react/icon';
 import { Select } from '@arco-design/web-react';
 import { useNavigate } from 'react-router-dom';
-import { useRequestActivity } from 'src/api/activityHooks';
+import { useRequestActivity } from 'apis';
 const Option = Select.Option;
 
 export const Web2Des = () => {

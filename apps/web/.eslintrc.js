@@ -7,7 +7,7 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   extends: ['eslint:recommended', 'plugin:react/recommended', 'plugin:@typescript-eslint/recommended'],
   parserOptions: {
-    ecmaVersion: 7,
+    ecmaVersion: 6,
     // 开启实验属性
     ecmaFeatures: {
       experimentalObjectRestSpread: true,

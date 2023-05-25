@@ -3,7 +3,7 @@ import styles from './index.module.less';
 import userlogo from 'src/assets/images/usercenter-userlogo.png';
 import useI18n from 'src/ahooks/useI18n';
 import locale from '../../locales';
-import { useRequestUserIndfo, useRequestDashboardInfo, useRequestreportGet } from 'src/api/requestHooks';
+import { useRequestUserIndfo, useRequestDashboardInfo } from 'apis';
 import dayjs from 'dayjs';
 
 const index = () => {

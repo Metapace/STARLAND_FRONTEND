@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
-import { useRequestAlertList } from 'src/api/requestHooks';
+import { useRequestAlertList } from 'apis';
 import Logo from 'src/assets/images/starland-log.png';
 import MessageIcon from 'src/assets/images/messageLin.png';
 import { Button, Dropdown, Menu, Divider, Message, Avatar } from '@arco-design/web-react';

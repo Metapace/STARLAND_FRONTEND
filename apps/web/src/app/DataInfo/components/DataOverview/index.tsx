@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './index.module.less';
-import { useRequestreportGet } from 'src/api/requestHooks';
+import { useRequestreportGet } from 'apis';
 
 import click from 'src/assets/images/datainfo-click.png';
 import consume from 'src/assets/images/datainfo-consume.png';

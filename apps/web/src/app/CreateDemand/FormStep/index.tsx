@@ -3,7 +3,7 @@ import styles from './index.module.less';
 import classNames from 'classnames';
 import { Form, Slider, Grid, Select, FormInstance } from '@arco-design/web-react';
 const FormItem = Form.Item;
-import { useRequestCountry, useRequestLanguage, useRequestChanne } from 'src/api/activityHooks';
+import { useRequestCountry, useRequestLanguage, useRequestChanne } from 'apis';
 import useI18n from 'src/ahooks/useI18n';
 import { gendarRange, ageRange, launchPeriod } from 'src/conifg/selectConfig';
 import { ReturnRemandItem } from 'src/api/activity';

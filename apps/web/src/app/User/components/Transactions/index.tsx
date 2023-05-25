@@ -7,7 +7,7 @@ import locale from '../../locales';
 import { use } from 'echarts';
 import { runtime } from 'webpack';
 import dayjs from 'dayjs';
-import { useRequestTransactionsInfo } from 'src/api/requestHooks';
+import { useRequestTransactionsInfo } from 'apis';
 interface CompanyBoxProps {
   type: number;
   time: number;

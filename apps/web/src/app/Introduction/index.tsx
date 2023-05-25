@@ -21,6 +21,7 @@ import deheroImage from 'src/assets/images/home/dehero.png';
 import metaceneImage from 'src/assets/images/home/metacene.png';
 import unipassImage from 'src/assets/images/home/unipass.png';
 import { useNavigate } from 'react-router-dom';
+import { useConsoel } from 'apis';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -65,6 +66,7 @@ const Index: React.FC = () => {
   const exampleRef = useRef<HTMLDivElement>(null);
   const [tabStatus, setTabStatus] = useState<TabType>(TabType.Home);
   const q = gsap.utils.selector(containerRef);
+  useConsoel();
   const navigate = useNavigate();
   const handleScrollTo = (ref: React.RefObject<HTMLDivElement>) => {
     // use gsap will generate virtual block when scoll down, so scroll from top and scroll from bottom is different

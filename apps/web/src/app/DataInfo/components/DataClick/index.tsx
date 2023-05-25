@@ -10,7 +10,7 @@ import * as echarts from 'echarts/core';
 import { Select } from '@arco-design/web-react';
 import useI18n from 'src/ahooks/useI18n';
 import locale from '../../locales';
-import { useRequestreportGetClick } from 'src/api/requestHooks';
+import { useRequestreportGetClick } from 'apis';
 import nodata from 'src/assets/images/datainfo-nodata.png';
 
 const Index = () => {

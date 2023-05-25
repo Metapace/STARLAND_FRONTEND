@@ -3,14 +3,14 @@ import styles from './index.module.less';
 import assetsweb2logo from 'src/assets/images/usercenter-assets-web2logo.png';
 import useI18n from 'src/ahooks/useI18n';
 import locale from '../../locales';
-import { useRequestActivity, useRequestActivityByStatus } from 'src/api/activityHooks';
+import { useRequestActivity, useRequestActivityByStatus } from 'apis';
 import Item from '@arco-design/web-react/es/Breadcrumb/item';
 import { AccessAnalyzer } from 'aws-sdk';
 import dayjs from 'dayjs';
 import { getActivityListBystatusRequestParams } from 'src/api/activity';
 import RelaunchButton from 'src/components/RelaunchButton';
 import { color } from 'echarts';
-import { useMutationUpdateMaterial } from 'src/api/activityHooks';
+import { useMutationUpdateMaterial } from 'apis';
 
 interface DataDetailBoxProps {
   startTime: number;

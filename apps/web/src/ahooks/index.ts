@@ -1,7 +1,7 @@
 import { useLocalStorageState } from 'ahooks';
 import { useEffect } from 'react';
 import { changePageColor } from 'src/utils';
-import { useRequestActivityById } from 'src/api/activityHooks';
+import { useRequestActivityById } from 'apis';
 import { useSearchParams } from 'react-router-dom';
 
 export const useTheme = () => {

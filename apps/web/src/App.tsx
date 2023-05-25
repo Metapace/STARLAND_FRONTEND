@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ConfigProvider } from '@arco-design/web-react';
 import enUS from '@arco-design/web-react/es/locale/en-US';
 import zhCN from '@arco-design/web-react/es/locale/zh-CN';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { queryClient, QueryClientProviders } from 'apis';
 import { useColor, useTheme } from 'src/ahooks';
 import { useLocalStorageState } from 'ahooks';
 import { Login } from './app/Login';
@@ -13,15 +13,15 @@ import Loading from './components/Loading/Loading';
 import { GlobalContext, ILang } from './utils/GlobalContext';
 import './index.less';
 import 'src/assets/css/reset-arco.less';
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      //  1 分钟内相同的接口不会重新请求
-      staleTime: 1 * 60 * 1000,
-      retry: 0,
-    },
-  },
-});
+// const queryClient = new QueryClient({
+//   defaultOptions: {
+//     queries: {
+//       //  1 分钟内相同的接口不会重新请求
+//       staleTime: 1 * 60 * 1000,
+//       retry: 0,
+//     },
+//   },
+// });
 const App = () => {
   useTheme();
   useColor();
@@ -43,7 +43,7 @@ const App = () => {
   }, [lang]);
   return (
     <div className="app-land">
-      <QueryClientProvider client={queryClient}>
+      <QueryClientProviders client={queryClient}>
         <ConfigProvider locale={locale}>
           <GlobalContext.Provider value={contextValue}>
             <BrowserRouter>
@@ -57,7 +57,7 @@ const App = () => {
             </BrowserRouter>
           </GlobalContext.Provider>
         </ConfigProvider>
-      </QueryClientProvider>
+      </QueryClientProviders>
     </div>
   );
 };

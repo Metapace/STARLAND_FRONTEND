@@ -5,6 +5,7 @@ const CopyWebpackPlguin = require('copy-webpack-plugin'); // 拷贝静态资源�
 const webpack = require('webpack');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const rootDir = path.resolve(__dirname, '..');
+const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
 
 require('dotenv').config({ path: path.join(__dirname, '../../../', `environments/.env.${process.env.SERVICES_ENV}`) });
 
@@ -161,6 +162,7 @@ module.exports = {
       inject: 'body',
       scriptLoading: 'blocking',
     }),
+    new NodePolyfillPlugin(),
     new CopyWebpackPlguin({
       patterns: [
         {

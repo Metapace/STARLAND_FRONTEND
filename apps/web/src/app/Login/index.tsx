@@ -9,7 +9,7 @@ import useI18n from 'src/ahooks/useI18n';
 import locales from './locales';
 import styles from './index.module.less';
 import { useMutation } from '@tanstack/react-query';
-import { sendCodeRequest, loginRequest } from 'src/api/user';
+import { sendCodeRequest, loginRequest } from 'apis';
 const TabPane = Tabs.TabPane;
 
 type IUserParams = {

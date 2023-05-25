@@ -5,7 +5,7 @@ import { IconClose } from '@arco-design/web-react/icon';
 import useI18n from 'src/ahooks/useI18n';
 import { useNavigate } from 'react-router-dom';
 import { useGetActivityDataByUrlId } from 'src/ahooks/index';
-import { useMutationUpdateMaterial } from 'src/api/activityHooks';
+import { useMutationUpdateMaterial } from 'apis';
 import Sbutton from 'src/components/Sbutton';
 import locale from './locales';
 

@@ -10,7 +10,7 @@ import QRcode from 'src/assets/images/usercenter-assets-QRcode.png';
 import Clipboard from 'clipboard';
 import useI18n from 'src/ahooks/useI18n';
 import locale from '../../locales';
-import { useRequestCompanyInfo, useRequestDashboardInfo, useRequestMinInAmount } from 'src/api/requestHooks';
+import { useRequestCompanyInfo, useRequestDashboardInfo, useRequestMinInAmount } from 'apis';
 
 interface CompanyBoxProps {
   title?: string;
@@ -65,7 +65,6 @@ const index: React.FC<PropertyProps> = ({ handleOpenVoucherModal, handleCloseVou
   const { data: data2 } = useRequestDashboardInfo();
   const { data: data3 } = useRequestMinInAmount();
 
-
   return (
     <div className={styles['container']}>
       <div className={styles['assets-web2']}>
@@ -94,7 +93,11 @@ const index: React.FC<PropertyProps> = ({ handleOpenVoucherModal, handleCloseVou
           <p>{i18n[lang]['usercenter.pleaseNote']}!</p>
           <p>{i18n[lang]['usercenter.note1']}</p>
           <p>{i18n[lang]['usercenter.note2']}</p>
-          <p>{i18n[lang]['usercenter.note3-before']}{data3}{i18n[lang]['usercenter.note3-after']}</p>
+          <p>
+            {i18n[lang]['usercenter.note3-before']}
+            {data3}
+            {i18n[lang]['usercenter.note3-after']}
+          </p>
         </div>
       </div>
       <div className={styles['assets-web3']}>

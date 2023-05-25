@@ -9,7 +9,7 @@ import PayModal from 'src/components/PayModal';
 import useI18n from 'src/ahooks/useI18n';
 import { IconCheck } from '@arco-design/web-react/icon';
 import locales from './locales';
-import { useMutationCreateMaterial } from 'src/api/activityHooks';
+import { useMutationCreateMaterial } from 'apis';
 import { UploadItem } from 'src/types/arco';
 import { MaterialItem } from 'src/api/activity';
 

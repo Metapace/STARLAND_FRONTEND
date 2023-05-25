@@ -28,12 +28,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import CountUp from 'react-countup';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { ReportGetReturnItem } from 'src/api/user';
-import {
-  useRequestUserIndfo,
-  useRequestDashboardInfo,
-  useRequestreportGet,
-  useRequestAlertList,
-} from 'src/api/requestHooks';
+import { useRequestUserIndfo, useRequestDashboardInfo, useRequestreportGet, useRequestAlertList } from 'apis';
 interface InfoItemProps {
   type: 'activity' | 'info';
   message: string | undefined;

@@ -8,7 +8,7 @@ import useI18n from 'src/ahooks/useI18n';
 import { ReturnRemandItem, DemandType, MaterialItem, AllMaterialItem } from 'src/api/activity';
 import dayjs from 'dayjs';
 import FormStep from 'src/app/CreateDemand/FormStep';
-import { useMutationUpdateMaterial } from 'src/api/activityHooks';
+import { useMutationUpdateMaterial } from 'apis';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import UploadMaterial from 'src/app/CreateDemand/UploadMaterial';
 import { UploadItem } from 'src/types/arco';
