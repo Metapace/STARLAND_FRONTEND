@@ -51,6 +51,18 @@ export const loginRequest = (params: { email: string; code: string }) =>
 
 /**
  *
+ * @param email 邮箱
+ * @param password 密码
+ * @description 邮箱密码登录
+ * @returns token
+ */
+export const loginRequestBypassword = (params: {
+  email: string;
+  password: string;
+}) => request.post("user/login", params) as Promise<{ token: string }>;
+
+/**
+ *
  * @description 获取用户信息
  */
 export const userInfoRequest = () =>

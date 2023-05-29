@@ -1,0 +1,25 @@
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+:root {
+  --theme-color: #873bf4;
+  --background-color: #f0ebf439;
+  --primary-box-shadow: -3px -3px 5px #ffffff, 2px 4px 5px rgba(0, 0, 0, 0.14);
+  --primary-border-radius: 11px;
+  --black-text-color: #2b3674;
+  --gray-text-color: rgba(43, 54, 116, 0.53);
+  --blue-text-color: #2d70f1;
+}
+
+@font-face {
+  font-family: PIXEAB;
+  src: url('../font/PIXEAB.ttf');
+}

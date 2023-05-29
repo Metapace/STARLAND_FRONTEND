@@ -1,0 +1,59 @@
+.menu-container {
+  background-color: var(--blue-text-color);
+}
+.sub-menu-container {
+  color: #ffffff;
+  :global {
+    .arco-menu-inline-header {
+      background-color: var(--blue-text-color);
+      color: #ffffff;
+
+      &:hover {
+        background-color: var(--blue-text-color);
+      }
+    }
+
+    .arco-menu-selected {
+      color: #0037a1 !important;
+      &:hover {
+        background-color: var(--blue-text-color) !important;
+      }
+    }
+    .arco-icon {
+      color: #ffffff !important;
+    }
+  }
+}
+.menu-item-container {
+  color: #ffffff;
+  background-color: var(--blue-text-color) !important;
+
+  a {
+    display: flex;
+    align-items: center;
+    color: #ffffff;
+  }
+  :global {
+    .arco-menu-light .arco-menu-item.arco-menu-selected .arco-icon,
+    .arco-menu-light .arco-menu-group-title.arco-menu-selected .arco-icon,
+    .arco-menu-light .arco-menu-pop-header.arco-menu-selected .arco-icon,
+    .arco-menu-light .arco-menu-inline-header.arco-menu-selected .arco-icon {
+      color: #ffffff;
+    }
+    .arco-menu-light .arco-menu-item.arco-menu-selected,
+    .arco-menu-light .arco-menu-group-title.arco-menu-selected,
+    .arco-menu-light .arco-menu-pop-header.arco-menu-selected,
+    .arco-menu-light .arco-menu-inline-header.arco-menu-selected {
+      color: #0037a1;
+    }
+  }
+}
+.ReactSVG {
+  margin-right: 20px;
+  transform: translateY(4px);
+  display: inline-block;
+  svg {
+    width: 22px;
+    height: 22px;
+  }
+}

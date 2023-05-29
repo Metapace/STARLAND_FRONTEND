@@ -1,0 +1,75 @@
+.container {
+  width: 100%;
+  height: 100%;
+}
+
+.vouchermodal {
+  display: flex;
+  flex-direction: column;
+  .vouchermoda-closemodal {
+    position: absolute;
+    left: 92%;
+    width: 26px;
+    height: 26px;
+  }
+  .vouchermoda-header {
+    display: flex;
+    justify-content: center;
+    font-size: 20px;
+
+    color: #2b3674;
+    border-bottom: 1px solid #c6c9cf;
+    padding-bottom: 16px;
+  }
+}
+
+.vouchermodal-form {
+  margin-top: 12px;
+  .vouchermodal-form-inputbox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    color: #2b3674;
+    margin-bottom: 16px;
+    input {
+      width: 80%;
+      height: 38px;
+      background: #dfe3ee;
+      border-radius: 4px;
+      border: none;
+    }
+  }
+
+  .vouchermodal-form-voucher {
+    display: flex;
+    align-items: center;
+    gap: 42px;
+    margin-bottom: 16px;
+    justify-content: flex-start;
+    font-size: 14px;
+    color: #2b3674;
+    .trigger {
+      display: flex;
+      flex-direction: column;
+      .trigger-box {
+        width: 110px;
+        height: 110px;
+        background: #dfe3ee;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .trigger-text {
+        font-family: 'Outfit';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        /* or 167% */
+        word-spacing: -2px;
+
+        color: #909399;
+      }
+    }
+  }
+}

@@ -3,13 +3,12 @@ import { Form, Input, Tabs, Grid, Message } from '@arco-design/web-react';
 import { useNavigate } from 'react-router-dom';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { useLocalStorageState, useCountDown } from 'ahooks';
-import { TokenName } from 'src/utils/localSet';
+import { TokenName } from 'utils';
 import Sbutton from 'src/components/Sbutton';
 import useI18n from 'src/ahooks/useI18n';
 import locales from './locales';
 import styles from './index.module.less';
-import { useMutation } from '@tanstack/react-query';
-import { sendCodeRequest, loginRequest } from 'apis';
+import { sendCodeRequest, loginRequest, useMutations } from 'apis';
 const TabPane = Tabs.TabPane;
 
 type IUserParams = {
@@ -51,10 +50,10 @@ export const Login: React.FC = () => {
     }
   };
 
-  const mutation = useMutation({
+  const mutation = useMutations({
     mutationFn: handleSendCode,
   });
-  const mutationlogin = useMutation({
+  const mutationlogin = useMutations({
     mutationFn: login,
   });
 

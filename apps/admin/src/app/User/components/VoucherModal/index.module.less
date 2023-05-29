@@ -1,0 +1,106 @@
+.moadlwrap {
+  :global {
+    .arco-modal-content {
+      padding: 0;
+    }
+    .arco-row {
+      align-items: center;
+    }
+    .arco-col {
+      text-align: left;
+      padding: 0;
+    }
+    .arco-form-label-item {
+      label {
+        font-family: 'PingFang SC';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: -500%;
+        /* or 14px */
+        letter-spacing: -0.02em;
+        color: #2b3674;
+        // padding-left: 10px;
+      }
+    }
+    .arco-form-item-symbol {
+      color: #2d70f1;
+    }
+    .arco-input {
+      background: #dfe3ee;
+      border-radius: 4px;
+    }
+    .arco-modal-header {
+      margin-bottom: 20px;
+    }
+    .arco-modal-footer {
+      padding: 0;
+      display: flex;
+      justify-content: space-between;
+      padding-top: -10px;
+      padding-bottom: 30px;
+      border: none;
+      padding-inline: 40px;
+    }
+    .arco-btn {
+      width: 200px;
+      height: 40px;
+      background: #e9ecf4;
+      box-shadow: -3px -3px 5px #ffffff, 2px 4px 5px rgba(0, 0, 0, 0.14);
+      border-radius: 11px;
+      font-family: 'PingFang SC';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 100%;
+      /* or 14px */
+
+      text-align: center;
+      letter-spacing: -0.02em;
+
+      color: #2d70f1;
+      padding: 0;
+      margin: 0;
+    }
+    // 不能放在这边
+    // .arco-btn-primary::after {
+    //   content: '您的详细信息将用于发票和收据中的计费目的。';
+    //   position: absolute;
+    //   top: 48px;
+    //   left: -20px;
+    //   font-family: 'PingFang SC';
+    //   font-style: normal;
+    //   font-weight: 400;
+    //   font-size: 12px;
+    //   line-height: 100%;
+    //   /* or 12px */
+
+    //   letter-spacing: -0.02em;
+
+    //   color: rgba(43, 54, 116, 0.53);
+    // }
+  }
+}
+
+.trigger {
+  display: flex;
+  flex-direction: column;
+  .trigger-box {
+    width: 110px;
+    height: 110px;
+    background: #dfe3ee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .trigger-text {
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    /* or 167% */
+    word-spacing: -2px;
+
+    color: #909399;
+  }
+}

@@ -1,7 +1,7 @@
 {
   "name": "web",
   "version": "1.0.0",
-  "description": "react、arco、admin",
+  "description": "client",
   "main": "index.js",
   "author": "Metapace",
   "license": "ISC",

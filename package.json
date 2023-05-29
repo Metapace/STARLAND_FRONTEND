@@ -4,6 +4,7 @@
   "description": "",
   "scripts": {
     "start:web": "cross-env SERVICES_ENV=development turbo run dev --filter=web --filter=utils --filter=apis",
+    "start:admin": "cross-env SERVICES_ENV=development turbo run dev --filter=admin --filter=utils --filter=apis",
     "lint": "eslint --ext .ts --ext .tsx src --fix"
   },
   "devDependencies": {

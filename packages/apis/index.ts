@@ -6,8 +6,13 @@ export * from "./company/api";
 export * from "./company/hooks";
 export * from "./asset/api";
 export * from "./asset/hooks";
-import React, { useEffect } from "react";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+export * from "./admin/api";
+export * from "./admin/hooks";
+import {
+  QueryClient,
+  QueryClientProvider,
+  useMutation,
+} from "@tanstack/react-query";
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -19,6 +24,5 @@ export const queryClient = new QueryClient({
   },
 });
 export const QueryClientProviders = QueryClientProvider;
-export const useConsoel = () => {
-  useEffect(() => console.log(111111), []);
-};
+
+export const useMutations = useMutation;

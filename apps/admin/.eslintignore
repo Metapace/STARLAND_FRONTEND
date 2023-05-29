@@ -1,10 +1,6 @@
-!**/.eslintrc*
-node_modules*
-dist
-*.svg
-*.ico
-*.json
-.gitignore
-*.md
-*.log
-*.lock
+node_modules/*
+public/*
+template/*
+/*.js
+/*.d.ts
+declaration.d.ts
