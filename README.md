@@ -2,9 +2,12 @@
 
 This is an Official Starland App.
 
-## Using this example
+## Using this repo
 
 Run the following command:
+- `npm run dev:web` for web app development
+- `npm run dev:admin` for admin app development
+
 
 ## What's inside?
 
