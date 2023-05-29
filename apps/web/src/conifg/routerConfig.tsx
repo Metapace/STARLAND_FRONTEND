@@ -22,6 +22,8 @@ const VerifyError = React.lazy(() => import('../app/VerifyError/index'));
 const CreateSuccess = React.lazy(() => import('../app/CreateSuccess/index'));
 
 const UpdateDemand = React.lazy(() => import('../app/EditDemand/index'));
+
+const Message = React.lazy(() => import('../app/Message'));
 export interface IRouterConfig {
   path: string;
   text: string;
@@ -99,6 +101,11 @@ const RouterConfig: IRouterConfig[] = [
     path: '/edit-demand',
     text: '修改需求',
     page: <UpdateDemand />,
+  },
+  {
+    path: '/message',
+    text: '消息中心',
+    page: <Message />,
   },
 ];
 

@@ -17,8 +17,8 @@ import {
 export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      //  1 分钟内相同的接口不会重新请求
-      staleTime: 1 * 60 * 1000,
+      //  1 秒内相同的接口不会重新请求
+      staleTime: 1 * 1000,
       retry: 0,
     },
   },

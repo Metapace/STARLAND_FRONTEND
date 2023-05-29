@@ -28,7 +28,7 @@ const Header = () => {
   const { lang, i18n, setLang } = useI18n();
   const [nowTime, setNowtime] = useState(dayjs().format('YYYY-MM-DD hh:mm:ss'));
   const [, setLanguage] = useLocalStorageState('language');
-  const { data } = useRequestAlertList({ page: 1, page_size: 10 });
+  const { data } = useRequestAlertList({ page: 1, page_size: 10, status: 1 });
 
   const loginOut = () => {
     removeLocalToken();
@@ -80,7 +80,7 @@ const Header = () => {
           </Dropdown>
         </li>
         <Divider type={'vertical'} style={splitStyle} />
-        <div className={styles['message-icon-outer']}>
+        <div className={styles['message-icon-outer']} onClick={() => navigate('/message')}>
           {!!data?.count && data?.count > 0 && <div className={styles['message-red-dot']}></div>}
 
           <img src={MessageIcon} alt="" className={styles['message-icon']} />

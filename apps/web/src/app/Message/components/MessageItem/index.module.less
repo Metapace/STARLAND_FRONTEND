@@ -1,0 +1,65 @@
+.container {
+  border: 1px solid #d1d4db;
+  color: #2b3674;
+  margin-bottom: 11px;
+  cursor: pointer;
+  transition: 0.5s ease all;
+}
+.top-item {
+  padding: 0 50px 0 35px;
+  height: 43px;
+  display: grid;
+  grid-template-columns: 1fr 120px 80px;
+  column-gap: 20px;
+  align-items: center;
+  transition: 0.5s ease all;
+  > div {
+    text-align: center;
+  }
+  .top-content {
+    text-align: left;
+    display: flex;
+    align-items: center;
+  }
+  .icon-top {
+    margin-right: 10px;
+    font-size: 18px;
+    color: #2b3674;
+    transition: 0.5s ease all;
+  }
+  .open-icon {
+    transform: rotate(180deg);
+    color: #ffffff !important;
+  }
+}
+.bottom-item {
+  padding: 0 50px 0 35px;
+  height: 40px;
+  line-height: 40px;
+  display: flex;
+  align-items: center;
+}
+.opreate-button {
+  min-width: 119px;
+  color: #2d70f1;
+  padding: 0 12px;
+  width: fit-content;
+  height: 24px;
+  line-height: 24px;
+}
+.unread {
+  color: rgba(125, 132, 171, 0.56);
+  .icon-top {
+    color: rgba(125, 132, 171, 0.56);
+  }
+  .top-content {
+    color: rgba(125, 132, 171, 0.56);
+  }
+}
+.item-active {
+  background-color: #2d70f1;
+  color: #ffffff;
+}
+.alter-reason {
+  color: #d81da4;
+}

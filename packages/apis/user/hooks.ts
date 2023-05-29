@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation } from "@tanstack/react-query";
 import {
   dashBoardInfoRequest,
   userInfoRequest,
@@ -6,6 +6,7 @@ import {
   AlertListParams,
   getAlertLsit,
   reportGetClick,
+  updateAlterStatus,
 } from "./api";
 
 const useRequestUserIndfo = () => {
@@ -49,10 +50,20 @@ const useRequestAlertList = (params: AlertListParams) => {
   return query;
 };
 
+/**
+ *
+ *  @description 更新消息状态
+ */
+const useUpdateAlterStatus = () =>
+  useMutation({
+    mutationFn: updateAlterStatus,
+  });
+
 export {
   useRequestUserIndfo,
   useRequestDashboardInfo,
   useRequestreportGet,
   useRequestAlertList,
   useRequestreportGetClick,
+  useUpdateAlterStatus,
 };

@@ -1,5 +1,15 @@
 import { request } from "utils";
 
+// 1:订单通过审核 2:订单未通过审核 3:订单进入投放 4:充值成功 5:充值未成功 6:订单审结束投放
+export enum AlertReturnType {
+  PassReview = 1,
+  FailReview = 2,
+  Going = 3,
+  DepositSuccess = 4,
+  DepositFail = 5,
+  ActivityEnd = 6,
+}
+
 export interface ReportGetReturnItem {
   data: string;
   impression: number;
@@ -17,18 +27,23 @@ export interface AlertListParams {
   page_size?: number;
   start?: number;
   end?: number;
-  status?: 1 | 2;
+  status?: number;
+}
+
+export interface AlertReturnItem {
+  id: number;
+  content: string;
+  status: number;
+  create_time: number;
+  read_time: number;
+  reason: string;
+  msg_type: AlertReturnType;
+  info_type: number;
 }
 
 export interface AlertReturn {
   count: number;
-  messages: Array<{
-    id: number;
-    content: string;
-    status: number;
-    create_time: number;
-    read_time: number;
-  }>;
+  messages: Array<AlertReturnItem>;
 }
 
 /**
@@ -128,3 +143,12 @@ export const reportGetClick = (params: { date_type: number }) =>
   request.get("report/click/get", params) as Promise<
     Array<ReportGetClickReturnItem>
   >;
+
+/**
+ *
+ * @param id: 消息id
+ * @description 更新消息状态， 把已读改为未读
+ */
+
+export const updateAlterStatus = (id: number) =>
+  request.post("alert/update", { id, status: 2 }) as Promise<unknown>;

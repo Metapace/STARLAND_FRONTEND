@@ -26,6 +26,7 @@ import Taboola from 'src/assets/images/dashbord/c-Taboola.png';
 import Mytarget from 'src/assets/images/dashbord/c-Mytarget.png';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import CountUp from 'react-countup';
+import { useTransformInfoContent } from 'src/app/Message/components/MessageItem';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import {
   useRequestUserIndfo,
@@ -33,21 +34,23 @@ import {
   useRequestreportGet,
   useRequestAlertList,
   ReportGetReturnItem,
+  AlertReturnItem,
 } from 'apis';
 interface InfoItemProps {
   type: 'activity' | 'info';
-  message: string | undefined;
+  message?: AlertReturnItem;
 }
 
 const InfoItem: React.FC<InfoItemProps> = ({ type, message }) => {
   const { lang, i18n } = useI18n(locales);
+  const content = useTransformInfoContent(message?.msg_type, message?.create_time);
   const name = React.useMemo(() => {
     return type === 'activity' ? 'dashbord.activity' : 'dashbord.message';
   }, [type]);
   return (
     <div className={styles['common-info-item']}>
       <div className={classNames(styles['left'], styles[type])}>{`${i18n[lang][name]}`}</div>
-      <div className={styles['right']}>{message || 'no message'}</div>
+      <div className={styles['right']}>{content || 'no message'}</div>
     </div>
   );
 };
@@ -221,10 +224,13 @@ const Workplace = () => {
       </div>
       <div className={styles['item-title']}>{`${i18n[lang]['dashbord.info']}`}</div>
       <div className={classNames(styles['message-item'], styles['common-item'])}>
-        <div className={styles['read-more']}>{`${i18n[lang]['dashbord.readMore']}`}</div>
+        <div
+          className={styles['read-more']}
+          onClick={() => navigate('/message')}
+        >{`${i18n[lang]['dashbord.readMore']}`}</div>
         <div className={styles['info-item-list']}>
           {/* <InfoItem type="activity" message="it is a dashbord activity info" /> */}
-          <InfoItem type="info" message={messageData?.messages[0]?.content} />
+          <InfoItem type="info" message={messageData?.messages[0]} />
         </div>
       </div>
       <div className={styles['item-title']}>{`${i18n[lang]['dashbord.lastDayData']}`}</div>
