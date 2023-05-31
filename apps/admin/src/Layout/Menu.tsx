@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { Menu } from '@arco-design/web-react';
 import { IMenusItem, menuConfig } from '../conifg/menuConfig';
+import { useRequestUserIndfo, AuthRightEnum } from 'apis';
 import { useLocation, Link } from 'react-router-dom';
-import useI18n from 'src/ahooks/useI18n';
 import { ReactSVG } from 'react-svg';
 import DashbordIcon from 'src/assets/images/menu/dashbord-menu.svg';
 import AfterDataIcon from 'src/assets/images/menu/after-data-menu.svg';
@@ -78,6 +78,8 @@ const getMenu = (menus: IMenusItem[]) => {
 export const MenuComponent = () => {
   const [selectedKey, setSelectedKey] = useState<string[]>([]);
   const [openKeys, setOpenKeys] = useState<string[]>([]);
+  const { data } = useRequestUserIndfo();
+  data?.author_rights;
   const location = useLocation();
   useEffect(() => {
     console.log(location.pathname);
@@ -93,6 +95,22 @@ export const MenuComponent = () => {
     setSelectedKey([key]);
   };
 
+  const showMemu = useMemo(() => {
+    const authRight = data?.author_rights;
+    if (!authRight) return menu;
+    const returnMemu: IMenusItem[] = [];
+    menu.forEach((item) => {
+      if (!item.auth) {
+        returnMemu.push(item);
+        return;
+      }
+      if (item.auth.includes(authRight)) {
+        returnMemu.push(item);
+      }
+    });
+    return returnMemu;
+  }, [data, menu]);
+
   return (
     <Menu
       onClickMenuItem={onClickMenuItem}
@@ -104,7 +122,7 @@ export const MenuComponent = () => {
       openKeys={openKeys}
       className={styles['menu-container']}
     >
-      {getMenu(menu)}
+      {getMenu(showMemu)}
     </Menu>
   );
 };

@@ -10,11 +10,6 @@ import dayjs from 'dayjs';
 import useI18n from 'src/ahooks/useI18n';
 import styles from './index.module.less';
 
-const themeStyle = {
-  background: 'var(--theme-color)',
-  color: '#fff',
-};
-
 const splitStyle = {
   height: '17px',
   borderLeft: '1px solid #2B3674',

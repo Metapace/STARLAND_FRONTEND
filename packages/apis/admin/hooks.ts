@@ -2,6 +2,9 @@ import {
   reviewFinance,
   getFinanceVerifyList,
   FinanceVerifyListParams,
+  getMaterialVerifyList,
+  reviewMaterial,
+  MaterialVerifyListParams,
 } from "./api";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import React from "react";
@@ -27,4 +30,27 @@ export const useRequestFinanceVerifyList = (
 export const useMutationReviewFinance = () =>
   useMutation({
     mutationFn: reviewFinance,
+  });
+
+/**
+ *
+ *
+ * @description 获取物料审核列表
+ */
+export const useRequestMaterialVerifyList = (
+  params: MaterialVerifyListParams
+) => {
+  const query = useQuery([`${JSON.stringify(params)}MaterialVerifyList`], () =>
+    getMaterialVerifyList(params)
+  );
+  return query;
+};
+
+/**
+ *
+ *  @description 审核物料
+ */
+export const useMutationReviewMaterial = () =>
+  useMutation({
+    mutationFn: reviewMaterial,
   });

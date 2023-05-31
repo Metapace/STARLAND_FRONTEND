@@ -16,10 +16,44 @@ export enum FinanceVerifyStatusEnum {
   All = 4,
 }
 
+export enum MaterialItemVerifyStatusEnum {
+  Pending = 0,
+  Failed = 1,
+  Passed = 2,
+}
+export enum GenderEnum {
+  Male = "1",
+  Female = "2",
+  NotLimited = "3",
+}
+
+// { label: '13-17', value: 1 },
+// { label: '18-24', value: 2 },
+// { label: '25-34', value: 3 },
+// { label: '35-44', value: 4 },
+// { label: '45-54', value: 5 },
+// { label: '55+', value: 6 },
+// { label: 'not.limited', value: 7 },
+export enum AgeEnum {
+  Ten = 1,
+  Tweenty = 2,
+  Thirty = 3,
+  Fourty = 4,
+  Fifty = 5,
+  PlusFifty = 6,
+  NotLimited = 7,
+}
+
 export interface FinanceVerifyListParams {
   date_type?: FinanceDataEnum;
   status?: FinanceVerifyStatusEnum;
   page_no?: number;
+  page_size?: number;
+}
+
+export interface MaterialVerifyListParams {
+  date_type?: FinanceDataEnum;
+  page?: number;
   page_size?: number;
 }
 
@@ -38,6 +72,7 @@ export interface FinanceVerifyListReturnItem {
   email: string;
   reg_number: string;
   license: string;
+  remark: string;
 }
 
 export interface FinanceVerifyListReturn {
@@ -47,9 +82,15 @@ export interface FinanceVerifyListReturn {
 
 export interface FinanceVerifyPostParams {
   recharge_id: number;
-  amount: number;
+  amount?: number;
   status: "success" | "failure";
-  remark: string;
+  remark?: string;
+}
+
+export interface MaterialVerifyPostParams {
+  id: number;
+  status: 1 | 2;
+  reason?: string;
 }
 
 export const FinanceDataEnumMap: Record<FinanceDataEnum, string> = {
@@ -70,6 +111,41 @@ export const FinanceVerifyStatusEnumMap: Record<
   [FinanceVerifyStatusEnum.Failed]: "审核失败",
   [FinanceVerifyStatusEnum.PendingReview]: "待审核",
 };
+
+export interface MaterialListItem {
+  id: number;
+  user_id: number;
+  chan: number;
+  chan_list: string;
+  billing_method: number;
+  pay_method: number;
+  country: string;
+  lauguage: string;
+  crowd: GenderEnum;
+  age: AgeEnum;
+  start: number;
+  end: number;
+  days: number;
+  price: string;
+  status: number;
+  deliver: MaterialItemVerifyStatusEnum;
+  deliver_reason: string;
+  deliver_time: number;
+  design: MaterialItemVerifyStatusEnum;
+  design_reason: string;
+  design_time: number;
+  materials_url: string;
+  pay_time: number;
+  create_time: number;
+  end_time: number;
+  update_time: number;
+  email: string;
+}
+
+export interface MaterialVerifyListReturn {
+  num: number;
+  list: Array<MaterialListItem>;
+}
 /**
  *
  * @param 管理后台获取财务审核列表
@@ -89,3 +165,19 @@ export const getFinanceVerifyList = (params: FinanceVerifyListParams) =>
  */
 export const reviewFinance = (params: FinanceVerifyPostParams) =>
   request.post("admin/recharge/verify", params) as Promise<unknown>;
+
+/**
+ *
+ *
+ * @description 管理后台获取物料审核列表
+ */
+export const getMaterialVerifyList = (params: MaterialVerifyListParams) =>
+  request.post("admin/act/list", params) as Promise<MaterialVerifyListReturn>;
+
+/**
+ *
+ *
+ * @description 管理后台获取物料审核
+ */
+export const reviewMaterial = (params: MaterialVerifyPostParams) =>
+  request.post("admin/activity/update", params) as Promise<unknown>;

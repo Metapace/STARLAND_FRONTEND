@@ -52,47 +52,50 @@ export const Login: React.FC = () => {
   return (
     <div className={styles.login}>
       <div className={styles['login-title']}>Starland 管理后台</div>
-      <Form
-        form={form}
-        style={{ width: 410 }}
-        wrapperCol={{
-          span: 24,
-        }}
-        onSubmit={onSubmit}
-      >
-        <FormItem
-          field="email"
-          rules={[
-            { required: true, message: '请输入邮箱' },
-            {
-              type: 'email',
-              validateLevel: 'error',
-              message: 'please enter right email',
-            },
-          ]}
+      <div className={styles['login-form']}>
+        <Form
+          form={form}
+          style={{ width: 380 }}
+          wrapperCol={{
+            span: 24,
+          }}
+          onSubmit={onSubmit}
         >
-          <Input type="text" placeholder="Enter Email" />
-        </FormItem>
-        <FormItem>
-          <Grid.Row align="center">
-            <FormItem
-              field="password"
-              noStyle={{ showErrorTip: true }}
-              rules={[{ required: true, message: '请输入密码' }]}
-            >
-              <Input placeholder="Enter Password" style={{ flex: 1 }} />
-            </FormItem>
-          </Grid.Row>
-        </FormItem>
-        <FormItem>
-          <Sbutton
-            onClick={onSubmit}
-            loading={mutationlogin.isLoading}
-            text="登录"
-            className={styles['submit-button']}
-          />
-        </FormItem>
-      </Form>
+          <FormItem
+            field="email"
+            rules={[
+              { required: true, message: '请输入邮箱' },
+              {
+                type: 'email',
+                validateLevel: 'error',
+                message: 'please enter right email',
+              },
+            ]}
+          >
+            <Input type="text" placeholder="Enter Email" />
+          </FormItem>
+          <FormItem>
+            <Grid.Row align="center">
+              <FormItem
+                field="password"
+                noStyle={{ showErrorTip: true }}
+                rules={[{ required: true, message: '请输入密码' }]}
+              >
+                <Input placeholder="Enter Password" style={{ flex: 1 }} />
+              </FormItem>
+            </Grid.Row>
+          </FormItem>
+          <FormItem>
+            <Sbutton
+              onClick={onSubmit}
+              loading={mutationlogin.isLoading}
+              text="登录"
+              style={{ color: '#ffffff' }}
+              className={styles['submit-button']}
+            />
+          </FormItem>
+        </Form>
+      </div>
     </div>
   );
 };

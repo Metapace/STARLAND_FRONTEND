@@ -10,6 +10,13 @@ export enum AlertReturnType {
   ActivityEnd = 6,
 }
 
+export enum AuthRightEnum {
+  Finance = 1,
+  Delivery = 2,
+  Design = 3,
+  Other = 4,
+}
+
 export interface ReportGetReturnItem {
   data: string;
   impression: number;
@@ -39,6 +46,7 @@ export interface AlertReturnItem {
   reason: string;
   msg_type: AlertReturnType;
   info_type: number;
+  action_id: number;
 }
 
 export interface AlertReturn {
@@ -79,6 +87,7 @@ export const loginRequestBypassword = (params: {
 /**
  *
  * @description 获取用户信息
+ * @returns author_rights 1:财务 2:投放部 3: 设计部 4:其他
  */
 export const userInfoRequest = () =>
   request.get("user/get", {}) as Promise<{
@@ -86,6 +95,7 @@ export const userInfoRequest = () =>
     card_id: number;
     create_time: number;
     avatar_uri: string;
+    author_rights: AuthRightEnum;
   }>;
 
 /**

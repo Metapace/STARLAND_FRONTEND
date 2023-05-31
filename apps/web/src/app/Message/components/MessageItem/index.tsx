@@ -39,7 +39,7 @@ export const useTransformInfoContent = (type?: AlertReturnType, create_time?: nu
   return content;
 };
 
-const Index: React.FC<AlertReturnItem> = ({ create_time, msg_type, info_type, reason, status, id }) => {
+const Index: React.FC<AlertReturnItem> = ({ create_time, msg_type, info_type, reason, status, id, action_id }) => {
   const { lang, i18n } = useI18n(locale);
   const showContent = useTransformInfoContent(msg_type, create_time);
   const [open, { toggle }] = useToggle(false);
@@ -82,7 +82,7 @@ const Index: React.FC<AlertReturnItem> = ({ create_time, msg_type, info_type, re
           {msg_type === AlertReturnType.FailReview && (
             <div
               className={classNames('common-button', styles['opreate-button'])}
-              onClick={() => navigate('/verify-fail')}
+              onClick={() => navigate(`/verify-fail?id=${action_id}`)}
             >
               {i18n[lang]['enter.detail']}
             </div>

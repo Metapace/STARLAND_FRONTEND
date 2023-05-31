@@ -10,8 +10,8 @@ body,
 }
 
 :root {
-  --theme-color: #873bf4;
-  --background-color: #f0ebf439;
+  --theme-color: #0c8fcc;
+  --background-color: #e9ecf4;
   --primary-box-shadow: -3px -3px 5px #ffffff, 2px 4px 5px rgba(0, 0, 0, 0.14);
   --primary-border-radius: 11px;
   --black-text-color: #2b3674;

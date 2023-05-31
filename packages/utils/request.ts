@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios, { AxiosRequestConfig, AxiosRequestHeaders } from "axios";
 import { Message } from "@arco-design/web-react";
-import { getLocalToken } from "./localStorage";
+import { getLocalToken, removeLocalToken } from "./localStorage";
 
 const baseURL = process.env.VITE_base_url;
 
@@ -70,13 +70,15 @@ const requestHandler = <T>(
       .then((res) => {
         const data = res.data;
         if (data.code !== 200) {
-          //   if (data.code == 401) {
-          //     Message.warning('您的账号已登出或超时，即将登出...');
-          //     console.log('登录异常，执行登出...');
-          //   }
+          if (data.code == 10004) {
+            removeLocalToken();
+            Message.warning("您的账号已登出或超时，即将登出...");
+            window.location.reload();
+          }
 
           let e = JSON.stringify(data);
-          Message.warning(`请求错误：${e}`);
+          console.log(data.msg, "---");
+          Message.error(data.msg);
           console.log(`请求错误：${e}`);
           // 数据请求错误 使用reject将错误返回
           reject(data);

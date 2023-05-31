@@ -6,9 +6,11 @@ import web2Banner from 'src/assets/images/web2-banner.png';
 import { IconCheckCircle } from '@arco-design/web-react/icon';
 import CreateItem, { ChannelType } from '../createItem/index';
 import { Web2Des } from 'src/app/PublishDemand/index';
+import { useNavigate } from 'react-router-dom';
 
 const Index = () => {
   const { lang, i18n } = useI18n(locale);
+  const navigate = useNavigate();
   return (
     <div className={styles['container']}>
       <div className={styles['top']}>
@@ -38,7 +40,7 @@ const Index = () => {
         countNumber={21}
         price={i18n[lang]['cpc.count']}
         channelType={ChannelType.Web2}
-        buttonFunction={() => console.log(1111)}
+        buttonFunction={() => navigate('/create-demand')}
       />
       <div className={styles['bottom']}>
         <div className={styles['flag']}>{i18n[lang]['market.launch.example']}</div>

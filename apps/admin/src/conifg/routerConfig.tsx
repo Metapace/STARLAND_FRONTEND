@@ -7,6 +7,8 @@ const Welcome = React.lazy(() => import('../app/Welcome'));
 
 const Finance = React.lazy(() => import('../app/Finance/index'));
 
+const Material = React.lazy(() => import('../app/Material/index'));
+
 export interface IRouterConfig {
   path: string;
   text: string;
@@ -38,6 +40,11 @@ const RouterConfig: IRouterConfig[] = [
     path: '/finance-verify',
     text: '财务审核',
     page: <Finance />,
+  },
+  {
+    path: '/material-verify',
+    text: '物料审核审核',
+    page: <Material />,
   },
 ];
 

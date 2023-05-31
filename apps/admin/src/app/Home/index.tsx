@@ -8,6 +8,7 @@ import LayoutMain from '../../Layout/Layout';
 export const Home: React.FC = () => {
   const navigate = useNavigate();
   const [userToken] = useLocalStorageState(TokenName);
+
   useEffect(() => {
     if (!userToken) {
       navigate('/login');

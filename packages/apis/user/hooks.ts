@@ -10,7 +10,9 @@ import {
 } from "./api";
 
 const useRequestUserIndfo = () => {
-  const query = useQuery(["userinfo"], userInfoRequest);
+  const query = useQuery(["userinfo"], userInfoRequest, {
+    staleTime: 6 * 60 * 1000,
+  });
   return query;
 };
 

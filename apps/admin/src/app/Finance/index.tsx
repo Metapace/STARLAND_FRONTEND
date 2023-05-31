@@ -27,7 +27,7 @@ const Index = () => {
   const [form] = Form.useForm();
   const [selectItem, setSelectItem] = useState<FinanceVerifyListReturnItem>();
   const [SearchValue, setSearchValue] = useState<FinanceVerifyListParams>(initialValues);
-  const { data, isLoading } = useRequestFinanceVerifyList(SearchValue);
+  const { data, isLoading, refetch } = useRequestFinanceVerifyList(SearchValue);
   const [open, { toggle }] = useToggle(false);
   const handleSearch = async () => {
     const res = await form.getFieldsValue();
@@ -61,6 +61,9 @@ const Index = () => {
     {
       title: '充值金额',
       dataIndex: 'amount',
+      render: (_, col: FinanceVerifyListReturnItem) => {
+        return `$${col.amount}`;
+      },
     },
     {
       title: '状态',
@@ -72,7 +75,7 @@ const Index = () => {
         if (col.status === 2) {
           return <Tag color="green">已通过</Tag>;
         }
-        if (col.status === 2) {
+        if (col.status === 3) {
           return <Tag color="red">已驳回</Tag>;
         }
       },
@@ -94,10 +97,20 @@ const Index = () => {
       },
     },
   ];
-  console.log(data?.list);
+  const handlePageChange = (page: number) => {
+    const tempSearchProps = { ...SearchValue };
+    tempSearchProps.page_no = page;
+    setSearchValue(tempSearchProps);
+  };
+
+  const handleClose = () => {
+    refetch();
+    toggle();
+  };
   return (
     <div className={styles['container']}>
-      <VerifyModal open={open} handlCloseModal={() => toggle()} item={selectItem}></VerifyModal>
+      {open && <VerifyModal open={open} handlCloseModal={handleClose} item={selectItem}></VerifyModal>}
+
       <div className={styles['search-area']}>
         <Form
           form={form}
@@ -106,7 +119,7 @@ const Index = () => {
         >
           <Grid.Row gutter={24}>
             <Grid.Col span={8}>
-              <Form.Item label="时间" field="date_type">
+              <Form.Item label="时间" field="date_type" labelAlign="left" labelCol={{ span: 2 }}>
                 <Select placeholder="请选择时间">
                   {Object.keys(FinanceDataEnumMap).map((key) => (
                     <Option key={key} value={key}>
@@ -136,7 +149,17 @@ const Index = () => {
         </Form>
       </div>
       <div className={styles['table-body']}>
-        <Table columns={columns} data={data?.list} loading={isLoading}></Table>
+        <Table
+          columns={columns}
+          data={data?.list}
+          loading={isLoading}
+          pagination={{
+            total: data?.num,
+            pageSize: SearchValue.page_size,
+            onChange: handlePageChange,
+            current: SearchValue.page_no,
+          }}
+        ></Table>
       </div>
     </div>
   );
