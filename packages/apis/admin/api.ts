@@ -27,13 +27,6 @@ export enum GenderEnum {
   NotLimited = "3",
 }
 
-// { label: '13-17', value: 1 },
-// { label: '18-24', value: 2 },
-// { label: '25-34', value: 3 },
-// { label: '35-44', value: 4 },
-// { label: '45-54', value: 5 },
-// { label: '55+', value: 6 },
-// { label: 'not.limited', value: 7 },
 export enum AgeEnum {
   Ten = 1,
   Tweenty = 2,

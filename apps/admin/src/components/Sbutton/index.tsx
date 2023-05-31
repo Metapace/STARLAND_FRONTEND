@@ -13,7 +13,7 @@ interface SbuttonProps {
   onClick?: UseMutateAsyncFunction<void, unknown, void, unknown> | (() => void);
 }
 
-const Sbutton: React.FC<SbuttonProps> = ({ loading, className, style, onClick, text, color = '#2d70f1' }) => {
+const Sbutton: React.FC<SbuttonProps> = ({ loading, className, style, onClick, text }) => {
   return (
     <span className={styles['button-outer']}>
       <Button

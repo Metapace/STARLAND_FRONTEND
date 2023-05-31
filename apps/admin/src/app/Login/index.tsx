@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { Form, Input, Grid, Message } from '@arco-design/web-react';
+import React, { useEffect } from 'react';
+import { Form, Input, Grid } from '@arco-design/web-react';
 import { useNavigate } from 'react-router-dom';
 import 'react-lazy-load-image-component/src/effects/blur.css';
-import { useLocalStorageState, useCountDown } from 'ahooks';
+import { useLocalStorageState } from 'ahooks';
 import { TokenName } from 'utils';
 import Sbutton from 'src/components/Sbutton';
-import useI18n from 'src/ahooks/useI18n';
 import styles from './index.module.less';
-import { sendCodeRequest, loginRequest, useMutations, loginRequestBypassword } from 'apis';
+import { useMutations, loginRequestBypassword } from 'apis';
 
 type IUserParams = {
   email: string;
