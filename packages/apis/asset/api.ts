@@ -1,6 +1,6 @@
 import { request } from "utils";
 
-interface ITransactionInterface {
+export interface ITransactionInterface {
   id: number;
   user_id: number;
   from: string;

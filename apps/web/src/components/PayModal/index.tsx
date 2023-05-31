@@ -6,8 +6,7 @@ import hookIcon from 'src/assets/images/hook-icon.png';
 import classNames from 'classnames';
 import useI18n from 'src/ahooks/useI18n';
 import locale from './locales';
-import { useRequestDashboardInfo } from 'apis';
-import { useMutationUpdateMaterial } from 'apis';
+import { useRequestDashboardInfo, useMutationUpdateMaterial } from 'apis';
 import { useNavigate } from 'react-router-dom';
 import Sbutton from '../Sbutton';
 

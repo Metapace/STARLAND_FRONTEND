@@ -1,9 +1,15 @@
 import React, { useMemo } from 'react';
-import { Modal, List, Divider, Input, Button, Form, Popconfirm, Message, FormInstance } from '@arco-design/web-react';
+import { Modal, List, Input, Button, Form, Popconfirm, Message } from '@arco-design/web-react';
 import { IconCheckCircle } from '@arco-design/web-react/icon';
 import styles from './index.module.less';
-import { MaterialListItem, useMutationReviewMaterial, AgeEnum, GenderEnum } from 'apis';
-import { useRequestUserIndfo, AuthRightEnum } from 'apis';
+import {
+  MaterialListItem,
+  useMutationReviewMaterial,
+  AgeEnum,
+  GenderEnum,
+  useRequestUserIndfo,
+  AuthRightEnum,
+} from 'apis';
 
 import dayjs from 'dayjs';
 const TextArea = Input.TextArea;
@@ -43,7 +49,6 @@ interface FromItemProps {
 }
 
 const FromItem: React.FC<FromItemProps> = ({ item, handlCloseModal, type }) => {
-  console.log(item, '--111-');
   const [form] = Form.useForm();
   const { mutateAsync, isLoading } = useMutationReviewMaterial();
   const { data } = useRequestUserIndfo();
@@ -199,7 +204,7 @@ const Index: React.FC<FVerifyProps> = ({ open, item, handlCloseModal }) => {
           <div className={styles['bottom-left']}>
             <div className={styles['left-title']}>投放订单附件下载</div>
             {linkList.map((item) => (
-              <div className={styles['download-item']}>
+              <div className={styles['download-item']} key={item.value}>
                 <a href={item.value} download>
                   {item.label}
                 </a>

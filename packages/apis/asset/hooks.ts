@@ -1,6 +1,5 @@
 import { transactionInfoRequest, updateVoucher } from "./api";
 import { useQuery, useMutation } from "@tanstack/react-query";
-import React from "react";
 
 // 充值记录
 export const useRequestTransactionsInfo = () => {

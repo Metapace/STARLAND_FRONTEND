@@ -47,7 +47,7 @@ const zh: {
   'usercenter.name': '姓名',
   'usercenter.countryOfUser': '所在国家',
   'usercenter.addressOfUser': '个人地址',
-  'usercenter.emailOfUser': "个人邮箱",
+  'usercenter.emailOfUser': '个人邮箱',
   'usercenter.modalNote': '您的详细信息将用于发票和收据中的计费目的',
   'usercenter.submit': '提交',
   'usercenter.uploadPassport': '上传护照',

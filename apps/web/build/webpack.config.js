@@ -9,7 +9,6 @@ const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
 
 require('dotenv').config({ path: path.join(__dirname, '../../../', `environments/.env.${process.env.SERVICES_ENV}`) });
 
-console.log(process.env, 'process.env');
 const REACT_APP = /^VITE_/i;
 function getClientEnvironment() {
   // PUBLIC_URL --> 公共URL
@@ -24,7 +23,6 @@ function getClientEnvironment() {
         NODE_ENV: process.env.NODE_ENV || 'development',
       },
     );
-  console.log(raw, '--');
   // 注入环境变量
   const stringified = {
     'process.env': Object.keys(raw).reduce((env, key) => {

@@ -4,7 +4,7 @@ export enum ChannelType {
   WEB2 = 1,
   WEB3 = 2,
 }
-interface ChanItem {
+export interface ChanItem {
   image_url: string;
   chan: ChannelType;
   price: string;

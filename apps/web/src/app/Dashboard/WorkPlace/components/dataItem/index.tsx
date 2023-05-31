@@ -46,7 +46,7 @@ const Index: React.FC<DataItemProps> = (props) => {
           { offset: 0.056, color: '#4318FF' },
           { offset: 1, color: 'rgba(67, 24, 255, 0.28)' },
         ]),
-        barBorderRadius: [12, 12, 0, 0],
+        borderRadius: [12, 12, 0, 0],
       };
     }
     return {};

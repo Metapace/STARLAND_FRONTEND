@@ -5,8 +5,7 @@ import PayModal from 'src/components/PayModal';
 import useI18n from 'src/ahooks/useI18n';
 import locale from './locales';
 import { useToggle } from 'ahooks';
-import { useMutationRelaunch } from 'apis';
-import { useRequestDashboardInfo } from 'apis';
+import { useMutationRelaunch, useRequestDashboardInfo } from 'apis';
 import classNames from 'classnames';
 
 interface RelaunchButtonProps {
