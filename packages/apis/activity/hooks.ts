@@ -84,7 +84,10 @@ const useRequestActivityByStatus = (
     [
       `getActivityListBystatus${params.page}${params.page_size}${params.action}`,
     ],
-    () => getActivityListBystatus(params)
+    () => getActivityListBystatus(params),
+    {
+      staleTime: 0,
+    }
   );
 
 export {

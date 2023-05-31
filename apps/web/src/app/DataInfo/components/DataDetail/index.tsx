@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './index.module.less';
 import useI18n from 'src/ahooks/useI18n';
 import locale from '../../locales';
@@ -8,6 +8,23 @@ import RelaunchButton from 'src/components/RelaunchButton';
 import { Modal } from '@arco-design/web-react';
 import nodata from 'src/assets/images/datainfo-nodata.png';
 
+import { NoDataProps } from '../DataOverview';
+
+export const DataDetailNoData: React.FC<NoDataProps> = ({ type }) => {
+  const { lang, i18n } = useI18n(locale);
+  return (
+    <div className={styles['chart-container-nodata-box']}>
+      <img src={nodata} alt="nodata" className={styles['chart-container-nodata-box-img']} />
+      {type === 'nodata' ? (
+        <div className={styles['chart-container-nodata-box-note']}>{i18n[lang]['datainfo.noData']}...</div>
+      ) : type === 'norecord' ? (
+        <div className={styles['chart-container-nodata-box-note']}>{i18n[lang]['datainfo.noRecord']}...</div>
+      ) : (
+        <div className={styles['chart-container-nodata-box-note']}>{i18n[lang]['datainfo.loading']}...</div>
+      )}
+    </div>
+  );
+};
 interface DataDetailBoxProps {
   startTime: number;
   endTime: number;
@@ -37,13 +54,15 @@ const DataDetailBox: React.FC<DataDetailBoxProps> = ({ startTime, endTime, chann
       </div>
       <div className={styles['datadetail-content-inner-right']}>
         {state == 6 ? (
-          <div className={styles['datadetail-content-inner-right-state']}>投放中</div>
+          <div style={{ width: '72px' }} className={styles['datadetail-content-inner-right-state']}>
+            {i18n[lang]['datainfo.inProgress']}
+          </div>
         ) : (
           <div
             className={styles['datadetail-content-inner-right-state']}
-            style={{ border: '1px solid #EB0F5E', color: '#EB0F5E' }}
+            style={{ border: '1px solid #EB0F5E', color: '#EB0F5E', width: '72px' }}
           >
-            已结束
+            {i18n[lang]['datainfo.ended']}
           </div>
         )}
 
@@ -54,7 +73,7 @@ const DataDetailBox: React.FC<DataDetailBoxProps> = ({ startTime, endTime, chann
             style={{ width: '140px' }}
             className={styles['datadetail-content-inner-right-btn']}
           >
-            关闭投放
+            {i18n[lang]['datainfo.closed']}
           </div>
         ) : (
           <RelaunchButton
@@ -72,7 +91,7 @@ const DataDetailBox: React.FC<DataDetailBoxProps> = ({ startTime, endTime, chann
         )}
       </div>
       <Modal
-        title="关闭投放确认"
+        title={i18n[lang]['datainfo.closingConfirmation']}
         visible={visible}
         okButtonProps={{}}
         onOk={() => handleSubmit(id)}
@@ -91,8 +110,8 @@ const DataDetailBox: React.FC<DataDetailBoxProps> = ({ startTime, endTime, chann
         }}
         wrapClassName={styles.moadlwrap}
       >
-        <div>1、因广告在各个渠道投放中，发起结束到实际结束投放中间有时间差，预计24小时内完成结束操作。</div>
-        <div>2、结束过程中因时效问题，投放数据及对应的费用存在数据回滚的问题，请以实际结算金额为准。</div>
+        <div>{i18n[lang]['datainfo.note1']}</div>
+        <div>{i18n[lang]['datainfo.note2']}</div>
       </Modal>
     </div>
   );
@@ -108,7 +127,11 @@ const Index = () => {
     action: '6,7',
   };
 
-  const { data: RemandListByStatus, refetch } = useRequestActivityByStatus(ActivityListBystatusRequestParams);
+  const {
+    data: RemandListByStatus,
+    isLoading: isLoading_DD,
+    refetch,
+  } = useRequestActivityByStatus(ActivityListBystatusRequestParams);
   // console.log('RemandListByStatus', RemandListByStatus);
   const handleNextPage = () => {
     if (RemandListByStatus && currentPage >= Math.ceil(RemandListByStatus?.num / pageMax)) {
@@ -122,6 +145,15 @@ const Index = () => {
     }
     setCurrentPage(currentPage - 1);
   };
+  useEffect(() => {
+    if (RemandListByStatus) {
+      // console.log('RemandListByStatus', RemandListByStatus);
+      if (currentPage > Math.ceil(RemandListByStatus?.num / pageMax)) {
+        setCurrentPage(currentPage - 1);
+      }
+    }
+  }, [RemandListByStatus]);
+
   return (
     <div className={styles['container']}>
       <div className={styles['datadetail-top']}>{i18n[lang]['datainfo.detailedData']}</div>
@@ -140,11 +172,10 @@ const Index = () => {
         </div>
         <div>
           <>
-            {RemandListByStatus?.list.length == 0 ? (
-              <div className={styles['chart-container-nodata-box']}>
-                <img src={nodata} alt="nodata" className={styles['chart-container-nodata-box-img']} />
-                <div className={styles['chart-container-nodata-box-note']}>无数据...</div>
-              </div>
+            {isLoading_DD ? (
+              <DataDetailNoData type="loading" />
+            ) : RemandListByStatus?.list.length == 0 ? (
+              <DataDetailNoData type="nodata" />
             ) : (
               RemandListByStatus?.list.map((item) => {
                 return (
@@ -164,7 +195,10 @@ const Index = () => {
               <button onClick={handlePrePage}>{i18n[lang]['datainfo.pre']}</button>
               <p>
                 {RemandListByStatus?.num == 0 ? (
-                  <> 0/0</>
+                  <>
+                    {' '}
+                    <span style={{ color: '#3776F2' }}>0</span>/0
+                  </>
                 ) : (
                   <>
                     {' '}

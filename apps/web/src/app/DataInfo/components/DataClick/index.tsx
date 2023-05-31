@@ -7,6 +7,56 @@ import locale from '../../locales';
 import { useRequestreportGetClick } from 'apis';
 import nodata from 'src/assets/images/datainfo-nodata.png';
 import * as echarts from 'echarts/core';
+import { NoDataProps } from '../DataOverview';
+
+const DataClickNoData: React.FC<NoDataProps> = ({ type }) => {
+  const { lang, i18n } = useI18n(locale);
+  return (
+    <div className={styles['chart-container-nodata']}>
+      <div className={styles['chart-container-nodata-right']}>
+        <div>Tiktok</div>
+        <div>Google</div>
+        <div>Facebook</div>
+        <div>bigo</div>
+        <div>kwai</div>
+      </div>
+      <div className={styles['chart-container-nodata-left']}>
+        <div>0</div>
+        <div>0.2k</div>
+        <div>0.4k</div>
+        <div>0.6k</div>
+        <div>0.8k</div>
+        <div>1.0k</div>
+        <div>1.2k</div>
+        <div>1.4k</div>
+        <div>1.6k</div>
+        <div>1.8k</div>
+        <div>2.0k</div>
+      </div>
+      <div className={styles['chart-container-nodata-box']}>
+        <img src={nodata} alt="nodata" className={styles['chart-container-nodata-box-img']} />
+        {type === 'nodata' ? (
+          <div className={styles['chart-container-nodata-box-note']}>{i18n[lang]['datainfo.noData']}...</div>
+        ) : (
+          <div className={styles['chart-container-nodata-box-note']}>{i18n[lang]['datainfo.loading']}...</div>
+        )}
+      </div>
+      {/* <div className={styles['chart-container-nodata-bbox']}>
+      <div>0000-00-00</div>
+      <div className={styles['chart-container-nodata-bbox-box']}>
+        <div className={styles['chart-container-nodata-bbox-box-1']}></div>
+        <div className={styles['chart-container-nodata-bbox-box-2']}>内容曝光量</div>
+        <div className={styles['chart-container-nodata-bbox-box-3']}>0</div>
+      </div>
+      <div className={styles['chart-container-nodata-bbox-box']}>
+        <div className={styles['chart-container-nodata-bbox-box-1']} style={{ background: '#E88B40' }}></div>
+        <div className={styles['chart-container-nodata-bbox-box-2']}>内容点击量</div>
+        <div className={styles['chart-container-nodata-bbox-box-3']}>0</div>
+      </div>
+    </div> */}
+    </div>
+  );
+};
 const Index = () => {
   const { lang, i18n } = useI18n(locale);
   const [days, setDays] = useState(2);
@@ -56,9 +106,9 @@ const Index = () => {
           data: dataClick && dataClick.map((item) => item.click),
           type: 'bar',
           emphasis: {
-            focus: 'series'
+            focus: 'series',
           },
-      
+
           showBackground: false,
           // itemStyle: {
           //   color: 'rgba(234, 9, 9, 1)',
@@ -66,13 +116,12 @@ const Index = () => {
           // },
           barWidth: 22,
           itemStyle: {
-            borderRadius:[0, 10, 10, 0],
+            borderRadius: [0, 10, 10, 0],
             color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [
-                 { offset: 0, color: '#C7D6F1' },   
-                 { offset: 1, color: '#2366E9' }
-             ]),
-          }
-          
+              { offset: 0, color: '#C7D6F1' },
+              { offset: 1, color: '#2366E9' },
+            ]),
+          },
         },
       ],
     };
@@ -100,87 +149,11 @@ const Index = () => {
       </div>
       <div className={styles['chart-container']}>
         {dataClick_loading ? (
-          <div className={styles['chart-container-nodata']}>
-            <div className={styles['chart-container-nodata-right']}>
-              <div>Tiktok</div>
-              <div>Google</div>
-              <div>Facebook</div>
-              <div>bigo</div>
-              <div>kwai</div>
-            </div>
-            <div className={styles['chart-container-nodata-left']}>
-              <div>0</div>
-              <div>0.2k</div>
-              <div>0.4k</div>
-              <div>0.6k</div>
-              <div>0.8k</div>
-              <div>1.0k</div>
-              <div>1.2k</div>
-              <div>1.4k</div>
-              <div>1.6k</div>
-              <div>1.8k</div>
-              <div>2.0k</div>
-            </div>
-            <div className={styles['chart-container-nodata-box']}>
-              <img src={nodata} alt="nodata" className={styles['chart-container-nodata-box-img']} />
-              <div className={styles['chart-container-nodata-box-note']}>加载中...</div>
-            </div>
-            {/* <div className={styles['chart-container-nodata-bbox']}>
-              <div>0000-00-00</div>
-              <div className={styles['chart-container-nodata-bbox-box']}>
-                <div className={styles['chart-container-nodata-bbox-box-1']}></div>
-                <div className={styles['chart-container-nodata-bbox-box-2']}>内容曝光量</div>
-                <div className={styles['chart-container-nodata-bbox-box-3']}>0</div>
-              </div>
-              <div className={styles['chart-container-nodata-bbox-box']}>
-                <div className={styles['chart-container-nodata-bbox-box-1']} style={{ background: '#E88B40' }}></div>
-                <div className={styles['chart-container-nodata-bbox-box-2']}>内容点击量</div>
-                <div className={styles['chart-container-nodata-bbox-box-3']}>0</div>
-              </div>
-            </div> */}
-          </div>
+          <DataClickNoData type="loading" />
         ) : dataClick ? (
           <ReactECharts option={getOption()} />
         ) : (
-          <div className={styles['chart-container-nodata']}>
-            <div className={styles['chart-container-nodata-right']}>
-              <div>Tiktok</div>
-              <div>Google</div>
-              <div>Facebook</div>
-              <div>bigo</div>
-              <div>kwai</div>
-            </div>
-            <div className={styles['chart-container-nodata-left']}>
-              <div>0</div>
-              <div>0.2k</div>
-              <div>0.4k</div>
-              <div>0.6k</div>
-              <div>0.8k</div>
-              <div>1.0k</div>
-              <div>1.2k</div>
-              <div>1.4k</div>
-              <div>1.6k</div>
-              <div>1.8k</div>
-              <div>2.0k</div>
-            </div>
-            <div className={styles['chart-container-nodata-box']}>
-              <img src={nodata} alt="nodata" className={styles['chart-container-nodata-box-img']} />
-              <div className={styles['chart-container-nodata-box-note']}>无数据...</div>
-            </div>
-            {/* <div className={styles['chart-container-nodata-bbox']}>
-              <div>0000-00-00</div>
-              <div className={styles['chart-container-nodata-bbox-box']}>
-                <div className={styles['chart-container-nodata-bbox-box-1']}></div>
-                <div className={styles['chart-container-nodata-bbox-box-2']}>内容曝光量</div>
-                <div className={styles['chart-container-nodata-bbox-box-3']}>0</div>
-              </div>
-              <div className={styles['chart-container-nodata-bbox-box']}>
-                <div className={styles['chart-container-nodata-bbox-box-1']} style={{ background: '#E88B40' }}></div>
-                <div className={styles['chart-container-nodata-bbox-box-2']}>内容点击量</div>
-                <div className={styles['chart-container-nodata-bbox-box-3']}>0</div>
-              </div>
-            </div> */}
-          </div>
+          <DataClickNoData type="nodata" />
         )}
       </div>
     </div>

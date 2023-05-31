@@ -22,7 +22,7 @@ const en: {
   'datainfo.placementChannel': 'Placement channel',
   'datainfo.status': 'Status',
   'datainfo.operation': 'Operation',
-  'datainfo.closed': 'Closed',
+  'datainfo.ended': 'Ended',
   'datainfo.yesterday': 'Yesterday',
   'datainfo.lastThreeDays': 'Last three days',
   'datainfo.lastWeek': 'Last week',
@@ -37,6 +37,13 @@ const en: {
   'datainfo.confirm': 'Confirm',
   'datainfo.pre': 'Previous Page',
   'datainfo.next': 'Next page',
+  'datainfo.noData': 'No data',
+  'datainfo.loading': 'Loading',
+  'datainfo.inProgress': 'In progress',
+  'datainfo.closed': 'Closed',
+  'datainfo.noRecord': 'No record',
+
+
 };
 
 export default en;

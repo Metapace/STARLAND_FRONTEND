@@ -38,7 +38,7 @@ const useRequestreportGet = (date_type: 10 | 4) => {
  *  @params date_type number 10.所有的总值；4.近7日数据；
  * @returns
  */
-const useRequestreportGetClick = (date_type: 2 | 3 | 4 | 5 | 6) => {
+const useRequestreportGetClick = (date_type: number) => {
   const query = useQuery([`reportclick${date_type}`], () =>
     reportGetClick({ date_type })
   );

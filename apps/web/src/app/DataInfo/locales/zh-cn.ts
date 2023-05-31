@@ -22,7 +22,7 @@ const zh: {
   'datainfo.placementChannel': '投放渠道',
   'datainfo.status': '状态',
   'datainfo.operation': '操作',
-  'datainfo.closed': '关闭投放',
+  'datainfo.ended': '已结束',
   'datainfo.inProgress': '投放中',
   'datainfo.yesterday': '昨日',
   'datainfo.lastThreeDays': '最近三天',
@@ -36,6 +36,11 @@ const zh: {
   'datainfo.confirm': '确认',
   'datainfo.pre': '上一页',
   'datainfo.next': '下一页',
+  'datainfo.noData': '无数据',
+  'datainfo.loading': '加载中',
+  'datainfo.closed': '关闭投放',
+  'datainfo.noRecord': '无记录',
+
 };
 
 export default zh;
