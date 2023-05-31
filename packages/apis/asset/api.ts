@@ -24,7 +24,7 @@ interface ITransactionInterface {
 }
 
 export interface IVoucherInterface {
-  amount: string;
+  amount: number;
   certificate: string;
   represent: number;
   name: string;

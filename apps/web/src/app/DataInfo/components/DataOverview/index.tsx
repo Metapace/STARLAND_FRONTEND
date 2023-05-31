@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { FC } from 'react';
 import styles from './index.module.less';
 import { useRequestreportGet } from 'apis';
-
 import click from 'src/assets/images/datainfo-click.png';
 import consume from 'src/assets/images/datainfo-consume.png';
 import press from 'src/assets/images/datainfo-press.png';
@@ -13,9 +12,57 @@ import useI18n from 'src/ahooks/useI18n';
 import locale from '../../locales';
 import dayjs from 'dayjs';
 
+export interface NoDataProps {
+  type: string;
+}
+const DataOverviewNoData: React.FC<NoDataProps> = ({ type }) => {
+  const { lang, i18n } = useI18n(locale);
+  return (
+    <div className={styles['chart-container-nodata']}>
+      <div className={styles['chart-container-nodata-right']}>
+        <div>260M</div>
+        <div>220M</div>
+        <div>180M</div>
+        <div>140M</div>
+      </div>
+      <div className={styles['chart-container-nodata-left']}>
+        <div>12.11</div>
+        <div>12.12</div>
+        <div>12.13</div>
+        <div>12.14</div>
+        <div>12.15</div>
+        <div>12.16</div>
+        <div>12.17</div>
+      </div>
+      <div className={styles['chart-container-nodata-box']}>
+        <img src={nodata} alt="nodata" className={styles['chart-container-nodata-box-img']} />
+        {type === 'nodata' ? (
+          <div className={styles['chart-container-nodata-box-note']}>{i18n[lang]['datainfo.noData']}...</div>
+        ) : (
+          <div className={styles['chart-container-nodata-box-note']}>{i18n[lang]['datainfo.loading']}...</div>
+        )}
+      </div>
+      <div className={styles['chart-container-nodata-bbox']}>
+        <div>0000-00-00</div>
+        <div className={styles['chart-container-nodata-bbox-box']}>
+          <div className={styles['chart-container-nodata-bbox-box-1']}></div>
+          <div className={styles['chart-container-nodata-bbox-box-2']}>{i18n[lang]['datainfo.contentExposure']}</div>
+          <div className={styles['chart-container-nodata-bbox-box-3']}>0</div>
+        </div>
+        <div className={styles['chart-container-nodata-bbox-box']}>
+          <div className={styles['chart-container-nodata-bbox-box-1']} style={{ background: '#E88B40' }}></div>
+          <div className={styles['chart-container-nodata-bbox-box-2']}>{i18n[lang]['datainfo.contentClicks']}</div>
+          <div className={styles['chart-container-nodata-bbox-box-3']}>0</div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const Index = () => {
   const { lang, i18n } = useI18n(locale);
   const { data: dataOverview } = useRequestreportGet(10);
+  // console.log("dataOverview",dataOverview)
   const { data: dataOverview_7, isLoading: dataOverview_7_loading } = useRequestreportGet(4);
   const getOption = () => {
     const options = {
@@ -77,9 +124,8 @@ const Index = () => {
       yAxis: [
         {
           type: 'value',
-          offset: 20
+          offset: 20,
         },
-        
       ],
       series: [
         // 下载量
@@ -214,14 +260,14 @@ const Index = () => {
         </div>
         <div className={styles['dataovervie-right']}>
           <div className={styles['dataovervie-right-content']}>
-            <div style={{width:"200px"}} className={styles['dataovervie-box2']}>
+            <div style={{ width: '200px' }} className={styles['dataovervie-box2']}>
               <p>{i18n[lang]['datainfo.web2Hits']}</p>
-              <div  className={styles['dataovervie-box2-inner']}>
+              <div className={styles['dataovervie-box2-inner']}>
                 <img src={press} alt="press" />
                 <p>{dataOverview == null ? '0' : dataOverview && dataOverview[0].click}</p>
               </div>
             </div>
-            <div style={{width:"200px"}} className={styles['dataovervie-box3']}>
+            <div style={{ width: '200px' }} className={styles['dataovervie-box3']}>
               <p>{i18n[lang]['datainfo.click-throughRate']}</p>
               <p style={{ color: '#6B0EDD', fontSize: '20px', fontWeight: '600' }}>
                 {dataOverview == null ? '0' : dataOverview && dataOverview[0].ctr.toFixed(2)}%
@@ -236,16 +282,16 @@ const Index = () => {
           </div>
           <div className={styles['dataovervie-right-content-middle']}></div>
           <div className={styles['dataovervie-right-content']}>
-            <div style={{width:"200px"}} className={styles['dataovervie-box2']}>
+            <div style={{ width: '200px' }} className={styles['dataovervie-box2']}>
               <p>{i18n[lang]['datainfo.web3Hits']}</p>
               <div className={styles['dataovervie-box2-inner']}>
                 <img src={pressweb3} alt="press" />
                 <p style={{ color: '#F17D1F' }}>0</p>
               </div>
             </div>
-            <div style={{width:"200px"}} className={styles['dataovervie-box3']}>
+            <div style={{ width: '200px' }} className={styles['dataovervie-box3']}>
               <p>{i18n[lang]['datainfo.click-throughRate']}</p>
-              <p style={{ color: '#F17D1F', fontSize: '20px', fontWeight: '600' }}>0.00%</p>
+              <p style={{ color: '#F17D1F', fontSize: '20px', fontWeight: '600' }}>0%</p>
             </div>
             <div>
               <p>{i18n[lang]['datainfo.cost']}</p>
@@ -256,64 +302,11 @@ const Index = () => {
       </div>
       <div className={styles['chart-container']}>
         {dataOverview_7_loading ? (
-          <div className={styles['chart-container-nodata']}>
-            <div className={styles['chart-container-nodata-right']}>
-              <div>260M</div>
-              <div>220M</div>
-              <div>180M</div>
-              <div>140M</div>
-            </div>
-            <div className={styles['chart-container-nodata-left']}>
-              <div>{dayjs().subtract(7, 'day').format('M.DD')}</div>
-              <div>{dayjs().subtract(6, 'day').format('M.DD')}</div>
-              <div>{dayjs().subtract(5, 'day').format('M.DD')}</div>
-              <div>{dayjs().subtract(4, 'day').format('M.DD')}</div>
-              <div>{dayjs().subtract(3, 'day').format('M.DD')}</div>
-              <div>{dayjs().subtract(2, 'day').format('M.DD')}</div>
-              <div>{dayjs().subtract(1, 'day').format('M.DD')}</div>
-            </div>
-            <div className={styles['chart-container-nodata-box']}>
-              <img src={nodata} alt="nodata" className={styles['chart-container-nodata-box-img']} />
-              <div className={styles['chart-container-nodata-box-note']}>加载中...</div>
-            </div>
-          </div>
+          <DataOverviewNoData type="loading" />
         ) : dataOverview_7 ? (
           <ReactECharts option={getOption()} />
         ) : (
-          <div className={styles['chart-container-nodata']}>
-            <div className={styles['chart-container-nodata-right']}>
-              <div>260M</div>
-              <div>220M</div>
-              <div>180M</div>
-              <div>140M</div>
-            </div>
-            <div className={styles['chart-container-nodata-left']}>
-              <div>12.11</div>
-              <div>12.12</div>
-              <div>12.13</div>
-              <div>12.14</div>
-              <div>12.15</div>
-              <div>12.16</div>
-              <div>12.17</div>
-            </div>
-            <div className={styles['chart-container-nodata-box']}>
-              <img src={nodata} alt="nodata" className={styles['chart-container-nodata-box-img']} />
-              <div className={styles['chart-container-nodata-box-note']}>无数据...</div>
-            </div>
-            <div className={styles['chart-container-nodata-bbox']}>
-              <div>0000-00-00</div>
-              <div className={styles['chart-container-nodata-bbox-box']}>
-                <div className={styles['chart-container-nodata-bbox-box-1']}></div>
-                <div className={styles['chart-container-nodata-bbox-box-2']}>内容曝光量</div>
-                <div className={styles['chart-container-nodata-bbox-box-3']}>0</div>
-              </div>
-              <div className={styles['chart-container-nodata-bbox-box']}>
-                <div className={styles['chart-container-nodata-bbox-box-1']} style={{ background: '#E88B40' }}></div>
-                <div className={styles['chart-container-nodata-bbox-box-2']}>内容点击量</div>
-                <div className={styles['chart-container-nodata-bbox-box-3']}>0</div>
-              </div>
-            </div>
-          </div>
+          <DataOverviewNoData type="nodata" />
         )}
       </div>
     </div>

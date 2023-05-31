@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import styles from './index.module.less';
-import { Form, Input, Radio, Message, Upload, Modal } from '@arco-design/web-react';
+import { Form, Input, Radio, Upload, Modal } from '@arco-design/web-react';
 import upload from 'src/assets/images/usercenter-assets-upload.png';
 import uploadAws from 'src/utils/uploadAws';
 import useI18n from 'src/ahooks/useI18n';
@@ -12,13 +12,12 @@ interface VoucherModalProps {
   open: boolean;
   handleCloseVoucherModal: any;
 }
+
 const index: React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal }) => {
   const { lang, i18n } = useI18n(locale);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [form] = Form.useForm();
-  const { mutateAsync: uploadVoucherAsync, isLoading } = useMutationUploadVoucher();
-
-  const [delegateIsCompany, setDelegateIsCompany] = useState(true);
+  const { mutateAsync: uploadVoucherAsync, isLoading: uploadVoucherLoading } = useMutationUploadVoucher();
   const [loading, setLoading] = useState(false);
   const handleUpload = async (info: any) => {
     if (loading) return;
@@ -41,7 +40,7 @@ const index: React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal }) =
       let data: IVoucherInterface;
       if (res.represent === undefined || res.represent === 1) {
         data = {
-          amount: res.inValue,
+          amount: +res.inValue,
           certificate: res.voucher[0].response,
           represent: 1,
           name: res.name,
@@ -50,26 +49,25 @@ const index: React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal }) =
           email: res.email,
           reg_num: res.represent || res.represent == 1 ? res.companyNumber : '',
           license: res.license[0].response,
-          chan: 2,
+          chan: 1,
           type: 1,
         };
       } else {
         data = {
-          amount: res.inValue,
+          amount: +res.inValue,
           certificate: res.voucher[0].response,
           represent: 2,
-          name: res.name,
-          country: res.country,
-          address: res.address,
-          email: res.email,
-          license: res.license[0].response,
-          chan: 2,
+          name: res.username,
+          country: res.usercountry,
+          address: res.useraddress,
+          email: res.useremail,
+          license: res.passPort[0].response,
+          chan: 1,
           type: 1,
         };
       }
-      console.log('data', data);
-      const result = await uploadVoucherAsync(data);
-      console.log(result);
+      await uploadVoucherAsync(data);
+      handleCloseVoucherModal();
       setConfirmLoading(false);
     });
   }
@@ -92,45 +90,34 @@ const index: React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal }) =
         paddingTop: '10px',
       }}
       okText={i18n[lang]['usercenter.submit']}
-      // footer="您的详细信息将用于发票和收据中的计费目的。"
     >
       <Form form={form}>
         <FormItem
           label={i18n[lang]['usercenter.rechargeamount']}
           field="inValue"
-          rules={[{ required: true }]}
           labelCol={{ span: 6, offset: 0 }}
           wrapperCol={{ span: 18, offset: 0 }}
           requiredSymbol={{ position: 'end' }}
+          rules={[
+            { match: /^\d+$|^\d+[.]?\d+$/, message: `${i18n[lang]['usercenter.numberNote']}` },
+            { required: true, message: `${i18n[lang]['usercenter.rechargeamountIsReq']}` },
+          ]}
         >
           <Input />
         </FormItem>
-
         <Form.Item
           labelCol={{ span: 6, offset: 0 }}
-          wrapperCol={{ span: 18, offset: 0 }}
+          wrapperCol={{ span: 9, offset: 0 }}
           requiredSymbol={{ position: 'end' }}
           label={i18n[lang]['usercenter.uploadPaymentVoucher']}
           field="voucher"
           triggerPropName="fileList"
-          rules={[{ required: true }]}
+          rules={[{ required: true, message: `${i18n[lang]['usercenter.uploadPaymentVoucherIsReq']}` }]}
         >
-          {/* <Upload limit={1} listType="picture-card" customRequest={handleUpload} drag>
-            <div className={styles['trigger']}>
-              <div className={styles['trigger-box']}>
-                <img src={upload} alt="upload" />
-              </div>
-
-              <div className={styles['trigger-text']}>
-                Drag the file here or
-                <span style={{ color: '#3370FF', padding: '0 4px' }}>Click to upload</span>
-              </div>
-            </div>
-          </Upload> */}
           <Upload
             listType="picture-card"
             multiple
-            // name="files"
+            accept="image/*"
             customRequest={handleUpload}
             limit={1}
             drag
@@ -163,217 +150,219 @@ const index: React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal }) =
         <FormItem
           label={i18n[lang]['usercenter.representative']}
           field="represent"
-          // rules={[{ required: true }]}
           labelCol={{ span: 6, offset: 0 }}
           wrapperCol={{ span: 18, offset: 0 }}
           requiredSymbol={{ position: 'end' }}
+          // rules={[{ required: true, message: `${i18n[lang]['usercenter.representativeIsReq']}` }]}
         >
-          <RadioGroup
-            defaultValue={1}
-            onChange={(res) => {
-              console.log(res);
-              if (res !== 1) {
-                setDelegateIsCompany(false);
-              } else {
-                setDelegateIsCompany(true);
-              }
-            }}
-          >
+          <RadioGroup defaultValue={1}>
             <Radio value={1}>{i18n[lang]['usercenter.company']}</Radio>
             <Radio value={2}>{i18n[lang]['usercenter.individual']}</Radio>
           </RadioGroup>
         </FormItem>
-        {delegateIsCompany ? (
-          <>
-            <FormItem
-              label={i18n[lang]['usercenter.companyName']}
-              field="name"
-              rules={[{ required: true }]}
-              labelCol={{ span: 6, offset: 0 }}
-              wrapperCol={{ span: 18, offset: 0 }}
-              requiredSymbol={{ position: 'end' }}
-            >
-              <Input />
-            </FormItem>
-            <FormItem
-              label={i18n[lang]['usercenter.countryOfIncorporation']}
-              field="country"
-              rules={[{ required: true }]}
-              labelCol={{ span: 6, offset: 0 }}
-              wrapperCol={{ span: 18, offset: 0 }}
-              requiredSymbol={{ position: 'end' }}
-            >
-              <Input />
-            </FormItem>
-            <FormItem
-              label={i18n[lang]['usercenter.companyAddress']}
-              field="address"
-              rules={[{ required: true }]}
-              labelCol={{ span: 6, offset: 0 }}
-              wrapperCol={{ span: 18, offset: 0 }}
-              requiredSymbol={{ position: 'end' }}
-            >
-              <Input />
-            </FormItem>
-            <FormItem
-              label={i18n[lang]['usercenter.companyEmail']}
-              field="email"
-              rules={[{ required: true }]}
-              labelCol={{ span: 6, offset: 0 }}
-              wrapperCol={{ span: 18, offset: 0 }}
-              requiredSymbol={{ position: 'end' }}
-            >
-              <Input />
-            </FormItem>
-            <FormItem
-              label={i18n[lang]['usercenter.companyRegistrationNumber']}
-              field="companyNumber"
-              rules={[{ required: true }]}
-              labelCol={{ span: 6, offset: 0 }}
-              wrapperCol={{ span: 18, offset: 0 }}
-              requiredSymbol={{ position: 'end' }}
-            >
-              <Input />
-            </FormItem>
-            <Form.Item
-              labelCol={{ span: 6, offset: 0 }}
-              wrapperCol={{ span: 18, offset: 0 }}
-              requiredSymbol={{ position: 'end' }}
-              label={i18n[lang]['usercenter.uploadBusinessLicense']}
-              field="license"
-              triggerPropName="fileList"
-              rules={[{ required: true }]}
-            >
-              <Upload
-                listType="picture-card"
-                multiple
-                customRequest={handleUpload}
-                limit={1}
-                drag
-                onPreview={(file: any) => {
-                  Modal.info({
-                    title: 'Preview',
-                    content: (
-                      <img
-                        src={file.url || URL.createObjectURL(file.originFile as Blob | MediaSource)}
-                        style={{
-                          maxWidth: '100%',
-                        }}
-                      ></img>
-                    ),
-                  });
-                }}
-              >
-                <div className={styles['trigger']}>
-                  <div className={styles['trigger-box']}>
-                    <img src={upload} alt="upload" />
-                  </div>
+        <Form.Item shouldUpdate noStyle>
+          {(values) => {
+            return values.represent === 1 || values.represent === undefined ? (
+              <>
+                <FormItem
+                  label={i18n[lang]['usercenter.companyName']}
+                  field="name"
+                  labelCol={{ span: 6, offset: 0 }}
+                  wrapperCol={{ span: 18, offset: 0 }}
+                  requiredSymbol={{ position: 'end' }}
+                  rules={[{ required: true, message: `${i18n[lang]['usercenter.companyNameIsReq']}` }]}
+                >
+                  <Input maxLength={30} showWordLimit />
+                </FormItem>
+                <FormItem
+                  label={i18n[lang]['usercenter.countryOfIncorporation']}
+                  field="country"
+                  labelCol={{ span: 6, offset: 0 }}
+                  wrapperCol={{ span: 18, offset: 0 }}
+                  requiredSymbol={{ position: 'end' }}
+                  rules={[{ required: true, message: `${i18n[lang]['usercenter.countryOfIncorporationIsReq']}` }]}
+                >
+                  <Input maxLength={30} showWordLimit />
+                </FormItem>
+                <FormItem
+                  label={i18n[lang]['usercenter.companyAddress']}
+                  field="address"
+                  labelCol={{ span: 6, offset: 0 }}
+                  wrapperCol={{ span: 18, offset: 0 }}
+                  requiredSymbol={{ position: 'end' }}
+                  rules={[{ required: true, message: `${i18n[lang]['usercenter.companyAddressIsReq']}` }]}
+                >
+                  <Input maxLength={30} showWordLimit />
+                </FormItem>
+                <FormItem
+                  label={i18n[lang]['usercenter.companyEmail']}
+                  field="email"
+                  labelCol={{ span: 6, offset: 0 }}
+                  wrapperCol={{ span: 18, offset: 0 }}
+                  requiredSymbol={{ position: 'end' }}
+                  rules={[
+                    {
+                      match: /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/,
+                      message: `${i18n[lang]['usercenter.emailEnter']}`,
+                    },
+                    { required: true, message: `${i18n[lang]['usercenter.companyEmailIsReq']}` },
+                  ]}
+                >
+                  <Input />
+                </FormItem>
+                <FormItem
+                  label={i18n[lang]['usercenter.companyRegistrationNumber']}
+                  field="companyNumber"
+                  labelCol={{ span: 6, offset: 0 }}
+                  wrapperCol={{ span: 18, offset: 0 }}
+                  requiredSymbol={{ position: 'end' }}
+                  rules={[{ required: true, message: `${i18n[lang]['usercenter.companyRegistrationNumberIsReq']}` }]}
+                >
+                  <Input />
+                </FormItem>
 
-                  <div className={styles['trigger-text']}>
-                    Drag the file here or
-                    <span style={{ color: '#3370FF', padding: '0 4px' }}>Click to upload</span>
-                  </div>
+                <Form.Item
+                  labelCol={{ span: 6, offset: 0 }}
+                  wrapperCol={{ span: 9, offset: 0 }}
+                  requiredSymbol={{ position: 'end' }}
+                  label={i18n[lang]['usercenter.uploadBusinessLicense']}
+                  field="license"
+                  triggerPropName="fileList"
+                  rules={[{ required: true, message: `${i18n[lang]['usercenter.uploadBusinessLicenseIsReq']}` }]}
+                >
+                  <Upload
+                    accept="image/*"
+                    listType="picture-card"
+                    multiple
+                    customRequest={handleUpload}
+                    limit={1}
+                    drag
+                    onPreview={(file: any) => {
+                      Modal.info({
+                        title: 'Preview',
+                        content: (
+                          <img
+                            src={file.url || URL.createObjectURL(file.originFile as Blob | MediaSource)}
+                            style={{
+                              maxWidth: '100%',
+                            }}
+                          ></img>
+                        ),
+                      });
+                    }}
+                  >
+                    <div className={styles['trigger']}>
+                      <div className={styles['trigger-box']}>
+                        <img src={upload} alt="upload" />
+                      </div>
+
+                      <div className={styles['trigger-text']}>
+                        Drag the file here or
+                        <span style={{ color: '#3370FF', padding: '0 4px' }}>Click to upload</span>
+                      </div>
+                    </div>
+                  </Upload>
+                </Form.Item>
+                <div className={styles['footernote']}>
+                  <div className={styles['footernote1']}>{i18n[lang]['usercenter.modalNote']}</div>
                 </div>
-              </Upload>
-            </Form.Item>
-          </>
-        ) : (
-          <>
-            <FormItem
-              label={i18n[lang]['usercenter.name']}
-              field="name"
-              rules={[{ required: true }]}
-              labelCol={{ span: 6, offset: 0 }}
-              wrapperCol={{ span: 18, offset: 0 }}
-              requiredSymbol={{ position: 'end' }}
-            >
-              <Input />
-            </FormItem>
-            <FormItem
-              label={i18n[lang]['usercenter.countryOfUser']}
-              field="country"
-              rules={[{ required: true }]}
-              labelCol={{ span: 6, offset: 0 }}
-              wrapperCol={{ span: 18, offset: 0 }}
-              requiredSymbol={{ position: 'end' }}
-            >
-              <Input />
-            </FormItem>
-            <FormItem
-              label={i18n[lang]['usercenter.addressOfUser']}
-              field="address"
-              rules={[{ required: true }]}
-              labelCol={{ span: 6, offset: 0 }}
-              wrapperCol={{ span: 18, offset: 0 }}
-              requiredSymbol={{ position: 'end' }}
-            >
-              <Input />
-            </FormItem>
-            <FormItem
-              label={i18n[lang]['usercenter.emailOfUser']}
-              field="email"
-              rules={[{ required: true }]}
-              labelCol={{ span: 6, offset: 0 }}
-              wrapperCol={{ span: 18, offset: 0 }}
-              requiredSymbol={{ position: 'end' }}
-            >
-              <Input />
-            </FormItem>
-            <Form.Item
-              labelCol={{ span: 6, offset: 0 }}
-              wrapperCol={{ span: 18, offset: 0 }}
-              requiredSymbol={{ position: 'end' }}
-              label={i18n[lang]['usercenter.uploadPassport']}
-              field="license"
-              triggerPropName="fileList"
-              rules={[{ required: true }]}
-            >
-              {/* <Upload limit={1} listType="picture-card" customRequest={handleUpload} drag>
-            <div className={styles['trigger']}>
-              <div className={styles['trigger-box']}>
-                <img src={upload} alt="upload" />
-              </div>
+              </>
+            ) : (
+              values.represent === 2 && (
+                <>
+                  <FormItem
+                    label={i18n[lang]['usercenter.name']}
+                    field="username"
+                    labelCol={{ span: 6, offset: 0 }}
+                    wrapperCol={{ span: 18, offset: 0 }}
+                    requiredSymbol={{ position: 'end' }}
+                    rules={[{ required: true, message: `${i18n[lang]['usercenter.nameIsReq']}` }]}
+                  >
+                    <Input />
+                  </FormItem>
+                  <FormItem
+                    label={i18n[lang]['usercenter.countryOfUser']}
+                    field="usercountry"
+                    labelCol={{ span: 6, offset: 0 }}
+                    wrapperCol={{ span: 18, offset: 0 }}
+                    requiredSymbol={{ position: 'end' }}
+                    rules={[{ required: true, message: `${i18n[lang]['usercenter.countryOfUserIsReq']}` }]}
+                  >
+                    <Input />
+                  </FormItem>
+                  <FormItem
+                    label={i18n[lang]['usercenter.addressOfUser']}
+                    field="useraddress"
+                    labelCol={{ span: 6, offset: 0 }}
+                    wrapperCol={{ span: 18, offset: 0 }}
+                    requiredSymbol={{ position: 'end' }}
+                    rules={[{ required: true, message: `${i18n[lang]['usercenter.addressOfUserIsReq']}` }]}
+                  >
+                    <Input />
+                  </FormItem>
+                  <FormItem
+                    label={i18n[lang]['usercenter.emailOfUser']}
+                    field="useremail"
+                    labelCol={{ span: 6, offset: 0 }}
+                    wrapperCol={{ span: 18, offset: 0 }}
+                    requiredSymbol={{ position: 'end' }}
+                    rules={[
+                      {
+                        match: /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/,
+                        message: `${i18n[lang]['usercenter.emailEnter']}`,
+                      },
+                      { required: true, message: `${i18n[lang]['usercenter.emailOfUserIsReq']}` },
+                    ]}
+                  >
+                    <Input />
+                  </FormItem>
+                  <Form.Item
+                    labelCol={{ span: 6, offset: 0 }}
+                    wrapperCol={{ span: 9, offset: 0 }}
+                    requiredSymbol={{ position: 'end' }}
+                    label={i18n[lang]['usercenter.uploadPassport']}
+                    field="passPort"
+                    triggerPropName="fileList"
+                    rules={[{ required: true, message: `${i18n[lang]['usercenter.uploadPassportIsReq']}` }]}
+                  >
+                    <Upload
+                      listType="picture-card"
+                      multiple
+                      accept="image/*"
+                      customRequest={handleUpload}
+                      limit={1}
+                      drag
+                      onPreview={(file: any) => {
+                        Modal.info({
+                          title: 'Preview',
+                          content: (
+                            <img
+                              src={file.url || URL.createObjectURL(file.originFile as Blob | MediaSource)}
+                              style={{
+                                maxWidth: '100%',
+                              }}
+                            ></img>
+                          ),
+                        });
+                      }}
+                    >
+                      <div className={styles['trigger']}>
+                        <div className={styles['trigger-box']}>
+                          <img src={upload} alt="upload" />
+                        </div>
 
-              <div className={styles['trigger-text']}>
-                Drag the file here or
-                <span style={{ color: '#3370FF', padding: '0 4px' }}>Click to upload</span>
-              </div>
-            </div>
-          </Upload> */}
-              <Upload
-                listType="picture-card"
-                multiple
-                customRequest={handleUpload}
-                limit={1}
-                drag
-                onPreview={(file: any) => {
-                  Modal.info({
-                    title: 'Preview',
-                    content: (
-                      <img
-                        src={file.url || URL.createObjectURL(file.originFile as Blob | MediaSource)}
-                        style={{
-                          maxWidth: '100%',
-                        }}
-                      ></img>
-                    ),
-                  });
-                }}
-              >
-                <div className={styles['trigger']}>
-                  <div className={styles['trigger-box']}>
-                    <img src={upload} alt="upload" />
-                  </div>
-
-                  <div className={styles['trigger-text']}>
-                    Drag the file here or
-                    <span style={{ color: '#3370FF', padding: '0 4px' }}>Click to upload</span>
-                  </div>
-                </div>
-              </Upload>
-            </Form.Item>
-          </>
-        )}
+                        <div className={styles['trigger-text']}>
+                          Drag the file here or
+                          <span style={{ color: '#3370FF', padding: '0 4px' }}>Click to upload</span>
+                        </div>
+                      </div>
+                    </Upload>
+                  </Form.Item>
+                </>
+              )
+            );
+          }}
+        </Form.Item>
       </Form>
     </Modal>
   );

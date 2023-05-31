@@ -1,5 +1,29 @@
 .moadlwrap {
   :global {
+    .arco-input-word-limit{
+      padding: 0;
+      padding-right: 10px;
+    }
+    .arco-input-inner-wrapper {
+     
+      background-color: #DFE3EE;
+
+      padding: 0;
+      .arco-input {
+       
+       padding-left: 12px;
+      }
+    }
+    .arco-input-inner-wrapper:hover {
+      background-color: #DFE3EE;
+    }
+    .arco-input-group {
+      background-color: #DFE3EE;
+      border-radius: 4px;
+    }
+    .arco-input-group:hover {
+      border: none;
+    }
     .arco-modal-content {
       padding: 0;
     }
@@ -29,6 +53,8 @@
     .arco-input {
       background: #dfe3ee;
       border-radius: 4px;
+      height: 38px;
+      border: none;
     }
     .arco-modal-header {
       margin-bottom: 20px;
@@ -61,6 +87,11 @@
       color: #2d70f1;
       padding: 0;
       margin: 0;
+    }
+    .arco-btn-primary:not(.arco-btn-disabled):not(.arco-btn-loading):hover {
+      border-color: transparent;
+      color: #2366e9;
+      background-color: #e1e2e8;
     }
     // 不能放在这边
     // .arco-btn-primary::after {
@@ -103,4 +134,31 @@
 
     color: #909399;
   }
+}
+
+.footernote {
+  position: relative;
+  .footernote1 {
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 100%;
+    // width: 240px;
+    /* or 12px */
+
+    letter-spacing: -0.02em;
+
+    color: rgba(43, 54, 116, 0.53);
+    position: absolute;
+    top: 48px;
+    left: 300px;
+    margin-bottom: 10px;
+  }
+}
+
+.lengthConfirm {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
