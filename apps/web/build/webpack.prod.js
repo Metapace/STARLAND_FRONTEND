@@ -73,8 +73,4 @@ module.exports = merge(webpackBaseConfig, {
       },
     }),
   ],
-  externals: {
-    react: 'React',
-    'react-dom': 'ReactDOM',
-  },
 });

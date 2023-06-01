@@ -14,8 +14,8 @@ jobs:
       - name: Deploy
         uses: cross-the-world/ssh-scp-ssh-pipelines@latest
         with:
-          host: ${{ secrets.PROD_HOST }}
-          user: ${{secrets.PROD_USERNAME}}
+          host: ${{ secrets.PROD_HOST_NAME }}
+          user: ${{ secrets.PROD_USERNAME }}
           pass: ${{ secrets.PROD_PASSWORD }}
           connect_timeout: 60s
           last_ssh: |
