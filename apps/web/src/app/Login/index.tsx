@@ -17,7 +17,7 @@ type IUserParams = {
 };
 const FormItem = Form.Item;
 
-export const Login: React.FC = () => {
+const Login: React.FC = () => {
   const [form] = Form.useForm();
   const { lang, i18n } = useI18n(locales);
   const [leftTime, setLeftTime] = useState<number>(0);
@@ -70,7 +70,10 @@ export const Login: React.FC = () => {
     <div className={styles.login}>
       <div className={styles.left}>
         <video muted loop className={styles['back-video']} autoPlay>
-          <source src="src/assets/video/login-back.mp4" type="video/mp4" />
+          <source
+            src="https://starlands3.s3.ap-southeast-1.amazonaws.com/starland%2F1685636423118-login-back.mp4"
+            type="video/mp4"
+          />
         </video>
         {/* <LazyLoadImage alt={'pan'} effect="blur" src={LoginLeftPng} /> */}
         {/* <img src={LoginLeftPng} className={styles['background-imgae']} /> */}
@@ -148,3 +151,5 @@ export const Login: React.FC = () => {
     </div>
   );
 };
+
+export default Login;

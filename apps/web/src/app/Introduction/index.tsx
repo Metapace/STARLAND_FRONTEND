@@ -39,14 +39,6 @@ import { useNavigate } from 'react-router-dom';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const getImgae = (name: string) => {
-  return `src/assets/images/${name}.png`;
-};
-
-const getImgaeList = (nameList: Array<string>) => {
-  return nameList.map((name) => getImgae(name));
-};
-
 interface CaseItemProps {
   title: string;
   describe: string;
@@ -185,7 +177,10 @@ const Index: React.FC = () => {
   return (
     <div className={styles.container} ref={containerRef}>
       <video muted loop className={styles['back-video']} autoPlay>
-        <source src="src/assets/video/home-back.mp4" type="video/mp4" />
+        <source
+          src="https://starlands3.s3.ap-southeast-1.amazonaws.com/starland%2F1685636328685-home-back.mp4"
+          type="video/mp4"
+        />
       </video>
       <div className={styles['black-back-imgae']}></div>
       <div className={styles.header}>

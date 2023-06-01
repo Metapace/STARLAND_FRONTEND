@@ -77,8 +77,9 @@ const requestHandler = <T>(
           }
 
           let e = JSON.stringify(data);
-          console.log(data.msg, "---");
-          Message.error(data.msg);
+          if (method === "post") {
+            Message.error(data.msg);
+          }
           console.log(`请求错误：${e}`);
           // 数据请求错误 使用reject将错误返回
           reject(data);
@@ -88,9 +89,9 @@ const requestHandler = <T>(
         }
       })
       .catch((error) => {
-        let e = JSON.stringify(error);
-        Message.warning(`网络错误：${e}`);
-        console.log(`网络错误：${e}`);
+        if (method === "post") {
+          Message.warning(`network is busy, please try again later!`);
+        }
         reject(error);
       });
   });

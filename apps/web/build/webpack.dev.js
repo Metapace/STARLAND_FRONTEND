@@ -1,6 +1,6 @@
-const webpack = require('webpack')
-const webpacBaseConfig = require('./webpack.config')
-const { merge } = require('webpack-merge') // 5.x
+const webpack = require('webpack');
+const webpacBaseConfig = require('./webpack.config');
+const { merge } = require('webpack-merge'); // 5.x
 
 module.exports = merge(webpacBaseConfig, {
   mode: process.env.NODE_ENV,
@@ -19,14 +19,13 @@ module.exports = merge(webpacBaseConfig, {
     historyApiFallback: true, // 处理BowerRouter
     compress: true,
     proxy: {
-      '/customerAdmin': { // 代理名字
+      '/customerAdmin': {
+        // 代理名字
         target: process.env.REACT_APP_TARGETURL,
         pathRewrite: { '^/customerAdmin': '' },
-        changeOrigin: true
-      }
+        changeOrigin: true,
+      },
     },
   },
-  plugins: [
-    new webpack.ProgressPlugin({}),
-  ],
-})
+  plugins: [new webpack.ProgressPlugin({})],
+});

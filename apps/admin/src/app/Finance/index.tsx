@@ -117,7 +117,7 @@ const Index = () => {
         >
           <Grid.Row gutter={24}>
             <Grid.Col span={8}>
-              <Form.Item label="时间" field="date_type" labelAlign="left" labelCol={{ span: 2 }}>
+              <Form.Item label="时间" field="date_type" labelAlign="left" labelCol={{ span: 4 }}>
                 <Select placeholder="请选择时间">
                   {Object.keys(FinanceDataEnumMap).map((key) => (
                     <Option key={key} value={key}>
@@ -140,7 +140,7 @@ const Index = () => {
             </Grid.Col>
             <Grid.Col span={2} style={{ textAlign: 'right' }}>
               <Button onClick={handleSearch} type="primary">
-                搜索123123
+                搜索
               </Button>
             </Grid.Col>
           </Grid.Row>

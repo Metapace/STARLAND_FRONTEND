@@ -5,7 +5,7 @@ import { TokenName } from 'src/utils/localSet';
 
 import LayoutMain from '../../Layout/Layout';
 
-export const Home: React.FC = () => {
+const Home: React.FC = () => {
   const navigate = useNavigate();
   const [userToken] = useLocalStorageState(TokenName);
   useEffect(() => {
@@ -16,3 +16,5 @@ export const Home: React.FC = () => {
 
   return <LayoutMain />;
 };
+
+export default Home;
