@@ -1,0 +1,25 @@
+name: note build
+# 触发workflow的条件
+on:
+  push:
+    # 只有main分支发生push事件时，才会触发workflow
+    branches: [main]
+
+jobs:
+  build: # 任务的job_id，具体名称自定义，这里build代表打包
+    runs-on: ubuntu-latest # runs-on字段指定运行所需要的虚拟机环境。注意：这个是必填字段
+    steps:
+      - uses: actions/checkout@main
+      # 上传打包资源
+      - name: Deploy
+        uses: cross-the-world/ssh-scp-ssh-pipelines@latest
+        with:
+          host: ${{ secrets.PROD_HOST }}
+          user: ${{secrets.PROD_USERNAME}}
+          pass: ${{ secrets.PROD_PASSWORD }}
+          connect_timeout: 60s
+          last_ssh: |
+            cd ../frontend/STARLAND_FRONTEND/
+            git checkout .
+            git pull
+            docker compose up --build -d
