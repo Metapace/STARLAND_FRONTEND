@@ -63,9 +63,6 @@ module.exports = merge(webpackBaseConfig, {
       chunkFilename: '[name].chunk.css',
     }),
     new CssMinimizerPlugin(),
-    new webpack.BannerPlugin({
-      banner: 'yaogengzhu, Inc.\nAll rights reserved.\n',
-    }),
     new TerserPlugin({
       parallel: false,
       terserOptions: {
@@ -73,8 +70,4 @@ module.exports = merge(webpackBaseConfig, {
       },
     }),
   ],
-  externals: {
-    react: 'React',
-    'react-dom': 'ReactDOM',
-  },
 });

@@ -6,21 +6,21 @@
     "start:web": "cross-env SERVICES_ENV=development turbo run dev --filter=web --filter=utils --filter=apis",
     "start:admin": "cross-env SERVICES_ENV=development turbo run dev --filter=admin --filter=utils --filter=apis",
     "build:web": "cross-env SERVICES_ENV=production turbo run build --filter=web --filter=utils --filter=apis",
-    "build:admin": "cross-env SERVICES_ENV=production turbo run build --filter=admin --filter=utils --filter=apis",
+    "build:admin": "cross-env SERVICES_ENV=development turbo run build --filter=admin --filter=utils --filter=apis",
     "lint": "eslint --ext .ts --ext .tsx src --fix"
   },
   "devDependencies": {
-    "@commitlint/config-conventional": "^17.6.3",
-    "@types/node": "^20.2.3",
-    "@types/react": "^18.1.0",
+    "@commitlint/config-conventional": "^17.6.5",
+    "@types/node": "^20.2.5",
+    "@types/react": "^18.2.7",
     "cross-env": "^7.0.3",
     "cz-git": "^1.6.1",
-    "dotenv": "^16.0.3",
+    "dotenv": "^16.1.1",
     "dotenv-webpack": "^8.0.1",
     "eslint": "^8.4.1",
-    "husky": "^8.0.1",
+    "husky": "^8.0.3",
     "pre-commit": "^1.2.2",
-    "prettier": "^2.5.1",
+    "prettier": "^2.8.8",
     "turbo": "latest"
   },
   "lint-staged": {
@@ -36,19 +36,19 @@
   },
   "packageManager": "pnpm@7.15.0",
   "dependencies": {
-    "@arco-design/web-react": "^2.33.0",
-    "@tanstack/react-query": "^4.29.7",
+    "@arco-design/web-react": "^2.48.2",
+    "@tanstack/react-query": "^4.29.12",
     "ahooks": "^3.7.7",
-    "apis": "workspace:^1.0.0",
-    "axios": "^0.26.0",
+    "apis": "workspace:1.0.0",
+    "axios": "^0.26.1",
     "dayjs": "^1.11.7",
     "eslint": "^7.32.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-import": "^2.23.4",
-    "eslint-plugin-prettier": "^3.4.0",
-    "eslint-plugin-react": "^7.24.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-prettier": "^3.4.1",
+    "eslint-plugin-react": "^7.32.2",
     "node-polyfill-webpack-plugin": "^2.0.1",
-    "react-svg": "^16.1.12",
-    "utils": "workspace:^1.0.0"
+    "react-svg": "^16.1.14",
+    "utils": "workspace:1.0.0"
   }
 }

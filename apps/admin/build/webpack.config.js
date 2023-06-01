@@ -9,7 +9,6 @@ const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
 
 require('dotenv').config({ path: path.join(__dirname, '../../../', `environments/.env.${process.env.SERVICES_ENV}`) });
 
-console.log(process.env, 'process.env');
 const REACT_APP = /^VITE_/i;
 function getClientEnvironment() {
   // PUBLIC_URL --> 公共URL
@@ -24,7 +23,7 @@ function getClientEnvironment() {
         NODE_ENV: process.env.NODE_ENV || 'development',
       },
     );
-  console.log(raw, '--');
+
   // 注入环境变量
   const stringified = {
     'process.env': Object.keys(raw).reduce((env, key) => {
@@ -47,8 +46,7 @@ module.exports = {
     filename: 'js/[name].[chunkhash:4].js',
     path: path.resolve(rootDir, 'dist'),
     // publicPath: 'https://oss.yaogeng.top/prod/web/reactArcoAdmin',
-    publicPath:
-      process.env.npm_lifecycle_event === 'deploy' ? 'https://react-arco-admin.github.io/react-arco-admin/' : '/',
+    publicPath: '/',
     clean: true, // 清空打包旧文件
   },
   resolve: {
@@ -181,7 +179,7 @@ module.exports = {
     new FriendlyErrorsWebpackPlugin({
       compilationSuccessInfo: {
         // messages: [`You application is running here ${env.stringified['process.env'].REACT_APP_SERVER_DOMAIN}`],
-        messages: ['You application is running here http://localhost:8080'],
+        messages: ['You application is running here http://localhost:8090'],
         notes: ['successful 🚀'],
       },
     }),
