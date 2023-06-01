@@ -5,3 +5,4 @@ template/*
 /*.d.ts
 declaration.d.ts
 *.js
+dist

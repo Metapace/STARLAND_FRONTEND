@@ -90,6 +90,7 @@ module.exports = {
           },
         ],
       },
+      { test: /\.mp4$/, type: 'asset/source' },
       {
         test: /\.less$/i,
         use: [

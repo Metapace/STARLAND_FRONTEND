@@ -6,10 +6,10 @@ RUN npm install pnpm -g
 COPY . .
 RUN pnpm i
 
-RUN npm run build:admin
+RUN npm run build:web
 
 EXPOSE 80
-COPY ./apps/admin/nginx.conf /etc/nginx/conf.d/default.conf
+COPY ./apps/web/nginx.conf /etc/nginx/conf.d/default.conf
 
 CMD ["nginx", "-g", "daemon off;"]
 

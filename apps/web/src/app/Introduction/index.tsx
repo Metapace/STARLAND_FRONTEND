@@ -20,6 +20,21 @@ import sdkImage from 'src/assets/images/home/home-sdk.png';
 import deheroImage from 'src/assets/images/home/dehero.png';
 import metaceneImage from 'src/assets/images/home/metacene.png';
 import unipassImage from 'src/assets/images/home/unipass.png';
+import web2AppFlys from 'src/assets/images/home/web2-appFlys.png';
+import web2AppLovin from 'src/assets/images/home/web2-appLovin.png';
+import web2Djust from 'src/assets/images/home/web2-Djust.png';
+import web2Meta from 'src/assets/images/home/web2-meta.png';
+import web2PetalADs from 'src/assets/images/home/web2-Petal ADs.png';
+import web2Tiktok from 'src/assets/images/home/web2-tiktok.png';
+import web2Topon from 'src/assets/images/home/web2-topon.png';
+import web2Unity from 'src/assets/images/home/web2-unity.png';
+import web3BlockS from 'src/assets/images/home/web3-blockS.png';
+import web3Bsc from 'src/assets/images/home/web3-Bsc.png';
+import web3CoinCdex from 'src/assets/images/home/web3-coinCdex.png';
+import web3CoinGeko from 'src/assets/images/home/web3-coinGeko.png';
+import web3Coingape from 'src/assets/images/home/web3-coingape.png';
+import web3Whattomine from 'src/assets/images/home/web3-whattomine.png';
+import web3StormGain from 'src/assets/images/home/web3-stormGain.png';
 import { useNavigate } from 'react-router-dom';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -67,7 +82,6 @@ const Index: React.FC = () => {
   const q = gsap.utils.selector(containerRef);
   const navigate = useNavigate();
   const handleScrollTo = (ref: React.RefObject<HTMLDivElement>) => {
-    // use gsap will generate virtual block when scoll down, so scroll from top and scroll from bottom is different
     setTimeout(() => {
       ref.current?.scrollIntoView({ block: 'start' });
     }, 10);
@@ -229,29 +243,12 @@ const Index: React.FC = () => {
         <div className={styles['advantage-sub-title']}>/Web2</div>
         <ScrollBar
           barNumber={1}
-          contentList={getImgaeList([
-            'web2-appFlys',
-            'web2-appLovin',
-            'web2-Djust',
-            'web2-meta',
-            'web2-Petal ADs',
-            'web2-tiktok',
-            'web2-topon',
-            'web2-unity',
-          ])}
+          contentList={[web2AppFlys, web2AppLovin, web2Djust, web2Meta, web2PetalADs, web2Tiktok, web2Topon, web2Unity]}
         />
         <div className={classNames(styles['advantage-sub-title'], styles['web3-title'])}>/Web3</div>
         <ScrollBar
           barNumber={2}
-          contentList={getImgaeList([
-            'web3-blockS',
-            'web3-Bsc',
-            'web3-coinCdex',
-            'web3-coingape',
-            'web3-coinGeko',
-            'web3-stormGain',
-            'web3-whattomine',
-          ])}
+          contentList={[web3BlockS, web3Bsc, web3CoinCdex, web3CoinGeko, web3Coingape, web3Whattomine, web3StormGain]}
           floatType="right"
         />
       </div>

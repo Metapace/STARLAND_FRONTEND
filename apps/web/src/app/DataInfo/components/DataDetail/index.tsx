@@ -36,7 +36,7 @@ interface DataDetailBoxProps {
 
 const DataDetailBox: React.FC<DataDetailBoxProps> = ({ startTime, endTime, channel, state, id, refetch }) => {
   const { lang, i18n } = useI18n(locale);
-  const { mutateAsync: updataMaterial, isLoading } = useMutationUpdateMaterial();
+  const { mutateAsync: updataMaterial } = useMutationUpdateMaterial();
   const [visible, setVisible] = React.useState(false);
 
   const handleSubmit = async (activityId: number) => {
@@ -97,7 +97,7 @@ const DataDetailBox: React.FC<DataDetailBoxProps> = ({ startTime, endTime, chann
         onOk={() => handleSubmit(id)}
         onCancel={() => setVisible(false)}
         autoFocus={false}
-        focusLock={true}
+        focusLock
         maskClosable={false}
         style={{
           background: '#E9ECF4',
