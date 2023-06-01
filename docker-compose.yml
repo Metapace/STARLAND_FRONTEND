@@ -1,11 +1,11 @@
 services:
-  web:
+  admin:
     build:
       context: ./
       dockerfile: ./apps/admin/Dockerfile
     ports:
       - "8080:80"
-  admin:
+  web:
     build:
       context: ./
       dockerfile: ./apps/web/Dockerfile
