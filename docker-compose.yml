@@ -10,4 +10,4 @@ services:
       context: ./
       dockerfile: ./apps/web/Dockerfile
     ports:
-      - "8090:80"
+      - "9080:80"
