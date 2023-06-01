@@ -270,7 +270,7 @@ const Index = () => {
             <div style={{ width: '200px' }} className={styles['dataovervie-box3']}>
               <p>{i18n[lang]['datainfo.click-throughRate']}</p>
               <p style={{ color: '#6B0EDD', fontSize: '20px', fontWeight: '600' }}>
-                {dataOverview == null ? '0' : dataOverview && dataOverview[0].ctr.toFixed(2)}%
+                {dataOverview == null ? '0' : dataOverview && +dataOverview[0].ctr.toFixed(2) * 100}%
               </p>
             </div>
             <div>
