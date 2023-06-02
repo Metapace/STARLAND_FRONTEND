@@ -80,7 +80,7 @@ export const Login: React.FC = () => {
                 noStyle={{ showErrorTip: true }}
                 rules={[{ required: true, message: '请输入密码' }]}
               >
-                <Input placeholder="Enter Password" style={{ flex: 1 }} />
+                <Input placeholder="Enter Password" style={{ flex: 1 }} type="password" />
               </FormItem>
             </Grid.Row>
           </FormItem>
