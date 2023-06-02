@@ -7,6 +7,7 @@ import useI18n from 'src/ahooks/useI18n';
 import { useMount, useScroll } from 'ahooks';
 import locale from './locales';
 import ScrollBar from './components/scrollBar';
+import { useInView } from 'react-intersection-observer';
 import classNames from 'classnames';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
@@ -72,6 +73,19 @@ const Index: React.FC = () => {
   const exampleRef = useRef<HTMLDivElement>(null);
   const [tabStatus, setTabStatus] = useState<TabType>(TabType.Home);
   const q = gsap.utils.selector(containerRef);
+  const { ref: ref1, inView: inView1 } = useInView({
+    threshold: 0,
+  });
+  const { ref: ref2, inView: inView2 } = useInView({
+    threshold: 0,
+  });
+  const { ref: ref3, inView: inView3 } = useInView({
+    threshold: 0,
+  });
+  const { ref: ref4, inView: inView4 } = useInView({
+    threshold: 0,
+  });
+
   const navigate = useNavigate();
   const handleScrollTo = (ref: React.RefObject<HTMLDivElement>) => {
     setTimeout(() => {
@@ -81,23 +95,41 @@ const Index: React.FC = () => {
   };
   const scroll = useScroll(document);
   useEffect(() => {
-    if (scroll && advantageRef?.current && marketRef?.current && exampleRef?.current) {
-      const { top } = scroll;
-      if (top > exampleRef?.current?.getBoundingClientRect()?.top) {
-        setTabStatus(TabType.Example);
-        return;
-      }
-      if (top > marketRef?.current?.getBoundingClientRect()?.top) {
-        setTabStatus(TabType.Market);
-        return;
-      }
-      if (top > advantageRef?.current?.getBoundingClientRect()?.top) {
-        setTabStatus(TabType.Advantage);
-        return;
-      }
+    if (inView1) {
       setTabStatus(TabType.Home);
+      return;
     }
-  }, [scroll]);
+    if (inView2) {
+      setTabStatus(TabType.Advantage);
+      return;
+    }
+    if (inView3) {
+      setTabStatus(TabType.Market);
+      return;
+    }
+    if (inView4) {
+      setTabStatus(TabType.Example);
+      return;
+    }
+  }, [inView1, inView2, inView3, inView4]);
+  // useEffect(() => {
+  //   if (scroll && exampleRef?.current && advantageRef?.current && marketRef?.current) {
+  //     const { top } = scroll;
+  //     if (top > exampleRef?.current?.getBoundingClientRect()?.top) {
+  //       setTabStatus(TabType.Example);
+  //       return;
+  //     }
+  //     if (top > marketRef?.current?.getBoundingClientRect()?.top) {
+  //       setTabStatus(TabType.Market);
+  //       return;
+  //     }
+  //     if (top > advantageRef?.current?.getBoundingClientRect()?.top) {
+  //       setTabStatus(TabType.Advantage);
+  //       return;
+  //     }
+  //     setTabStatus(TabType.Home);
+  //   }
+  // }, [scroll]);
   useMount(() => {
     gsap.fromTo(
       q('#advantage-title'),
@@ -187,8 +219,8 @@ const Index: React.FC = () => {
         <img src={Logo} alt="" className={styles.logo} />
         <div className={styles['tab-button-container']}>
           <div
-            className={classNames(styles['tab-button'])}
-            // className={classNames(styles['tab-button'], tabStatus === TabType.Home && styles['selected-tab-button'])}
+            // className={classNames(styles['tab-button'])}
+            className={classNames(styles['tab-button'], tabStatus === TabType.Home && styles['selected-tab-button'])}
             onClick={() => handleScrollTo(homeRef)}
           >
             {i18n[lang]['intro.home']}
@@ -196,22 +228,22 @@ const Index: React.FC = () => {
           <div
             className={classNames(
               styles['tab-button'],
-              //   tabStatus === TabType.Advantage && styles['selected-tab-button'],
+              tabStatus === TabType.Advantage && styles['selected-tab-button'],
             )}
             onClick={() => handleScrollTo(advantageRef)}
           >
             {i18n[lang]['intro.advantage']}
           </div>
           <div
-            className={classNames(styles['tab-button'])}
-            // className={classNames(styles['tab-button'], tabStatus === TabType.Market && styles['selected-tab-button'])}
+            // className={classNames(styles['tab-button'])}
+            className={classNames(styles['tab-button'], tabStatus === TabType.Market && styles['selected-tab-button'])}
             onClick={() => handleScrollTo(marketRef)}
           >
             {i18n[lang]['intro.market']}
           </div>
           <div
-            className={classNames(styles['tab-button'])}
-            // className={classNames(styles['tab-button'], tabStatus === TabType.Example && styles['selected-tab-button'])}
+            // className={classNames(styles['tab-button'])}
+            className={classNames(styles['tab-button'], tabStatus === TabType.Example && styles['selected-tab-button'])}
             onClick={() => handleScrollTo(exampleRef)}
           >
             {i18n[lang]['intro.example']}
@@ -223,7 +255,7 @@ const Index: React.FC = () => {
       </div>
       {/* {home area start} */}
       <div className={styles['home-area']} id="home-area" ref={homeRef}>
-        <div className={styles['home-title']}>
+        <div className={styles['home-title']} ref={ref1}>
           <div> {i18n[lang]['intro.home.title1']} </div>
           <div> {i18n[lang]['intro.home.title2']} </div>
         </div>
@@ -235,7 +267,9 @@ const Index: React.FC = () => {
         <div className={styles['advantage-title']} id="advantage-title">
           {i18n[lang]['intro.advantage.title']}
         </div>
-        <div className={styles['advantage-sub-title']}>/Web2</div>
+        <div className={styles['advantage-sub-title']} ref={ref2}>
+          /Web2
+        </div>
         <ScrollBar
           barNumber={1}
           contentList={[web2AppFlys, web2AppLovin, web2Djust, web2Meta, web2PetalADs, web2Tiktok, web2Topon, web2Unity]}
@@ -264,7 +298,7 @@ const Index: React.FC = () => {
             <LazyLoadImage alt={'palte'} effect="blur" src={adsImage} />
           </div>
         </div>
-        <div className={styles['market-area-bottom']}>
+        <div className={styles['market-area-bottom']} ref={ref3}>
           <div className={classNames(styles['sdk'], styles['common-background'])}>
             <div className={styles['market-item-title']}>{i18n[lang]['intro.market.sdk']}</div>
             <LazyLoadImage alt={'palte'} effect="blur" src={sdkImage} />
@@ -289,7 +323,7 @@ const Index: React.FC = () => {
         <div className={styles['case-title']} id="case-title">
           {i18n[lang]['intro.case.title']}
         </div>
-        <div className={styles['case-content']} id="case-content">
+        <div className={styles['case-content']} id="case-content" ref={ref4}>
           <CaseItem
             title="Dehero"
             describe="DeHeroGame ($AMG) is a GameFi 2.0 NFT TCG launched as the 1st gaming dapp on Rangers Protocol."
