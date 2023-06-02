@@ -1,5 +1,5 @@
 FROM node:18
-RUN apt-get update && apt-get install -y nginx
+RUN apt-get update && apt-get install -y nginx && apt-get install vim
 WORKDIR /usr/src/app
 
 RUN npm install pnpm -g
