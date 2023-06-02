@@ -14,9 +14,9 @@ jobs:
       - name: Deploy
         uses: cross-the-world/ssh-scp-ssh-pipelines@latest
         with:
-          host: ${{ secrets.PROD_HOST_NAME }}
-          user: ${{ secrets.PROD_USERNAME }}
-          pass: ${{ secrets.PROD_PASSWORD }}
+          host: ${{ secrets.STARLAND_HOST_NAME }}
+          user: ${{ secrets.STARLAND_USERNAME }}
+          pass: ${{ secrets.STARLAND_PASSWORD }}
           connect_timeout: 60s
           last_ssh: |
             cd ../frontend/STARLAND_FRONTEND/
