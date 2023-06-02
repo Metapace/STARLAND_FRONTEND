@@ -34,26 +34,7 @@ module.exports = merge(webpackBaseConfig, {
     ],
   },
   optimization: {
-    splitChunks: {
-      // 分割代码块
-      cacheGroups: {
-        // 缓存组
-        common: {
-          name: 'common',
-          chunks: 'all',
-          minSize: 0,
-          minChunks: 1, // 用到两次以上
-        },
-        vendor: {
-          name: 'vendor',
-          priority: 1, // 权重
-          test: /node_modules/,
-          chunks: 'all',
-          minSize: 0,
-          minChunks: 1, // 用到两次以上
-        },
-      },
-    },
+    minimize: true,
   },
   plugins: [
     // new BundleAnalyzerPlugin(),
@@ -63,9 +44,6 @@ module.exports = merge(webpackBaseConfig, {
       chunkFilename: '[name].chunk.css',
     }),
     new CssMinimizerPlugin(),
-    new webpack.BannerPlugin({
-      banner: 'yaogengzhu, Inc.\nAll rights reserved.\n',
-    }),
     new TerserPlugin({
       parallel: false,
       terserOptions: {
