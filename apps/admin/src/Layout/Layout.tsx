@@ -26,7 +26,14 @@ const LayoutMain: React.FC = () => {
         <Header />
       </div>
       <Sider
-        style={{ marginTop: '60px', position: 'absolute', top: 0, left: 0, bottom: 0, backgroundColor: '#2D70F1' }}
+        style={{
+          marginTop: '60px',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          bottom: 0,
+          backgroundColor: 'rgb(3, 31, 78)',
+        }}
         collapsed={collapsed}
         onCollapse={handleCollapsed}
         collapsible

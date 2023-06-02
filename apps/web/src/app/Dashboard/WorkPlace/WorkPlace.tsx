@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, CSSProperties } from 'react';
 import styles from './index.module.less';
 import { useNavigate } from 'react-router-dom';
 import useI18n from 'src/ahooks/useI18n';
@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import DataItem, { ChartType } from './components/dataItem';
 import costImage from 'src/assets/images/dashbord/cost.png';
 import createImage from 'src/assets/images/dashbord/create.png';
+import allBalanceImage from 'src/assets/images/dashbord/all-balance.png';
 import avalibleImage from 'src/assets/images/dashbord/avalible.png';
 import blueAdd from 'src/assets/images/dashbord/blue-add.png';
 import orangeAdd from 'src/assets/images/dashbord/orange-add.png';
@@ -24,6 +25,18 @@ import huawei from 'src/assets/images/dashbord/c-huawei.png';
 import prokwai from 'src/assets/images/dashbord/c-prokwai.png';
 import Taboola from 'src/assets/images/dashbord/c-Taboola.png';
 import Mytarget from 'src/assets/images/dashbord/c-Mytarget.png';
+import web31 from 'src/assets/images/dashbord/web3-1.png';
+import web32 from 'src/assets/images/dashbord/web3-2.png';
+import web33 from 'src/assets/images/dashbord/web3-3.png';
+import web34 from 'src/assets/images/dashbord/web3-4.png';
+import web35 from 'src/assets/images/dashbord/web3-5.png';
+import web36 from 'src/assets/images/dashbord/web3-6.png';
+import web37 from 'src/assets/images/dashbord/web3-7.png';
+import web38 from 'src/assets/images/dashbord/web3-8.png';
+import web39 from 'src/assets/images/dashbord/web3-9.png';
+import web310 from 'src/assets/images/dashbord/web3-10.png';
+import web311 from 'src/assets/images/dashbord/web3-11.png';
+import web312 from 'src/assets/images/dashbord/web3-12.png';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import CountUp from 'react-countup';
 import { useTransformInfoContent } from 'src/app/Message/components/MessageItem';
@@ -59,12 +72,17 @@ interface TitleImageItemProps {
   img: string;
   title: string;
   classname?: string;
+  imageBackcolor: string;
+  imgstyle: CSSProperties;
 }
 
-const TitleImageItem: React.FC<TitleImageItemProps> = ({ img, title, classname }) => {
+const TitleImageItem: React.FC<TitleImageItemProps> = ({ img, title, classname, imageBackcolor, imgstyle }) => {
   return (
     <div className={classNames(styles['title-image-item'], classname && styles[classname])}>
-      <img src={img} alt="" />
+      <div className={styles['title-image-item-image-container']} style={{ backgroundColor: imageBackcolor }}>
+        <img src={img} alt="" style={imgstyle} />
+      </div>
+
       <div className={styles['img-title']}>{title}</div>
     </div>
   );
@@ -121,8 +139,10 @@ interface MarketItemProps {
 
 const marketItemList1 = [BIGO, Dable, Meta, Snapchat, TikTok, Yandex];
 const marketItemList2 = [eagllwin, googleAds, huawei, prokwai, Taboola, Mytarget];
+const marketItemList3 = [web31, web32, web33, web34, web35, web36];
+const marketItemList4 = [web37, web38, web39, web310, web311, web312];
 
-const MarketItem: React.FC<MarketItemProps> = ({ src, width = '72px', height = '22px' }) => {
+const MarketItem: React.FC<MarketItemProps> = ({ src, width = '72px' }) => {
   return (
     <div className={styles['market-item-one']}>
       <LazyLoadImage src={src} alt={'web2'} effect="blur" width={width} />
@@ -170,7 +190,12 @@ const Workplace = () => {
       <div className={styles['top-item-list']}>
         <div className={classNames(styles['account-item'], styles['common-item'])}>
           <div className={classNames(styles['top-item'], styles['account-item-inner'])}>
-            <TitleImageItem img={avalibleImage} title={i18n[lang]['account.number']} />
+            <TitleImageItem
+              img={allBalanceImage}
+              title={i18n[lang]['account.number']}
+              imageBackcolor="#CAD9F7"
+              imgstyle={{ width: '11px', height: '19px' }}
+            />
             <div className={styles['account-item-inner-text']}>
               <DollarItem color="blue" dollar={+(data2?.balance || 0)} />
               <div className={styles['tip-text']}>
@@ -180,7 +205,12 @@ const Workplace = () => {
             </div>
           </div>
           <div className={classNames(styles['bottom-item'], styles['account-item-inner'])}>
-            <TitleImageItem img={avalibleImage} title={i18n[lang]['avalible.number']} />
+            <TitleImageItem
+              img={avalibleImage}
+              title={i18n[lang]['avalible.number']}
+              imageBackcolor="#E1DBCD"
+              imgstyle={{ width: '24px', height: '24px' }}
+            />
             <div className={styles['account-item-inner-text']}>
               <DollarItem color="orange" dollar={data2?.available_balance || 0} />
             </div>
@@ -194,7 +224,13 @@ const Workplace = () => {
           </div>
         </div>
         <div className={classNames(styles['activity-item'], styles['common-item'])}>
-          <TitleImageItem img={createImage} title={i18n[lang]['create.campagin']} classname="creat-title-imgae" />
+          <TitleImageItem
+            img={createImage}
+            title={i18n[lang]['create.campagin']}
+            classname="creat-title-imgae"
+            imageBackcolor="#E1DBCD"
+            imgstyle={{ width: '12px', height: '14px' }}
+          />
           <div className={styles['totla-number']}>
             {data2?.total_activity} <span>{i18n[lang]['pcs.pcs']}</span>
           </div>
@@ -212,7 +248,13 @@ const Workplace = () => {
         </div>
         <div className={classNames(styles['cost-item'], styles['common-item'])}>
           <div style={{ marginTop: '24px' }}></div>
-          <TitleImageItem img={costImage} title={i18n[lang]['yesterday.cost']} classname="creat-title-imgae" />
+          <TitleImageItem
+            img={costImage}
+            title={i18n[lang]['yesterday.cost']}
+            classname="creat-title-imgae"
+            imageBackcolor="#4318ff3b"
+            imgstyle={{ width: '16px', height: '16px' }}
+          />
           <DollarItem color="purple" dollar={lastDayDate?.cost || 0} size="large"></DollarItem>
           <div
             className={classNames('common-button', styles['cost-button'], styles['common-button'])}
@@ -242,6 +284,7 @@ const Workplace = () => {
       </div>
 
       <div className={styles['item-title']}>{`${i18n[lang]['dashbord.marketChannel']}`}</div>
+      <div className={styles['market-channel-title']}>WEB2</div>
       <div className={classNames(styles['common-item'], styles['market-item'])}>
         <div>
           {marketItemList1.map((src: string) => (
@@ -254,7 +297,20 @@ const Workplace = () => {
           ))}
         </div>
       </div>
-      <div className={styles['channel-item-list']}>
+      <div className={styles['market-channel-title']}>WEB3</div>
+      <div className={classNames(styles['common-item'], styles['market-item'])}>
+        <div>
+          {marketItemList3.map((src: string) => (
+            <MarketItem src={src} key={src}></MarketItem>
+          ))}
+        </div>
+        <div>
+          {marketItemList4.map((src: string) => (
+            <MarketItem src={src} key={src}></MarketItem>
+          ))}
+        </div>
+      </div>
+      {/* <div className={styles['channel-item-list']}>
         <ChannelItem
           title={`${i18n[lang]['channel-item-title1']}`}
           describle={`${i18n[lang]['channel-item-decribe']}`}
@@ -273,7 +329,7 @@ const Workplace = () => {
           title={`${i18n[lang]['channel-item-title4']}`}
           describle={`${i18n[lang]['channel-item-decribe']}`}
         ></ChannelItem>
-      </div>
+      </div> */}
     </div>
   );
 };

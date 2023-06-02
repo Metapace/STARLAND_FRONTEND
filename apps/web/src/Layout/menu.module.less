@@ -1,5 +1,17 @@
 .menu-container {
   background-color: var(--blue-text-color);
+  :global {
+    .arco-menu-selected {
+      a {
+        color: #0037a1;
+        svg {
+          path {
+            stroke: #0037a1;
+          }
+        }
+      }
+    }
+  }
 }
 .sub-menu-container {
   color: #ffffff;
@@ -12,13 +24,6 @@
         background-color: var(--blue-text-color);
       }
     }
-
-    .arco-menu-selected {
-      color: #0037a1 !important;
-      &:hover {
-        background-color: var(--blue-text-color) !important;
-      }
-    }
     .arco-icon {
       color: #ffffff !important;
     }
@@ -27,7 +32,6 @@
 .menu-item-container {
   color: #ffffff;
   background-color: var(--blue-text-color) !important;
-
   a {
     display: flex;
     align-items: center;

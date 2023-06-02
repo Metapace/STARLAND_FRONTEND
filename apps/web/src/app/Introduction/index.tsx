@@ -4,7 +4,7 @@ import ScrollTrigger from 'gsap/ScrollTrigger';
 import styles from './index.module.less';
 import Logo from 'src/assets/images/starland-log.png';
 import useI18n from 'src/ahooks/useI18n';
-import { useMount, useScroll } from 'ahooks';
+import { useMount } from 'ahooks';
 import locale from './locales';
 import ScrollBar from './components/scrollBar';
 import { useInView } from 'react-intersection-observer';
@@ -37,6 +37,7 @@ import web3Coingape from 'src/assets/images/home/web3-coingape.png';
 import web3Whattomine from 'src/assets/images/home/web3-whattomine.png';
 import web3StormGain from 'src/assets/images/home/web3-stormGain.png';
 import { useNavigate } from 'react-router-dom';
+import { Menu, Dropdown } from '@arco-design/web-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -64,14 +65,19 @@ const CaseItem: React.FC<CaseItemProps> = ({ title, describe, img }) => {
   );
 };
 
+const themeStyle = {
+  background: 'var(--theme-color)',
+  color: '#fff',
+};
+
 const Index: React.FC = () => {
-  const { lang, i18n } = useI18n(locale);
   const containerRef = useRef<HTMLDivElement>(null);
   const homeRef = useRef<HTMLDivElement>(null);
   const advantageRef = useRef<HTMLDivElement>(null);
   const marketRef = useRef<HTMLDivElement>(null);
   const exampleRef = useRef<HTMLDivElement>(null);
   const [tabStatus, setTabStatus] = useState<TabType>(TabType.Home);
+  const { lang, i18n, changeLanguage } = useI18n(locale);
   const q = gsap.utils.selector(containerRef);
   const { ref: ref1, inView: inView1 } = useInView({
     threshold: 0,
@@ -85,6 +91,16 @@ const Index: React.FC = () => {
   const { ref: ref4, inView: inView4 } = useInView({
     threshold: 0,
   });
+  const languageList = (
+    <Menu onClickMenuItem={changeLanguage} defaultSelectedKeys={[lang]}>
+      <Menu.Item style={lang === 'zh-CN' ? themeStyle : {}} key="zh-CN">
+        中文
+      </Menu.Item>
+      <Menu.Item style={lang === 'en-US' ? themeStyle : {}} key="en-US">
+        English
+      </Menu.Item>
+    </Menu>
+  );
 
   const navigate = useNavigate();
   const handleScrollTo = (ref: React.RefObject<HTMLDivElement>) => {
@@ -93,7 +109,6 @@ const Index: React.FC = () => {
     }, 10);
     exampleRef.current?.scrollIntoView({ block: 'end' });
   };
-  const scroll = useScroll(document);
   useEffect(() => {
     if (inView1) {
       setTabStatus(TabType.Home);
@@ -249,8 +264,13 @@ const Index: React.FC = () => {
             {i18n[lang]['intro.example']}
           </div>
         </div>
-        <div className={styles['opreate-area']} onClick={toLogin}>
-          <div className={styles['login-button']}>{i18n[lang]['intro.login']}</div>
+        <div className={styles['opreate-area']}>
+          <div className={styles['login-button']} onClick={toLogin}>
+            {i18n[lang]['intro.login']}
+          </div>
+          <Dropdown trigger="click" droplist={languageList} position="bl">
+            <div className={styles['lang-button']}>{lang === 'zh-CN' ? 'CN' : 'EN'}</div>
+          </Dropdown>
         </div>
       </div>
       {/* {home area start} */}
@@ -324,21 +344,9 @@ const Index: React.FC = () => {
           {i18n[lang]['intro.case.title']}
         </div>
         <div className={styles['case-content']} id="case-content" ref={ref4}>
-          <CaseItem
-            title="Dehero"
-            describe="DeHeroGame ($AMG) is a GameFi 2.0 NFT TCG launched as the 1st gaming dapp on Rangers Protocol."
-            img={deheroImage}
-          />
-          <CaseItem
-            title="Metacene"
-            describe="Metacene is a a next-gen blockchain MMORPG homeland for mass players."
-            img={metaceneImage}
-          />
-          <CaseItem
-            title="Unipass"
-            describe="Unipass non-custodial ERC-4337 wallet SDK. Effortless integration, great UX, and free! Power up your projects with seedless & gasless wallet with social recovery!"
-            img={unipassImage}
-          />
+          <CaseItem title="Dehero" describe={i18n[lang]['intro.dehreo']} img={deheroImage} />
+          <CaseItem title="Metacene" describe={i18n[lang]['intro.metacene']} img={metaceneImage} />
+          <CaseItem title="Unipass" describe={i18n[lang]['intro.unipass']} img={unipassImage} />
         </div>
       </div>
       <div ref={exampleRef} className={styles['bottom']}></div>

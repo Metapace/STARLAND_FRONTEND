@@ -11,7 +11,7 @@ import PayModal from 'src/components/PayModal';
 import { useToggle } from 'ahooks';
 import RelaunchButton from 'src/components/RelaunchButton';
 
-export const DemandMap: Record<Exclude<DemandType, DemandType.Remove>, string> = {
+export const DemandMap: Record<Exclude<DemandType, DemandType.Remove | DemandType.ReVerify>, string> = {
   [DemandType.All]: 'r.all',
   [DemandType.NeedDeposite]: 'waite.deposit',
   [DemandType.NeedPay]: 'waite.auth',
@@ -20,6 +20,7 @@ export const DemandMap: Record<Exclude<DemandType, DemandType.Remove>, string> =
   [DemandType.Channel]: 'channel.split',
   [DemandType.Going]: 'on.progress',
   [DemandType.Finished]: 'already.finish',
+  [DemandType.CloseWait]: 'already.finish',
 };
 
 const Index: React.FC<ReturnRemandItem> = ({ status, create_time, chan, country, price, crowd, id }) => {
@@ -39,7 +40,7 @@ const Index: React.FC<ReturnRemandItem> = ({ status, create_time, chan, country,
     if (status === DemandType.Going) {
       return 'light-green';
     }
-    if (status === DemandType.Finished) {
+    if (status === DemandType.Finished || status === DemandType.CloseWait) {
       return 'gray';
     }
     return 'blue';

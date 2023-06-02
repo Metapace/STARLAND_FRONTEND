@@ -19,6 +19,9 @@ const zh: {
   'intro.market.ai': 'AI自动托管',
   'intro.market.echart': '多维可视化数据',
   'intro.case.title': '客户案例',
+  'intro.dehreo': 'DeHeroGame ($AMG) 是一款在Rangers协议上的GameFi 2.0 NFT集换式卡牌游戏。',
+  'intro.metacene': 'Metacene是一款大型MMORPG游戏，为大众玩家打造次世代区块链家园。',
+  'intro.unipass': 'Unipass是一款ERC-4337钱包SDK，拥有出色的用户体验，用户免费使用。',
 };
 
 export default zh;

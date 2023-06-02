@@ -22,4 +22,5 @@ body,
 @font-face {
   font-family: PIXEAB;
   src: url('../font/PIXEAB.ttf');
+  font-display: swap;
 }

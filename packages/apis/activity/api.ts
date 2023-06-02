@@ -34,20 +34,16 @@ export enum DemandType {
   Going = 6,
   Finished = 7,
   Remove = 8,
-}
-export enum ElseDemandTypeType {
   ReVerify = 9,
   CloseWait = 10,
 }
-
-export type SubmitDemandType = DemandType | ElseDemandTypeType;
 
 /**
  * @description status 0:全部 1:待充值 2:待授权 3:待审核 4:审核失败 5:渠道分发 6:投放中 7:已结束 8: 删除
  */
 export interface AllMaterialItem extends Partial<MaterialItem> {
   id: number;
-  status?: SubmitDemandType;
+  status?: DemandType;
   pay_time?: number;
   reason?: string;
 }
@@ -72,7 +68,7 @@ export interface ReturnRemandItem {
   start: number;
   end: number;
   price: string;
-  status: Exclude<DemandType, DemandType.Remove>;
+  status: Exclude<DemandType, DemandType.Remove | DemandType.ReVerify>;
   deliver: number;
   deliver_reason: string;
   deliver_time: number;

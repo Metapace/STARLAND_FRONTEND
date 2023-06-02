@@ -9,9 +9,7 @@ import {
   MaterialListItem,
   FinanceDataEnum,
   FinanceDataEnumMap,
-  SubmitDemandType,
   useMutationUpdateMaterial,
-  ElseDemandTypeType,
   DemandType,
 } from 'apis';
 import dayjs from 'dayjs';
@@ -23,7 +21,7 @@ const initialValues = {
 };
 
 const TableSwitch = ({ item }: { item: MaterialListItem }) => {
-  const [innerStatus, setInnerStatus] = useState<SubmitDemandType>(item.status);
+  const [innerStatus, setInnerStatus] = useState<DemandType>(item.status);
   const { mutateAsync, isLoading } = useMutationUpdateMaterial();
   const handleChangeSwitch = async (value: boolean) => {
     const status = value ? 6 : 7;
@@ -35,12 +33,12 @@ const TableSwitch = ({ item }: { item: MaterialListItem }) => {
     <div className={styles['switch-container']}>
       <Switch
         className={styles['table-switch']}
-        checked={innerStatus === DemandType.Going || innerStatus === ElseDemandTypeType.CloseWait}
+        checked={innerStatus === DemandType.Going || innerStatus === DemandType.CloseWait}
         onChange={handleChangeSwitch}
         loading={isLoading}
         disabled={item.deliver !== 2 || item.design !== 2}
       ></Switch>
-      {innerStatus === ElseDemandTypeType.CloseWait && <div className={styles['close-tag']}>用户申请关闭</div>}
+      {innerStatus === DemandType.CloseWait && <div className={styles['close-tag']}>用户申请关闭</div>}
     </div>
   );
 };

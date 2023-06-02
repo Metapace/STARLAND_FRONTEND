@@ -38,6 +38,7 @@ const Header = () => {
     <div className={styles.header}>
       <div className={styles.logo} onClick={goHome}>
         <img src={Logo} alt="" />
+        <div className={styles['log-title']}>管理后台</div>
       </div>
       <ul className={styles.ul}>
         <div className={styles['now-time']}>{nowTime}</div>

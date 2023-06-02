@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { Menu } from '@arco-design/web-react';
 import { IMenusItem, menuConfig } from '../conifg/menuConfig';
-import { useRequestUserIndfo, AuthRightEnum } from 'apis';
+import { useRequestUserIndfo } from 'apis';
 import { useLocation, Link } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 import DashbordIcon from 'src/assets/images/menu/dashbord-menu.svg';
@@ -33,13 +33,17 @@ const icons: IconsPros = {
 };
 const menu: IMenusItem[] = menuConfig.menu;
 
-const getMenu = (menus: IMenusItem[]) => {
+const getMenu = (menus: IMenusItem[], selectedKey: string[]) => {
+  console.log(selectedKey, 'selectedKeys');
   const list = menus.map((item) => {
     if (item.children && item.children.length > 1) {
       return (
         <SubMenu
           selectable
-          className={styles['sub-menu-container']}
+          className={classNames(
+            styles['sub-menu-container'],
+            selectedKey.includes(item.key) && styles['select-subsub-menu-container'],
+          )}
           title={
             <span>
               {item.icon && icons[item.icon]}
@@ -48,7 +52,7 @@ const getMenu = (menus: IMenusItem[]) => {
           }
           key={item.key}
         >
-          {getMenu(item.children)}
+          {getMenu(item.children, selectedKey)}
         </SubMenu>
       );
     }
@@ -122,7 +126,7 @@ export const MenuComponent = () => {
       openKeys={openKeys}
       className={styles['menu-container']}
     >
-      {getMenu(showMemu)}
+      {getMenu(showMemu, selectedKey)}
     </Menu>
   );
 };

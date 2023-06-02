@@ -1,8 +1,24 @@
 .menu-container {
-  background-color: var(--blue-text-color);
+  background-color: rgb(3, 31, 78);
+  :global {
+    .arco-menu-inner {
+      padding: 4px 0;
+    }
+    .arco-menu-selected {
+      a {
+        color: rgb(134, 214, 22);
+        svg {
+          path {
+            stroke: rgb(134, 214, 22);
+          }
+        }
+      }
+    }
+  }
 }
 .sub-menu-container {
   color: #ffffff;
+
   :global {
     .arco-menu-inline-header {
       background-color: var(--blue-text-color);
@@ -12,21 +28,16 @@
         background-color: var(--blue-text-color);
       }
     }
-
-    .arco-menu-selected {
-      color: #0037a1 !important;
-      &:hover {
-        background-color: var(--blue-text-color) !important;
-      }
-    }
     .arco-icon {
       color: #ffffff !important;
     }
   }
 }
+
 .menu-item-container {
   color: #ffffff;
-  background-color: var(--blue-text-color) !important;
+  background-color: rgb(3, 31, 78) !important;
+  padding: 0 20px !important;
 
   a {
     display: flex;
