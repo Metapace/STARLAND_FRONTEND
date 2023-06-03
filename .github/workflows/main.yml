@@ -22,4 +22,5 @@ jobs:
             cd ../frontend/STARLAND_FRONTEND/
             git checkout .
             git pull
-            docker compose up --build -d
+            pnpm i
+            npm run build
