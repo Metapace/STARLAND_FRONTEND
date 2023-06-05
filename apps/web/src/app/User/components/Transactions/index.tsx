@@ -19,7 +19,7 @@ const TransactionBox: React.FC<CompanyBoxProps> = ({ type, time, amount, state }
     <div className={styles['transactionbox']}>
       <div className={styles['transactionbox-left']}>
         <img src={assetsweb2logo} alt="assetsweb2logo" />
-        <p>{dayjs.unix(time).format('YYYY-MM-YY HH:mm:ss')}</p>
+        <p>{dayjs.unix(time).format('YYYY-MM-DD HH:mm:ss')}</p>
       </div>
       <div className={styles['transactionbox-right']}>
         {type === 1 ? (
