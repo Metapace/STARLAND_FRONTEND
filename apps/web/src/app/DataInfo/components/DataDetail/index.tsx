@@ -52,7 +52,7 @@ const DataDetailBox: React.FC<DataDetailBoxProps> = ({ startTime, endTime, chann
         <div style={{ width: '100px' }}>{dayjs.unix(endTime).format('YYYY-MM-DD')}</div>
         <div style={{ width: '200px' }} className={styles['datadetail-content-inner-left-channel']}>
           {channelarray.map((item) => {
-            return <img src={item} alt={item} />
+            return <img src={item} alt={item} key={item} />;
           })}
         </div>
       </div>

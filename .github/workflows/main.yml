@@ -22,5 +22,5 @@ jobs:
             cd ../frontend/STARLAND_FRONTEND/
             git checkout .
             git pull
-            pnpm i
+            pnpm install
             npm run build
