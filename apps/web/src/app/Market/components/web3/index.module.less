@@ -13,12 +13,16 @@
   justify-content: space-between;
   margin-bottom: 32px;
   overflow: hidden;
+  background-image: url('src/assets/images/web3-market.png');
+  background-size: cover;
 }
 .top-left {
   display: flex;
   flex: 1;
-  padding: 13px 32px 0 17px;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 177px;
 
   img {
     height: 175px;
@@ -29,12 +33,10 @@
 .top-right {
   display: flex;
   flex: 1;
-  padding: 13px 36px 0 42px;
-  img {
-    height: 175px;
-    width: auto;
-    margin-left: -21px;
-  }
+  position: relative;
+  height: 177px;
+  align-items: center;
+  justify-content: center;
 }
 .top-middle {
   background: rgba(173, 173, 173, 0.56);
@@ -72,13 +74,21 @@
   line-height: 100%;
   letter-spacing: -0.02em;
   color: #2d70f1;
-  margin-top: 13px;
+}
+.step-text-1 {
+  position: absolute;
+  top: 16px;
+  left: 20px;
+}
+.step-text-2 {
+  position: absolute;
+  top: 16px;
+  left: 20px;
 }
 .web3-button {
   min-width: 144px;
   padding: 0 20px;
   margin-left: 32px;
-  margin-top: 108px;
 }
 .shop-cart-content {
   display: flex;

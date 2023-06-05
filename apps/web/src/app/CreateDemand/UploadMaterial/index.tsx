@@ -66,12 +66,12 @@ const Index = ({ fileList, setFileList, handleSubmit, isLoading, isEdit = false,
             <div className={styles['sub-title']}>{i18n[lang]['web2.channel.doc']}</div>
             <DownloadItem
               name={i18n[lang]['web2.launch.doc']}
-              url="https://starlands3.s3.ap-southeast-1.amazonaws.com/starland/1684749236622-favicon.ico"
+              url="https://starlands3.s3.ap-southeast-1.amazonaws.com/starland/1685944206494-Web2%E6%B8%A0%E9%81%93%E6%8A%95%E6%94%BE%E6%89%80%E9%9C%80%E7%89%A9%E6%96%99%E6%98%8E%E7%BB%86.xlsx"
               hasBottomBorder
             />
             <DownloadItem
               name={i18n[lang]['web2.launch.info']}
-              url="https://starlands3.s3.ap-southeast-1.amazonaws.com/starland/1684749236622-favicon.ico"
+              url="https://starlands3.s3.ap-southeast-1.amazonaws.com/starland/1685944170875-web2%E6%B8%A0%E9%81%93%E6%8A%95%E6%94%BE%E5%BC%80%E6%88%B7%E4%BF%A1%E6%81%AF%E8%A1%A8.xlsx"
             />
             <div className={classNames(styles['sub-title'], styles['margin-top'])}>
               {i18n[lang]['web3.channel.doc']}

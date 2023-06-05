@@ -2,12 +2,15 @@ import React from 'react';
 import styles from './index.module.less';
 import useI18n from 'src/ahooks/useI18n';
 import locale from '../../locales';
-import web2Banner from 'src/assets/images/web2-banner.png';
 import CreateItem, { ChannelType } from '../createItem/index';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import classNames from 'classnames';
 import { useNavigate } from 'react-router-dom';
+import web31 from 'src/assets/images/dashbord/web3-1.png';
+import web32 from 'src/assets/images/dashbord/web3-2.png';
+import web33 from 'src/assets/images/dashbord/web3-3.png';
+import web39 from 'src/assets/images/dashbord/web3-9.png';
+import web310 from 'src/assets/images/dashbord/web3-10.png';
 
 const Index = () => {
   const { lang, i18n } = useI18n(locale);
@@ -19,16 +22,14 @@ const Index = () => {
     <div className={styles['container']}>
       <div className={styles['top']}>
         <div className={styles['top-left']}>
-          <div className={classNames(styles['step-text'])}>Step1</div>
-          <LazyLoadImage src={'src/assets/images/web3-step1.png'} effect="blur" alt=""></LazyLoadImage>
+          <div className={classNames(styles['step-text'], styles['step-text-1'])}>Step1</div>
           <div className={classNames('active-button', 'common-button', styles['web3-button'])}>
             {i18n[lang]['create.material']}
           </div>
         </div>
         <div className={styles['top-middle']}></div>
         <div className={styles['top-right']}>
-          <div className={classNames(styles['step-text'])}>Step2</div>
-          <LazyLoadImage src={'src/assets/images/web3-step2.png'} effect="blur" alt=""></LazyLoadImage>
+          <div className={classNames(styles['step-text'], styles['step-text-2'])}>Step2</div>
           <div className={styles['shop-cart-content']}>
             <div className={styles['cart-top']}>
               {i18n[lang]['all.pay']}： <span>$23,217.00</span>
@@ -45,8 +46,8 @@ const Index = () => {
       <CreateItem
         title={i18n[lang]['news.paper']}
         tip={i18n[lang]['market-web3-describe']}
-        imgList1={[web2Banner, web2Banner]}
-        countNumber={21}
+        imgList1={[web31, web32, web33, web39, web310]}
+        countNumber={20}
         price="$5,400.00"
         channelType={ChannelType.Web3}
         buttonFunction={() => console.log(1111)}
@@ -54,8 +55,8 @@ const Index = () => {
       <CreateItem
         title={i18n[lang]['ads.line']}
         tip={i18n[lang]['market-web3-describe']}
-        imgList1={[web2Banner, web2Banner, web2Banner, web2Banner]}
-        countNumber={21}
+        imgList1={[web31, web32, web33, web39, web310]}
+        countNumber={20}
         price="$5,400.00"
         channelType={ChannelType.Web3}
         buttonFunction={() => console.log(1111)}
@@ -63,15 +64,12 @@ const Index = () => {
       <CreateItem
         title={i18n[lang]['social.media']}
         tip={i18n[lang]['market-web3-describe']}
-        imgList1={[web2Banner, web2Banner, web2Banner]}
-        countNumber={21}
+        imgList1={[web31, web32, web33, web39, web310]}
+        countNumber={20}
         price="$5,400.00"
         channelType={ChannelType.Web3}
         buttonFunction={() => console.log(1111)}
       />
-      <div className={styles['bottom']}>
-        <div className={styles['flag']}>{i18n[lang]['market.launch.example']}</div>
-      </div>
     </div>
   );
 };
