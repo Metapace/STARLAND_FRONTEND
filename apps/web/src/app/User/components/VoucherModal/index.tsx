@@ -35,9 +35,6 @@ const index: React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal, ref
       }, 700);
     }
   };
-  const validatorUpload = (value) => {
-    console.log(value);
-  };
   function onOk() {
     form.validate().then(async (res) => {
       console.log('res', res);
