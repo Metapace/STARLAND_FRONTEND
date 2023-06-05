@@ -35,7 +35,6 @@ const index: React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal }) =
   };
   function onOk() {
     form.validate().then(async (res) => {
-      console.log('表单的数据', res);
       setConfirmLoading(true);
       let data: IVoucherInterface;
       if (res.represent === undefined || res.represent === 1) {
@@ -99,7 +98,10 @@ const index: React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal }) =
           wrapperCol={{ span: 18, offset: 0 }}
           requiredSymbol={{ position: 'end' }}
           rules={[
-            { match: /^\d+$|^\d+[.]?\d+$/, message: `${i18n[lang]['usercenter.numberNote']}` },
+            {
+              match: /^(?!(0[0-9]{0,}$))[0-9]{1,}[.]{0,}[0-9]{0,}$/,
+              message: `${i18n[lang]['usercenter.numberNote']}`,
+            },
             { required: true, message: `${i18n[lang]['usercenter.rechargeamountIsReq']}` },
           ]}
         >
@@ -153,7 +155,7 @@ const index: React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal }) =
           labelCol={{ span: 6, offset: 0 }}
           wrapperCol={{ span: 18, offset: 0 }}
           requiredSymbol={{ position: 'end' }}
-          // rules={[{ required: true, message: `${i18n[lang]['usercenter.representativeIsReq']}` }]}
+          rules={[{ required: true, message: `${i18n[lang]['usercenter.representativeIsReq']}` }]}
         >
           <RadioGroup defaultValue={1}>
             <Radio value={1}>{i18n[lang]['usercenter.company']}</Radio>

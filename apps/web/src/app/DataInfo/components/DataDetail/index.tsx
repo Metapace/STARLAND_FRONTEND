@@ -43,13 +43,17 @@ const DataDetailBox: React.FC<DataDetailBoxProps> = ({ startTime, endTime, chann
     await updataMaterial({ id: activityId, status: 10 });
     refetch();
   };
+  const channelarray = channel.split(',');
+  console.log('channelarray', channelarray);
   return (
     <div className={styles['datadetail-content-inner']}>
       <div className={styles['datadetail-content-inner-left']}>
         <div style={{ width: '100px' }}>{dayjs.unix(startTime).format('YYYY-MM-DD')}</div>
         <div style={{ width: '100px' }}>{dayjs.unix(endTime).format('YYYY-MM-DD')}</div>
         <div style={{ width: '200px' }} className={styles['datadetail-content-inner-left-channel']}>
-          {channel}
+          {channelarray.map((item) => {
+            return <img src={item} alt={item} />
+          })}
         </div>
       </div>
       <div className={styles['datadetail-content-inner-right']}>
