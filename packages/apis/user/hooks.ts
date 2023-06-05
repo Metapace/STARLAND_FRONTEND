@@ -1,4 +1,5 @@
 import { useQuery, useMutation } from "@tanstack/react-query";
+import { getLocalToken } from "utils";
 import {
   dashBoardInfoRequest,
   userInfoRequest,
@@ -10,7 +11,8 @@ import {
 } from "./api";
 
 const useRequestUserIndfo = () => {
-  const query = useQuery(["userinfo"], userInfoRequest, {
+  const token = getLocalToken();
+  const query = useQuery([`userinfo${token}`], userInfoRequest, {
     staleTime: 6 * 60 * 1000,
   });
   return query;

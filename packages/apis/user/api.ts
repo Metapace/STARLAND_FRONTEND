@@ -89,14 +89,15 @@ export const loginRequestBypassword = (params: {
  * @description 获取用户信息
  * @returns author_rights 1:财务 2:投放部 3: 设计部 4:其他
  */
-export const userInfoRequest = () =>
-  request.get("user/get", {}) as Promise<{
+export const userInfoRequest = () => {
+  return request.get("user/get", {}) as Promise<{
     email: string;
     card_id: number;
     create_time: number;
     avatar_uri: string;
     author_rights: AuthRightEnum;
   }>;
+};
 
 /**
  *
