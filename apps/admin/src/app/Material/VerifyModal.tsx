@@ -89,7 +89,7 @@ const FromItem: React.FC<FromItemProps> = ({ item, handlCloseModal, type }) => {
   return (
     <>
       <div className={styles['opreate-title']}>
-        {type === FormItemType.Delivery ? '投放部门意见' : '设计部审核意见'}
+        {type === FormItemType.Delivery ? '投放部审核意见' : '设计部审核意见'}
       </div>
       {innerStatus === 0 && (
         <div className={styles['opreate-area']}>

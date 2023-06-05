@@ -11,7 +11,10 @@ import PayModal from 'src/components/PayModal';
 import { useToggle } from 'ahooks';
 import RelaunchButton from 'src/components/RelaunchButton';
 
-export const DemandMap: Record<Exclude<DemandType, DemandType.Remove | DemandType.ReVerify>, string> = {
+export const DemandMap: Record<
+  Exclude<DemandType, DemandType.Remove | DemandType.ReVerify | DemandType.CloseWait>,
+  string
+> = {
   [DemandType.All]: 'r.all',
   [DemandType.NeedDeposite]: 'waite.deposit',
   [DemandType.NeedPay]: 'waite.auth',
@@ -20,10 +23,13 @@ export const DemandMap: Record<Exclude<DemandType, DemandType.Remove | DemandTyp
   [DemandType.Channel]: 'channel.split',
   [DemandType.Going]: 'on.progress',
   [DemandType.Finished]: 'already.finish',
-  [DemandType.CloseWait]: 'already.finish',
 };
 
-const Index: React.FC<ReturnRemandItem> = ({ status, create_time, chan, country, price, crowd, id }) => {
+interface RemandItemProps extends ReturnRemandItem {
+  refetch: () => Promise<any>;
+}
+
+const Index: React.FC<RemandItemProps> = ({ status, create_time, chan, country, price, crowd, id, refetch }) => {
   const { lang, i18n } = useI18n(locale);
   const navigate = useNavigate();
   const [open, { toggle }] = useToggle(false);
@@ -57,7 +63,11 @@ const Index: React.FC<ReturnRemandItem> = ({ status, create_time, chan, country,
 
   return (
     <div className={styles.container}>
-      <div className={classNames(styles['tag'], styles[tagColor])}>{i18n[lang][DemandMap[status]]}</div>
+      <div className={classNames(styles['tag'], styles[tagColor])}>
+        {status === DemandType.Finished || status === DemandType.CloseWait
+          ? i18n[lang][DemandMap[DemandType.Finished]]
+          : i18n[lang][DemandMap[status]]}
+      </div>
       <div className={styles.title}>Web2-{i18n[lang]['native.ads']}</div>
       <div className={styles.time}>{timeText}</div>
       <div className={styles.content}>
@@ -96,7 +106,7 @@ const Index: React.FC<ReturnRemandItem> = ({ status, create_time, chan, country,
         )}
       </div>
       <div className={styles['bottom-button']}>
-        {status === DemandType.Finished && <RelaunchButton id={id} />}
+        {status === DemandType.Finished && <RelaunchButton id={id} onFinish={refetch} />}
 
         {status === DemandType.NeedDeposite && (
           <div className={classNames('common-button', styles['orange-button'])} onClick={toggle}>
