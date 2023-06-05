@@ -7,6 +7,18 @@ import { useRequestCountry, useRequestLanguage, useRequestChanne, ReturnRemandIt
 import useI18n from 'src/ahooks/useI18n';
 import { gendarRange, ageRange, launchPeriod } from 'src/conifg/selectConfig';
 import HorizontalScroll from 'src/components/HorizontalScroll';
+import BIGO from 'src/assets/images/dashbord/c-BIGO.png';
+import Dable from 'src/assets/images/dashbord/c-Dable.png';
+import Meta from 'src/assets/images/dashbord/c-Meta.png';
+import Snapchat from 'src/assets/images/dashbord/c-Snapchat.png';
+import TikTok from 'src/assets/images/dashbord/c-TikTok.png';
+import Yandex from 'src/assets/images/dashbord/c-Yandex.png';
+import eagllwin from 'src/assets/images/dashbord/c-eagllwin.png';
+import googleAds from 'src/assets/images/dashbord/c-googleAds.png';
+import huawei from 'src/assets/images/dashbord/c-huawei.png';
+import prokwai from 'src/assets/images/dashbord/c-prokwai.png';
+import Taboola from 'src/assets/images/dashbord/c-Taboola.png';
+import Mytarget from 'src/assets/images/dashbord/c-Mytarget.png';
 import locales from '../locales';
 const Option = Select.Option;
 const formItemLayout = {
@@ -48,7 +60,20 @@ const Index: React.FC<FormStepProps> = ({
   const ty = lang === 'zh-CN' ? 1 : 2;
   const { data: countryList } = useRequestCountry(ty);
   const { data: languageList } = useRequestLanguage(ty);
-  const { data: ChannelList } = useRequestChanne();
+  const ChannelList = [
+    BIGO,
+    Dable,
+    Meta,
+    Snapchat,
+    TikTok,
+    Yandex,
+    eagllwin,
+    googleAds,
+    huawei,
+    prokwai,
+    Taboola,
+    Mytarget,
+  ];
   useEffect(() => {
     const aa = { ...initialValues } as any;
     if (aa?.country) {
@@ -73,7 +98,6 @@ const Index: React.FC<FormStepProps> = ({
         initialValues={initialValues}
         labelAlign="left"
       >
-        {' '}
         <Form.Item noStyle shouldUpdate>
           {(value) => {
             return <div className={styles['slider-input-text']}>{`$${value.price || 100}(Daily)`}</div>;
@@ -98,13 +122,11 @@ const Index: React.FC<FormStepProps> = ({
               <div>
                 <Form.Item label={i18n[lang]['channel.display']}>
                   <HorizontalScroll>
-                    <div className={styles['channel-list']}>
-                      {ChannelList?.map((item) => (
-                        <div key={item.id} className={styles['chan-icon-wrrap']}>
-                          <img src={item.image_url}></img>
-                        </div>
-                      ))}
-                    </div>
+                    {ChannelList?.map((item) => (
+                      <div key={item} className={styles['chan-icon-wrrap']}>
+                        <img src={item}></img>
+                      </div>
+                    ))}
                   </HorizontalScroll>
                 </Form.Item>
                 <FormItem

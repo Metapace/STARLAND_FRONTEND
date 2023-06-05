@@ -53,7 +53,7 @@ const Index = () => {
       title: '主体类别',
       dataIndex: 'user_type',
       render: (_, col: FinanceVerifyListReturnItem) => {
-        return col.user_type === 1 ? '个人' : '公司';
+        return col.user_type === 1 ? '公司' : '个人';
       },
     },
     {

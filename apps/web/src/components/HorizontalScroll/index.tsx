@@ -1,5 +1,5 @@
-import React, { ReactNode } from 'react';
-import { ScrollMenu, VisibilityContext } from 'react-horizontal-scrolling-menu';
+import React from 'react';
+import { ScrollMenu } from 'react-horizontal-scrolling-menu';
 import 'react-horizontal-scrolling-menu/dist/styles.css';
 import usePreventBodyScroll from 'src/ahooks/usePreventBodyScroll';
 
@@ -22,7 +22,7 @@ const Index = ({ children }: { children: React.ReactNode }) => {
   const { disableScroll, enableScroll } = usePreventBodyScroll();
   return (
     <div onMouseEnter={disableScroll} onMouseLeave={enableScroll}>
-      <ScrollMenu Header={null} Footer={null} onWheel={onWheel as any}>
+      <ScrollMenu Header={null} Footer={null} onWheel={onWheel as any} RightArrow="divdiivd">
         {children as any}
       </ScrollMenu>
     </div>
