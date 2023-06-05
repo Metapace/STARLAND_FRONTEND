@@ -13,7 +13,7 @@ import {
 const useRequestUserIndfo = () => {
   const token = getLocalToken();
   const query = useQuery([`userinfo${token}`], userInfoRequest, {
-    staleTime: 6 * 60 * 1000,
+    staleTime: 500,
   });
   return query;
 };

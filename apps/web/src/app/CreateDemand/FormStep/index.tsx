@@ -6,6 +6,7 @@ const FormItem = Form.Item;
 import { useRequestCountry, useRequestLanguage, useRequestChanne, ReturnRemandItem } from 'apis';
 import useI18n from 'src/ahooks/useI18n';
 import { gendarRange, ageRange, launchPeriod } from 'src/conifg/selectConfig';
+import HorizontalScroll from 'src/components/HorizontalScroll';
 import locales from '../locales';
 const Option = Select.Option;
 const formItemLayout = {
@@ -65,13 +66,19 @@ const Index: React.FC<FormStepProps> = ({
   return (
     <div className={styles.container}>
       <Form
-        style={{ width: 640 }}
+        style={{ width: 640, position: 'relative' }}
         {...formItemLayout}
         scrollToFirstError
         form={form}
         initialValues={initialValues}
         labelAlign="left"
       >
+        {' '}
+        <Form.Item noStyle shouldUpdate>
+          {(value) => {
+            return <div className={styles['slider-input-text']}>{`$${value.price || 100}(Daily)`}</div>;
+          }}
+        </Form.Item>
         <FormItem
           label={i18n[lang]['channel.type']}
           rules={[{ required: true }]}
@@ -90,13 +97,15 @@ const Index: React.FC<FormStepProps> = ({
             return values.chan === 1 ? (
               <div>
                 <Form.Item label={i18n[lang]['channel.display']}>
-                  <div className={styles['channel-list']}>
-                    {ChannelList?.map((item) => (
-                      <div key={item.id} className={styles['chan-icon-wrrap']}>
-                        <img src={item.image_url}></img>
-                      </div>
-                    ))}
-                  </div>
+                  <HorizontalScroll>
+                    <div className={styles['channel-list']}>
+                      {ChannelList?.map((item) => (
+                        <div key={item.id} className={styles['chan-icon-wrrap']}>
+                          <img src={item.image_url}></img>
+                        </div>
+                      ))}
+                    </div>
+                  </HorizontalScroll>
                 </Form.Item>
                 <FormItem
                   label={i18n[lang]['cost.type']}

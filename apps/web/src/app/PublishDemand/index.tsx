@@ -25,10 +25,13 @@ export const Web2Des = () => {
 const Index = () => {
   const { lang, i18n } = useI18n(locale);
   const [demandType, setDemandType] = useState<DemandType>(DemandType.All);
-  const { data: RemandList } = useRequestActivity();
+  const { data: RemandList, refetch } = useRequestActivity();
   const showDemandList = useMemo(() => {
     if (+demandType === DemandType.All) {
       return RemandList;
+    }
+    if (+demandType === DemandType.Finished) {
+      return RemandList?.filter((item) => item.status === 7 || item.status === 10);
     }
     return RemandList?.filter((item) => item.status === +demandType);
   }, [RemandList, demandType]);
@@ -75,7 +78,16 @@ const Index = () => {
           >
             {Object.keys(DemandMap).map((key) => (
               <Option key={key} value={key}>
-                {i18n[lang][DemandMap[key as unknown as Exclude<DemandType, DemandType.Remove>]]}
+                {
+                  i18n[lang][
+                    DemandMap[
+                      key as unknown as Exclude<
+                        DemandType,
+                        DemandType.Remove | DemandType.CloseWait | DemandType.ReVerify
+                      >
+                    ]
+                  ]
+                }
               </Option>
             ))}
           </Select>
@@ -83,7 +95,7 @@ const Index = () => {
       </div>
       <div className={classNames(styles['item-list'])}>
         {showDemandList?.map((item) => (
-          <RemandItem {...item} key={item.id} />
+          <RemandItem {...item} key={item.id} refetch={refetch} />
         ))}
         {(!showDemandList || showDemandList.length === 0) && demandType !== DemandType.All && (
           <div className={styles.empyty}>{i18n[lang]['r.empyty']}</div>

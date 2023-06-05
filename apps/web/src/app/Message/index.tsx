@@ -58,22 +58,30 @@ const Index = () => {
       setTimeRange([dayjs().subtract(1, 'month'), dayjs()]);
     }
   };
+  const handelRangeChange = (value: Array<string>) => {
+    if ((value[0], value[1])) {
+      setTimeRange([dayjs(value[0]), dayjs(value[1])]);
+    }
+  };
 
-  function itemRender(page: number, type: 'page' | 'more' | 'prev' | 'next', originElement: ReactNode) {
+  function itemRender(renderPage: number, type: 'page' | 'more' | 'prev' | 'next', originElement: ReactNode) {
     if (type === 'prev') {
       return <div className={styles['click-button']}>上一页</div>;
     }
     if (type === 'page') {
-      return (
-        <div className={styles['pagination-page']}>
-          <span>{page}</span>/{totalPage}
-        </div>
-      );
+      if (page === renderPage) {
+        return (
+          <div className={styles['pagination-page']}>
+            <span>{renderPage}</span>/{totalPage}
+          </div>
+        );
+      } else {
+        return null;
+      }
     }
     if (type === 'next') {
       return <div className={styles['click-button']}>下一页</div>;
     }
-    return originElement;
   }
   const handlePageChange = (pageNumber: number) => {
     setPage(pageNumber);
@@ -104,7 +112,7 @@ const Index = () => {
             </Select>
           </div>
 
-          <RangePicker style={{ width: 252 }} value={timeRange} />
+          <RangePicker style={{ width: 252 }} value={timeRange} onChange={handelRangeChange} />
           <Sbutton
             text={i18n[lang]['r.search']}
             style={{
