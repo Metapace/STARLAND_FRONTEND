@@ -45,7 +45,7 @@ const Index = () => {
       <CreateItem
         title={i18n[lang]['news.paper']}
         tip={i18n[lang]['market-web3-describe']}
-        imgList={[web2Banner, web2Banner]}
+        imgList1={[web2Banner, web2Banner]}
         countNumber={21}
         price="$5,400.00"
         channelType={ChannelType.Web3}
@@ -54,7 +54,7 @@ const Index = () => {
       <CreateItem
         title={i18n[lang]['ads.line']}
         tip={i18n[lang]['market-web3-describe']}
-        imgList={[web2Banner, web2Banner, web2Banner, web2Banner]}
+        imgList1={[web2Banner, web2Banner, web2Banner, web2Banner]}
         countNumber={21}
         price="$5,400.00"
         channelType={ChannelType.Web3}
@@ -63,7 +63,7 @@ const Index = () => {
       <CreateItem
         title={i18n[lang]['social.media']}
         tip={i18n[lang]['market-web3-describe']}
-        imgList={[web2Banner, web2Banner, web2Banner]}
+        imgList1={[web2Banner, web2Banner, web2Banner]}
         countNumber={21}
         price="$5,400.00"
         channelType={ChannelType.Web3}

@@ -142,7 +142,7 @@ const marketItemList2 = [eagllwin, googleAds, huawei, prokwai, Taboola, Mytarget
 const marketItemList3 = [web31, web32, web33, web34, web35, web36];
 const marketItemList4 = [web37, web38, web39, web310, web311, web312];
 
-const MarketItem: React.FC<MarketItemProps> = ({ src, width = '72px' }) => {
+export const MarketItem: React.FC<MarketItemProps> = ({ src, width = '72px' }) => {
   return (
     <div className={styles['market-item-one']}>
       <LazyLoadImage src={src} alt={'web2'} effect="blur" width={width} />

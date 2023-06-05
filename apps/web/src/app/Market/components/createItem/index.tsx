@@ -1,11 +1,10 @@
 import React from 'react';
 import styles from './index.module.less';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import ShoppingCart from 'src/assets/images/shopping-cart.png';
 import useI18n from 'src/ahooks/useI18n';
 import locale from '../../locales';
-
+import { MarketItem } from 'src/app/Dashboard/WorkPlace/WorkPlace';
 export enum ChannelType {
   Web2 = 'web2',
   Web3 = 'web3',
@@ -14,7 +13,8 @@ export enum ChannelType {
 interface IndexProps {
   title: string;
   tip: string;
-  imgList: Array<string>;
+  imgList1: Array<string>;
+  imgList2?: Array<string>;
   channelType: ChannelType;
   countNumber: number;
   price: string;
@@ -24,7 +24,8 @@ interface IndexProps {
 
 const Index: React.FC<IndexProps> = ({
   channelType,
-  imgList,
+  imgList1,
+  imgList2,
   countNumber,
   price,
   buttonFunction,
@@ -41,10 +42,20 @@ const Index: React.FC<IndexProps> = ({
       </div>
       <div className={styles['content']}>
         <div className={styles['image-list']}>
-          {imgList.map((src, index) => (
-            <LazyLoadImage src={src} alt={'web2'} effect="blur" key={index} />
-          ))}
+          <div className={styles['image-list-inner']}>
+            {imgList1.map((src) => (
+              <MarketItem src={src} key={src} width="72px"></MarketItem>
+            ))}
+          </div>
+          {imgList2 && (
+            <div className={styles['image-list-inner']}>
+              {imgList2.map((src) => (
+                <MarketItem src={src} key={src} width="72px"></MarketItem>
+              ))}
+            </div>
+          )}
         </div>
+
         <div className={styles['count-number']}>
           <div className={styles['count-number-top']}>{i18n[lang]['market.count']}</div>
           <div className={styles['count-number-bottom']}>{countNumber}</div>

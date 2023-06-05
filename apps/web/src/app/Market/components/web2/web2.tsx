@@ -8,6 +8,12 @@ import CreateItem, { ChannelType } from '../createItem/index';
 import { Web2Des } from 'src/app/PublishDemand/index';
 import { useNavigate } from 'react-router-dom';
 
+import BIGO from 'src/assets/images/dashbord/c-BIGO.png';
+import Dable from 'src/assets/images/dashbord/c-Dable.png';
+import Meta from 'src/assets/images/dashbord/c-Meta.png';
+import TikTok from 'src/assets/images/dashbord/c-TikTok.png';
+import prokwai from 'src/assets/images/dashbord/c-prokwai.png';
+
 const Index = () => {
   const { lang, i18n } = useI18n(locale);
   const navigate = useNavigate();
@@ -36,14 +42,38 @@ const Index = () => {
         title={i18n[lang]['market.type']}
         tip={i18n[lang]['market.type.describe']}
         buttonText={i18n[lang]['create.campagin']}
-        imgList={[web2Banner, web2Banner, web2Banner]}
-        countNumber={21}
+        imgList1={[Meta, BIGO, Dable, TikTok, prokwai, prokwai]}
+        imgList2={[Meta, BIGO, Dable, TikTok, prokwai, prokwai]}
+        countNumber={20}
         price={i18n[lang]['cpc.count']}
         channelType={ChannelType.Web2}
         buttonFunction={() => navigate('/create-demand')}
       />
       <div className={styles['bottom']}>
         <div className={styles['flag']}>{i18n[lang]['market.launch.example']}</div>
+        <div className={styles['video-list']}>
+          <div className={styles['video-item']}>
+            <video
+              src="https://starlands3.s3.ap-southeast-1.amazonaws.com/starland/1685930684927-web2-promote1-video.mp4"
+              width="160"
+              controls
+            ></video>
+          </div>
+          <div className={styles['video-item']}>
+            <video
+              src="https://starlands3.s3.ap-southeast-1.amazonaws.com/starland/1685930691885-web2-promote2-video.mp4"
+              width="160"
+              controls
+            ></video>
+          </div>
+          <div className={styles['video-item']}>
+            <video
+              src="https://starlands3.s3.ap-southeast-1.amazonaws.com/starland/1685930698660-web2-promote3-video.mp4"
+              width="160"
+              controls
+            ></video>
+          </div>
+        </div>
       </div>
     </div>
   );
