@@ -10,12 +10,14 @@ const Index = () => {
   const [openVoucherModal, setOpenVoucherModal] = useState(false);
   const handleOpenVoucherModal = () => setOpenVoucherModal(true);
   const handleCloseVoucherModal = () => setOpenVoucherModal(false);
+  const [refresh, setRefresh] = useState(false);
+
   return (
     <div className={styles['container']}>
       <UserInfo />
       <Property handleOpenVoucherModal={handleOpenVoucherModal} handleCloseVoucherModal={handleCloseVoucherModal} />
-      <Transations />
-      <VoucherModal open={openVoucherModal} handleCloseVoucherModal={handleCloseVoucherModal} />
+      <Transations refresh={refresh} />
+      <VoucherModal open={openVoucherModal} handleCloseVoucherModal={handleCloseVoucherModal} refresh={refresh} setrefresh={setRefresh} />
     </div>
   );
 };

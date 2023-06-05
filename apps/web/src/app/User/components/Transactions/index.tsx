@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './index.module.less';
 import assetsweb2logo from 'src/assets/images/usercenter-assets-web2logo.png';
 import useI18n from 'src/ahooks/useI18n';
@@ -49,11 +49,15 @@ const TransactionBox: React.FC<CompanyBoxProps> = ({ type, time, amount, state }
     </div>
   );
 };
-const index = () => {
+
+interface TransactionsProps {
+  refresh: boolean;
+}
+const index: React.FC<TransactionsProps> = ({ refresh }) => {
   const { lang, i18n } = useI18n(locale);
   const pageMax = 6;
   const [currentPage, setCurrentPage] = useState(1);
-  const { data: transactionsInfoData, isLoading: trIsloadind } = useRequestTransactionsInfo();
+  const { data: transactionsInfoData, isLoading: trIsloadind, refetch } = useRequestTransactionsInfo();
   // console.log('transactionsInfoData', transactionsInfoData);
   const handleNextPage = () => {
     if (transactionsInfoData && currentPage >= Math.ceil(transactionsInfoData.length / pageMax)) {
@@ -67,6 +71,11 @@ const index = () => {
     }
     setCurrentPage(currentPage - 1);
   };
+
+  useEffect(() => {
+    refetch();
+  }, [refresh]);
+
   return (
     <div className={styles['container']}>
       <p className={styles['title']}>{i18n[lang]['usercenter.transactionRecord']}</p>

@@ -11,9 +11,11 @@ const RadioGroup = Radio.Group;
 interface VoucherModalProps {
   open: boolean;
   handleCloseVoucherModal: any;
+  refresh: boolean;
+  setrefresh: any;
 }
 
-const index: React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal }) => {
+const index: React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal, refresh, setrefresh }) => {
   const { lang, i18n } = useI18n(locale);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [form] = Form.useForm();
@@ -66,6 +68,7 @@ const index: React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal }) =
         };
       }
       await uploadVoucherAsync(data);
+      setrefresh(!refresh);
       handleCloseVoucherModal();
       setConfirmLoading(false);
     });
