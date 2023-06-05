@@ -35,8 +35,12 @@ const index: React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal, ref
       }, 700);
     }
   };
+  const validatorUpload = (value) => {
+    console.log(value);
+  };
   function onOk() {
     form.validate().then(async (res) => {
+      console.log('res', res);
       setConfirmLoading(true);
       let data: IVoucherInterface;
       if (res.represent === undefined || res.represent === 1) {
@@ -70,6 +74,7 @@ const index: React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal, ref
       await uploadVoucherAsync(data);
       setrefresh(!refresh);
       handleCloseVoucherModal();
+      form.resetFields();
       setConfirmLoading(false);
     });
   }
@@ -117,7 +122,16 @@ const index: React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal, ref
           label={i18n[lang]['usercenter.uploadPaymentVoucher']}
           field="voucher"
           triggerPropName="fileList"
-          rules={[{ required: true, message: `${i18n[lang]['usercenter.uploadPaymentVoucherIsReq']}` }]}
+          rules={[
+            { required: true, message: `${i18n[lang]['usercenter.uploadPaymentVoucherIsReq']}` },
+            {
+              validator: (value, callback) => {
+                if (value[0].response === undefined) {
+                  callback(`${i18n[lang]['usercenter.rechargeamountIsReq']}`);
+                }
+              },
+            },
+          ]}
         >
           <Upload
             listType="picture-card"
@@ -158,7 +172,7 @@ const index: React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal, ref
           labelCol={{ span: 6, offset: 0 }}
           wrapperCol={{ span: 18, offset: 0 }}
           requiredSymbol={{ position: 'end' }}
-          rules={[{ required: true, message: `${i18n[lang]['usercenter.representativeIsReq']}` }]}
+          // rules={[{ required: true, message: `${i18n[lang]['usercenter.representativeIsReq']}` }]}
         >
           <RadioGroup defaultValue={1}>
             <Radio value={1}>{i18n[lang]['usercenter.company']}</Radio>
@@ -233,7 +247,16 @@ const index: React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal, ref
                   label={i18n[lang]['usercenter.uploadBusinessLicense']}
                   field="license"
                   triggerPropName="fileList"
-                  rules={[{ required: true, message: `${i18n[lang]['usercenter.uploadBusinessLicenseIsReq']}` }]}
+                  rules={[
+                    { required: true, message: `${i18n[lang]['usercenter.uploadBusinessLicenseIsReq']}` },
+                    {
+                      validator: (value, callback) => {
+                        if (value[0].response === undefined) {
+                          callback(`${i18n[lang]['usercenter.rechargeamountIsReq']}`);
+                        }
+                      },
+                    },
+                  ]}
                 >
                   <Upload
                     accept="image/*"
