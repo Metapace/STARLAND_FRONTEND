@@ -45,7 +45,7 @@ const DataDetailBox: React.FC<DataDetailBoxProps> = ({ startTime, endTime, chann
     refetch();
   };
   const channelarray = channel.split(',');
-  console.log('channelarray', channelarray);
+  // console.log('channelarray', channelarray);
   return (
     <div className={styles['datadetail-content-inner']}>
       <div className={styles['datadetail-content-inner-left']}>
@@ -82,7 +82,7 @@ const DataDetailBox: React.FC<DataDetailBoxProps> = ({ startTime, endTime, chann
           </div>
         ) : state == 10 ? (
           <div
-            // onClick={() => setVisible(true)}
+            onClick={() => setVisible(true)}
             // onClick={()=>handleSubmit(id)}
             style={{ width: '140px' }}
             className={styles['datadetail-content-inner-right-btn-active']}
@@ -94,9 +94,11 @@ const DataDetailBox: React.FC<DataDetailBoxProps> = ({ startTime, endTime, chann
             id={id}
             style={{
               color: '#a2a7b5',
-              padding: '0',
               width: '140px',
-              paddingInline: '20px',
+              height: '34px',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
               borderRadius: '5px',
               background: '#e9ecf4',
               boxShadow: '-3px -3px 5px #ffffff, 2px 4px 5px rgba(0, 0, 0, 0.14)',
@@ -108,7 +110,10 @@ const DataDetailBox: React.FC<DataDetailBoxProps> = ({ startTime, endTime, chann
         title={i18n[lang]['datainfo.closingConfirmation']}
         visible={visible}
         okButtonProps={{}}
-        onOk={() => handleSubmit(id)}
+        onOk={async () => {
+          await handleSubmit(id);
+          setVisible(false);
+        }}
         onCancel={() => setVisible(false)}
         autoFocus={false}
         focusLock
