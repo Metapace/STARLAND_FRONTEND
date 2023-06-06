@@ -49,7 +49,7 @@ const index: React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal, ref
           country: res.country,
           address: res.address,
           email: res.email,
-          reg_num: res.represent || res.represent == 1 ? res.companyNumber : '',
+          reg_num: res.companyNumber,
           license: res.license[0].response,
           chan: 1,
           type: 1,
