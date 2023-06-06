@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import styles from './index.module.less';
 import { Modal } from '@arco-design/web-react';
 import web2logo from 'src/assets/images/usercenter-assets-web2logo.png';
@@ -27,14 +27,6 @@ const index: React.FC<PayModalProps> = ({ open, handleCloseModal, activityId }) 
     await updataMaterial({ id: activityId, status: 3, pay_time: parseInt((Date.now() / 1000).toString()) });
     navigate(`/create-success?id=${activityId}`);
   };
-  const showPassButton = useMemo(() => {
-    if (data?.balance) {
-      if (data?.balance * 0.9 >= passMount) {
-        return true;
-      }
-    }
-    return false;
-  }, [data]);
   return (
     <Modal
       wrapClassName={styles.moadlwrap}
@@ -68,7 +60,7 @@ const index: React.FC<PayModalProps> = ({ open, handleCloseModal, activityId }) 
                 {i18n[lang]['fiat.assets']}
                 <span>(USD)</span>
               </div>
-              <div>{data?.balance}</div>
+              <div>{data?.available_balance}</div>
             </div>
             <div className={styles['select-item']}>
               <img src={hookIcon} alt="" />
@@ -77,7 +69,7 @@ const index: React.FC<PayModalProps> = ({ open, handleCloseModal, activityId }) 
         </div>
         <div className={styles['split-line']}></div>
         <div className={styles['button-wrrap']}>
-          {showPassButton ? (
+          {data?.available_balance && data?.available_balance < passMount ? (
             <Sbutton
               className={classNames('common-button', styles['confirm-button'])}
               onClick={handleSubmit}
@@ -93,7 +85,7 @@ const index: React.FC<PayModalProps> = ({ open, handleCloseModal, activityId }) 
             </div>
           )}
         </div>
-        {data?.balance && data?.balance < passMount && (
+        {data?.available_balance && data?.available_balance < passMount && (
           <div className={classNames(styles['orange'], styles['insuffient-tip'])}>{i18n[lang]['go-person-center']}</div>
         )}
       </div>

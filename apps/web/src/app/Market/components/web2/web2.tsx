@@ -54,6 +54,7 @@ const Index = () => {
         price={i18n[lang]['cpc.count']}
         channelType={ChannelType.Web2}
         buttonFunction={() => navigate('/create-demand')}
+        style={{ height: '160px' }}
       />
       <div className={styles['bottom']}>
         <div className={styles['flag']}>{i18n[lang]['market.launch.example']}</div>
@@ -61,21 +62,21 @@ const Index = () => {
           <div className={styles['video-item']}>
             <video
               src="https://starlands3.s3.ap-southeast-1.amazonaws.com/starland/1685930684927-web2-promote1-video.mp4"
-              width="180"
+              height="338"
               controls
             ></video>
           </div>
           <div className={styles['video-item']}>
             <video
               src="https://starlands3.s3.ap-southeast-1.amazonaws.com/starland/1685930691885-web2-promote2-video.mp4"
-              width="180"
+              height="338"
               controls
             ></video>
           </div>
           <div className={styles['video-item']}>
             <video
               src="https://starlands3.s3.ap-southeast-1.amazonaws.com/starland/1685930698660-web2-promote3-video.mp4"
-              width="180"
+              height="338"
               controls
             ></video>
           </div>
