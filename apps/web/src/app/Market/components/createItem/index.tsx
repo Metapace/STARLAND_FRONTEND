@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import styles from './index.module.less';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import ShoppingCart from 'src/assets/images/shopping-cart.png';
@@ -19,6 +19,7 @@ interface IndexProps {
   countNumber: number;
   price: string;
   buttonText?: string;
+  style?: CSSProperties;
   buttonFunction: (params?: unknown) => void;
 }
 
@@ -32,10 +33,11 @@ const Index: React.FC<IndexProps> = ({
   buttonText,
   title,
   tip,
+  style,
 }) => {
   const { lang, i18n } = useI18n(locale);
   return (
-    <div className={styles['container']}>
+    <div className={styles['container']} style={style}>
       <div className={styles['top-title']}>
         <div className={styles['blue-bg']}>{title}</div>
         <div className={styles['top-title-text']}>{tip}</div>

@@ -206,7 +206,7 @@ const Index: React.FC<FVerifyProps> = ({ open, item, handlCloseModal }) => {
             {linkList.map((item) => (
               <div className={styles['download-item']} key={item.value}>
                 <a href={item.value} download>
-                  {item.label}
+                  {decodeURI(item.label)}
                 </a>
               </div>
             ))}

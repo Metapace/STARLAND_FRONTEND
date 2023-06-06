@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import styles from './index.module.less';
 import { Form, Grid, Select, Button, TableColumnProps, Tag, Table, Switch } from '@arco-design/web-react';
 import { useToggle } from 'ahooks';
@@ -9,8 +9,10 @@ import {
   MaterialListItem,
   FinanceDataEnum,
   FinanceDataEnumMap,
+  useRequestUserIndfo,
   useMutationUpdateMaterial,
   DemandType,
+  AuthRightEnum,
 } from 'apis';
 import dayjs from 'dayjs';
 
@@ -21,6 +23,7 @@ const initialValues = {
 };
 
 const TableSwitch = ({ item }: { item: MaterialListItem }) => {
+  const { data } = useRequestUserIndfo();
   const [innerStatus, setInnerStatus] = useState<DemandType>(item.status);
   const { mutateAsync, isLoading } = useMutationUpdateMaterial();
   const handleChangeSwitch = async (value: boolean) => {
@@ -28,7 +31,21 @@ const TableSwitch = ({ item }: { item: MaterialListItem }) => {
     await mutateAsync({ status, id: item.id });
     setInnerStatus(status);
   };
+  const isDisable = useMemo(() => {
+    if (item.deliver !== 2) {
+      return true;
+    }
+    if (item.design !== 2) {
+      return true;
+    }
+    const author_rights = data?.author_rights;
+    if (!author_rights) return true;
 
+    if (author_rights !== AuthRightEnum.Delivery) {
+      return true;
+    }
+    return false;
+  }, [data, item]);
   return (
     <div className={styles['switch-container']}>
       <Switch
@@ -36,7 +53,7 @@ const TableSwitch = ({ item }: { item: MaterialListItem }) => {
         checked={innerStatus === DemandType.Going || innerStatus === DemandType.CloseWait}
         onChange={handleChangeSwitch}
         loading={isLoading}
-        disabled={item.deliver !== 2 || item.design !== 2}
+        disabled={isDisable}
       ></Switch>
       {innerStatus === DemandType.CloseWait && <div className={styles['close-tag']}>用户申请关闭</div>}
     </div>
@@ -76,7 +93,7 @@ const Index = () => {
       dataIndex: 'user_type',
       render: (_, col: MaterialListItem) => {
         if (col.deliver === 0) {
-          return <Tag color="orange">待审核</Tag>;
+          return <Tag color="gold">待审核</Tag>;
         }
         if (col.deliver === 2) {
           return <Tag color="green">已通过</Tag>;
@@ -91,7 +108,7 @@ const Index = () => {
       dataIndex: 'amount',
       render: (_, col: MaterialListItem) => {
         if (col.design === 0) {
-          return <Tag color="orange">待审核</Tag>;
+          return <Tag color="gold">待审核</Tag>;
         }
         if (col.design === 2) {
           return <Tag color="green">已通过</Tag>;

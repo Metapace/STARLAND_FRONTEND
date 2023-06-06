@@ -89,7 +89,7 @@ const Index: React.FC<AlertReturnItem> = ({ create_time, msg_type, info_type, re
           )}
           {msg_type === AlertReturnType.Going && (
             <div
-              className={classNames('common-button', styles['enter.dashbord'])}
+              className={classNames('common-button', styles['opreate-button'])}
               onClick={() => navigate('/dashboard/workplace')}
             >
               {i18n[lang]['enter.dashbord']}
