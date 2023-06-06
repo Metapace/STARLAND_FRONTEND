@@ -17,25 +17,25 @@ export const useTransformInfoContent = (type?: AlertReturnType, create_time?: nu
       showTime = dayjs.unix(create_time).format('YYYY-MM-DD');
     }
     if (type === AlertReturnType.PassReview) {
-      return `${i18n[lang]['notifiaction.1.1']}${showTime}${i18n[lang]['notifiaction.1.2']}`;
+      return `${i18n[lang]['notifiaction.1.1']} ${showTime} ${i18n[lang]['notifiaction.1.2']}`;
     }
     if (type === AlertReturnType.FailReview) {
-      return `${i18n[lang]['notifiaction.2.1']}${showTime}${i18n[lang]['notifiaction.2.2']}`;
+      return `${i18n[lang]['notifiaction.2.1']} ${showTime} ${i18n[lang]['notifiaction.2.2']}`;
     }
     if (type === AlertReturnType.Going) {
-      return `${i18n[lang]['notifiaction.3.1']}${showTime}${i18n[lang]['notifiaction.3.2']}`;
+      return `${i18n[lang]['notifiaction.3.1']} ${showTime} ${i18n[lang]['notifiaction.3.2']}`;
     }
     if (type === AlertReturnType.DepositSuccess) {
-      return `${i18n[lang]['notifiaction.4.1']}${showTime}${i18n[lang]['notifiaction.4.2']}`;
+      return `${i18n[lang]['notifiaction.4.1']} ${showTime} ${i18n[lang]['notifiaction.4.2']}`;
     }
     if (type === AlertReturnType.DepositFail) {
-      return `${i18n[lang]['notifiaction.5.1']}${showTime}${i18n[lang]['notifiaction.5.2']}`;
+      return `${i18n[lang]['notifiaction.5.1']} ${showTime} ${i18n[lang]['notifiaction.5.2']}`;
     }
     if (type === AlertReturnType.ActivityEnd) {
-      return `${i18n[lang]['notifiaction.6.1']}${showTime}${i18n[lang]['notifiaction.6.2']}`;
+      return `${i18n[lang]['notifiaction.6.1']} ${showTime} ${i18n[lang]['notifiaction.6.2']}`;
     }
     return '';
-  }, [type, create_time]);
+  }, [type, create_time, lang]);
   return content;
 };
 
