@@ -5,7 +5,7 @@ import { IconClose } from '@arco-design/web-react/icon';
 import useI18n from 'src/ahooks/useI18n';
 import { useNavigate } from 'react-router-dom';
 import { useGetActivityDataByUrlId } from 'src/ahooks/index';
-import { useMutationUpdateMaterial } from 'apis';
+import { DemandType, useMutationUpdateMaterial } from 'apis';
 import Sbutton from 'src/components/Sbutton';
 import locale from './locales';
 
@@ -18,8 +18,10 @@ const Index = () => {
     return [data?.deliver_reason as string, data?.design_reason as string].filter((v) => v);
   }, [data]);
   const handleRePublish = async () => {
-    await mutateAsync({ id, status: 8 });
-    navigate('/publish-demand');
+    if (data?.status === DemandType.VerifyFail) {
+      await mutateAsync({ id, status: 8 });
+      navigate('/publish-demand');
+    }
   };
   return (
     <div className={styles.container}>
