@@ -13,10 +13,7 @@ import UploadMaterial from 'src/app/CreateDemand/UploadMaterial';
 import { UploadItem } from 'src/types/arco';
 import Sbutton from 'src/components/Sbutton';
 import { useGetActivityDataByUrlId } from 'src/ahooks/index';
-
-const BlueDot = () => {
-  return <div className={styles['blue-dot']}></div>;
-};
+import Item from '@arco-design/web-react/es/Breadcrumb/item';
 
 const DesItem = ({ topText, bottomText, isRed = false }: { topText: string; bottomText?: string; isRed?: boolean }) => {
   return (
@@ -27,9 +24,18 @@ const DesItem = ({ topText, bottomText, isRed = false }: { topText: string; bott
   );
 };
 
-const EditProgress: React.FC<ReturnRemandItem> = ({ status, create_time, pay_time, end_time }) => {
+const EditProgress: React.FC<ReturnRemandItem> = ({
+  status,
+  create_time,
+  pay_time,
+  end_time,
+  deliver_time,
+  design_time,
+}) => {
   const { lang, i18n } = useI18n(locale);
-
+  const BlueDot = () => {
+    return <div className={classNames(styles['blue-dot'], status === DemandType.Finished && styles['end-dot'])}></div>;
+  };
   const descriptText = useMemo(() => {
     if (status === DemandType.NeedPay || status === DemandType.NeedDeposite) {
       return [
@@ -40,6 +46,13 @@ const EditProgress: React.FC<ReturnRemandItem> = ({ status, create_time, pay_tim
     if (status === DemandType.NeedVerify) {
       return [
         { title: 'Authorization.successful', time: dayjs.unix(pay_time).format('YYYY-MM-DD hh:mm:ss') },
+        { title: 'Channel.Distribution', timeText: 'in.progress' },
+      ];
+    }
+    if (status === DemandType.Channel) {
+      const reviewTime = Math.max(design_time, deliver_time);
+      return [
+        { title: 'Review.successful', time: dayjs.unix(reviewTime).format('YYYY-MM-DD hh:mm:ss') },
         { title: 'wait.review', timeText: 'in.progress' },
       ];
     }

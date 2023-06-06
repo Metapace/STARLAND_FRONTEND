@@ -57,6 +57,8 @@ const en: {
   'r.back': 'Back',
   'save.changes': 'Save changes',
   'r.placement': 'Re-placement',
+  'Review.successful': 'Review successful',
+  'Channel.Distribution': 'Channel Distribution',
 };
 
 export default en;

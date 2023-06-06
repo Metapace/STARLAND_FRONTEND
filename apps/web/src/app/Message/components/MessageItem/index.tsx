@@ -112,7 +112,7 @@ const Index: React.FC<AlertReturnItem> = ({ create_time, msg_type, info_type, re
             </div>
           )}
           {msg_type === AlertReturnType.DepositFail && (
-            <div className={classNames(styles['alter-reason'])}>{`${i18n[lang]['fail.reason']}: ${reason}`} </div>
+            <div className={classNames(styles['alter-reason'])}>{`${i18n[lang]['fail.reason']}${reason}`} </div>
           )}
         </div>
       )}

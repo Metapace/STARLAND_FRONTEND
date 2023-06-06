@@ -166,7 +166,7 @@ const Index: React.FC = () => {
       q(`#bar${1}`),
       { width: 0 },
       {
-        width: '96%',
+        width: 'calc(100vw - 64px)',
         scrollTrigger: {
           trigger: q('#home-area'),
           start: 'bottom -20',
@@ -182,7 +182,7 @@ const Index: React.FC = () => {
       q(`#bar${2}`),
       { width: 0 },
       {
-        width: '96%',
+        width: 'calc(100vw - 64px)',
         scrollTrigger: {
           trigger: q('#advantage-area'),
           start: 'top top',
@@ -277,7 +277,7 @@ const Index: React.FC = () => {
       <div className={styles['home-area']} id="home-area" ref={homeRef}>
         <div className={styles['home-title']} ref={ref1}>
           <div> {i18n[lang]['intro.home.title1']} </div>
-          <div> {i18n[lang]['intro.home.title2']} </div>
+          <div className={styles['title2-home']}> {i18n[lang]['intro.home.title2']} </div>
         </div>
         <div className={styles['home-describe']}>{i18n[lang]['intro.home.describle']}</div>
       </div>

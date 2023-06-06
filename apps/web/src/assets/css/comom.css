@@ -8,6 +8,11 @@ body,
 ::-webkit-scrollbar {
   width: 0px;
 }
+@font-face {
+  font-family: Welbut;
+  src: url('../font/Welbut__.ttf');
+  font-display: swap;
+}
 
 :root {
   --theme-color: #873bf4;
@@ -18,11 +23,5 @@ body,
   --gray-text-color: rgba(43, 54, 116, 0.53);
   --blue-text-color: #2d70f1;
   --font-familiy-chinese: 'Times New Roman', Times, serif;
-  --font-familiy-english: 'VT323', monospace;
-}
-
-@font-face {
-  font-family: PIXEAB;
-  src: url('../font/PIXEAB.ttf');
-  font-display: swap;
+  --font-familiy-english: Welbut;
 }

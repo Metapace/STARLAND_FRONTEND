@@ -1,7 +1,7 @@
-import React, { useState, ReactNode, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import styles from './index.module.less';
 import { IconLeft } from '@arco-design/web-react/icon';
-import { Tabs, Select, DatePicker, Pagination } from '@arco-design/web-react';
+import { Tabs, Select, DatePicker } from '@arco-design/web-react';
 import Sbutton from 'src/components/Sbutton';
 import locale from './locales';
 import useI18n from 'src/ahooks/useI18n';

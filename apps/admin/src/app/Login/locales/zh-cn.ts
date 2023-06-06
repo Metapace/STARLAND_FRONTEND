@@ -1,7 +1,6 @@
 const zh: {
   [k: string]: string;
 } = {
-  'login.slogan': 'Starland是一个集成web2和web3渠道的投放中台。一站式跨渠道智能投放工具',
   'login.forgetPassword': '忘记密码',
   'login.rememberPassword': '记住密码',
   'login.login': '登录',

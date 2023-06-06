@@ -45,6 +45,7 @@ const en: {
   'not.have.activity': "You don't have any campaigns yet !",
   'not.have.ads': "Seems you haven't created any campaigns yet",
   'native.ad.series': 'Native Ad Series',
+  'please.select': 'Please Select',
   'native.ad.series.des':
     'Native ads replicate the design of the site and publishers can customize the ad format using the public API.',
 };

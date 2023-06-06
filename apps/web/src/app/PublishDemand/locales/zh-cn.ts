@@ -45,6 +45,7 @@ const zh: {
   'not.have.activity': '您还没有任何活动！',
   'not.have.ads': '您似乎还没有制作任何广告系列',
   'native.ad.series': '原生广告系列',
+  'please.select': '请选择',
   'native.ad.series.des': '原生广告复制网站的设计，发布商可以使用公共API 自定义广告格式。',
 };
 

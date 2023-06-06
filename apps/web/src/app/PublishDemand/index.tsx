@@ -70,7 +70,7 @@ const Index = () => {
         {i18n[lang]['demand.list']}
         <div className={styles['select-demand']}>
           <Select
-            placeholder="Please select"
+            placeholder={i18n[lang]['please.select']}
             style={{ width: 154 }}
             onChange={(value) => {
               setDemandType(value);

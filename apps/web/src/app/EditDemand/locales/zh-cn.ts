@@ -57,6 +57,8 @@ const zh: {
   'r.back': '返回',
   'save.changes': '修改保存',
   'r.placement': '重新投放',
+  'Review.successful': '物料审核成功',
+  'Channel.Distribution': '渠道分发中',
 };
 
 export default zh;
