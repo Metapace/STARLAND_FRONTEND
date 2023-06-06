@@ -124,7 +124,7 @@ const index: React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal, ref
             {
               validator: (value, callback) => {
                 if (value[0].response === undefined) {
-                  callback(`${i18n[lang]['usercenter.rechargeamountIsReq']}`);
+                  callback(`${i18n[lang]['usercenter.uploadPaymentVoucherIsReq']}`);
                 }
               },
             },
@@ -249,7 +249,7 @@ const index: React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal, ref
                     {
                       validator: (value, callback) => {
                         if (value[0].response === undefined) {
-                          callback(`${i18n[lang]['usercenter.rechargeamountIsReq']}`);
+                          callback(`${i18n[lang]['usercenter.uploadBusinessLicenseIsReq']}`);
                         }
                       },
                     },
@@ -348,7 +348,16 @@ const index: React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal, ref
                     label={i18n[lang]['usercenter.uploadPassport']}
                     field="passPort"
                     triggerPropName="fileList"
-                    rules={[{ required: true, message: `${i18n[lang]['usercenter.uploadPassportIsReq']}` }]}
+                    rules={[
+                      { required: true, message: `${i18n[lang]['usercenter.uploadPassportIsReq']}` },
+                      {
+                        validator: (value, callback) => {
+                          if (value[0].response === undefined) {
+                            callback(`${i18n[lang]['usercenter.uploadPassportIsReq']}`);
+                          }
+                        },
+                      },
+                    ]}
                   >
                     <Upload
                       listType="picture-card"
