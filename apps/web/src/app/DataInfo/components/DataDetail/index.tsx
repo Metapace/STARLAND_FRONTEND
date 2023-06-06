@@ -82,7 +82,7 @@ const DataDetailBox: React.FC<DataDetailBoxProps> = ({ startTime, endTime, chann
           </div>
         ) : state == 10 ? (
           <div
-            onClick={() => setVisible(true)}
+            // onClick={() => setVisible(true)}
             // onClick={()=>handleSubmit(id)}
             style={{ width: '140px' }}
             className={styles['datadetail-content-inner-right-btn-active']}
