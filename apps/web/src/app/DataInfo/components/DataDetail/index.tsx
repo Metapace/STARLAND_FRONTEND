@@ -7,6 +7,7 @@ import dayjs from 'dayjs';
 import RelaunchButton from 'src/components/RelaunchButton';
 import { Modal } from '@arco-design/web-react';
 import nodata from 'src/assets/images/datainfo-nodata.png';
+import HorizontalScroll from 'src/components/HorizontalScroll';
 
 import { NoDataProps } from '../DataOverview';
 
@@ -51,9 +52,13 @@ const DataDetailBox: React.FC<DataDetailBoxProps> = ({ startTime, endTime, chann
         <div style={{ width: '100px' }}>{dayjs.unix(startTime).format('YYYY-MM-DD')}</div>
         <div style={{ width: '100px' }}>{dayjs.unix(endTime).format('YYYY-MM-DD')}</div>
         <div style={{ width: '200px' }} className={styles['datadetail-content-inner-left-channel']}>
-          {channelarray.map((item) => {
-            return <img src={item} alt={item} key={item} />;
-          })}
+          {channelarray.length > 4
+            ? channelarray.slice(0, 4).map((item) => {
+                return <img src={item} alt={item} key={item} />;
+              })
+            : channelarray.map((item) => {
+                return <img src={item} alt={item} key={item} />;
+              })}
         </div>
       </div>
       <div className={styles['datadetail-content-inner-right']}>
