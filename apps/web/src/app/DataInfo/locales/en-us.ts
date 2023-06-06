@@ -42,6 +42,7 @@ const en: {
   'datainfo.inProgress': 'In progress',
   'datainfo.closed': 'Closed',
   'datainfo.noRecord': 'No record',
+  'datainfo.closing': 'Closing',
 
 
 };

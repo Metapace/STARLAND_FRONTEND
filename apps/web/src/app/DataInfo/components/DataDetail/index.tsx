@@ -58,7 +58,7 @@ const DataDetailBox: React.FC<DataDetailBoxProps> = ({ startTime, endTime, chann
         </div>
       </div>
       <div className={styles['datadetail-content-inner-right']}>
-        {state == 6 ? (
+        {state == 6 || state == 10 ? (
           <div style={{ width: '72px' }} className={styles['datadetail-content-inner-right-state']}>
             {i18n[lang]['datainfo.inProgress']}
           </div>
@@ -79,6 +79,15 @@ const DataDetailBox: React.FC<DataDetailBoxProps> = ({ startTime, endTime, chann
             className={styles['datadetail-content-inner-right-btn']}
           >
             {i18n[lang]['datainfo.closed']}
+          </div>
+        ) : state == 10 ? (
+          <div
+            // onClick={() => setVisible(true)}
+            // onClick={()=>handleSubmit(id)}
+            style={{ width: '140px' }}
+            className={styles['datadetail-content-inner-right-btn-active']}
+          >
+            {i18n[lang]['datainfo.closing']}
           </div>
         ) : (
           <RelaunchButton
@@ -165,7 +174,7 @@ const Index = () => {
   const ActivityListBystatusRequestParams: getActivityListBystatusRequestParams = {
     page: currentPage,
     page_size: pageMax,
-    action: '6,7',
+    action: '6,7,10',
   };
 
   const {
