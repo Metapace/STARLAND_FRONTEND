@@ -222,7 +222,7 @@ const Index: React.FC = () => {
     navigate('/login');
   };
   return (
-    <div className={styles.container} ref={containerRef}>
+    <div className={classNames(styles.container, lang === 'zh-CN' && styles['chinese-container'])} ref={containerRef}>
       <video muted loop className={styles['back-video']} autoPlay>
         <source
           src="https://starlands3.s3.ap-southeast-1.amazonaws.com/starland%2F1685636328685-home-back.mp4"

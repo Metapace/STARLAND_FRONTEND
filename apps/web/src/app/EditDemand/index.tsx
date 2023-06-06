@@ -107,7 +107,7 @@ const Index = () => {
     if (data?.materials_url) {
       const urlList = data.materials_url.split(',');
       const files: Array<UploadItem> = urlList.map((v: string, index: number) => {
-        const ll = v.split('/');
+        const ll = decodeURI(v).split('/');
         return { status: 'done', name: ll[ll.length - 1], response: { Location: v }, uid: index.toString(), url: v };
       });
       setFileList(files);

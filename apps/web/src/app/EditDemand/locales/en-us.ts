@@ -22,7 +22,7 @@ const en: {
   'three.month': 'Three months',
   'half.year': 'Six months',
   'material.display.tip': 'Material display [not limited to documents/videos/pictures/PSD/AI, etc.]',
-  'web2.channel.doc': 'Web2 Channel Ad Placement Info',
+  'web2.channel.doc': 'Web2 channel requirement detail document',
   'web2.launch.doc': 'Web2 Channel Ad Placement Materials List',
   'web2.launch.info': 'Web2 launch account information sheet',
   'web3.channel.doc': 'Web3 channel requirement detail document',
