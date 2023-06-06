@@ -9,6 +9,7 @@ import dayjs, { Dayjs } from 'dayjs';
 import MessageItem from './components/MessageItem';
 import { useRequestAlertList } from 'apis';
 import { useNavigate } from 'react-router-dom';
+import { StarPagination } from 'src/app/DataInfo/components/DataDetail';
 const TabPane = Tabs.TabPane;
 const { RangePicker } = DatePicker;
 
@@ -64,25 +65,6 @@ const Index = () => {
     }
   };
 
-  function itemRender(renderPage: number, type: 'page' | 'more' | 'prev' | 'next', originElement: ReactNode) {
-    if (type === 'prev') {
-      return <div className={styles['click-button']}>上一页</div>;
-    }
-    if (type === 'page') {
-      if (page === renderPage) {
-        return (
-          <div className={styles['pagination-page']}>
-            <span>{renderPage}</span>/{totalPage}
-          </div>
-        );
-      } else {
-        return null;
-      }
-    }
-    if (type === 'next') {
-      return <div className={styles['click-button']}>下一页</div>;
-    }
-  }
   const handlePageChange = (pageNumber: number) => {
     setPage(pageNumber);
   };
@@ -145,7 +127,7 @@ const Index = () => {
         </div>
       </div>
       <div className={styles['pagination']}>
-        <Pagination itemRender={itemRender} total={data?.count} onChange={handlePageChange} />
+        <StarPagination total={data?.count || 1} onChange={handlePageChange} currentPage={page} pageSize={page_size} />
       </div>
     </div>
   );

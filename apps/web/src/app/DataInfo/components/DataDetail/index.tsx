@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import styles from './index.module.less';
 import useI18n from 'src/ahooks/useI18n';
 import locale from '../../locales';
@@ -53,12 +53,8 @@ const DataDetailBox: React.FC<DataDetailBoxProps> = ({ startTime, endTime, chann
         <div style={{ width: '100px' }}>{dayjs.unix(endTime).format('YYYY-MM-DD')}</div>
         <div style={{ width: '200px' }} className={styles['datadetail-content-inner-left-channel']}>
           {channelarray.length > 4
-            ? channelarray.slice(0, 4).map((item) => {
-                return <img src={item} alt={item} key={item} />;
-              })
-            : channelarray.map((item) => {
-                return <img src={item} alt={item} key={item} />;
-              })}
+            ? channelarray.slice(0, 4).map((item) => <img src={item} alt={item} key={item} />)
+            : channelarray.map((item) => <img src={item} alt={item} key={item} />)}
         </div>
       </div>
       <div className={styles['datadetail-content-inner-right']}>
@@ -122,6 +118,42 @@ const DataDetailBox: React.FC<DataDetailBoxProps> = ({ startTime, endTime, chann
         <div>{i18n[lang]['datainfo.note1']}</div>
         <div>{i18n[lang]['datainfo.note2']}</div>
       </Modal>
+    </div>
+  );
+};
+
+export const StarPagination = ({
+  total,
+  onChange,
+  currentPage,
+  pageSize,
+}: {
+  currentPage: number;
+  total: number;
+  onChange: (page: number) => void;
+  pageSize: number;
+}) => {
+  const { lang, i18n } = useI18n(locale);
+  const totalPage = useMemo(() => {
+    return Math.ceil(+total / +pageSize);
+  }, [total, pageSize]);
+  const handlePrePage = () => {
+    if (currentPage > 1) {
+      onChange(currentPage - 1);
+    }
+  };
+  const handleNextPage = () => {
+    if (currentPage < totalPage) {
+      onChange(currentPage + 1);
+    }
+  };
+  return (
+    <div className={styles['datadetail-content-page-component']}>
+      <button onClick={handlePrePage}>{i18n[lang]['datainfo.pre']}</button>
+      <p>
+        <span style={{ color: '#3776F2' }}>{currentPage}</span>/{totalPage}
+      </p>
+      <button onClick={handleNextPage}>{i18n[lang]['datainfo.next']}</button>
     </div>
   );
 };
