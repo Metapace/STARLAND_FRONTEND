@@ -69,7 +69,7 @@ const index: React.FC<PayModalProps> = ({ open, handleCloseModal, activityId }) 
         </div>
         <div className={styles['split-line']}></div>
         <div className={styles['button-wrrap']}>
-          {data?.available_balance && data?.available_balance < passMount ? (
+          {data?.available_balance && data?.available_balance >= passMount ? (
             <Sbutton
               className={classNames('common-button', styles['confirm-button'])}
               onClick={handleSubmit}
