@@ -27,7 +27,7 @@ const Index: React.FC<DataItemProps> = (props) => {
   const { title, dataList, chartType = ChartType.Line } = props;
   const lastData = useMemo(() => {
     if (dataList[6]) {
-      return dataList[6];
+      return parseFloat((+dataList[6]).toFixed(2));
     }
     return 0;
   }, [dataList]);
