@@ -46,14 +46,14 @@ const EditProgress: React.FC<ReturnRemandItem> = ({
     if (status === DemandType.NeedVerify) {
       return [
         { title: 'Authorization.successful', time: dayjs.unix(pay_time).format('YYYY-MM-DD hh:mm:ss') },
-        { title: 'Channel.Distribution', timeText: 'in.progress' },
+        { title: 'wait.review', timeText: 'in.progress' },
       ];
     }
     if (status === DemandType.Channel) {
       const reviewTime = Math.max(design_time, deliver_time);
       return [
         { title: 'Review.successful', time: dayjs.unix(reviewTime).format('YYYY-MM-DD hh:mm:ss') },
-        { title: 'wait.review', timeText: 'in.progress' },
+        { title: 'Channel.Distribution', timeText: 'in.progress' },
       ];
     }
     if (status === DemandType.Finished) {
