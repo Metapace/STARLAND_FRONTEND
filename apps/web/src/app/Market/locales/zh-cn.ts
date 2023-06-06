@@ -23,6 +23,7 @@ const zh: {
   'ads.line': '横幅广告',
   'social.media': '社交媒体',
   'market-web3-describe': '新闻稿/区块链与加密货币',
+  'market.dynamic': '动态',
 };
 
 export default zh;

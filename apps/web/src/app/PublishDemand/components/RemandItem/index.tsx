@@ -43,17 +43,17 @@ const Index: React.FC<RemandItemProps> = ({ status, create_time, chan, country, 
     if (status === DemandType.VerifyFail) {
       return 'red';
     }
-    if (status === DemandType.Going) {
+    if (status === DemandType.Going || status === DemandType.CloseWait) {
       return 'light-green';
     }
-    if (status === DemandType.Finished || status === DemandType.CloseWait) {
+    if (status === DemandType.Finished) {
       return 'gray';
     }
     return 'blue';
   }, [status]);
 
   const timeText = useMemo(() => {
-    return dayjs.unix(create_time).format('YYYY-MM-YY HH:mm:ss');
+    return dayjs.unix(create_time).format('YYYY-MM-DD HH:mm:ss');
   }, [create_time]);
 
   const showCrowd = useMemo(() => {
@@ -64,8 +64,8 @@ const Index: React.FC<RemandItemProps> = ({ status, create_time, chan, country, 
   return (
     <div className={styles.container}>
       <div className={classNames(styles['tag'], styles[tagColor])}>
-        {status === DemandType.Finished || status === DemandType.CloseWait
-          ? i18n[lang][DemandMap[DemandType.Finished]]
+        {status === DemandType.Going || status === DemandType.CloseWait
+          ? i18n[lang][DemandMap[DemandType.Going]]
           : i18n[lang][DemandMap[status]]}
       </div>
       <div className={styles.title}>Web2-{i18n[lang]['native.ads']}</div>

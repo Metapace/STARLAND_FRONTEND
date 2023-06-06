@@ -30,8 +30,8 @@ const Index = () => {
     if (+demandType === DemandType.All) {
       return RemandList;
     }
-    if (+demandType === DemandType.Finished) {
-      return RemandList?.filter((item) => item.status === 7 || item.status === 10);
+    if (+demandType === DemandType.Going) {
+      return RemandList?.filter((item) => item.status === DemandType.Going || item.status === DemandType.CloseWait);
     }
     return RemandList?.filter((item) => item.status === +demandType);
   }, [RemandList, demandType]);

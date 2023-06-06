@@ -22,6 +22,7 @@ const en: {
   'ads.line': 'Banner Ads',
   'social.media': 'Social Media',
   'market-web3-describe': 'Press Release / Blockchain & Cryptocurrency',
+  'market.dynamic': 'Dynamic',
 };
 
 export default en;

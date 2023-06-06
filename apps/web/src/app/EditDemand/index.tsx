@@ -64,7 +64,10 @@ const EditProgress: React.FC<ReturnRemandItem> = ({
   return (
     <div className={styles['edit-container']}>
       <div className={styles['edit-container-inner']}>
-        {(status === DemandType.NeedPay || status === DemandType.NeedVerify || status === DemandType.NeedDeposite) && (
+        {(status === DemandType.NeedPay ||
+          status === DemandType.NeedVerify ||
+          status === DemandType.NeedDeposite ||
+          status === DemandType.Channel) && (
           <div className={styles['line-progress']}>
             <BlueDot />
             <div className={styles['blue-line']}></div>
@@ -126,7 +129,7 @@ const Index = () => {
       setFileList(files);
     }
   }, [data]);
-  const isDisableEdit = data?.status !== DemandType.NeedPay;
+  const isDisableEdit = data?.status !== DemandType.NeedPay && data?.status !== DemandType.NeedDeposite;
   return (
     <div className={styles.container}>
       <div className={styles['left-icon']} onClick={handleBack}>

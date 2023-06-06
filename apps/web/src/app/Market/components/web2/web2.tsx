@@ -19,6 +19,11 @@ import huawei from 'src/assets/images/dashbord/c-huawei.png';
 import prokwai from 'src/assets/images/dashbord/c-prokwai.png';
 import Taboola from 'src/assets/images/dashbord/c-Taboola.png';
 import Mytarget from 'src/assets/images/dashbord/c-Mytarget.png';
+import Expample from 'src/app/Market/components/exampleItem';
+import FaceBookIcon from 'src/assets/images/facebookIcon.png';
+import TiktokIcon from 'src/assets/images/TiktokIcon.png';
+import BigoIcon from 'src/assets/images/BigoIcon.png';
+import KwaiIcon from 'src/assets/images/KwaiIcon.png';
 
 const Index = () => {
   const { lang, i18n } = useI18n(locale);
@@ -59,27 +64,10 @@ const Index = () => {
       <div className={styles['bottom']}>
         <div className={styles['flag']}>{i18n[lang]['market.launch.example']}</div>
         <div className={styles['video-list']}>
-          <div className={styles['video-item']}>
-            <video
-              src="https://starlands3.s3.ap-southeast-1.amazonaws.com/starland/1685930684927-web2-promote1-video.mp4"
-              height="338"
-              controls
-            ></video>
-          </div>
-          <div className={styles['video-item']}>
-            <video
-              src="https://starlands3.s3.ap-southeast-1.amazonaws.com/starland/1685930691885-web2-promote2-video.mp4"
-              height="338"
-              controls
-            ></video>
-          </div>
-          <div className={styles['video-item']}>
-            <video
-              src="https://starlands3.s3.ap-southeast-1.amazonaws.com/starland/1685930698660-web2-promote3-video.mp4"
-              height="338"
-              controls
-            ></video>
-          </div>
+          <Expample title="Facebook" log={FaceBookIcon}></Expample>
+          <Expample title="Tiktok" log={TiktokIcon}></Expample>
+          <Expample title="Bigo" log={BigoIcon}></Expample>
+          <Expample title="Kwai" log={KwaiIcon}></Expample>
         </div>
       </div>
     </div>

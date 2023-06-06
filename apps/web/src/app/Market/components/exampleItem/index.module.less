@@ -1,0 +1,49 @@
+.container {
+}
+.title {
+  display: flex;
+  align-items: center;
+  column-gap: 4px;
+  margin-bottom: 12px;
+}
+.title-left {
+  :global {
+    .lazy-load-image-background {
+      img {
+        width: 23px;
+        height: auto;
+      }
+    }
+  }
+}
+.title-name {
+  color: rgba(0, 0, 0, 0.48);
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+}
+.title-dynamic {
+  color: #000000;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+}
+.content {
+  position: relative;
+  img {
+    width: 223px;
+    height: 398px;
+  }
+}
+.content-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

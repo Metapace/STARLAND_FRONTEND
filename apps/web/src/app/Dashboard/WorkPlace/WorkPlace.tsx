@@ -37,10 +37,10 @@ import web39 from 'src/assets/images/dashbord/web3-9.png';
 import web310 from 'src/assets/images/dashbord/web3-10.png';
 import web311 from 'src/assets/images/dashbord/web3-11.png';
 import web312 from 'src/assets/images/dashbord/web3-12.png';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 import CountUp from 'react-countup';
 import { useTransformInfoContent } from 'src/app/Message/components/MessageItem';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import {
   useRequestUserIndfo,
   useRequestDashboardInfo,
