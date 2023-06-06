@@ -40,7 +40,7 @@ const zh: {
   'datainfo.loading': '加载中',
   'datainfo.closed': '关闭投放',
   'datainfo.noRecord': '无记录',
-
+  'datainfo.closing': '关闭中...',
 };
 
 export default zh;

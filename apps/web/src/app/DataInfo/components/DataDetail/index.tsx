@@ -45,7 +45,7 @@ const DataDetailBox: React.FC<DataDetailBoxProps> = ({ startTime, endTime, chann
     refetch();
   };
   const channelarray = channel.split(',');
-  console.log('channelarray', channelarray);
+  // console.log('channelarray', channelarray);
   return (
     <div className={styles['datadetail-content-inner']}>
       <div className={styles['datadetail-content-inner-left']}>
@@ -58,7 +58,7 @@ const DataDetailBox: React.FC<DataDetailBoxProps> = ({ startTime, endTime, chann
         </div>
       </div>
       <div className={styles['datadetail-content-inner-right']}>
-        {state == 6 ? (
+        {state == 6 || state == 10 ? (
           <div style={{ width: '72px' }} className={styles['datadetail-content-inner-right-state']}>
             {i18n[lang]['datainfo.inProgress']}
           </div>
@@ -80,14 +80,25 @@ const DataDetailBox: React.FC<DataDetailBoxProps> = ({ startTime, endTime, chann
           >
             {i18n[lang]['datainfo.closed']}
           </div>
+        ) : state == 10 ? (
+          <div
+            // onClick={() => setVisible(true)}
+            // onClick={()=>handleSubmit(id)}
+            style={{ width: '140px' }}
+            className={styles['datadetail-content-inner-right-btn-active']}
+          >
+            {i18n[lang]['datainfo.closing']}
+          </div>
         ) : (
           <RelaunchButton
             id={id}
             style={{
               color: '#a2a7b5',
-              padding: '0',
               width: '140px',
-              paddingInline: '20px',
+              height: '34px',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
               borderRadius: '5px',
               background: '#e9ecf4',
               boxShadow: '-3px -3px 5px #ffffff, 2px 4px 5px rgba(0, 0, 0, 0.14)',
@@ -99,7 +110,10 @@ const DataDetailBox: React.FC<DataDetailBoxProps> = ({ startTime, endTime, chann
         title={i18n[lang]['datainfo.closingConfirmation']}
         visible={visible}
         okButtonProps={{}}
-        onOk={() => handleSubmit(id)}
+        onOk={async () => {
+          await handleSubmit(id);
+          setVisible(false);
+        }}
         onCancel={() => setVisible(false)}
         autoFocus={false}
         focusLock
@@ -165,7 +179,7 @@ const Index = () => {
   const ActivityListBystatusRequestParams: getActivityListBystatusRequestParams = {
     page: currentPage,
     page_size: pageMax,
-    action: '6,7',
+    action: '6,7,10',
   };
 
   const {

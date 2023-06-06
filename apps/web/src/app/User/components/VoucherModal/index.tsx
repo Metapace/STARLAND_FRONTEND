@@ -37,7 +37,7 @@ const index: React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal, ref
   };
   function onOk() {
     form.validate().then(async (res) => {
-      console.log('res', res);
+      // console.log('res', res);
       setConfirmLoading(true);
       let data: IVoucherInterface;
       if (res.represent === undefined || res.represent === 1) {
