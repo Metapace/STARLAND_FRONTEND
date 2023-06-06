@@ -8,9 +8,10 @@ import exampleImage from 'src/assets/images/example-bg.png';
 export interface ExampleItemProps {
   title: string;
   log: string;
+  src: string;
 }
 
-const Index: React.FC<ExampleItemProps> = ({ title, log }) => {
+const Index: React.FC<ExampleItemProps> = ({ title, log, src }) => {
   const { lang, i18n } = useI18n(locale);
   return (
     <div className={styles['container']}>
@@ -26,11 +27,7 @@ const Index: React.FC<ExampleItemProps> = ({ title, log }) => {
       <div className={styles['content']}>
         <img src={exampleImage}></img>
         <div className={styles['content-inner']}>
-          <video
-            src="https://starlands3.s3.ap-southeast-1.amazonaws.com/starland/1685930684927-web2-promote1-video.mp4"
-            width={180}
-            controls
-          ></video>
+          <video src={src} width={180} controls></video>
         </div>
       </div>
     </div>

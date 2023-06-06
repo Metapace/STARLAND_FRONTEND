@@ -154,7 +154,7 @@ const Index = () => {
       </div>
       <div className={styles['button-wrrap']}>
         <Sbutton text={i18n[lang]['r.back']} onClick={handleBack} />
-        {data?.status == DemandType.NeedPay && (
+        {(data?.status == DemandType.NeedPay || data?.status == DemandType.NeedDeposite) && (
           <Sbutton text={i18n[lang]['save.changes']} onClick={handleEdit} loading={isLoading} />
         )}
       </div>
