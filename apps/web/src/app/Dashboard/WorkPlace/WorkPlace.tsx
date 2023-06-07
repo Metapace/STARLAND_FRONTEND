@@ -141,9 +141,17 @@ const marketItemList2 = [web27, web28, web29, web210, web211, web212];
 const marketItemList3 = [web31, web32, web33, web34, web35, web36];
 const marketItemList4 = [web37, web38, web39, web310, web311, web312];
 
-export const MarketItem: React.FC<MarketItemProps> = ({ src, width = '72px' }) => {
+export const MarketItem: React.FC<MarketItemProps> = ({ src, width = '72px', height = '22px' }) => {
   return (
     <div className={styles['market-item-one']}>
+      <LazyLoadImage src={src} alt={'web2'} effect="blur" width={width} />
+    </div>
+  );
+};
+
+export const MarketItemTwo: React.FC<MarketItemProps> = ({ src, width = '72px' }) => {
+  return (
+    <div className={styles['market-item-two']}>
       <LazyLoadImage src={src} alt={'web2'} effect="blur" width={width} />
     </div>
   );
@@ -290,12 +298,12 @@ const Workplace = () => {
       <div className={classNames(styles['common-item'], styles['market-item'])}>
         <div>
           {marketItemList1.map((src: string) => (
-            <MarketItem src={src} key={src}></MarketItem>
+            <MarketItemTwo src={src} key={src}></MarketItemTwo>
           ))}
         </div>
         <div>
           {marketItemList2.map((src: string) => (
-            <MarketItem src={src} key={src}></MarketItem>
+            <MarketItemTwo src={src} key={src}></MarketItemTwo>
           ))}
         </div>
       </div>
@@ -303,12 +311,12 @@ const Workplace = () => {
       <div className={classNames(styles['common-item'], styles['market-item'])}>
         <div>
           {marketItemList3.map((src: string) => (
-            <MarketItem src={src} key={src}></MarketItem>
+            <MarketItemTwo src={src} key={src}></MarketItemTwo>
           ))}
         </div>
         <div>
           {marketItemList4.map((src: string) => (
-            <MarketItem src={src} key={src}></MarketItem>
+            <MarketItemTwo src={src} key={src}></MarketItemTwo>
           ))}
         </div>
       </div>

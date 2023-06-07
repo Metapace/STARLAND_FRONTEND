@@ -7,7 +7,6 @@ import eth from 'src/assets/images/usercenter-assets-eth.png';
 import polygon from 'src/assets/images/usercenter-assets-polygon.png';
 import attention from 'src/assets/images/usercenter-assets-attention.png';
 import QRcode from 'src/assets/images/usercenter-assets-QRcode.png';
-import Clipboard from 'clipboard';
 import useI18n from 'src/ahooks/useI18n';
 import locale from '../../locales';
 import { useRequestCompanyInfo, useRequestDashboardInfo, useRequestMinInAmount } from 'apis';
@@ -20,7 +19,6 @@ interface CompanyBoxProps {
 const CompanyBox: React.FC<CompanyBoxProps> = ({ title, info }) => {
   const { lang, i18n } = useI18n(locale);
   const [isCopied, setIsCopied] = useState(false);
-  const copy = new Clipboard('.copy-btn');
   //* Handle alerts
   useEffect(() => {
     if (isCopied) {

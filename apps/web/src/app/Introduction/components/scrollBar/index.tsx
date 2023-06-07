@@ -20,41 +20,35 @@ const Index: React.FC<ScrollBarProps> = ({ contentList, floatType = 'left', barN
       <div className={styles['wrapper']}>
         <section style={sectionStyle}>
           {contentList.map((image) => (
-            <div className={styles['image']} key={image}>
-              <LazyLoadImage
-                src={image}
-                alt={image}
-                effect="blur"
-                key={image}
-                className={styles['content-image']}
-              ></LazyLoadImage>
-            </div>
+            <LazyLoadImage
+              src={image}
+              alt={image}
+              effect="blur"
+              key={image}
+              className={styles['content-image']}
+            ></LazyLoadImage>
           ))}
         </section>
         <section style={sectionStyle}>
           {contentList.map((image) => (
-            <div className={styles['image']} key={image}>
-              <LazyLoadImage
-                src={image}
-                alt={image}
-                effect="blur"
-                key={image}
-                className={styles['content-image']}
-              ></LazyLoadImage>
-            </div>
+            <LazyLoadImage
+              src={image}
+              alt={image}
+              effect="blur"
+              key={image}
+              className={styles['content-image']}
+            ></LazyLoadImage>
           ))}
         </section>
         <section style={sectionStyle}>
           {contentList.map((image) => (
-            <div className={styles['image']} key={image}>
-              <LazyLoadImage
-                src={image}
-                alt={image}
-                effect="blur"
-                key={image}
-                className={styles['content-image']}
-              ></LazyLoadImage>
-            </div>
+            <LazyLoadImage
+              src={image}
+              alt={image}
+              effect="blur"
+              key={image}
+              className={styles['content-image']}
+            ></LazyLoadImage>
           ))}
         </section>
       </div>
