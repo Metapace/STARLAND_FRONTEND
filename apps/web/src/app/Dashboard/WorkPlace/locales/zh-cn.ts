@@ -29,6 +29,7 @@ const zh: {
   'yesterday-data-2': '点击量',
   'yesterday-data-3': '点击率',
   'yesterday-data-4': '成本',
+  'no-message': '暂时没有消息',
 };
 
 export default zh;

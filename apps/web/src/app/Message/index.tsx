@@ -36,12 +36,6 @@ const Index = () => {
     return { page, page_size, status: paramsStatus, start, end };
   }, [page, page_size, paramsStatus, searchTimeRange]);
   const { data } = useRequestAlertList(requestParams);
-  const totalPage = useMemo(() => {
-    if (data?.count) {
-      return Math.ceil(data.count / page_size);
-    }
-    return 0;
-  }, [page_size, data?.count]);
   const handleSelectChange = (value: string) => {
     if (value === '1') {
       setTimeRange([dayjs().subtract(1, 'day'), dayjs()]);
@@ -85,7 +79,7 @@ const Index = () => {
         <div className={styles['nav-right']}>
           <div className={styles['nav-right-title']}>{i18n[lang]['r.time']}:</div>
           <div className={styles['nav-select']}>
-            <Select placeholder="Please select" style={{ width: 154 }} onChange={handleSelectChange}>
+            <Select placeholder={i18n[lang]['please.select']} style={{ width: 154 }} onChange={handleSelectChange}>
               {timeOptions.map((option) => (
                 <Select.Option key={option.value} value={option.value}>
                   {i18n[lang][option.label]}
@@ -93,7 +87,6 @@ const Index = () => {
               ))}
             </Select>
           </div>
-
           <RangePicker style={{ width: 252 }} value={timeRange} onChange={handelRangeChange} />
           <Sbutton
             text={i18n[lang]['r.search']}

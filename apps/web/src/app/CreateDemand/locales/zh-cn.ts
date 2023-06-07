@@ -55,6 +55,7 @@ const zh: {
   'select.lang.palceHoder': '请选择语言',
   'select.gender.palceHoder': '请选择性别',
   'select.age.palceHoder': '请选择年龄',
+  'r.daily': '每日',
 };
 
 export default zh;

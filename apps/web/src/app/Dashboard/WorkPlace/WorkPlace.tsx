@@ -63,7 +63,7 @@ const InfoItem: React.FC<InfoItemProps> = ({ type, message }) => {
   return (
     <div className={styles['common-info-item']}>
       <div className={classNames(styles['left'], styles[type])}>{`${i18n[lang][name]}`}</div>
-      <div className={styles['right']}>{content || 'no message'}</div>
+      <div className={styles['right']}>{content || i18n[lang]['no.message']}</div>
     </div>
   );
 };
