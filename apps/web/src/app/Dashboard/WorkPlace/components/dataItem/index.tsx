@@ -95,7 +95,7 @@ const Index: React.FC<DataItemProps> = (props) => {
     <div className={styles.container}>
       <div className={styles['left-area']}>
         <div className={styles.title}>{title}</div>
-        <div className={styles['last-data']}>{lastData}</div>
+        <div className={styles['last-data']}>{lastData.toLocaleString()}</div>
         <div className={styles['compara-data']}>
           <div className={styles['compara-last-day']}>{`${i18n[lang]['dashbord.comparaLastDay']}`}</div>
           <div
@@ -105,7 +105,7 @@ const Index: React.FC<DataItemProps> = (props) => {
               comparaData < 0 && styles.green,
             )}
           >
-            {parseFloat(comparaData.toFixed(2))}
+            {parseFloat(comparaData.toFixed(2)).toLocaleString()}
           </div>
           {comparaData >= 0 ? (
             <img src={upRedImage} className={styles['trend-image']} />
