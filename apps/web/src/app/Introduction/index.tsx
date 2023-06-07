@@ -292,12 +292,29 @@ const Index: React.FC = () => {
         </div>
         <ScrollBar
           barNumber={1}
-          contentList={[web2AppFlys, web2AppLovin, web2Djust, web2Meta, web2PetalADs, web2Tiktok, web2Topon, web2Unity]}
+          contentList={[
+            { src: web2AppFlys, width: '140px', height: '40px' },
+            { src: web2AppLovin, width: '160px', height: '40px' },
+            { src: web2Djust, width: '140px', height: '34px' },
+            { src: web2Meta, width: '140px', height: '36px' },
+            { src: web2PetalADs, width: '140px', height: '40px' },
+            { src: web2Tiktok, width: '120px', height: '40px' },
+            { src: web2Topon, width: '140px', height: '36px' },
+            { src: web2Unity, width: '120px', height: '40px' },
+          ]}
         />
         <div className={classNames(styles['advantage-sub-title'], styles['web3-title'])}>/Web3</div>
         <ScrollBar
           barNumber={2}
-          contentList={[web3BlockS, web3Bsc, web3CoinCdex, web3CoinGeko, web3Coingape, web3Whattomine, web3StormGain]}
+          contentList={[
+            { src: web3BlockS, width: '160px', height: '40px' },
+            { src: web3Bsc, width: '150px', height: '40px' },
+            { src: web3CoinCdex, width: '170px', height: '40px' },
+            { src: web3CoinGeko, width: '150px', height: '40px' },
+            { src: web3Coingape, width: '150px', height: '40px' },
+            { src: web3Whattomine, width: '160px', height: '40px' },
+            { src: web3StormGain, width: '140px', height: '40px' },
+          ]}
           floatType="right"
         />
       </div>

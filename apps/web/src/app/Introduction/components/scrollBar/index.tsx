@@ -3,8 +3,14 @@ import styles from './index.module.less';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+
+interface contentItem {
+  src: string;
+  height: string;
+  width: string;
+}
 interface ScrollBarProps {
-  contentList: Array<string>;
+  contentList: Array<contentItem>;
   floatType?: 'right' | 'left';
   barNumber: number;
 }
@@ -21,7 +27,22 @@ const Index: React.FC<ScrollBarProps> = ({ contentList, floatType = 'left', barN
         <section style={sectionStyle}>
           {contentList.map((image) => (
             <LazyLoadImage
-              src={image}
+              src={image.src}
+              alt={image}
+              width={image.width}
+              height={image.height}
+              effect="blur"
+              key={image}
+              className={styles['content-image']}
+            ></LazyLoadImage>
+          ))}
+        </section>
+        <section style={sectionStyle}>
+          {contentList.map((image) => (
+            <LazyLoadImage
+              src={image.src}
+              width={image.width}
+              height={image.height}
               alt={image}
               effect="blur"
               key={image}
@@ -32,18 +53,9 @@ const Index: React.FC<ScrollBarProps> = ({ contentList, floatType = 'left', barN
         <section style={sectionStyle}>
           {contentList.map((image) => (
             <LazyLoadImage
-              src={image}
-              alt={image}
-              effect="blur"
-              key={image}
-              className={styles['content-image']}
-            ></LazyLoadImage>
-          ))}
-        </section>
-        <section style={sectionStyle}>
-          {contentList.map((image) => (
-            <LazyLoadImage
-              src={image}
+              src={image.src}
+              width={image.width}
+              height={image.height}
               alt={image}
               effect="blur"
               key={image}

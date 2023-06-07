@@ -106,8 +106,6 @@ const Index: React.FC<RemandItemProps> = ({ status, create_time, chan, country, 
         )}
       </div>
       <div className={styles['bottom-button']}>
-        {status === DemandType.Finished && <RelaunchButton id={id} onFinish={refetch} />}
-
         {status === DemandType.NeedDeposite && (
           <div className={classNames('common-button', styles['orange-button'])} onClick={toggle}>
             {i18n[lang]['deposite.right']}
@@ -136,6 +134,7 @@ const Index: React.FC<RemandItemProps> = ({ status, create_time, chan, country, 
             {i18n[lang]['view.detail']}
           </div>
         )}
+        {status === DemandType.Finished && <RelaunchButton id={id} onFinish={refetch} style={{ color: '#2D70F1' }} />}
       </div>
       <PayModal activityId={id} open={open} handleCloseModal={toggle} />
     </div>
