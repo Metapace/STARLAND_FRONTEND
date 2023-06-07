@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
-import { useRequestAlertList } from 'apis';
+import { useRequestAlertList, useRequestUserIndfo } from 'apis';
 import Logo from 'src/assets/images/starland-log.png';
 import MessageIcon from 'src/assets/images/messageLin.png';
 import { Button, Dropdown, Menu, Divider, Message, Avatar } from '@arco-design/web-react';
@@ -29,6 +29,7 @@ const Header = () => {
   const [, setLanguage] = useLocalStorageState('language');
   const [nowTime, setNowtime] = useState(dayjs().format('YYYY-MM-DD hh:mm:ss'));
   const { data } = useRequestAlertList({ page: 1, page_size: 10, status: 1 });
+  const { data: userInfo } = useRequestUserIndfo();
 
   const loginOut = () => {
     removeLocalToken();
@@ -106,7 +107,7 @@ const Header = () => {
             }
           >
             <Avatar autoFixFontSize={false} size={32}>
-              <img src="https://avatars.githubusercontent.com/u/42566669?v=4" alt="avatar" />
+              <img src={userInfo?.avatar_uri} alt="avatar" />
             </Avatar>
           </Dropdown>
         </li>
