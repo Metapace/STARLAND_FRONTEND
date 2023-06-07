@@ -118,7 +118,7 @@ const Index: React.FC<RemandItemProps> = ({ status, create_time, chan, country, 
             {i18n[lang]['pay.auth']}
           </div>
         )}
-        {status === DemandType.Going ? (
+        {status === DemandType.Going || status === DemandType.CloseWait ? (
           <div className={classNames('common-button', styles['read-detail'])} onClick={() => navigate('/datainfo')}>
             {i18n[lang]['view.data']}
           </div>

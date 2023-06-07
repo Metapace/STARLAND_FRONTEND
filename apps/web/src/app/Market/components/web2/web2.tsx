@@ -67,22 +67,26 @@ const Index = () => {
           <Expample
             title="Facebook"
             log={FaceBookIcon}
-            src="https://starlands3.s3.ap-southeast-1.amazonaws.com/starland/1686051927073--J.mp4"
+            videoWidth={192}
+            src="https://starlands3.s3.ap-southeast-1.amazonaws.com/starland/1686051965915-Joy_1.mp4"
           ></Expample>
           <Expample
             title="Tiktok"
             log={TiktokIcon}
+            videoWidth={192}
             src="https://starlands3.s3.ap-southeast-1.amazonaws.com/starland/1686051943253-20.mp4"
           ></Expample>
           <Expample
             title="Bigo"
             log={BigoIcon}
+            videoWidth={192}
             src="https://starlands3.s3.ap-southeast-1.amazonaws.com/starland/1686051950500-2022.J.mp4"
           ></Expample>
           <Expample
             title="Kwai"
             log={KwaiIcon}
-            src="https://starlands3.s3.ap-southeast-1.amazonaws.com/starland/1686051965915-Joy_1.mp4"
+            videoWidth={192}
+            src="https://starlands3.s3.ap-southeast-1.amazonaws.com/starland/1686051927073--J.mp4"
           ></Expample>
         </div>
       </div>

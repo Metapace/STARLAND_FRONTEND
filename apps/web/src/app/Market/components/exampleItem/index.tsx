@@ -9,9 +9,11 @@ export interface ExampleItemProps {
   title: string;
   log: string;
   src: string;
+  videoHeight?: number;
+  videoWidth?: number;
 }
 
-const Index: React.FC<ExampleItemProps> = ({ title, log, src }) => {
+const Index: React.FC<ExampleItemProps> = ({ title, log, src, videoWidth }) => {
   const { lang, i18n } = useI18n(locale);
   return (
     <div className={styles['container']}>
@@ -27,7 +29,7 @@ const Index: React.FC<ExampleItemProps> = ({ title, log, src }) => {
       <div className={styles['content']}>
         <img src={exampleImage}></img>
         <div className={styles['content-inner']}>
-          <video src={src} width={180} controls></video>
+          <video src={src} width={videoWidth} controls></video>
         </div>
       </div>
     </div>
