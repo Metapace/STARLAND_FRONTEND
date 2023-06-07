@@ -20,7 +20,7 @@ const Index = () => {
   const handleRePublish = async () => {
     if (data?.status === DemandType.VerifyFail) {
       await mutateAsync({ id, status: 8 });
-      navigate('/publish-demand');
+      navigate('/create-demand');
     }
   };
   return (

@@ -51,6 +51,10 @@ const en: {
   'pay.number': 'to pay noun',
   'r.launguage': 'launguage',
   'not.limited': 'Unlimited',
+  'select.period.palceHoder': 'Select launch period',
+  'select.lang.palceHoder': 'Select language',
+  'select.gender.palceHoder': 'Select gender',
+  'select.age.palceHoder': 'Select age',
 };
 
 export default en;

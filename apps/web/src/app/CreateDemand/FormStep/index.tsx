@@ -3,7 +3,7 @@ import styles from './index.module.less';
 import classNames from 'classnames';
 import { Form, Slider, Grid, Select, FormInstance } from '@arco-design/web-react';
 const FormItem = Form.Item;
-import { useRequestCountry, useRequestLanguage, useRequestChanne, ReturnRemandItem } from 'apis';
+import { useRequestCountry, useRequestLanguage, ReturnRemandItem } from 'apis';
 import useI18n from 'src/ahooks/useI18n';
 import { gendarRange, ageRange, launchPeriod } from 'src/conifg/selectConfig';
 import HorizontalScroll from 'src/components/HorizontalScroll';
@@ -161,7 +161,7 @@ const Index: React.FC<FormStepProps> = ({
                   field="days"
                   requiredSymbol={{ position: 'end' }}
                 >
-                  <Select placeholder="Select Launch period" disabled={isDisable}>
+                  <Select placeholder={i18n[lang]['select.period.palceHoder']} disabled={isDisable}>
                     {launchPeriod.map((item) => (
                       <Option value={item.value} key={item.value}>
                         {i18n[lang][item.label]}
@@ -189,7 +189,7 @@ const Index: React.FC<FormStepProps> = ({
                   field="lauguage"
                   requiredSymbol={{ position: 'end' }}
                 >
-                  <Select placeholder="Select language" disabled={isDisable}>
+                  <Select placeholder={i18n[lang]['select.lang.palceHoder']} disabled={isDisable}>
                     {languageList?.map((item: string) => (
                       <Option value={item} key={item}>
                         {item}
@@ -206,7 +206,7 @@ const Index: React.FC<FormStepProps> = ({
                   <Grid.Row gutter={8}>
                     <Grid.Col span={12}>
                       <Form.Item field={'crowd'} rules={[{ required: true }]}>
-                        <Select placeholder="Select gender" disabled={isDisable}>
+                        <Select placeholder={i18n[lang]['select.gender.palceHoder']} disabled={isDisable}>
                           {gendarRange.map((item) => (
                             <Option value={item.value} key={item.value}>
                               {i18n[lang][item.label]}
@@ -218,7 +218,7 @@ const Index: React.FC<FormStepProps> = ({
 
                     <Grid.Col span={12}>
                       <Form.Item field={'age'} rules={[{ required: true }]}>
-                        <Select placeholder="Select age" disabled={isDisable}>
+                        <Select placeholder={i18n[lang]['select.age.palceHoder']} disabled={isDisable}>
                           {ageRange.map((item) => (
                             <Option value={item.value} key={item.value}>
                               {i18n[lang][item.label] || item.label}

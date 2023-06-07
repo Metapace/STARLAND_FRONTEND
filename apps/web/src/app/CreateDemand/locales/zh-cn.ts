@@ -51,6 +51,10 @@ const zh: {
   'pay.number': '支付费用',
   'r.launguage': '语言',
   'not.limited': '不限',
+  'select.period.palceHoder': '请选择投放周期',
+  'select.lang.palceHoder': '请选择语言',
+  'select.gender.palceHoder': '请选择性别',
+  'select.age.palceHoder': '请选择年龄',
 };
 
 export default zh;

@@ -174,7 +174,7 @@ const Workplace = () => {
   });
   useEffect(() => {
     if (data3 && Array.isArray(data3) && data3.length > 0) {
-      const lastItem = data3[length - 1];
+      const lastItem = data3[data3.length - 1];
       setlastDayDate(lastItem);
       const impressionList = data3.map((item: ReportGetReturnItem) => item.impression);
       const costList = data3.map((item: ReportGetReturnItem) => item.cost);
