@@ -3,7 +3,7 @@ const en: {
 } = {
   'dashbord.welcome': 'Welcome Back',
   'dashbord.info': 'Announcement Notification',
-  'dashbord.lastDayData': "Yesterday's total data",
+  'dashbord.lastDayData': "Yesterday's Total Data",
   'dashbord.marketChannel': 'Marketing Channels',
   'dashbord.readMore': 'View more',
   'dashbord.activity': 'Campaign',
