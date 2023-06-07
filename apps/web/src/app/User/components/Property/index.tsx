@@ -135,7 +135,8 @@ const index: React.FC<PropertyProps> = ({ handleOpenVoucherModal, handleCloseVou
         </div>
         <CompanyBox
           title={i18n[lang]['usercenter.USDTDepositAddress']}
-          info={i18n[lang]['usercenter.USDTDepositAddress']}
+          // info={i18n[lang]['usercenter.USDTDepositAddress']}
+          info={""}
         />
       </div>
     </div>
