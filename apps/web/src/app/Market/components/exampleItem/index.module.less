@@ -5,6 +5,13 @@
   video::-webkit-media-controls-mute-button {
     display: none;
   }
+  video ::-webkit-media-controls-start-playback-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3em;
+    width: 3em;
+  }
 }
 .title {
   display: flex;
@@ -53,6 +60,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .facebook-video {
@@ -63,7 +72,6 @@
   background-size: contain;
   background-repeat: no-repeat;
   position: relative;
-  overflow: hidden;
   video {
     position: absolute;
     top: 50px;
@@ -77,11 +85,46 @@
   background-repeat: no-repeat;
   background-size: contain;
   position: absolute;
-  bottom: 20;
-  left: 0;
+  bottom: 20px;
+  left: 12px;
+}
+.tiktok-video-player {
+  transform: translateY(-20px);
+}
+.bigo-video {
+  background-image: url('src/assets/images/market/BigoVideo.png');
+  width: 198px;
+  height: 168px;
+  transform: translateX(-2px);
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: relative;
   video {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 26px;
   }
+}
+.kwai-video-top {
+  background-image: url('src/assets/images/market/kwai-top.png');
+  width: 198px;
+  height: 21px;
+  position: absolute;
+  background-size: contain;
+
+  top: 24px;
+  left: 12px;
+  z-index: 1000;
+}
+.kwai-video-bottom {
+  background-image: url('src/assets/images/market/kwai-bottom.png');
+  width: 198px;
+  height: 48px;
+  position: absolute;
+  background-size: contain;
+  bottom: 12px;
+  left: 12px;
+  background-repeat: no-repeat;
+}
+.kwai-video-player {
+  transform: translateY(-20px);
 }

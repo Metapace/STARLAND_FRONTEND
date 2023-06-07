@@ -14,6 +14,7 @@
     "@commitlint/config-conventional": "^17.6.5",
     "@types/node": "^20.2.5",
     "@types/react": "^18.2.7",
+    "@types/video-react": "^0.15.1",
     "cross-env": "^7.0.3",
     "cz-git": "^1.6.1",
     "dotenv": "^16.1.1",
@@ -51,6 +52,7 @@
     "node-polyfill-webpack-plugin": "^2.0.1",
     "react-horizontal-scrolling-menu": "^4.0.4",
     "react-svg": "^16.1.14",
-    "utils": "workspace:1.0.0"
+    "utils": "workspace:1.0.0",
+    "video-react": "^0.16.0"
   }
 }

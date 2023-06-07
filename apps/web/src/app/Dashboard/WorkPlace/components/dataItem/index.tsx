@@ -63,7 +63,7 @@ const Index: React.FC<DataItemProps> = (props) => {
   }, [chartType, comparaData]);
   const getOption = () => {
     const options = {
-      grid: { top: 0, right: 0, bottom: 0, left: 0 },
+      grid: { top: 0, right: 2, bottom: 2, left: 0 },
       xAxis: {
         type: 'category',
         splitLine: { show: false },
@@ -105,7 +105,7 @@ const Index: React.FC<DataItemProps> = (props) => {
               comparaData < 0 && styles.green,
             )}
           >
-            {comparaData}
+            {parseFloat(comparaData.toFixed(2))}
           </div>
           {comparaData >= 0 ? (
             <img src={upRedImage} className={styles['trend-image']} />

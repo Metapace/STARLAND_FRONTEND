@@ -29,6 +29,7 @@ const zh: {
   'yesterday-data-2': '点击量',
   'yesterday-data-3': '点击率',
   'yesterday-data-4': '成本',
+  'yesterdat-tip': '每日九点更新前一日数据',
 };
 
 export default zh;

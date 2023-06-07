@@ -29,6 +29,7 @@ const en: {
   'yesterday-data-2': 'Click volume',
   'yesterday-data-3': 'Clicks rate',
   'yesterday-data-4': 'Cost',
+  'yesterdat-tip': "Daily update of previous day's data at 9:00am",
 };
 
 export default en;

@@ -5,7 +5,7 @@ const en: {
   'create.material': 'Create Material',
   'pay.order': 'Pay Order',
   'total.amount': 'Total amount',
-  'r.empyty': 'Empyty',
+  'r.empyty': 'Empty',
 };
 
 export default en;

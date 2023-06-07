@@ -19,7 +19,7 @@ import huawei from 'src/assets/images/dashbord/c-huawei.png';
 import prokwai from 'src/assets/images/dashbord/c-prokwai.png';
 import Taboola from 'src/assets/images/dashbord/c-Taboola.png';
 import Mytarget from 'src/assets/images/dashbord/c-Mytarget.png';
-import Expample from 'src/app/Market/components/exampleItem';
+import Expample, { ExampleType } from 'src/app/Market/components/exampleItem';
 import FaceBookIcon from 'src/assets/images/market/facebookIcon.png';
 import TiktokIcon from 'src/assets/images/market/TiktokIcon.png';
 import BigoIcon from 'src/assets/images/market/BigoIcon.png';
@@ -67,25 +67,25 @@ const Index = () => {
           <Expample
             title="Facebook"
             log={FaceBookIcon}
-            videoWidth={196}
+            exampleType={ExampleType.FacebookType}
             src="https://starlands3.s3.ap-southeast-1.amazonaws.com/starland/1686051965915-Joy_1.mp4"
           ></Expample>
           <Expample
             title="Tiktok"
             log={TiktokIcon}
-            videoWidth={196}
+            exampleType={ExampleType.TiktokType}
             src="https://starlands3.s3.ap-southeast-1.amazonaws.com/starland/1686051943253-20.mp4"
           ></Expample>
           <Expample
             title="Bigo"
             log={BigoIcon}
-            videoWidth={196}
+            exampleType={ExampleType.BigoType}
             src="https://starlands3.s3.ap-southeast-1.amazonaws.com/starland/1686051950500-2022.J.mp4"
           ></Expample>
           <Expample
             title="Kwai"
             log={KwaiIcon}
-            videoWidth={196}
+            exampleType={ExampleType.KwaiType}
             src="https://starlands3.s3.ap-southeast-1.amazonaws.com/starland/1686051927073--J.mp4"
           ></Expample>
         </div>
