@@ -20,10 +20,10 @@ import prokwai from 'src/assets/images/dashbord/c-prokwai.png';
 import Taboola from 'src/assets/images/dashbord/c-Taboola.png';
 import Mytarget from 'src/assets/images/dashbord/c-Mytarget.png';
 import Expample from 'src/app/Market/components/exampleItem';
-import FaceBookIcon from 'src/assets/images/facebookIcon.png';
-import TiktokIcon from 'src/assets/images/TiktokIcon.png';
-import BigoIcon from 'src/assets/images/BigoIcon.png';
-import KwaiIcon from 'src/assets/images/KwaiIcon.png';
+import FaceBookIcon from 'src/assets/images/market/facebookIcon.png';
+import TiktokIcon from 'src/assets/images/market/TiktokIcon.png';
+import BigoIcon from 'src/assets/images/market/BigoIcon.png';
+import KwaiIcon from 'src/assets/images/market/KwaiIcon.png';
 
 const Index = () => {
   const { lang, i18n } = useI18n(locale);
@@ -67,25 +67,25 @@ const Index = () => {
           <Expample
             title="Facebook"
             log={FaceBookIcon}
-            videoWidth={192}
+            videoWidth={196}
             src="https://starlands3.s3.ap-southeast-1.amazonaws.com/starland/1686051965915-Joy_1.mp4"
           ></Expample>
           <Expample
             title="Tiktok"
             log={TiktokIcon}
-            videoWidth={192}
+            videoWidth={196}
             src="https://starlands3.s3.ap-southeast-1.amazonaws.com/starland/1686051943253-20.mp4"
           ></Expample>
           <Expample
             title="Bigo"
             log={BigoIcon}
-            videoWidth={192}
+            videoWidth={196}
             src="https://starlands3.s3.ap-southeast-1.amazonaws.com/starland/1686051950500-2022.J.mp4"
           ></Expample>
           <Expample
             title="Kwai"
             log={KwaiIcon}
-            videoWidth={192}
+            videoWidth={196}
             src="https://starlands3.s3.ap-southeast-1.amazonaws.com/starland/1686051927073--J.mp4"
           ></Expample>
         </div>

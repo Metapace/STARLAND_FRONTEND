@@ -1,4 +1,10 @@
 .container {
+  video::-webkit-media-controls-timeline {
+    display: none;
+  }
+  video::-webkit-media-controls-mute-button {
+    display: none;
+  }
 }
 .title {
   display: flex;
@@ -47,4 +53,35 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.facebook-video {
+  background-image: url('src/assets/images/market/facebookVideo.png');
+  width: 198px;
+  height: 258px;
+  transform: translateX(-2px);
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+  video {
+    position: absolute;
+    top: 50px;
+  }
+}
+
+.tikTok-video {
+  background-image: url('src/assets/images/market/TiktokVideo.png');
+  width: 198px;
+  height: 48px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  bottom: 20;
+  left: 0;
+  video {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
 }
