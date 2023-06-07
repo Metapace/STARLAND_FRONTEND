@@ -11,8 +11,6 @@ import allBalanceImage from 'src/assets/images/dashbord/all-balance.png';
 import avalibleImage from 'src/assets/images/dashbord/avalible.png';
 import blueAdd from 'src/assets/images/dashbord/blue-add.png';
 import orangeAdd from 'src/assets/images/dashbord/orange-add.png';
-import web2Channel from 'src/assets/images/dashbord/web2-channel.png';
-import leftArrow from 'src/assets/images/arrow-left.png';
 import web21 from 'src/assets/images/web2log/Group 14717.png';
 import web22 from 'src/assets/images/web2log/Group 14718.png';
 import web23 from 'src/assets/images/web2log/Group 14719.png';
@@ -108,29 +106,29 @@ const DollarItem: React.FC<DollarItemProps> = (props) => {
   );
 };
 
-interface ChannelItemProps {
-  title: string;
-  describle: string;
-  image?: string;
-}
+// interface ChannelItemProps {
+//   title: string;
+//   describle: string;
+//   image?: string;
+// }
 
-const ChannelItem: React.FC<ChannelItemProps> = (props) => {
-  const { title, describle, image } = props;
-  return (
-    <div className={classNames(styles['common-item'], styles['channel-item'])}>
-      <div className={styles['channel-item-left']}>
-        <LazyLoadImage src={web2Channel} alt={'web2'} effect="blur" width={'111px'} height={'111px'} />
-      </div>
-      <div className={styles['channel-item-right']}>
-        <div className={styles.top}>{title}</div>
-        <div className={styles.middle}>{describle}</div>
-        <div className={classNames('common-button', styles.bottom)}>
-          <img src={leftArrow} alt="" />
-        </div>
-      </div>
-    </div>
-  );
-};
+// const ChannelItem: React.FC<ChannelItemProps> = (props) => {
+//   const { title, describle, image } = props;
+//   return (
+//     <div className={classNames(styles['common-item'], styles['channel-item'])}>
+//       <div className={styles['channel-item-left']}>
+//         <LazyLoadImage src={web2Channel} alt={'web2'} effect="blur" width={'111px'} height={'111px'} />
+//       </div>
+//       <div className={styles['channel-item-right']}>
+//         <div className={styles.top}>{title}</div>
+//         <div className={styles.middle}>{describle}</div>
+//         <div className={classNames('common-button', styles.bottom)}>
+//           <img src={leftArrow} alt="" />
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
 
 interface MarketItemProps {
   src: string;
