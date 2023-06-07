@@ -17,8 +17,8 @@ const DataClickNoData: React.FC<NoDataProps> = ({ type }) => {
         <div>Tiktok</div>
         <div>Google</div>
         <div>Facebook</div>
-        <div>bigo</div>
-        <div>kwai</div>
+        <div>Bigo</div>
+        <div>Kwai</div>
       </div>
       <div className={styles['chart-container-nodata-left']}>
         <div>0</div>
