@@ -11,30 +11,52 @@ interface ScrollBarProps {
 
 gsap.registerPlugin(ScrollTrigger);
 
+const speed = 5000;
+
 const Index: React.FC<ScrollBarProps> = ({ contentList, floatType = 'left', barNumber }) => {
+  const sectionStyle = { '--speed': `${speed}ms` } as React.CSSProperties;
   return (
     <div className={styles.container} id={`bar${barNumber}`} style={{ float: floatType }}>
-      <div className={styles.innerContainer1}>
-        {contentList.map((item) => (
-          <LazyLoadImage
-            src={item}
-            alt={item}
-            effect="blur"
-            key={item}
-            className={styles['content-image']}
-          ></LazyLoadImage>
-        ))}
-      </div>
-      <div className={styles.innerContainer2}>
-        {contentList.map((item) => (
-          <LazyLoadImage
-            src={item}
-            alt={item}
-            effect="blur"
-            key={item}
-            className={styles['content-image']}
-          ></LazyLoadImage>
-        ))}
+      <div className={styles['wrapper']}>
+        <section style={sectionStyle}>
+          {contentList.map((image) => (
+            <div className={styles['image']} key={image}>
+              <LazyLoadImage
+                src={image}
+                alt={image}
+                effect="blur"
+                key={image}
+                className={styles['content-image']}
+              ></LazyLoadImage>
+            </div>
+          ))}
+        </section>
+        <section style={sectionStyle}>
+          {contentList.map((image) => (
+            <div className={styles['image']} key={image}>
+              <LazyLoadImage
+                src={image}
+                alt={image}
+                effect="blur"
+                key={image}
+                className={styles['content-image']}
+              ></LazyLoadImage>
+            </div>
+          ))}
+        </section>
+        <section style={sectionStyle}>
+          {contentList.map((image) => (
+            <div className={styles['image']} key={image}>
+              <LazyLoadImage
+                src={image}
+                alt={image}
+                effect="blur"
+                key={image}
+                className={styles['content-image']}
+              ></LazyLoadImage>
+            </div>
+          ))}
+        </section>
       </div>
     </div>
   );

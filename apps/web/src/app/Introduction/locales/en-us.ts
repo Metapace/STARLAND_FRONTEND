@@ -20,7 +20,7 @@ const en: {
   'intro.market.echart': 'Multi-dimensional visualization of data',
   'intro.case.title': 'Customer Cases',
   'intro.dehreo': 'DeHeroGame ($AMG) is a GameFi 2.0 NFT TCG launched as the 1st gaming dapp on Rangers Protocol.',
-  'intro.metacene': 'Metacene is a a next-gen blockchain MMORPG homeland for mass players.',
+  'intro.metacene': 'Metacene is a next-gen blockchain MMORPG homeland for mass players.',
   'intro.unipass':
     'Unipass non-custodial ERC-4337 wallet SDK. Effortless integration, great UX, and free! Power up your projects with seedless & gasless wallet with social recovery!',
 };

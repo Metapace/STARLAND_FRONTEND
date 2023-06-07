@@ -11,32 +11,31 @@ import allBalanceImage from 'src/assets/images/dashbord/all-balance.png';
 import avalibleImage from 'src/assets/images/dashbord/avalible.png';
 import blueAdd from 'src/assets/images/dashbord/blue-add.png';
 import orangeAdd from 'src/assets/images/dashbord/orange-add.png';
-import web2Channel from 'src/assets/images/dashbord/web2-channel.png';
-import leftArrow from 'src/assets/images/arrow-left.png';
-import BIGO from 'src/assets/images/dashbord/c-BIGO.png';
-import Dable from 'src/assets/images/dashbord/c-Dable.png';
-import Meta from 'src/assets/images/dashbord/c-Meta.png';
-import Snapchat from 'src/assets/images/dashbord/c-Snapchat.png';
-import TikTok from 'src/assets/images/dashbord/c-TikTok.png';
-import Yandex from 'src/assets/images/dashbord/c-Yandex.png';
-import eagllwin from 'src/assets/images/dashbord/c-eagllwin.png';
-import googleAds from 'src/assets/images/dashbord/c-googleAds.png';
-import huawei from 'src/assets/images/dashbord/c-huawei.png';
-import prokwai from 'src/assets/images/dashbord/c-prokwai.png';
-import Taboola from 'src/assets/images/dashbord/c-Taboola.png';
-import Mytarget from 'src/assets/images/dashbord/c-Mytarget.png';
-import web31 from 'src/assets/images/dashbord/web3-1.png';
-import web32 from 'src/assets/images/dashbord/web3-2.png';
-import web33 from 'src/assets/images/dashbord/web3-3.png';
-import web34 from 'src/assets/images/dashbord/web3-4.png';
-import web35 from 'src/assets/images/dashbord/web3-5.png';
-import web36 from 'src/assets/images/dashbord/web3-6.png';
-import web37 from 'src/assets/images/dashbord/web3-7.png';
-import web38 from 'src/assets/images/dashbord/web3-8.png';
-import web39 from 'src/assets/images/dashbord/web3-9.png';
-import web310 from 'src/assets/images/dashbord/web3-10.png';
-import web311 from 'src/assets/images/dashbord/web3-11.png';
-import web312 from 'src/assets/images/dashbord/web3-12.png';
+import web21 from 'src/assets/images/web2log/Group 14717.png';
+import web22 from 'src/assets/images/web2log/Group 14718.png';
+import web23 from 'src/assets/images/web2log/Group 14719.png';
+import web24 from 'src/assets/images/web2log/Group 14720.png';
+import web25 from 'src/assets/images/web2log/Group 14721.png';
+import web26 from 'src/assets/images/web2log/Group 14722.png';
+import web27 from 'src/assets/images/web2log/Group 14723.png';
+import web28 from 'src/assets/images/web2log/Group 14724.png';
+import web29 from 'src/assets/images/web2log/Group 14725.png';
+import web210 from 'src/assets/images/web2log/Group 14726.png';
+import web211 from 'src/assets/images/web2log/Group 14727.png';
+import web212 from 'src/assets/images/web2log/Group 14728.png';
+import web31 from 'src/assets/images/web3log/Group 14739.png';
+import web32 from 'src/assets/images/web3log/Group 14752.png';
+import web33 from 'src/assets/images/web3log/Group 14753.png';
+import web34 from 'src/assets/images/web3log/Group 14754.png';
+import web35 from 'src/assets/images/web3log/Group 14755.png';
+import web36 from 'src/assets/images/web3log/Group 14756.png';
+import web37 from 'src/assets/images/web3log/Group 14757.png';
+import web39 from 'src/assets/images/web3log/Group 14758.png';
+import web310 from 'src/assets/images/web3log/Group 14759.png';
+import web311 from 'src/assets/images/web3log/Group 14760.png';
+import web312 from 'src/assets/images/web3log/Group 14761.png';
+import web38 from 'src/assets/images/web3log/Group 14762.png';
+
 import CountUp from 'react-countup';
 import { useTransformInfoContent } from 'src/app/Message/components/MessageItem';
 import 'react-lazy-load-image-component/src/effects/blur.css';
@@ -107,29 +106,29 @@ const DollarItem: React.FC<DollarItemProps> = (props) => {
   );
 };
 
-interface ChannelItemProps {
-  title: string;
-  describle: string;
-  image?: string;
-}
+// interface ChannelItemProps {
+//   title: string;
+//   describle: string;
+//   image?: string;
+// }
 
-const ChannelItem: React.FC<ChannelItemProps> = (props) => {
-  const { title, describle, image } = props;
-  return (
-    <div className={classNames(styles['common-item'], styles['channel-item'])}>
-      <div className={styles['channel-item-left']}>
-        <LazyLoadImage src={web2Channel} alt={'web2'} effect="blur" width={'111px'} height={'111px'} />
-      </div>
-      <div className={styles['channel-item-right']}>
-        <div className={styles.top}>{title}</div>
-        <div className={styles.middle}>{describle}</div>
-        <div className={classNames('common-button', styles.bottom)}>
-          <img src={leftArrow} alt="" />
-        </div>
-      </div>
-    </div>
-  );
-};
+// const ChannelItem: React.FC<ChannelItemProps> = (props) => {
+//   const { title, describle, image } = props;
+//   return (
+//     <div className={classNames(styles['common-item'], styles['channel-item'])}>
+//       <div className={styles['channel-item-left']}>
+//         <LazyLoadImage src={web2Channel} alt={'web2'} effect="blur" width={'111px'} height={'111px'} />
+//       </div>
+//       <div className={styles['channel-item-right']}>
+//         <div className={styles.top}>{title}</div>
+//         <div className={styles.middle}>{describle}</div>
+//         <div className={classNames('common-button', styles.bottom)}>
+//           <img src={leftArrow} alt="" />
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
 
 interface MarketItemProps {
   src: string;
@@ -137,8 +136,8 @@ interface MarketItemProps {
   height?: string;
 }
 
-const marketItemList1 = [BIGO, Dable, Meta, Snapchat, TikTok, Yandex];
-const marketItemList2 = [eagllwin, googleAds, huawei, prokwai, Taboola, Mytarget];
+const marketItemList1 = [web21, web22, web23, web24, web25, web26];
+const marketItemList2 = [web27, web28, web29, web210, web211, web212];
 const marketItemList3 = [web31, web32, web33, web34, web35, web36];
 const marketItemList4 = [web37, web38, web39, web310, web311, web312];
 
@@ -287,7 +286,7 @@ const Workplace = () => {
       </div>
 
       <div className={styles['item-title']}>{`${i18n[lang]['dashbord.marketChannel']}`}</div>
-      <div className={styles['market-channel-title']}>WEB2</div>
+      <div className={styles['market-channel-title']}>Web2</div>
       <div className={classNames(styles['common-item'], styles['market-item'])}>
         <div>
           {marketItemList1.map((src: string) => (
@@ -300,7 +299,7 @@ const Workplace = () => {
           ))}
         </div>
       </div>
-      <div className={styles['market-channel-title']}>WEB3</div>
+      <div className={styles['market-channel-title']}>Web3</div>
       <div className={classNames(styles['common-item'], styles['market-item'])}>
         <div>
           {marketItemList3.map((src: string) => (
