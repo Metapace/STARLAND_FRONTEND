@@ -55,6 +55,7 @@ const en: {
   'select.lang.palceHoder': 'Select language',
   'select.gender.palceHoder': 'Select gender',
   'select.age.palceHoder': 'Select age',
+  'r.daily': 'Daily',
 };
 
 export default en;

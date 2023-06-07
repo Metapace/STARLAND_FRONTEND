@@ -100,7 +100,9 @@ const Index: React.FC<FormStepProps> = ({
       >
         <Form.Item noStyle shouldUpdate>
           {(value) => {
-            return <div className={styles['slider-input-text']}>{`$${value.price || 100}(Daily)`}</div>;
+            return (
+              <div className={styles['slider-input-text']}>{`$${value.price || 100}(${i18n[lang]['r.daily']})`}</div>
+            );
           }}
         </Form.Item>
         <FormItem

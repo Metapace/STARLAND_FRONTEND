@@ -37,6 +37,7 @@ const zh: {
   'enter.data.info': '进入投后数据看板',
   'fail.reason': '失败原因：',
   'empyty.tip': '您还没有收到任何通知',
+  'please.select': '请选择',
 };
 
 export default zh;
