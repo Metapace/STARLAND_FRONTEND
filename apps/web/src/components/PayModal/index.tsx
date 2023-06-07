@@ -88,7 +88,7 @@ const index: React.FC<PayModalProps> = ({ open, handleCloseModal, activityId }) 
         {data?.available_balance === 0 && (
           <div className={classNames(styles['orange'], styles['insuffient-tip'])}>{i18n[lang]['go-person-center']}</div>
         )}
-        {data?.available_balance && data?.available_balance < passMount && (
+        {!!data?.available_balance && data?.available_balance < passMount && (
           <div className={classNames(styles['orange'], styles['insuffient-tip'])}>{i18n[lang]['go-person-center']}</div>
         )}
       </div>
