@@ -30,6 +30,7 @@ const en: {
   'yesterday-data-3': 'Clicks rate',
   'yesterday-data-4': 'Cost',
   'no.message': 'No Message',
+  'yesterdat-tip': "Daily update of previous day's data at 9:00am",
 };
 
 export default en;
