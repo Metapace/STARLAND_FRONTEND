@@ -20,7 +20,7 @@ const index = () => {
           </p>
           <p>
             {i18n[lang]['usercenter.registrationTime']}：{' '}
-            {data?.create_time && dayjs.unix(data?.create_time).format('YYYY-MM-YY')}
+            {data?.create_time && dayjs.unix(data?.create_time).format('YYYY-MM-DD')}
           </p>
         </div>
         <div className={styles['basic-info-group2']}>
