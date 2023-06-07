@@ -30,6 +30,7 @@ const zh: {
   'yesterday-data-3': '点击率',
   'yesterday-data-4': '成本',
   'no.message': '您还没有收到任何通知',
+  'yesterdat-tip': '每日九点更新前一日数据',
 };
 
 export default zh;

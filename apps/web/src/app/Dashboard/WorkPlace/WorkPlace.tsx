@@ -275,7 +275,10 @@ const Workplace = () => {
           <InfoItem type="info" message={messageData?.messages[0]} />
         </div>
       </div>
-      <div className={styles['item-title']}>{`${i18n[lang]['dashbord.lastDayData']}`}</div>
+      <div className={styles['item-title']}>
+        {`${i18n[lang]['dashbord.lastDayData']}`}
+        <span className={styles['yesterdat-tip']}>{`${i18n[lang]['yesterdat-tip']}`}</span>
+      </div>
       <div className={styles['data-item-list']}>
         <DataItem title={i18n[lang]['yesterday-data-1']} dataList={allList.impressionList} />
         <DataItem title={i18n[lang]['yesterday-data-2']} dataList={allList.clickList} />
