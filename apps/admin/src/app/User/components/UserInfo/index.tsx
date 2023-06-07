@@ -38,7 +38,7 @@ const index = () => {
         </span>
         <span>
           {i18n[lang]['usercenter.totalAssetsAvaiable']}：
-          <span style={{ color: '#F2A534', fontSize: '20px' }}>${data2?.available_balance.toFixed(2)} </span>
+          <span style={{ color: '#F2A534', fontSize: '20px' }}>${data2?.available_balance.toFixed(2)}</span>
           <span style={{ color: '#33B803', fontSize: '12px' }}>USD</span>
         </span>
       </div>

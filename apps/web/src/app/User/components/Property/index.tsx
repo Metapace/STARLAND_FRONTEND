@@ -76,7 +76,7 @@ const index: React.FC<PropertyProps> = ({ handleOpenVoucherModal, handleCloseVou
                 {i18n[lang]['usercenter.fiatAssets']}
                 <span style={{ fontSize: '12px', color: 'rgba(43, 54, 116, 0.32)' }}>（USD）</span>
               </p>
-              <p style={{ fontSize: '14px', color: '#2B3674' }}>{data2?.available_balance}</p>
+              <p style={{ fontSize: '14px', color: '#2B3674' }}>{data2?.available_balance.toFixed(2)}</p>
             </div>
           </div>
           <button onClick={handleOpenVoucherModal}>{i18n[lang]['usercenter.uploadCertificate']}</button>
