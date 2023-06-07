@@ -181,7 +181,7 @@ const Index = () => {
       <div className={styles['table-body']}>
         <Table
           columns={columns}
-          data={data?.list}
+          data={data?.list || []}
           loading={isLoading}
           pagination={{
             total: data?.num,
