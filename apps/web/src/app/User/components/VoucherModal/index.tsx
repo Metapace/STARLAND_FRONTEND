@@ -142,6 +142,9 @@ const index: React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal, ref
             customRequest={handleUpload}
             limit={1}
             drag
+            showUploadList={{
+              cancelIcon:null
+            }}
             onPreview={(file: any) => {
               Modal.info({
                 title: 'Preview',
@@ -265,6 +268,9 @@ const index: React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal, ref
                     listType="picture-card"
                     multiple
                     customRequest={handleUpload}
+                    showUploadList={{
+                      cancelIcon:null
+                    }}
                     limit={1}
                     drag
                     onPreview={(file: any) => {
@@ -370,6 +376,9 @@ const index: React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal, ref
                       accept="image/*"
                       customRequest={handleUpload}
                       limit={1}
+                      showUploadList={{
+                        cancelIcon:null
+                      }}
                       drag
                       onPreview={(file: any) => {
                         Modal.info({
