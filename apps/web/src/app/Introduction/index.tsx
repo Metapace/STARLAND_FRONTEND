@@ -145,54 +145,54 @@ const Index: React.FC = () => {
   //     setTabStatus(TabType.Home);
   //   }
   // }, [scroll]);
-  useMount(() => {
-    gsap.fromTo(
-      q('#advantage-title'),
-      { x: -1600 },
-      {
-        x: 16,
-        scrollTrigger: {
-          trigger: q('#home-area'),
-          start: 'bottom 360',
-          end: 'bottom -20',
-          scrub: true,
-          pin: q('#advantage-area'),
-        },
-      },
-    );
-  });
-  useMount(() => {
-    gsap.fromTo(
-      q(`#bar${1}`),
-      { width: 0 },
-      {
-        width: 'calc(100vw - 64px)',
-        scrollTrigger: {
-          trigger: q('#home-area'),
-          start: 'bottom -20',
-          end: 'bottom -620',
-          pin: q('#advantage-area'),
-          scrub: true,
-        },
-      },
-    );
-  });
-  useMount(() => {
-    gsap.fromTo(
-      q(`#bar${2}`),
-      { width: 0 },
-      {
-        width: 'calc(100vw - 64px)',
-        scrollTrigger: {
-          trigger: q('#advantage-area'),
-          start: 'top 60',
-          end: '300%',
-          pin: q('#advantage-area'),
-          scrub: true,
-        },
-      },
-    );
-  });
+  //   useMount(() => {
+  //     gsap.fromTo(
+  //       q('#advantage-title'),
+  //       { x: -1600 },
+  //       {
+  //         x: 16,
+  //         scrollTrigger: {
+  //           trigger: q('#home-area'),
+  //           start: 'bottom 360',
+  //           end: 'bottom -20',
+  //           scrub: true,
+  //           pin: q('#advantage-area'),
+  //         },
+  //       },
+  //     );
+  //   });
+  //   useMount(() => {
+  //     gsap.fromTo(
+  //       q(`#bar${1}`),
+  //       { width: 0 },
+  //       {
+  //         width: 'calc(100vw - 64px)',
+  //         scrollTrigger: {
+  //           trigger: q('#home-area'),
+  //           start: 'bottom -20',
+  //           end: 'bottom -620',
+  //           pin: q('#advantage-area'),
+  //           scrub: true,
+  //         },
+  //       },
+  //     );
+  //   });
+  //   useMount(() => {
+  //     gsap.fromTo(
+  //       q(`#bar${2}`),
+  //       { width: 0 },
+  //       {
+  //         width: 'calc(100vw - 64px)',
+  //         scrollTrigger: {
+  //           trigger: q('#advantage-area'),
+  //           start: 'top 60',
+  //           end: '300%',
+  //           pin: q('#advantage-area'),
+  //           scrub: true,
+  //         },
+  //       },
+  //     );
+  //   });
   useMount(() => {
     const animationTitle = () => {
       const timeline = gsap.timeline();
