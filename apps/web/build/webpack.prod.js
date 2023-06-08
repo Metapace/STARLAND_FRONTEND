@@ -10,7 +10,6 @@ const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = merge(webpackBaseConfig, {
   mode: process.env.NODE_ENV,
-  devtool: 'hidden-source-map',
   cache: {
     type: 'filesystem',
   },
@@ -51,15 +50,6 @@ module.exports = merge(webpackBaseConfig, {
           minSize: 0,
           minChunks: 1, // 用到两次以上
         },
-        vendor: {
-          name: 'vendor',
-          priority: 1, // 权重
-          test: /node_modules/,
-          chunks: 'all',
-          minSize: 0,
-          minChunks: 1, // 用到两次以上
-        },
-        echarts: 'echarts',
       },
     },
   },
