@@ -159,7 +159,7 @@ module.exports = {
       template: path.resolve(rootDir, 'template/index.html'),
       inject: 'body',
       scriptLoading: 'blocking',
-      favicon: './public/favicon.ico',
+      favicon: path.resolve(rootDir, 'template/favicon.ico'),
     }),
     new NodePolyfillPlugin(),
     new CopyWebpackPlguin({
