@@ -36,15 +36,6 @@ module.exports = merge(webpackBaseConfig, {
   optimization: {
     splitChunks: {
       // 分割代码块
-      cacheGroups: {
-        // 缓存组
-        echart: {
-          name: 'echart',
-          test: /echart/,
-          minSize: 0,
-          priority: 10, // 权重
-        },
-      },
     },
   },
   plugins: [
