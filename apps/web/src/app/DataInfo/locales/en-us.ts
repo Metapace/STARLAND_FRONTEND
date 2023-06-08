@@ -6,7 +6,7 @@ const en: {
   'datainfo.totalClicks': 'Total Clicks',
   'datainfo.web2Hits': 'Web2 Clicks',
   'datainfo.web3Hits': 'Web3 Clicks',
-  'datainfo.click-throughRate': 'Click rate',
+  'datainfo.click-throughRate': 'CTR',
   'datainfo.cost': 'Cost',
   'datainfo.contentExposure': 'Content Exposure',
   'datainfo.contentClicks': 'Content Clicks',
