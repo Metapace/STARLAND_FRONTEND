@@ -159,6 +159,7 @@ module.exports = {
       template: path.resolve(rootDir, 'template/index.html'),
       inject: 'body',
       scriptLoading: 'blocking',
+      favicon: './public/favicon.ico',
     }),
     new NodePolyfillPlugin(),
     new CopyWebpackPlguin({
@@ -168,11 +169,11 @@ module.exports = {
           context: path.resolve(rootDir, 'template/js'),
           to: path.resolve(rootDir, 'dist/js/[name].js'),
         },
-        // {
-        //   from: '*.ico',
-        //   context: path.resolve(rootDir, 'template'),
-        //   to: path.resolve(rootDir, 'public'),
-        // },
+        {
+          from: '*.ico',
+          context: path.resolve(rootDir, 'template'),
+          to: path.resolve(rootDir, 'public'),
+        },
       ],
     }),
     new webpack.DefinePlugin(env.stringified), // 配置环境变量

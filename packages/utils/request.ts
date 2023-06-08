@@ -75,9 +75,9 @@ const requestHandler = <T>(
             Message.warning("您的账号已登出或超时，即将登出...");
             window.location.reload();
           }
-
+          const token = getLocalToken() || "";
           let e = JSON.stringify(data);
-          if (method === "post") {
+          if (method === "post" && token) {
             Message.error(data.msg);
           }
           console.log(`请求错误：${e}`);
