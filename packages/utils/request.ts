@@ -82,7 +82,7 @@ const requestHandler = <T>(
           }
           console.log(`请求错误：${e}`);
           // 数据请求错误 使用reject将错误返回
-          reject(data);
+          // reject(data);
         } else {
           // 数据请求正确 使用resolve将结果返回
           resolve(data.data);
@@ -92,7 +92,7 @@ const requestHandler = <T>(
         if (method === "post") {
           Message.warning(`network is busy, please try again later!`);
         }
-        reject(error);
+        // reject(error);
       });
   });
 };
