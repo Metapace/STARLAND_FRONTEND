@@ -212,7 +212,7 @@ const Index: React.FC = () => {
       scrollTrigger: {
         trigger: q('#case-area'),
         start: 'bottom bottom',
-        end: '400%',
+        end: '100%',
         pin: true,
         scrub: true,
       },
