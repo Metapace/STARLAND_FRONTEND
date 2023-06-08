@@ -25,7 +25,7 @@ const en: {
   'channel-item-title3': 'Native ads on MarkeCapOf (desktop + mobile)',
   'channel-item-title4': 'Organic articles on CoinGape',
   'channel-item-decribe': 'Text Ads / Blockchain and Cryptocurrency',
-  'yesterday-data-1': 'Total number of visitors',
+  'yesterday-data-1': 'Total impression',
   'yesterday-data-2': 'Click volume',
   'yesterday-data-3': 'Clicks rate',
   'yesterday-data-4': 'Cost',
