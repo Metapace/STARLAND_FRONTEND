@@ -37,6 +37,7 @@ const en: {
   'enter.data.info': 'Go to Post Placement Data',
   'fail.reason': 'Reason for failure: ',
   'empyty.tip': "You haven't received any notifications yet.",
+  'please.select': 'please select',
 };
 
 export default en;

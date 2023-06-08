@@ -25,40 +25,40 @@ const Index: React.FC<ScrollBarProps> = ({ contentList, floatType = 'left', barN
     <div className={styles.container} id={`bar${barNumber}`} style={{ float: floatType }}>
       <div className={styles['wrapper']}>
         <section style={sectionStyle}>
-          {contentList.map((image) => (
+          {contentList.map((image, index) => (
             <LazyLoadImage
               src={image.src}
               alt={image}
               width={image.width}
               height={image.height}
               effect="blur"
-              key={image}
+              key={index}
               className={styles['content-image']}
             ></LazyLoadImage>
           ))}
         </section>
         <section style={sectionStyle}>
-          {contentList.map((image) => (
+          {contentList.map((image, index) => (
             <LazyLoadImage
               src={image.src}
               width={image.width}
               height={image.height}
               alt={image}
               effect="blur"
-              key={image}
+              key={index}
               className={styles['content-image']}
             ></LazyLoadImage>
           ))}
         </section>
         <section style={sectionStyle}>
-          {contentList.map((image) => (
+          {contentList.map((image, index) => (
             <LazyLoadImage
               src={image.src}
               width={image.width}
               height={image.height}
               alt={image}
               effect="blur"
-              key={image}
+              key={index}
               className={styles['content-image']}
             ></LazyLoadImage>
           ))}

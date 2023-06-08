@@ -5,6 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ArcoWebpackPlugin = require('@arco-design/webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const webpack = require('webpack');
+const CompressionPlugin = require('compression-webpack-plugin');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = merge(webpackBaseConfig, {
@@ -63,8 +64,8 @@ module.exports = merge(webpackBaseConfig, {
       chunkFilename: '[name].chunk.css',
     }),
     new CssMinimizerPlugin(),
-    new webpack.BannerPlugin({
-      banner: 'yaogengzhu, Inc.\nAll rights reserved.\n',
+    new CompressionPlugin({
+      threshold: 20,
     }),
     new TerserPlugin({
       parallel: false,
