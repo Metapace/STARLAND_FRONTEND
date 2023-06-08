@@ -227,7 +227,7 @@ const Index: React.FC = () => {
     <div className={classNames(styles.container, lang === 'zh-CN' && styles['chinese-container'])} ref={containerRef}>
       <video muted loop className={styles['back-video']} autoPlay>
         <source
-          src="https://starlands3.s3.ap-southeast-1.amazonaws.com/starland/1686213805162-home-back2.mp4"
+          src="https://starlands3.s3.ap-southeast-1.amazonaws.com/starland/1686214453014-home-back4.mp4"
           type="video/mp4"
         />
       </video>

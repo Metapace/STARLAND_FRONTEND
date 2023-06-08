@@ -8,11 +8,6 @@ body,
 ::-webkit-scrollbar {
   width: 0px;
 }
-@font-face {
-  font-family: Welbut;
-  src: url('../font/Welbut__.ttf');
-  font-display: swap;
-}
 
 :root {
   --theme-color: #873bf4;
