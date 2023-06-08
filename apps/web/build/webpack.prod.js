@@ -39,6 +39,12 @@ module.exports = merge(webpackBaseConfig, {
       // 分割代码块
       cacheGroups: {
         // 缓存组
+        echart: {
+          name: 'echart',
+          test: /echart/,
+          minSize: 0,
+          priority: 10, // 权重
+        },
         common: {
           name: 'common',
           chunks: 'all',
@@ -53,6 +59,7 @@ module.exports = merge(webpackBaseConfig, {
           minSize: 0,
           minChunks: 1, // 用到两次以上
         },
+        echarts: 'echarts',
       },
     },
   },
