@@ -71,7 +71,7 @@ const Login: React.FC = () => {
       <div className={styles.left}>
         <video muted loop className={styles['back-video']} autoPlay>
           <source
-            src="https://starlands3.s3.ap-southeast-1.amazonaws.com/starland%2F1685636423118-login-back.mp4"
+            src="https://starlands3.s3.ap-southeast-1.amazonaws.com/starland/1686216342526-login-back2.mp4"
             type="video/mp4"
           />
         </video>

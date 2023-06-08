@@ -148,7 +148,7 @@ const Index: React.FC = () => {
   useMount(() => {
     gsap.fromTo(
       q('#advantage-title'),
-      { x: -1200 },
+      { x: -1600 },
       {
         x: 16,
         scrollTrigger: {
@@ -212,7 +212,7 @@ const Index: React.FC = () => {
       scrollTrigger: {
         trigger: q('#case-area'),
         start: 'bottom bottom',
-        end: '100%',
+        end: '80%',
         pin: true,
         scrub: true,
       },
