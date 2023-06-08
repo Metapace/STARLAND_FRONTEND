@@ -28,7 +28,7 @@ const zh: {
   'yesterday-data-1': '访问总人数',
   'yesterday-data-2': '点击量',
   'yesterday-data-3': '点击率',
-  'yesterday-data-4': '成本',
+  'yesterday-data-4': '消耗',
   'no.message': '您还没有收到任何通知',
   'yesterdat-tip': '每日九点更新前一日数据',
 };

@@ -2,12 +2,12 @@ const zh: {
   [k: string]: string;
 } = {
   'datainfo.dataOverview': '数据总览',
-  'datainfo.totalFees': '总费用',
+  'datainfo.totalFees': '总消耗',
   'datainfo.totalClicks': '总点击量',
   'datainfo.web2Hits': 'Web2点击量',
   'datainfo.web3Hits': 'Web3点击量',
   'datainfo.click-throughRate': '点击率',
-  'datainfo.cost': '成本',
+  'datainfo.cost': '消耗',
   'datainfo.contentExposure': '内容曝光量',
   'datainfo.contentClicks': '内容点击量',
   'datainfo.productDownloads': '产品下载量',

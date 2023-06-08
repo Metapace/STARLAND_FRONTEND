@@ -18,7 +18,7 @@ const en: {
   'view.detail': 'View Details',
   'create.campagin': 'Create Campaign',
   'process.number': 'Normal operation',
-  'yesterday.cost': "Yesterday's consumption",
+  'yesterday.cost': "Yesterday's Cost",
   'pcs.pcs': 'pcs',
   'channel-item-title1': 'Search bar ads on DEX Screener - 200,000 views',
   'channel-item-title2': 'Social media posts on BSC News (Twitter, Telegraph)',

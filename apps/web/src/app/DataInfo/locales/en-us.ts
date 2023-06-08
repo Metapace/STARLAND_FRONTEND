@@ -2,7 +2,7 @@ const en: {
   [k: string]: string;
 } = {
   'datainfo.dataOverview': 'Data Overview',
-  'datainfo.totalFees': 'Total Fees',
+  'datainfo.totalFees': 'Total Cost',
   'datainfo.totalClicks': 'Total Clicks',
   'datainfo.web2Hits': 'Web2 hits',
   'datainfo.web3Hits': 'Web3 hits',
@@ -43,8 +43,6 @@ const en: {
   'datainfo.closed': 'Closed',
   'datainfo.noRecord': 'No record',
   'datainfo.closing': 'Closing',
-
-
 };
 
 export default en;
