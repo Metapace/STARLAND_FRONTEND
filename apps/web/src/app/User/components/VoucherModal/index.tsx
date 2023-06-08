@@ -34,6 +34,11 @@ const index: React.FC<VoucherModalProps> = ({ open, handleCloseVoucherModal, ref
         setLoading(false);
       }, 700);
     }
+    return {
+      abort: () => {
+        console.log(11111);
+      },
+    };
   };
   function onOk() {
     form.validate().then(async (res) => {
