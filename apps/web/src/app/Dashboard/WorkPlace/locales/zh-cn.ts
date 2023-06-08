@@ -25,7 +25,7 @@ const zh: {
   'channel-item-title3': 'MarkeCapOf上的原生广告（桌面+移动)',
   'channel-item-title4': 'CoinGape上的有机文章',
   'channel-item-decribe': '文字广告/区块链和加密货币',
-  'yesterday-data-1': '访问总人数',
+  'yesterday-data-1': '曝光量',
   'yesterday-data-2': '点击量',
   'yesterday-data-3': '点击率',
   'yesterday-data-4': '消耗',
