@@ -2,7 +2,7 @@ const en: {
   [k: string]: string;
 } = {
   'login.slogan':
-    'Starland is a launch platform that integrates web2 and web3 channels. One-stop cross-channel smart delivery tool',
+    'Starland is a launch platform that integrates web2 and web3 channels. One-step cross-channel smart delivery tool',
   'login.forgetPassword': 'forget password',
   'login.rememberPassword': 'remember password',
   'login.login': 'Login',

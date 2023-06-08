@@ -17,7 +17,7 @@ interface ScrollBarProps {
 
 gsap.registerPlugin(ScrollTrigger);
 
-const speed = 5000;
+const speed = 15000;
 
 const Index: React.FC<ScrollBarProps> = ({ contentList, floatType = 'left', barNumber }) => {
   const sectionStyle = { '--speed': `${speed}ms` } as React.CSSProperties;

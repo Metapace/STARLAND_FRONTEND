@@ -10,7 +10,7 @@ const en: {
   'intro.home.title2': 'placement middleware',
   'intro.home.describle':
     'StarLand is a tool that integrates global advertising channels, MMPs, and monetization platforms.Simplify operations, so that your project can obtain strong exposure and accurate user growth.',
-  'intro.advantage.title': 'Overseas platform, one-stop integration',
+  'intro.advantage.title': 'Overseas platform, one-step integration',
   'intro.market.pan': 'Material sharing cloud disk',
   'intro.market.allpalte': 'Full platform reach',
   'intro.market.ads': 'Batch advertising',

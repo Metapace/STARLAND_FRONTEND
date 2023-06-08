@@ -185,7 +185,7 @@ const Index: React.FC = () => {
         width: 'calc(100vw - 64px)',
         scrollTrigger: {
           trigger: q('#advantage-area'),
-          start: 'top top',
+          start: 'top 60',
           end: '300%',
           pin: q('#advantage-area'),
           scrub: true,
@@ -196,9 +196,11 @@ const Index: React.FC = () => {
   useMount(() => {
     const animationTitle = () => {
       const timeline = gsap.timeline();
-      timeline
-        .fromTo(q('#case-title'), { transform: 'scale(100)', opacity: 0 }, { transform: 'scale(1)', opacity: 1 })
-        .to(q('#case-title'), { left: 210, top: 120 });
+      timeline.fromTo(
+        q('#case-title'),
+        { transform: 'translateX(-1000px)', opacity: 0 },
+        { transform: 'translateX(0)', opacity: 1 },
+      );
       return timeline;
     };
     const animationContent = () => {
@@ -225,7 +227,7 @@ const Index: React.FC = () => {
     <div className={classNames(styles.container, lang === 'zh-CN' && styles['chinese-container'])} ref={containerRef}>
       <video muted loop className={styles['back-video']} autoPlay>
         <source
-          src="https://starlands3.s3.ap-southeast-1.amazonaws.com/starland%2F1685636328685-home-back.mp4"
+          src="https://starlands3.s3.ap-southeast-1.amazonaws.com/starland/1686213805162-home-back2.mp4"
           type="video/mp4"
         />
       </video>
@@ -288,7 +290,7 @@ const Index: React.FC = () => {
           {i18n[lang]['intro.advantage.title']}
         </div>
         <div className={styles['advantage-sub-title']} ref={ref2}>
-          /Web2
+          Web2
         </div>
         <ScrollBar
           barNumber={1}
@@ -303,7 +305,7 @@ const Index: React.FC = () => {
             { src: web2Unity, width: '120px', height: '40px' },
           ]}
         />
-        <div className={classNames(styles['advantage-sub-title'], styles['web3-title'])}>/Web3</div>
+        <div className={classNames(styles['advantage-sub-title'], styles['web3-title'])}>Web3</div>
         <ScrollBar
           barNumber={2}
           contentList={[
