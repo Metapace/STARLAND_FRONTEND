@@ -44,12 +44,6 @@ module.exports = merge(webpackBaseConfig, {
           minSize: 0,
           priority: 10, // 权重
         },
-        common: {
-          name: 'common',
-          chunks: 'all',
-          minSize: 0,
-          minChunks: 1, // 用到两次以上
-        },
       },
     },
   },
