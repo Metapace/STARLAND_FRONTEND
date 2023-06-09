@@ -69,6 +69,9 @@ const index: React.FC<TransactionsProps> = ({ refresh }) => {
     if (currentPage === 1) {
       return;
     }
+    if (transactionsInfoData?.length == 0) {
+      return;
+    }
     setCurrentPage(currentPage - 1);
   };
 
