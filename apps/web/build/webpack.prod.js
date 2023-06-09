@@ -5,11 +5,11 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ArcoWebpackPlugin = require('@arco-design/webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const webpack = require('webpack');
+const CompressionPlugin = require('compression-webpack-plugin');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = merge(webpackBaseConfig, {
   mode: process.env.NODE_ENV,
-  devtool: 'hidden-source-map',
   cache: {
     type: 'filesystem',
   },
@@ -36,23 +36,6 @@ module.exports = merge(webpackBaseConfig, {
   optimization: {
     splitChunks: {
       // 分割代码块
-      cacheGroups: {
-        // 缓存组
-        common: {
-          name: 'common',
-          chunks: 'all',
-          minSize: 0,
-          minChunks: 1, // 用到两次以上
-        },
-        vendor: {
-          name: 'vendor',
-          priority: 1, // 权重
-          test: /node_modules/,
-          chunks: 'all',
-          minSize: 0,
-          minChunks: 1, // 用到两次以上
-        },
-      },
     },
   },
   plugins: [
@@ -63,8 +46,8 @@ module.exports = merge(webpackBaseConfig, {
       chunkFilename: '[name].chunk.css',
     }),
     new CssMinimizerPlugin(),
-    new webpack.BannerPlugin({
-      banner: 'yaogengzhu, Inc.\nAll rights reserved.\n',
+    new CompressionPlugin({
+      threshold: 20,
     }),
     new TerserPlugin({
       parallel: false,

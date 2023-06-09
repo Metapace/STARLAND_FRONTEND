@@ -75,14 +75,14 @@ const requestHandler = <T>(
             Message.warning("您的账号已登出或超时，即将登出...");
             window.location.reload();
           }
-
+          const token = getLocalToken() || "";
           let e = JSON.stringify(data);
-          if (method === "post") {
+          if (method === "post" && token) {
             Message.error(data.msg);
           }
           console.log(`请求错误：${e}`);
           // 数据请求错误 使用reject将错误返回
-          reject(data);
+          // reject(data);
         } else {
           // 数据请求正确 使用resolve将结果返回
           resolve(data.data);
@@ -92,7 +92,7 @@ const requestHandler = <T>(
         if (method === "post") {
           Message.warning(`network is busy, please try again later!`);
         }
-        reject(error);
+        // reject(error);
       });
   });
 };
