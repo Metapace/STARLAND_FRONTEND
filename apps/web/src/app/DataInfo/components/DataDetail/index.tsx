@@ -198,6 +198,9 @@ const Index = () => {
     if (currentPage === 1) {
       return;
     }
+    if (RemandListByStatus?.num == 0) {
+      return;
+    }
     setCurrentPage(currentPage - 1);
   };
   useEffect(() => {

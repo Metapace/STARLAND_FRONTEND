@@ -64,7 +64,7 @@ const Index = () => {
   const { data: dataOverview } = useRequestreportGet(10);
   // console.log("dataOverview",dataOverview)
   const { data: dataOverview_7, isLoading: dataOverview_7_loading } = useRequestreportGet(4);
-  console.log('dataOverview_7', dataOverview_7);
+  // console.log('dataOverview_7', dataOverview_7);
   const getOption = () => {
     const options = {
       color: ['#EC7F41', '#7B47B2'],
