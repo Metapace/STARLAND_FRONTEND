@@ -72,13 +72,19 @@ const requestHandler = <T>(
         if (data.code !== 200) {
           if (data.code == 10004) {
             removeLocalToken();
-            Message.warning("您的账号已登出或超时，即将登出...");
+            Message.warning({
+              id: "need_to_login",
+              content: "您的账号已登出或超时，即将登出...",
+            });
             window.location.reload();
           }
           const token = getLocalToken() || "";
           let e = JSON.stringify(data);
           if (method === "post" && token) {
-            Message.error(data.msg);
+            Message.error({
+              id: "need_to_login",
+              content: data.msg,
+            });
           }
           console.log(`请求错误：${e}`);
           // 数据请求错误 使用reject将错误返回
