@@ -11,6 +11,8 @@ import { IconCheck } from '@arco-design/web-react/icon';
 import locales from './locales';
 import { useMutationCreateMaterial, MaterialItem } from 'apis';
 import { UploadItem } from 'src/types/arco';
+import { Number } from 'aws-sdk/clients/iot';
+import { String } from 'aws-sdk/clients/acm';
 
 interface CircleItemProps {
   index: number;
@@ -62,14 +64,22 @@ const Index = () => {
     setLeft();
   };
 
+  const handlePreviousStep = () => {
+    setStep(1);
+  };
+
   const handleSubmit = async () => {
     if (fileList.length > 0) {
-      const formValues = form.getFieldsValue() as Omit<MaterialItem, 'materials_url' | 'country'> & {
+      const formValues = form.getFieldsValue() as Omit<MaterialItem, 'materials_url' | 'country' | 'age'> & {
         country: Array<string>;
+        age: Array<number>;
       };
-      const realFormValue = form.getFieldsValue() as Omit<MaterialItem, 'materials_url'>;
+      const realFormValue = form.getFieldsValue() as Omit<MaterialItem, 'materials_url' | 'age'> & { age: string };
       if (formValues.country.length > 0) {
         realFormValue.country = formValues.country.join(',');
+      }
+      if (formValues.age.length > 0) {
+        realFormValue.age = formValues.age.join(',');
       }
       const materials_url = fileList.map((item) => item.response.Location).join(',');
       const res = await createMutation.mutateAsync({ ...realFormValue, materials_url });
@@ -102,6 +112,7 @@ const Index = () => {
           setFileList={setFileList}
           handleSubmit={handleSubmit}
           isLoading={createMutation.isLoading}
+          handlePreviousStep={handlePreviousStep}
         />
       )}
     </div>

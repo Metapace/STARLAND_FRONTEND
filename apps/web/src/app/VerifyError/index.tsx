@@ -30,7 +30,7 @@ const Index = () => {
           <IconClose className={styles['close-icon']} />
         </div>
         <div className={styles['title']}>{i18n[lang]['verify-fail']}</div>
-        <div className={styles['sub-title']}>{i18n[lang]['submit-success']}</div>
+        {/* <div className={styles['sub-title']}>{i18n[lang]['submit-success']}</div> */}
         <div className={styles['button-wrrap']}>
           <Sbutton
             className={classNames('common-button', styles['review-button'])}

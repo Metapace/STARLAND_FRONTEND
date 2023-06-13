@@ -13,7 +13,6 @@ import UploadMaterial from 'src/app/CreateDemand/UploadMaterial';
 import { UploadItem } from 'src/types/arco';
 import Sbutton from 'src/components/Sbutton';
 import { useGetActivityDataByUrlId } from 'src/ahooks/index';
-import Item from '@arco-design/web-react/es/Breadcrumb/item';
 
 const DesItem = ({ topText, bottomText, isRed = false }: { topText: string; bottomText?: string; isRed?: boolean }) => {
   return (
@@ -103,12 +102,16 @@ const Index = () => {
     navigate(-1);
   };
   const handleEdit = async () => {
-    const formValues = form.getFieldsValue() as Omit<MaterialItem, 'materials_url' | 'country'> & {
+    const formValues = form.getFieldsValue() as Omit<MaterialItem, 'materials_url' | 'country' | 'age'> & {
       country: Array<string>;
+      age: Array<number>;
     };
-    const realFormValue = form.getFieldsValue() as Omit<MaterialItem, 'materials_url'>;
+    const realFormValue = form.getFieldsValue() as Omit<MaterialItem, 'materials_url' | 'age'> & { age: string };
     if (formValues.country.length > 0) {
       realFormValue.country = formValues.country.join(',');
+    }
+    if (formValues.age.length > 0) {
+      realFormValue.age = formValues.age.join(',');
     }
     const materials_url = fileList.map((item) => item.response.Location).join(',');
     const params: AllMaterialItem = { id, ...realFormValue, materials_url };

@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React from 'react';
 import styles from './index.module.less';
 import { useRequestreportGet } from 'apis';
 import click from 'src/assets/images/datainfo-click.png';
@@ -103,13 +103,13 @@ const Index = () => {
 
           boundaryGap: false,
           data: [
-            dayjs().subtract(7, 'day').format('M.DD'),
-            dayjs().subtract(6, 'day').format('M.DD'),
-            dayjs().subtract(5, 'day').format('M.DD'),
-            dayjs().subtract(4, 'day').format('M.DD'),
-            dayjs().subtract(3, 'day').format('M.DD'),
-            dayjs().subtract(2, 'day').format('M.DD'),
-            dayjs().subtract(1, 'day').format('M.DD'),
+            dayjs().subtract(7, 'day').format('YYYY/MM/DD'),
+            dayjs().subtract(6, 'day').format('YYYY/MM/DD'),
+            dayjs().subtract(5, 'day').format('YYYY/MM/DD'),
+            dayjs().subtract(4, 'day').format('YYYY/MM/DD'),
+            dayjs().subtract(3, 'day').format('YYYY/MM/DD'),
+            dayjs().subtract(2, 'day').format('YYYY/MM/DD'),
+            dayjs().subtract(1, 'day').format('YYYY/MM/DD'),
           ],
 
           axisLine: {

@@ -127,12 +127,7 @@ module.exports = {
       },
     ],
     // 要求在注释周围有空行 ( 要求在块级注释之前有一空行)
-    'lines-around-comment': [
-      2,
-      {
-        beforeBlockComment: true,
-      },
-    ],
+    'lines-around-comment': 0,
     'func-style': 0,
     // 强制回调函数最大嵌套深度 5层
     'max-nested-callbacks': [2, 5],
@@ -175,7 +170,7 @@ module.exports = {
     // 要求 return 语句之前有一空行
     'newline-before-return': 0,
     // 要求方法链中每个调用都有一个换行符
-    'newline-per-chained-call': 1,
+    'newline-per-chained-call': 0,
     // 禁用 continue 语句
     'no-continue': 0,
     // 禁止在代码行后使用内联注释

@@ -29,6 +29,7 @@ const en: {
   'project.docking': 'Project docking (PC class)',
   'common.indicators': 'Common indicators for game data analysis (advertising business direction)',
   'next.step': 'Next step',
+  'previous.step': 'Previous step',
   'create.success': 'Create successfully',
   'continue.create': 'Continue to create',
   'go.channel.market': 'Go to channel market',

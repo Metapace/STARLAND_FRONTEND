@@ -43,7 +43,15 @@ const DownloadItem: React.FC<DownloadItemProps> = ({ name, url, hasBottomBorder 
   );
 };
 
-const Index = ({ fileList, setFileList, handleSubmit, isLoading, isEdit = false, isDisable = false }: any) => {
+const Index = ({
+  fileList,
+  setFileList,
+  handleSubmit,
+  isLoading,
+  isEdit = false,
+  isDisable = false,
+  handlePreviousStep,
+}: any) => {
   const { lang, i18n } = useI18n(locales);
   const handleUpload = async (option: any) => {
     const { onProgress, onError, onSuccess, file } = option;
@@ -130,10 +138,17 @@ const Index = ({ fileList, setFileList, handleSubmit, isLoading, isEdit = false,
       {handleSubmit && (
         <div className={styles['button-wrrap']}>
           <Sbutton
+            className={styles['next-step']}
+            onClick={handlePreviousStep}
+            text={i18n[lang]['previous.step']}
+            style={{ color: '#2d70f1' }}
+          />
+          <Sbutton
             loading={isLoading}
             className={styles['next-step']}
             onClick={handleSubmit}
             text={i18n[lang]['next.step']}
+            style={{ color: '#2d70f1' }}
           />
         </div>
       )}

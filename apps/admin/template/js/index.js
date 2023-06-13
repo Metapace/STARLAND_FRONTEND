@@ -5,7 +5,6 @@
  * @Last Modified time: 2022-08-12 13:17:24
  *  存放一些其他的js脚本
  */
-console.log('%c%s', 'color: red; background: yellow; font-size: 24px;', '数据埋点！');
 
 function buriedPoint() {
   const timingInfo = window.performance.timing;

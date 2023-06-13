@@ -19,7 +19,7 @@ export interface MaterialItem {
   country: string;
   lauguage: string;
   crowd: string;
-  age: number;
+  age: string;
   price: number;
   materials_url: string;
   days: number;
@@ -89,7 +89,7 @@ export interface ReturnRemandItem {
  */
 
 export const getCountryList = (params: { ty: 1 | 2 }) =>
-  request.post("country", params) as Promise<Array<string>>;
+  request.post("country", params) as Promise<Record<number, string>>;
 
 /**
  *
@@ -98,7 +98,7 @@ export const getCountryList = (params: { ty: 1 | 2 }) =>
  */
 
 export const getLanguageList = (params: { ty: 1 | 2 }) =>
-  request.post("language", params) as Promise<Array<string>>;
+  request.post("language", params) as Promise<Record<number, string>>;
 
 /**
  *

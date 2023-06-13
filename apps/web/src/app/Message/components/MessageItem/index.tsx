@@ -47,7 +47,6 @@ const Index: React.FC<AlertReturnItem> = ({ create_time, msg_type, info_type, re
   const { mutateAsync } = useUpdateAlterStatus();
   const navigate = useNavigate();
   const handleOpenDetail = async () => {
-    console.log(innerStatus, 'innerStatus');
     toggle();
     if (innerStatus === 1) {
       await mutateAsync(id);

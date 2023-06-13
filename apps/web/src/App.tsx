@@ -10,8 +10,24 @@ import Loading from './components/Loading/Loading';
 import { GlobalContext, ILang } from './utils/GlobalContext';
 import './index.less';
 import 'src/assets/css/reset-arco.less';
-const Login = React.lazy(() => import('./app/Login'));
-const Home = React.lazy(() => import('./app/Home'));
+const Login = React.lazy(
+  () =>
+    import(
+      /* webpackChunkName: "login-page" */
+      /* webpackPrefetch: true */
+      /* webpackPreload: true */
+      './app/Login'
+    ),
+);
+const Home = React.lazy(
+  () =>
+    import(
+      /* webpackChunkName: "home-page" */
+      /* webpackPrefetch: true */
+      /* webpackPreload: true */
+      './app/Home'
+    ),
+);
 const Introduction = React.lazy(() => import('./app/Introduction'));
 
 const App = () => {

@@ -175,7 +175,7 @@ module.exports = {
     // 要求 return 语句之前有一空行
     'newline-before-return': 0,
     // 要求方法链中每个调用都有一个换行符
-    'newline-per-chained-call': 1,
+    'newline-per-chained-call': 0,
     // 禁用 continue 语句
     'no-continue': 0,
     // 禁止在代码行后使用内联注释

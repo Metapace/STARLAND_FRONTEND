@@ -7,7 +7,6 @@ import dayjs from 'dayjs';
 import RelaunchButton from 'src/components/RelaunchButton';
 import { Modal } from '@arco-design/web-react';
 import nodata from 'src/assets/images/datainfo-nodata.png';
-import HorizontalScroll from 'src/components/HorizontalScroll';
 
 import { NoDataProps } from '../DataOverview';
 

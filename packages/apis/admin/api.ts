@@ -115,7 +115,7 @@ export interface MaterialListItem {
   country: string;
   lauguage: string;
   crowd: GenderEnum;
-  age: AgeEnum;
+  age: string;
   start: number;
   end: number;
   days: number;

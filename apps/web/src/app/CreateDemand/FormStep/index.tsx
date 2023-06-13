@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import styles from './index.module.less';
 import classNames from 'classnames';
-import { Form, Slider, Grid, Select, FormInstance } from '@arco-design/web-react';
+import { Form, Grid, Select, FormInstance, InputNumber } from '@arco-design/web-react';
 const FormItem = Form.Item;
 import { useRequestCountry, useRequestLanguage, ReturnRemandItem } from 'apis';
 import useI18n from 'src/ahooks/useI18n';
@@ -37,11 +37,6 @@ interface FormStepProps {
   isDisable?: boolean;
 }
 
-const marks = {
-  100: '$100',
-  5000: '$5000',
-};
-
 const daysMap = {
   '7': 1,
   '15': 2,
@@ -58,8 +53,8 @@ const Index: React.FC<FormStepProps> = ({
 }) => {
   const { lang, i18n } = useI18n(locales);
   const ty = lang === 'zh-CN' ? 1 : 2;
-  const { data: countryList } = useRequestCountry(ty);
-  const { data: languageList } = useRequestLanguage(ty);
+  const { data: countryObject } = useRequestCountry(ty);
+  const { data: languageObject } = useRequestLanguage(ty);
   const ChannelList = [
     BIGO,
     Dable,
@@ -78,6 +73,9 @@ const Index: React.FC<FormStepProps> = ({
     const aa = { ...initialValues } as any;
     if (aa?.country) {
       aa.country = aa.country.split(',');
+    }
+    if (aa?.age) {
+      aa.age = aa.age.split(',').map((v: string) => +v);
     }
     if (aa?.price) {
       aa.price = +aa.price;
@@ -98,13 +96,6 @@ const Index: React.FC<FormStepProps> = ({
         initialValues={initialValues}
         labelAlign="left"
       >
-        <Form.Item noStyle shouldUpdate>
-          {(value) => {
-            return (
-              <div className={styles['slider-input-text']}>{`$${value.price || 100}(${i18n[lang]['r.daily']})`}</div>
-            );
-          }}
-        </Form.Item>
         <FormItem
           label={i18n[lang]['channel.type']}
           rules={[{ required: true }]}
@@ -178,11 +169,12 @@ const Index: React.FC<FormStepProps> = ({
                   requiredSymbol={{ position: 'end' }}
                 >
                   <Select placeholder={i18n[lang]['country.chose.place']} mode="multiple" disabled={isDisable}>
-                    {countryList?.map((item: string) => (
-                      <Option value={item} key={item}>
-                        {item}
-                      </Option>
-                    ))}
+                    {countryObject &&
+                      Object.keys(countryObject).map((key) => (
+                        <Option value={key} key={key}>
+                          {countryObject[key]}
+                        </Option>
+                      ))}
                   </Select>
                 </FormItem>
                 <FormItem
@@ -192,11 +184,12 @@ const Index: React.FC<FormStepProps> = ({
                   requiredSymbol={{ position: 'end' }}
                 >
                   <Select placeholder={i18n[lang]['select.lang.palceHoder']} disabled={isDisable}>
-                    {languageList?.map((item: string) => (
-                      <Option value={item} key={item}>
-                        {item}
-                      </Option>
-                    ))}
+                    {languageObject &&
+                      Object.keys(languageObject).map((key) => (
+                        <Option value={key} key={key}>
+                          {languageObject[key]}
+                        </Option>
+                      ))}
                   </Select>
                 </FormItem>
                 <Form.Item
@@ -220,7 +213,7 @@ const Index: React.FC<FormStepProps> = ({
 
                     <Grid.Col span={12}>
                       <Form.Item field={'age'} rules={[{ required: true }]}>
-                        <Select placeholder={i18n[lang]['select.age.palceHoder']} disabled={isDisable}>
+                        <Select placeholder={i18n[lang]['select.age.palceHoder']} disabled={isDisable} mode="multiple">
                           {ageRange.map((item) => (
                             <Option value={item.value} key={item.value}>
                               {i18n[lang][item.label] || item.label}
@@ -236,15 +229,16 @@ const Index: React.FC<FormStepProps> = ({
                   rules={[{ required: true }]}
                   field="price"
                   requiredSymbol={{ position: 'end' }}
+                  defaultValue={100}
                 >
-                  <Slider
-                    marks={marks}
+                  <InputNumber
                     min={100}
                     max={5000}
                     step={1}
-                    tooltipPosition="bottom"
                     disabled={isDisable}
-                    style={{ transform: 'translate(-20px, 10px)', width: '98%' }}
+                    prefix="$"
+                    formatter={(value) => `${value}`.replace(/B(?=(d{3})+(?!d))/g, ',')}
+                    parser={(value) => value.replace(/,/g, '')}
                   />
                 </FormItem>
               </div>
@@ -292,7 +286,7 @@ const Index: React.FC<FormStepProps> = ({
                     <Option value={2}>{i18n[lang]['digital.Currency']}(USDT)</Option>
                   </Select>
                 </FormItem>
-                <FormItem
+                {/* <FormItem
                   label={i18n[lang]['pay.number']}
                   rules={[{ required: true }]}
                   field="language"
@@ -305,7 +299,7 @@ const Index: React.FC<FormStepProps> = ({
                       </Option>
                     ))}
                   </Select>
-                </FormItem>
+                </FormItem> */}
               </div>
             );
           }}

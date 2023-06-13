@@ -3,27 +3,98 @@ import Result403 from 'src/app/Exception/403';
 import Result404 from 'src/app/Exception/404';
 import Result500 from 'src/app/Exception/500';
 
-const Welcome = React.lazy(() => import('../app/Welcome'));
-const Workplace = React.lazy(() => import('../app/Dashboard/WorkPlace/WorkPlace'));
-const Datainfo = React.lazy(() => import('../app/DataInfo/index'));
+const Welcome = React.lazy(
+  /* webpackChunkName: "welcome-page" */
+  /* webpackPrefetch: true */
+  /* webpackPreload: true */ () => import('../app/Welcome'),
+);
+const Workplace = React.lazy(
+  /* webpackChunkName: "Workplace-page" */
+  /* webpackPrefetch: true */
+  /* webpackPreload: true */
+  () => import('../app/Dashboard/WorkPlace/WorkPlace'),
+);
+const Datainfo = React.lazy(
+  () =>
+    import(
+      /* webpackChunkName: "DataInfo-page" */
+      /* webpackPrefetch: true */
+      /* webpackPreload: true */
+      '../app/DataInfo/index'
+    ),
+);
 
-const UserCenter = React.lazy(() => import('../app/User/index'));
+const UserCenter = React.lazy(
+  () =>
+    import(
+      /* webpackChunkName: "UserCenter-page" */
+      /* webpackPrefetch: true */
+      /* webpackPreload: true */
+      '../app/User/index'
+    ),
+);
 
-const ChannelMarket = React.lazy(() => import('../app/Market/index'));
+const ChannelMarket = React.lazy(
+  () =>
+    import(
+      /* webpackChunkName: "ChannelMarket-page" */
+      /* webpackPrefetch: true */
+      /* webpackPreload: true */
+      '../app/Market/index'
+    ),
+);
 
-const ShoppingCart = React.lazy(() => import('../app/ShopCart/index'));
+const ShoppingCart = React.lazy(
+  () =>
+    import(
+      /* webpackChunkName: "ShoppingCart-page" */
+      '../app/ShopCart/index'
+    ),
+);
 
-const PublishDemand = React.lazy(() => import('../app/PublishDemand/index'));
+const PublishDemand = React.lazy(
+  () =>
+    import(
+      /* webpackChunkName: "PublishDemand-page" */
+      /* webpackPrefetch: true */
+      /* webpackPreload: true */
+      '../app/PublishDemand/index'
+    ),
+);
 
-const CreateDemand = React.lazy(() => import('../app/CreateDemand/index'));
+const CreateDemand = React.lazy(
+  () =>
+    import(
+      /* webpackChunkName: "CreateDemand-page" */
+      /* webpackPrefetch: true */
+      /* webpackPreload: true */
+      '../app/CreateDemand/index'
+    ),
+);
 
 const VerifyError = React.lazy(() => import('../app/VerifyError/index'));
 
 const CreateSuccess = React.lazy(() => import('../app/CreateSuccess/index'));
 
-const UpdateDemand = React.lazy(() => import('../app/EditDemand/index'));
+const UpdateDemand = React.lazy(
+  () =>
+    import(
+      /* webpackChunkName: "UpdateDemand-page" */
+      /* webpackPrefetch: true */
+      /* webpackPreload: true */
+      '../app/EditDemand/index'
+    ),
+);
 
-const Message = React.lazy(() => import('../app/Message'));
+const Message = React.lazy(
+  () =>
+    import(
+      /* webpackChunkName: "Message-page" */
+      /* webpackPrefetch: true */
+      /* webpackPreload: true */
+      '../app/Message'
+    ),
+);
 export interface IRouterConfig {
   path: string;
   text: string;

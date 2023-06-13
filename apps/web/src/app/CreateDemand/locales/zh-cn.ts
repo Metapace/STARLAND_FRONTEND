@@ -29,6 +29,7 @@ const zh: {
   'common.indicators': '游戏数据分析常用指标（广告业务方向）',
   'material.display.tip': '物料展示【不限于文档/视频/图片/PSD/AI等】',
   'next.step': '下一步',
+  'previous.step': '上一步',
   'create.success': '创建成功',
   'continue.create': '继续创建',
   'go.channel.market': '去渠道市场',

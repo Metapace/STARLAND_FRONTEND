@@ -4,7 +4,7 @@ import { useRequestAlertList, useRequestUserIndfo } from 'apis';
 import Logo from 'src/assets/images/starland-log.png';
 import MessageIcon from 'src/assets/images/messageLin.png';
 import { Button, Dropdown, Menu, Divider, Message, Avatar } from '@arco-design/web-react';
-import { IconPoweroff, IconSettings, IconLanguage } from '@arco-design/web-react/icon';
+import { IconPoweroff, IconLanguage } from '@arco-design/web-react/icon';
 import { useLocalStorageState, useInterval } from 'ahooks';
 import { useTheme } from 'src/ahooks';
 import { removeLocalToken } from 'src/utils/localSet';
@@ -95,10 +95,10 @@ const Header = () => {
             trigger="click"
             droplist={
               <Menu>
-                <Menu.Item key="1">
+                {/* <Menu.Item key="1">
                   <IconSettings />
                   <span>{i18n[lang]['header.userSetting']}</span>
-                </Menu.Item>
+                </Menu.Item> */}
                 <Menu.Item key="2" onClick={() => loginOut()}>
                   <IconPoweroff />
                   <span>{i18n[lang]['header.logout']}</span>

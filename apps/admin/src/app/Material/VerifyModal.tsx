@@ -9,6 +9,8 @@ import {
   GenderEnum,
   useRequestUserIndfo,
   AuthRightEnum,
+  useRequestCountry,
+  useRequestLanguage,
 } from 'apis';
 
 import dayjs from 'dayjs';
@@ -153,23 +155,36 @@ const FromItem: React.FC<FromItemProps> = ({ item, handlCloseModal, type }) => {
 };
 
 const Index: React.FC<FVerifyProps> = ({ open, item, handlCloseModal }) => {
+  const { data: countryObject } = useRequestCountry(1);
+  const { data: languageObject } = useRequestLanguage(1);
   const dataSource = useMemo(() => {
-    if (item) {
+    if (item && countryObject && languageObject) {
+      const ages = item?.age
+        .split(',')
+        .map((key: any) => ageMap[key])
+        .join(',');
+
+      const showCountry = item.country
+        .split(',')
+        .map((key: any) => countryObject[key])
+        .join(',');
+      const showLang = languageObject[item.lauguage];
       return [
         { title: '项目名称', description: `${item.email}` },
         {
           title: '投放时间',
           description: `${dayjs.unix(item.start).format('YYYY-MM-DD')} 至 ${dayjs.unix(item.end).format('YYYY-MM-DD')}`,
         },
-        { title: '投放国家', description: item.country },
-        { title: '投放语言', description: item.lauguage },
-        { title: '投放人群', description: `${AgendarMap[item.crowd]} | ${ageMap[item.age]}` },
+        { title: '投放国家', description: showCountry },
+        { title: '投放语言', description: showLang },
+        { title: '投放人群', description: `${AgendarMap[item.crowd]} | ${ages}` },
         { title: '每日预算', description: `$${item.price}` },
         { title: '活动名称前缀', description: `${item.user_id}-${item.id}-` },
       ];
     }
     return [];
-  }, [item]);
+  }, [item, countryObject, languageObject]);
+
   const linkList = useMemo(() => {
     if (item) {
       const lists = item.materials_url.split(',');

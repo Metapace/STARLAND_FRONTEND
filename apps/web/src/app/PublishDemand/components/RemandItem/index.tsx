@@ -3,7 +3,7 @@ import styles from './index.module.less';
 import classNames from 'classnames';
 import useI18n from 'src/ahooks/useI18n';
 import locale from '../../locales';
-import { DemandType, ReturnRemandItem, ChannelType } from 'apis';
+import { DemandType, ReturnRemandItem, ChannelType, useRequestCountry } from 'apis';
 import { gendarRange } from 'src/conifg/selectConfig';
 import dayjs from 'dayjs';
 import { useNavigate } from 'react-router-dom';
@@ -31,6 +31,8 @@ interface RemandItemProps extends ReturnRemandItem {
 
 const Index: React.FC<RemandItemProps> = ({ status, create_time, chan, country, price, crowd, id, refetch }) => {
   const { lang, i18n } = useI18n(locale);
+  const ty = lang === 'zh-CN' ? 1 : 2;
+  const { data: countryObject } = useRequestCountry(ty);
   const navigate = useNavigate();
   const [open, { toggle }] = useToggle(false);
   const tagColor: string = useMemo(() => {
@@ -61,6 +63,16 @@ const Index: React.FC<RemandItemProps> = ({ status, create_time, chan, country, 
     return item[0]?.label;
   }, [crowd]);
 
+  const showCountry = useMemo(() => {
+    if (countryObject && country) {
+      return country
+        .split(',')
+        .map((key: any) => countryObject[key])
+        .join(' ');
+    }
+    return '';
+  }, [countryObject, country]);
+
   return (
     <div className={styles.container}>
       <div className={classNames(styles['tag'], styles[tagColor])}>
@@ -76,7 +88,7 @@ const Index: React.FC<RemandItemProps> = ({ status, create_time, chan, country, 
             {/* 投放国家 */}
             <div className={styles['content-item']}>
               <span>{i18n[lang]['launch.country']}：</span>
-              <span className={styles['content-item-value']}>{country}</span>
+              <span className={styles['content-item-value']}>{showCountry}</span>
             </div>
             {/* 每日预算 */}
             <div className={styles['content-item']}>
