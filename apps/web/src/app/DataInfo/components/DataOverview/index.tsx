@@ -103,13 +103,13 @@ const Index = () => {
 
           boundaryGap: false,
           data: [
-            dayjs().subtract(7, 'day').format('M.DD'),
-            dayjs().subtract(6, 'day').format('M.DD'),
-            dayjs().subtract(5, 'day').format('M.DD'),
-            dayjs().subtract(4, 'day').format('M.DD'),
-            dayjs().subtract(3, 'day').format('M.DD'),
-            dayjs().subtract(2, 'day').format('M.DD'),
-            dayjs().subtract(1, 'day').format('M.DD'),
+            dayjs().subtract(7, 'day').format('YYYY.M.D'),
+            dayjs().subtract(6, 'day').format('YYYY.M.D'),
+            dayjs().subtract(5, 'day').format('YYYY.M.D'),
+            dayjs().subtract(4, 'day').format('YYYY.M.D'),
+            dayjs().subtract(3, 'day').format('YYYY.M.D'),
+            dayjs().subtract(2, 'day').format('YYYY.M.D'),
+            dayjs().subtract(1, 'day').format('YYYY.M.D'),
           ],
 
           axisLine: {
