@@ -51,6 +51,7 @@ interface FromItemProps {
 }
 
 const FromItem: React.FC<FromItemProps> = ({ item, handlCloseModal, type }) => {
+  console.log(item, 'item');
   const [form] = Form.useForm();
   const { mutateAsync, isLoading } = useMutationReviewMaterial();
   const { data } = useRequestUserIndfo();
@@ -88,6 +89,8 @@ const FromItem: React.FC<FromItemProps> = ({ item, handlCloseModal, type }) => {
       }
     }
   };
+  console.log(innerStatus, 'innerStatus');
+  console.log(FormItemType.Delivery);
   return (
     <>
       <div className={styles['opreate-title']}>
@@ -147,7 +150,10 @@ const FromItem: React.FC<FromItemProps> = ({ item, handlCloseModal, type }) => {
       {innerStatus === 1 && (
         <div className={styles['reject-area']}>
           <div className={styles['red-alert']}>驳回理由</div>
-          <TextArea value={FormItemType.Delivery ? item.deliver_reason : item.design_reason} disabled></TextArea>
+          <TextArea
+            value={type === FormItemType.Delivery ? item.deliver_reason : item.design_reason}
+            disabled
+          ></TextArea>
         </div>
       )}
     </>

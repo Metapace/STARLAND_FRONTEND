@@ -307,7 +307,7 @@ const Index: React.FC<FormStepProps> = ({
       </Form>
       {handleNextStep && (
         <div className={classNames('common-button', styles['next-button'])} onClick={handleNextStep}>
-          下一步
+          {i18n[lang]['next.step']}
         </div>
       )}
     </div>

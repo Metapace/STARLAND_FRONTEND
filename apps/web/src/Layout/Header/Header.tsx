@@ -27,7 +27,7 @@ const Header = () => {
   const navigate = useNavigate();
   const { lang, i18n, setLang } = useI18n();
   const [, setLanguage] = useLocalStorageState('language');
-  const [nowTime, setNowtime] = useState(dayjs().format('YYYY-MM-DD hh:mm:ss'));
+  const [nowTime, setNowtime] = useState(dayjs().format('YYYY-MM-DD HH:mm:ss'));
   const { data } = useRequestAlertList({ page: 1, page_size: 10, status: 1 });
   const { data: userInfo } = useRequestUserIndfo();
 

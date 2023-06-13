@@ -11,8 +11,7 @@ import { IconCheck } from '@arco-design/web-react/icon';
 import locales from './locales';
 import { useMutationCreateMaterial, MaterialItem } from 'apis';
 import { UploadItem } from 'src/types/arco';
-import { Number } from 'aws-sdk/clients/iot';
-import { String } from 'aws-sdk/clients/acm';
+import { useNavigate } from 'react-router-dom';
 
 interface CircleItemProps {
   index: number;
@@ -48,6 +47,7 @@ const ProgressLine = () => {
 
 const Index = () => {
   const { lang, i18n } = useI18n(locales);
+  const navigate = useNavigate();
   const [fileList, setFileList] = useState<Array<UploadItem>>([]);
   const [step, setStep] = useState<number>(1);
   const [activityId, setActivityId] = useState<number>(0);
@@ -62,6 +62,7 @@ const Index = () => {
   };
   const handleCloseModal = () => {
     setLeft();
+    navigate('/publish-demand');
   };
 
   const handlePreviousStep = () => {
