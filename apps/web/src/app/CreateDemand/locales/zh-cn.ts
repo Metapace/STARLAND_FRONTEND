@@ -59,6 +59,11 @@ const zh: {
   'r.daily': '每日',
   'r.step1': '步骤一',
   'r.step2': '步骤二',
+  'is.required': '是必填项',
+  'r.gender': '性别',
+  'r.age': '年龄',
+  'r.upload.tip.1': '请将您的相关资料',
+  'r.upload.tip.2': '上传在这里',
 };
 
 export default zh;

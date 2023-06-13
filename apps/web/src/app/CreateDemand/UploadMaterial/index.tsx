@@ -127,7 +127,7 @@ const Index = ({
               <div className={styles['inner-upload']}>
                 <img src={UploadFile} alt="" className={styles['upload-icon']} />
                 <div className={styles['action-type']}>
-                  Drag file here，or <span>click upload</span>
+                  {i18n[lang]['r.upload.tip.1']} <span>{i18n[lang]['r.upload.tip.2']}</span>
                 </div>
                 <div className={styles['action-type']}>{i18n[lang]['material.display.tip']}</div>
               </div>

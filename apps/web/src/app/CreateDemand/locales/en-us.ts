@@ -11,7 +11,7 @@ const en: {
   'pay.way': 'Payment method',
   'launch.cirlce': 'Launch period',
   'launch.country': 'Launching country',
-  'lanuage.chose': 'Language selection',
+  'lanuage.chose': 'Language',
   'launch.person': 'Target audience',
   'promte.budget': 'Promotion budget',
   'country.chose.place': 'Country selection (multiple choices possible)',
@@ -59,6 +59,11 @@ const en: {
   'r.daily': 'Daily',
   'r.step1': 'step1',
   'r.step2': 'step2',
+  'is.required': 'is required',
+  'r.gender': 'gender',
+  'r.age': 'age',
+  'r.upload.tip.1': 'Drag file here，or',
+  'r.upload.tip.2': 'click upload',
 };
 
 export default en;

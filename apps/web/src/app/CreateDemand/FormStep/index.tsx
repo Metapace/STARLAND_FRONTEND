@@ -150,7 +150,7 @@ const Index: React.FC<FormStepProps> = ({
                 </FormItem>
                 <FormItem
                   label={i18n[lang]['launch.cirlce']}
-                  rules={[{ required: true }]}
+                  rules={[{ required: true, message: `${i18n[lang]['launch.cirlce']} ${i18n[lang]['is.required']}` }]}
                   field="days"
                   requiredSymbol={{ position: 'end' }}
                 >
@@ -164,7 +164,7 @@ const Index: React.FC<FormStepProps> = ({
                 </FormItem>
                 <FormItem
                   label={i18n[lang]['launch.country']}
-                  rules={[{ required: true }]}
+                  rules={[{ required: true, message: `${i18n[lang]['launch.country']} ${i18n[lang]['is.required']}` }]}
                   field="country"
                   requiredSymbol={{ position: 'end' }}
                 >
@@ -179,7 +179,7 @@ const Index: React.FC<FormStepProps> = ({
                 </FormItem>
                 <FormItem
                   label={i18n[lang]['lanuage.chose']}
-                  rules={[{ required: true }]}
+                  rules={[{ required: true, message: `${i18n[lang]['lanuage.chose']} ${i18n[lang]['is.required']}` }]}
                   field="lauguage"
                   requiredSymbol={{ position: 'end' }}
                 >
@@ -200,7 +200,10 @@ const Index: React.FC<FormStepProps> = ({
                 >
                   <Grid.Row gutter={8}>
                     <Grid.Col span={12}>
-                      <Form.Item field={'crowd'} rules={[{ required: true }]}>
+                      <Form.Item
+                        field={'crowd'}
+                        rules={[{ required: true, message: `${i18n[lang]['r.gender']} ${i18n[lang]['is.required']}` }]}
+                      >
                         <Select placeholder={i18n[lang]['select.gender.palceHoder']} disabled={isDisable}>
                           {gendarRange.map((item) => (
                             <Option value={item.value} key={item.value}>
@@ -212,7 +215,10 @@ const Index: React.FC<FormStepProps> = ({
                     </Grid.Col>
 
                     <Grid.Col span={12}>
-                      <Form.Item field={'age'} rules={[{ required: true }]}>
+                      <Form.Item
+                        field={'age'}
+                        rules={[{ required: true, message: `${i18n[lang]['r.age']} ${i18n[lang]['is.required']}` }]}
+                      >
                         <Select placeholder={i18n[lang]['select.age.palceHoder']} disabled={isDisable} mode="multiple">
                           {ageRange.map((item) => (
                             <Option value={item.value} key={item.value}>
@@ -226,7 +232,7 @@ const Index: React.FC<FormStepProps> = ({
                 </Form.Item>
                 <FormItem
                   label={i18n[lang]['promte.budget']}
-                  rules={[{ required: true }]}
+                  rules={[{ required: true, message: `${i18n[lang]['promte.budget']} ${i18n[lang]['is.required']}` }]}
                   field="price"
                   requiredSymbol={{ position: 'end' }}
                   defaultValue={100}
