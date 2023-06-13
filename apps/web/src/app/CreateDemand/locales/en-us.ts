@@ -60,8 +60,8 @@ const en: {
   'r.step1': 'step1',
   'r.step2': 'step2',
   'is.required': 'is required',
-  'r.gender': 'gender',
-  'r.age': 'age',
+  'r.gender': 'Gender',
+  'r.age': 'Age',
   'r.upload.tip.1': 'Drag file here，or',
   'r.upload.tip.2': 'click upload',
 };
