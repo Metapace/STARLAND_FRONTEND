@@ -57,6 +57,8 @@ const zh: {
   'select.gender.palceHoder': '请选择性别',
   'select.age.palceHoder': '请选择年龄',
   'r.daily': '每日',
+  'r.step1': '步骤一',
+  'r.step2': '步骤二',
 };
 
 export default zh;

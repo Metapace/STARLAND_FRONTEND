@@ -70,7 +70,7 @@ const Index = ({
       <div className={styles.container}>
         {!isEdit && (
           <div className={styles.left}>
-            <div className={styles.title}>Step1</div>
+            <div className={styles.title}> {i18n[lang]['r.step1']}</div>
             <div className={styles['sub-title']}>{i18n[lang]['web2.channel.doc']}</div>
             <DownloadItem
               name={i18n[lang]['web2.launch.doc']}
@@ -100,7 +100,7 @@ const Index = ({
         {!isEdit && <div className={styles.middle}></div>}
 
         <div className={styles.right}>
-          {!isEdit && <div className={styles.title}>Step2</div>}
+          {!isEdit && <div className={styles.title}>{i18n[lang]['r.step2']}</div>}
 
           <div className={classNames(styles.uploadContent, isEdit && styles['edit-upload-content'])}>
             <Upload

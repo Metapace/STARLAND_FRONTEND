@@ -37,7 +37,7 @@ const Header = () => {
   };
 
   useInterval(() => {
-    setNowtime(dayjs().format('YYYY-MM-DD hh:mm:ss'));
+    setNowtime(dayjs().format('YYYY-MM-DD HH:mm:ss'));
   }, 1000);
 
   const goHome = () => {
