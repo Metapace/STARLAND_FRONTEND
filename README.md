@@ -5,9 +5,9 @@ This is an Official Starland App.
 ## Using this repo
 
 Run the following command:
+
 - `npm run dev:web` for web app development
 - `npm run dev:admin` for admin app development
-
 
 ## What's inside?
 
@@ -22,5 +22,11 @@ This repo includes the following packages/apps:
 - `tsconfig`: `tsconfig.json`s used throughout the monorepo
 - `apis`: `request apis alone with request function`
 
-Each package/app  package/admin utils apis is 100% [TypeScript](https://www.typescriptlang.org/).
+Each package/app package/admin utils apis is 100% [TypeScript](https://www.typescriptlang.org/).
 
+## Build Production
+
+Each branch push will trigger github action CI in service
+
+- branch `main`: build production online
+- branch `test`: build test environment for test
