@@ -4,6 +4,8 @@ on:
   push:
     # 只有main分支发生push事件时，才会触发workflow
     branches: [test]
+    paths-ignore: # 下列文件的变更不触发部署，可以自行添加
+      - README.md
 
 jobs:
   build: # 任务的job_id，具体名称自定义，这里build代表打包
@@ -14,12 +16,12 @@ jobs:
       - name: Deploy
         uses: cross-the-world/ssh-scp-ssh-pipelines@latest
         with:
-          host: ${{ secrets.STARLAND_HOST_NAME }}
-          user: ${{ secrets.STARLAND_USERNAME }}
-          pass: ${{ secrets.STARLAND_PASSWORD }}
+          host: ${{ secrets.TEST_STARLAND_HOST }}
+          user: ${{ secrets.TEST_STARLAND_USERNAME }}
+          key: ${{ secrets.TEST_STARLAND_KEY }}
           connect_timeout: 60s
           last_ssh: |
-            cd ../frontend/TEST/STARLAND_FRONTEND/
+            cd  starland/STARLAND_FRONTEND/
             git checkout .
             git checkout test
             git pull

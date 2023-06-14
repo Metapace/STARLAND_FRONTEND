@@ -4,6 +4,8 @@ on:
   push:
     # 只有main分支发生push事件时，才会触发workflow
     branches: [main]
+    paths-ignore: # 下列文件的变更不触发部署，可以自行添加
+      - README.md
 
 jobs:
   build: # 任务的job_id，具体名称自定义，这里build代表打包
