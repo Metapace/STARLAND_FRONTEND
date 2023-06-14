@@ -2,7 +2,7 @@ name: note build
 # 触发workflow的条件
 on:
   push:
-    # 只有main分支发生push事件时，才会触发workflow
+    # 只有test分支发生push事件时，才会触发workflow
     branches: [test]
     paths-ignore: # 下列文件的变更不触发部署，可以自行添加
       - README.md

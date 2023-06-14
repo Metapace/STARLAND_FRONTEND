@@ -6,6 +6,11 @@ import useI18n from 'src/ahooks/useI18n';
 import locale from '../../locales';
 import exampleImage from 'src/assets/images/example-bg.png';
 import classNames from 'classnames';
+import Video from 'src/components/Video';
+import long1 from 'src/assets/images/videoPoster/2023long1.jpg';
+import long2 from 'src/assets/images/videoPoster/2023long2.jpg';
+import width1 from 'src/assets/images/videoPoster/2023width1.jpg';
+import width2 from 'src/assets/images/videoPoster/2023width2.jpg';
 
 export interface ExampleItemProps {
   title: string;
@@ -22,36 +27,6 @@ export enum ExampleType {
   BigoType = 3,
   KwaiType = 4,
 }
-
-const PlayVideo = ({
-  src,
-  width,
-  height,
-  classname,
-}: {
-  src: string;
-  width?: number;
-  height?: number;
-  classname?: string;
-}) => {
-  const video = useRef(null);
-  return (
-    <video
-      onClick={() => {
-        if (video?.current) {
-          video?.current.play();
-        }
-      }}
-      ref={video}
-      src={src}
-      width={width}
-      height={height}
-      className={classname}
-      controlsList="nodownload nofullscreen noremoteplayback noplaybackrate"
-      disablePictureInPicture
-    ></video>
-  );
-};
 
 const Index: React.FC<ExampleItemProps> = ({ title, log, src, exampleType }) => {
   const { lang, i18n } = useI18n(locale);
@@ -71,26 +46,26 @@ const Index: React.FC<ExampleItemProps> = ({ title, log, src, exampleType }) => 
         <div className={styles['content-inner']}>
           {exampleType === ExampleType.FacebookType && (
             <div className={classNames(styles['facebook-video'])}>
-              <PlayVideo src={src} width={196}></PlayVideo>
+              <Video src={src} width={198} height={112} poster={width1}></Video>
             </div>
           )}
           {exampleType === ExampleType.TiktokType && (
-            <>
-              <PlayVideo src={src} width={196} height={340} classname={styles['tiktok-video-player']}></PlayVideo>
+            <div className={classNames(styles['tikTok-video-container'])}>
+              <Video src={src} width={195} height={332} poster={long1}></Video>
               <div className={classNames(styles['tikTok-video'])}></div>
-            </>
+            </div>
           )}
           {exampleType === ExampleType.BigoType && (
             <div className={classNames(styles['bigo-video'])}>
-              <PlayVideo src={src} width={196}></PlayVideo>
+              <Video src={src} width={196} height={98} poster={width2}></Video>
             </div>
           )}
           {exampleType === ExampleType.KwaiType && (
-            <>
+            <div className={classNames(styles['kwai-video-container'])}>
               <div className={classNames(styles['kwai-video-top'])}></div>
-              <PlayVideo src={src} width={196} height={340} classname={styles['kwai-video-player']}></PlayVideo>
+              <Video src={src} width={198} height={336} poster={long2}></Video>
               <div className={classNames(styles['kwai-video-bottom'])}></div>
-            </>
+            </div>
           )}
         </div>
       </div>
