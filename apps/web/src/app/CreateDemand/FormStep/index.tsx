@@ -235,7 +235,7 @@ const Index: React.FC<FormStepProps> = ({
                   rules={[{ required: true, message: `${i18n[lang]['promte.budget']} ${i18n[lang]['is.required']}` }]}
                   field="price"
                   requiredSymbol={{ position: 'end' }}
-                  defaultValue={100}
+                  defaultValue={102}
                 >
                   <InputNumber
                     min={100}
