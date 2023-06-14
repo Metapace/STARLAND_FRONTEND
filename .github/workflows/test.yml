@@ -29,3 +29,5 @@ jobs:
             source ~/.nvm/nvm.sh
             pnpm install
             npm run build:test
+            sudo cp -r /home/ubuntu/starland/STARLAND_FRONTEND/apps/admin/dist/* /www/wwwroot/test-admin.star-land.io/dist/
+            sudo cp -r /home/ubuntu/starland/STARLAND_FRONTEND/apps/web/dist/*  /www/wwwroot/test.star-land.io/dist/
