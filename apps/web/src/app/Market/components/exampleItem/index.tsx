@@ -57,7 +57,7 @@ const Index: React.FC<ExampleItemProps> = ({ title, log, src, exampleType }) => 
           )}
           {exampleType === ExampleType.BigoType && (
             <div className={classNames(styles['bigo-video'])}>
-              <Video src={src} width={196} height={98} poster={width2}></Video>
+              <Video src={src} width={196} height={112} poster={width2}></Video>
             </div>
           )}
           {exampleType === ExampleType.KwaiType && (
