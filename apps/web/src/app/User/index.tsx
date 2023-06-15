@@ -35,7 +35,7 @@ const Index = () => {
         refresh={refresh}
         setrefresh={setRefresh}
       />
-      <EditModal open={openEditModal} handleCloseEditModal={handleCloseEditModal}></EditModal>
+      {openEditModal && <EditModal open={openEditModal} handleCloseEditModal={handleCloseEditModal}></EditModal>}
     </div>
   );
 };

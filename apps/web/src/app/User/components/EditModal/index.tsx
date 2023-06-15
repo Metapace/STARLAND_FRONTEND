@@ -55,7 +55,6 @@ const index: React.FC<VoucherModalProps> = ({ open, handleCloseEditModal }) => {
       await mutateAsync(data);
       await refetch();
       handleCloseEditModal();
-      form.resetFields();
       setConfirmLoading(false);
     });
   }
@@ -144,11 +143,7 @@ const index: React.FC<VoucherModalProps> = ({ open, handleCloseEditModal }) => {
               <div className={styles['trigger-box']}>
                 <img src={upload} alt="upload" />
               </div>
-
-              <div className={styles['trigger-text']}>
-                Drag the file here or
-                <span style={{ color: '#3370FF', padding: '0 4px' }}>Click to upload</span>
-              </div>
+              <div className={styles['trigger-text']}>{i18n[lang]['usercenter.setting.Projectlogo.tip']}</div>
             </div>
           </Upload>
         </Form.Item>
