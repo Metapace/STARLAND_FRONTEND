@@ -176,7 +176,7 @@ const Index: React.FC<FVerifyProps> = ({ open, item, handlCloseModal }) => {
         .join(',');
       const showLang = languageObject[item.lauguage];
       return [
-        { title: '项目名称', description: `${item.email}` },
+        { title: '项目名称', description: `${item.name}` },
         {
           title: '投放时间',
           description: `${dayjs.unix(item.start).format('YYYY-MM-DD')} 至 ${dayjs.unix(item.end).format('YYYY-MM-DD')}`,

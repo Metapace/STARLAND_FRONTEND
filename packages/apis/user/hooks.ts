@@ -8,6 +8,7 @@ import {
   getAlertLsit,
   reportGetClick,
   updateAlterStatus,
+  updateUser,
 } from "./api";
 
 const useRequestUserIndfo = () => {
@@ -63,6 +64,15 @@ const useUpdateAlterStatus = () =>
     mutationFn: updateAlterStatus,
   });
 
+/**
+ *
+ *  @description 更新用户信息
+ */
+const useUpdateUser = () =>
+  useMutation({
+    mutationFn: updateUser,
+  });
+
 export {
   useRequestUserIndfo,
   useRequestDashboardInfo,
@@ -70,4 +80,5 @@ export {
   useRequestAlertList,
   useRequestreportGetClick,
   useUpdateAlterStatus,
+  useUpdateUser,
 };

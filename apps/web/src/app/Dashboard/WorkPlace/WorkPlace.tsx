@@ -193,7 +193,9 @@ const Workplace = () => {
 
   return (
     <div className={styles.workplace}>
-      <div className={styles['welcome-title']}>{`${i18n[lang]['dashbord.welcome']}, ${data?.email}!`}</div>
+      <div className={styles['welcome-title']}>
+        {!!data?.email && `${i18n[lang]['dashbord.welcome']}, ${data?.name || data?.email}!`}
+      </div>
       <div className={styles['top-item-list']}>
         <div className={classNames(styles['account-item'], styles['common-item'])}>
           <div className={classNames(styles['top-item'], styles['account-item-inner'])}>

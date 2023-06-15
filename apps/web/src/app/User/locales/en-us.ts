@@ -5,6 +5,7 @@ const en: {
   'usercenter.registrationTime': 'Registration time',
   'usercenter.secureBinding': 'Secure Binding',
   'usercenter.username': 'User name',
+  'usercenter.projectname': 'Project name',
   'usercenter.totalAssets': 'My Total Assets',
   'usercenter.totalAssetsAvaiable': 'Total Available Assets',
   'usercenter.fiatAssets': 'Fiat assets',
@@ -74,6 +75,14 @@ const en: {
   'usercenter.addressOfUserIsReq': 'Address of user is required',
   'usercenter.emailOfUserIsReq': 'Email of user is required',
   'usercenter.uploadPassportIsReq': 'Passport is required',
+  'usercenter.projectName.tip': 'Please go to the settings interface to upload the project name',
+  'usercenter.edit': 'Edit',
+  'usercenter.Settings': 'Settings',
+  'usercenter.setting.usernames': 'Username',
+  'usercenter.setting.Registration': 'Registration Time',
+  'usercenter.setting.Projectname': 'Project Name',
+  'usercenter.setting.Projectname.requered': 'Project Name is required',
+  'usercenter.setting.Projectlogo': 'Project Logo',
 };
 
 export default en;
