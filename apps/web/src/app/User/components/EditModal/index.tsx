@@ -105,7 +105,7 @@ const index: React.FC<VoucherModalProps> = ({ open, handleCloseEditModal }) => {
           requiredSymbol={{ position: 'end' }}
           rules={[{ required: true, message: `${i18n[lang]['usercenter.setting.Projectname.requered']}` }]}
         >
-          <Input />
+          <Input placeholder={i18n[lang]['usercenter.setting.Projectname.placehoder']} />
         </FormItem>
         <Form.Item
           labelCol={{ span: 6, offset: 0 }}

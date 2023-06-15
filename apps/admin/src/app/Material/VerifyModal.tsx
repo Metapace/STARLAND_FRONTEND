@@ -118,7 +118,7 @@ const FromItem: React.FC<FromItemProps> = ({ item, handlCloseModal, type }) => {
             <Popconfirm
               focusLock
               title="提醒"
-              content={`请进行${item?.email}相关物料素材的二次确认。`}
+              content={`请进行${item?.name}相关物料素材的二次确认。`}
               onOk={handlePass}
               okText="确认通过"
               disabled={isDisable}

@@ -82,6 +82,7 @@ const zh: {
   'usercenter.setting.Projectname.requered': '项目名称是必填项',
   'usercenter.setting.Projectlogo': '项目头像',
   'usercenter.setting.Projectlogo.tip': '支持jpg和png,比例1:1， 不大于5MB',
+  'usercenter.setting.Projectname.placehoder': '请输入您的项目名称',
 };
 
 export default zh;

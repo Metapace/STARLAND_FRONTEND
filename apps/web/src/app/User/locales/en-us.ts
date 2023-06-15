@@ -84,6 +84,7 @@ const en: {
   'usercenter.setting.Projectname.requered': 'Project Name is required',
   'usercenter.setting.Projectlogo': 'Project Logo',
   'usercenter.setting.Projectlogo.tip': 'Supports jpg png and gif, 1:1 ratio, 5MB file size limit',
+  'usercenter.setting.Projectname.placehoder': 'Please enter your project name',
 };
 
 export default en;
