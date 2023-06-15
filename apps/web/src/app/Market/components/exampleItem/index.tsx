@@ -42,7 +42,7 @@ const Index: React.FC<ExampleItemProps> = ({ title, log, src, exampleType }) => 
         </div>
       </div>
       <div className={styles['content']}>
-        <img src={exampleImage}></img>
+        <img src={exampleImage} className={styles['content-img']}></img>
         <div className={styles['content-inner']}>
           {exampleType === ExampleType.FacebookType && (
             <div className={classNames(styles['facebook-video'])}>
