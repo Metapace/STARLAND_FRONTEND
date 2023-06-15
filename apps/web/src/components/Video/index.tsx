@@ -11,7 +11,7 @@ interface VideoProps {
   videoHeight?: number;
 }
 
-const Index: FC<VideoProps> = ({ src, poster, width, height, videoWidth, videoHeight }) => {
+const Index: FC<VideoProps> = ({ src, poster, width, height }) => {
   return (
     <VideoPlayer src={src} poster={poster} controlBar={false} controls volume={0.6} width={width} height={height} />
   );
