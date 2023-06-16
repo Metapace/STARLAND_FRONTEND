@@ -103,14 +103,14 @@ const Index = () => {
         <div className={styles['web2-scroll-title']}>{i18n[lang]['web2.scroll.title']}</div>
         <ScrollBar
           contentList={[
-            { src: web2AppFlys, width: '140px', height: '40px' },
+            { src: web2AppFlys, width: '168px', height: '72px' },
             { src: web2AppLovin, width: '280px', height: '72px' },
-            { src: web2Djust, width: '140px', height: '34px' },
+            { src: web2Djust, width: '176px', height: '72px' },
             { src: web2Meta, width: '180px', height: '72px' },
-            { src: web2PetalADs, width: '140px', height: '40px' },
+            { src: web2PetalADs, width: '184px', height: '72px' },
             { src: web2Tiktok, width: '168px', height: '72px' },
             { src: web2Topon, width: '180px', height: '72px' },
-            { src: web2Unity, width: '120px', height: '40px' },
+            { src: web2Unity, width: '136px', height: '72px' },
             { src: web2Trackingio, width: '256px', height: '72px' },
             { src: web2Vungle, width: '128px', height: '72px' },
             { src: web2GoogleAds, width: '280px', height: '72px' },
