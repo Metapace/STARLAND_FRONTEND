@@ -46,7 +46,7 @@
 }
 .content {
   position: relative;
-  img {
+  .content-img {
     width: 223px;
     height: 398px;
   }
@@ -72,9 +72,10 @@
   background-size: contain;
   background-repeat: no-repeat;
   position: relative;
-  video {
-    position: absolute;
-    top: 50px;
+  :global {
+    .r-video-player {
+      margin-top: 48px;
+    }
   }
 }
 
@@ -87,6 +88,14 @@
   position: absolute;
   bottom: 20px;
   left: 12px;
+  border-bottom-right-radius: 12px;
+}
+.tikTok-video-container {
+  :global {
+    .r-video-player {
+      transform: translateX(-2px) translateY(-22px);
+    }
+  }
 }
 .tiktok-video-player {
   transform: translateY(-20px);
@@ -99,9 +108,11 @@
   background-size: contain;
   background-repeat: no-repeat;
   position: relative;
-  video {
-    position: absolute;
-    top: 26px;
+  :global {
+    .r-video-player {
+      transform: translateX(2px);
+      margin-top: 24px;
+    }
   }
 }
 .kwai-video-top {
@@ -127,4 +138,11 @@
 }
 .kwai-video-player {
   transform: translateY(-20px);
+}
+.kwai-video-container {
+  :global {
+    .r-video-player {
+      transform: translateX(0px) translateY(-20px);
+    }
+  }
 }

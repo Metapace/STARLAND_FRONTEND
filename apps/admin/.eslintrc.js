@@ -355,12 +355,7 @@ module.exports = {
     // 在数组或迭代器中验证JSX具有key属性
     'react/jsx-key': 2,
     // 限制JSX中单行上的props的最大数量
-    'react/jsx-max-props-per-line': [
-      1,
-      {
-        maximum: 5,
-      },
-    ],
+    'react/jsx-max-props-per-line': 0,
     // 防止在JSX中重复的props
     'react/jsx-no-duplicate-props': 2,
     //  //防止使用未包装的JSX字符串

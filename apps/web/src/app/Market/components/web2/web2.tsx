@@ -4,6 +4,7 @@ import useI18n from 'src/ahooks/useI18n';
 import locale from '../../locales';
 import web2Banner from 'src/assets/images/web2-banner.png';
 import { IconCheckCircle } from '@arco-design/web-react/icon';
+
 import CreateItem, { ChannelType } from '../createItem/index';
 import { Web2Des } from 'src/app/PublishDemand/index';
 import { useNavigate } from 'react-router-dom';
@@ -68,25 +69,25 @@ const Index = () => {
             title="Facebook"
             log={FaceBookIcon}
             exampleType={ExampleType.FacebookType}
-            src="https://starlands3.s3.ap-southeast-1.amazonaws.com/starland/1686051965915-Joy_1.mp4"
+            src="https://starlands3.s3.ap-southeast-1.amazonaws.com/starland/1686726308769-2023width1.mp4"
           ></Expample>
           <Expample
             title="Tiktok"
             log={TiktokIcon}
             exampleType={ExampleType.TiktokType}
-            src="https://starlands3.s3.ap-southeast-1.amazonaws.com/starland/1686051943253-20.mp4"
+            src="https://starlands3.s3.ap-southeast-1.amazonaws.com/starland/1686726288391-2023long1.mp4"
           ></Expample>
           <Expample
             title="Bigo"
             log={BigoIcon}
             exampleType={ExampleType.BigoType}
-            src="https://starlands3.s3.ap-southeast-1.amazonaws.com/starland/1686051950500-2022.J.mp4"
+            src="https://starlands3.s3.ap-southeast-1.amazonaws.com/starland/1686726321544-2023width2.mp4"
           ></Expample>
           <Expample
             title="Kwai"
             log={KwaiIcon}
             exampleType={ExampleType.KwaiType}
-            src="https://starlands3.s3.ap-southeast-1.amazonaws.com/starland/1686051927073--J.mp4"
+            src="https://starlands3.s3.ap-southeast-1.amazonaws.com/starland/1686726301089-2023long2.mp4"
           ></Expample>
         </div>
       </div>
