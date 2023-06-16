@@ -38,20 +38,6 @@ export const menuConfig: IMenu = {
       ],
     },
     {
-      name: 'menu.DataInfo',
-      key: '/datainfo',
-      path: '/datainfo',
-      icon: 'IconAfterData',
-      children: [
-        {
-          name: 'menu.DataInfo',
-          key: '/datainfo',
-          path: '/datainfo',
-          icon: 'IconAfterData',
-        },
-      ],
-    },
-    {
       name: 'menu.market',
       key: '/channel-market',
       path: '/channel-market',
@@ -66,19 +52,6 @@ export const menuConfig: IMenu = {
       ],
     },
     {
-      name: 'menu.usercenter',
-      key: '/usercenter',
-      path: '/usercenter',
-      icon: 'IconUser',
-      children: [
-        {
-          name: 'menu.usercenter',
-          key: '/usercenter',
-          path: '/usercenter',
-        },
-      ],
-    },
-    {
       name: 'menu.publish.demand',
       key: '/publish-demand',
       path: '/publish-demand',
@@ -88,6 +61,34 @@ export const menuConfig: IMenu = {
           name: 'menu.publish.demand',
           key: '/publish-demand',
           path: '/publish-demand',
+        },
+      ],
+    },
+    {
+      name: 'menu.DataInfo',
+      key: '/datainfo',
+      path: '/datainfo',
+      icon: 'IconAfterData',
+      children: [
+        {
+          name: 'menu.DataInfo',
+          key: '/datainfo',
+          path: '/datainfo',
+          icon: 'IconAfterData',
+        },
+      ],
+    },
+
+    {
+      name: 'menu.usercenter',
+      key: '/usercenter',
+      path: '/usercenter',
+      icon: 'IconUser',
+      children: [
+        {
+          name: 'menu.usercenter',
+          key: '/usercenter',
+          path: '/usercenter',
         },
       ],
     },

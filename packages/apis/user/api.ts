@@ -54,6 +54,11 @@ export interface AlertReturn {
   messages: Array<AlertReturnItem>;
 }
 
+export interface UpdateParams {
+  project_name: string;
+  avatar_uri?: string;
+}
+
 /**
  *
  * @param email 邮箱
@@ -92,6 +97,7 @@ export const loginRequestBypassword = (params: {
 export const userInfoRequest = () => {
   return request.get("user/get", {}) as Promise<{
     email: string;
+    name?: string;
     card_id: number;
     create_time: number;
     avatar_uri: string;
@@ -163,3 +169,11 @@ export const reportGetClick = (params: { date_type: number }) =>
 
 export const updateAlterStatus = (id: number) =>
   request.post("alert/update", { id, status: 2 }) as Promise<unknown>;
+
+/**
+ *
+ * @description 更新用户信息
+ */
+
+export const updateUser = (params: UpdateParams) =>
+  request.post("user/update", params) as Promise<unknown>;
