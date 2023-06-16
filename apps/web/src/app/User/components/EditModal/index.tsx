@@ -48,10 +48,17 @@ const index: React.FC<VoucherModalProps> = ({ open, handleCloseEditModal }) => {
   function onOk() {
     form.validate().then(async (res) => {
       setConfirmLoading(true);
-      let data: UpdateParams = {
-        project_name: res.project_name,
-        avatar_uri: res.avatar_uri[0].response,
-      };
+      let data: UpdateParams;
+      if (res.avatar_uri[0]?.response) {
+        data = {
+          project_name: res.project_name,
+          avatar_uri: res.avatar_uri[0]?.response,
+        };
+      } else {
+        data = {
+          project_name: res.project_name,
+        };
+      }
       await mutateAsync(data);
       await refetch();
       handleCloseEditModal();
