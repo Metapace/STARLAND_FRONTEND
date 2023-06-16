@@ -46,12 +46,6 @@ interface CaseItemProps {
   describe: string;
   img: string;
 }
-enum TabType {
-  Home = 'home',
-  Advantage = 'advantageRef',
-  Market = 'market',
-  Example = 'example',
-}
 
 const CaseItem: React.FC<CaseItemProps> = ({ title, describe, img }) => {
   return (

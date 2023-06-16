@@ -6,10 +6,15 @@ const en: {
   'intro.market': 'Market',
   'intro.example': 'Customer Cases',
   'intro.login': 'Login',
-  'intro.home.title1': 'Starland is an integrated web2 and web3 channel ',
-  'intro.home.title2': 'placement middleware',
+  'intro.home.title1': 'Starland is an integrated',
+  'intro.home.title2': 'web2 and web3 channel',
+  'intro.home.title3': 'placement middleware',
+  'intro.home.start.now': 'Start Now',
   'intro.home.describle':
-    'StarLand is a tool that integrates global advertising channels, MMPs, and monetization platforms.Simplify operations, so that your project can obtain strong exposure and accurate user growth.',
+    'StarLand is a tool that integrates global advertising channels, MMPs, and monetization platforms.',
+  'intro.home.describle1':
+    'Simplify operations, so that your project can obtain strong exposure and accurate user growth.',
+  'web2.scroll.title': 'GLOBAL MEDIA PARTNERS',
   'intro.advantage.title': 'Overseas platform, one-stop integration',
   'intro.market.pan': 'Material sharing cloud disk',
   'intro.market.allpalte': 'Full platform reach',

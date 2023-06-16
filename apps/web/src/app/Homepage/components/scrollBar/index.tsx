@@ -9,16 +9,14 @@ interface contentItem {
 }
 interface ScrollBarProps {
   contentList: Array<contentItem>;
-  floatType?: 'right' | 'left';
-  barNumber: number;
 }
 
-const speed = 15000;
+const speed = 30000;
 
-const Index: React.FC<ScrollBarProps> = ({ contentList, floatType = 'left', barNumber }) => {
+const Index: React.FC<ScrollBarProps> = ({ contentList }) => {
   const sectionStyle = { '--speed': `${speed}ms` } as React.CSSProperties;
   return (
-    <div className={styles.container} id={`bar${barNumber}`} style={{ float: floatType }}>
+    <div className={styles.container}>
       <div className={styles['wrapper']}>
         <section style={sectionStyle}>
           {contentList.map((image, index) => (
