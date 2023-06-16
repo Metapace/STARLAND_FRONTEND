@@ -86,7 +86,7 @@ const Index = () => {
     },
     {
       title: '项目名称',
-      dataIndex: 'email',
+      dataIndex: 'name',
     },
     {
       title: '投放部审核结果',

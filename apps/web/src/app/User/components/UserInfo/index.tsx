@@ -1,4 +1,5 @@
 import React from 'react';
+import { IconEdit } from '@arco-design/web-react/icon';
 import styles from './index.module.less';
 import userlogo from 'src/assets/images/usercenter-userlogo.png';
 import useI18n from 'src/ahooks/useI18n';
@@ -6,14 +7,24 @@ import locale from '../../locales';
 import { useRequestUserIndfo, useRequestDashboardInfo } from 'apis';
 import dayjs from 'dayjs';
 
-const index = () => {
+export interface UserInfo {
+  handleOpenEditModal: () => void;
+}
+
+const index: React.FC<UserInfo> = ({ handleOpenEditModal }) => {
   const { lang, i18n } = useI18n(locale);
   const { data, isLoading } = useRequestUserIndfo();
   const { data: data2 } = useRequestDashboardInfo();
   return (
     <div className={styles['container']}>
       <div className={styles['basic-info']}>
-        {isLoading ? <img src={userlogo} alt="user-logo" /> : <img src={data?.avatar_uri} alt="user-logo" />}
+        <div>
+          <img src={isLoading ? userlogo : data?.avatar_uri} alt="user-logo" />
+          <div className={styles['edit-icon-area']} onClick={handleOpenEditModal}>
+            <IconEdit /> {i18n[lang]['usercenter.edit']}
+          </div>
+        </div>
+
         <div className={styles['basic-info-group1']}>
           <p>
             {i18n[lang]['usercenter.accountID']}：{data?.card_id}
@@ -27,6 +38,14 @@ const index = () => {
           {/* <p>{i18n[lang]['usercenter.secureBinding']}：已绑定钱包</p> */}
           <p>
             {i18n[lang]['usercenter.username']}：{data?.email}
+          </p>
+          <p>
+            {i18n[lang]['usercenter.projectname']}：
+            {data?.name ? (
+              data?.name
+            ) : (
+              <span className={styles['usercenter-projectName-tip']}>{i18n[lang]['usercenter.projectName.tip']}</span>
+            )}
           </p>
         </div>
       </div>

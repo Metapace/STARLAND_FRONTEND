@@ -5,6 +5,7 @@ const zh: {
   'usercenter.registrationTime': '注册时间',
   'usercenter.secureBinding': '安全绑定',
   'usercenter.username': '用户名',
+  'usercenter.projectname': '项目名称',
   'usercenter.totalAssets': '我的资产总额',
   'usercenter.fiatAssets': '法币资产',
   'usercenter.totalAssetsAvaiable': '可用资产总额',
@@ -72,6 +73,16 @@ const zh: {
   'usercenter.emailOfUserIsReq': '个人邮箱是必填项',
   'usercenter.uploadPassportIsReq': '护照是必填项',
   'usercenter.numberNote': '输入大于0的数字',
+  'usercenter.projectName.tip': '请前往设置界面上传项目名称',
+  'usercenter.edit': '编辑',
+  'usercenter.Settings': '编辑资料',
+  'usercenter.setting.usernames': '用户名',
+  'usercenter.setting.Registration': '注册时间',
+  'usercenter.setting.Projectname': '项目名称',
+  'usercenter.setting.Projectname.requered': '项目名称是必填项',
+  'usercenter.setting.Projectlogo': '项目头像',
+  'usercenter.setting.Projectlogo.tip': '支持jpg和png,比例1:1， 不大于5MB',
+  'usercenter.setting.Projectname.placehoder': '请输入您的项目名称',
 };
 
 export default zh;

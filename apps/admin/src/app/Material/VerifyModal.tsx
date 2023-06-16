@@ -118,7 +118,7 @@ const FromItem: React.FC<FromItemProps> = ({ item, handlCloseModal, type }) => {
             <Popconfirm
               focusLock
               title="提醒"
-              content={`请进行${item?.email}相关物料素材的二次确认。`}
+              content={`请进行${item?.name}相关物料素材的二次确认。`}
               onOk={handlePass}
               okText="确认通过"
               disabled={isDisable}
@@ -176,7 +176,7 @@ const Index: React.FC<FVerifyProps> = ({ open, item, handlCloseModal }) => {
         .join(',');
       const showLang = languageObject[item.lauguage];
       return [
-        { title: '项目名称', description: `${item.email}` },
+        { title: '项目名称', description: `${item.name}` },
         {
           title: '投放时间',
           description: `${dayjs.unix(item.start).format('YYYY-MM-DD')} 至 ${dayjs.unix(item.end).format('YYYY-MM-DD')}`,
