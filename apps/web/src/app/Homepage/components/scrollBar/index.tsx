@@ -11,7 +11,7 @@ interface ScrollBarProps {
   contentList: Array<contentItem>;
 }
 
-const speed = 30000;
+const speed = 80000;
 
 const Index: React.FC<ScrollBarProps> = ({ contentList }) => {
   const sectionStyle = { '--speed': `${speed}ms` } as React.CSSProperties;

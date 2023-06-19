@@ -54,6 +54,7 @@
     "node-polyfill-webpack-plugin": "^2.0.1",
     "react-horizontal-scrolling-menu": "^4.0.4",
     "react-svg": "^16.1.14",
+    "swiper": "^9.4.1",
     "utils": "workspace:1.0.0",
     "video-react": "^0.16.0"
   }
