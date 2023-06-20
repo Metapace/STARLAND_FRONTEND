@@ -3,8 +3,10 @@ import styles from './index.module.less';
 import locale from './locales';
 import { useNavigate } from 'react-router-dom';
 import { useMount, useScroll } from 'ahooks';
+import { useInView } from 'react-intersection-observer';
 import { Menu, Dropdown } from '@arco-design/web-react';
 import useI18n from 'src/ahooks/useI18n';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Matter from './components/Matter/index';
 import Logo from 'src/assets/images/homepage/head-log.png';
 import classNames from 'classnames';
@@ -26,6 +28,7 @@ import core2 from 'src/assets/images/homepage/core-02.png';
 import core3 from 'src/assets/images/homepage/core-03.png';
 import core4 from 'src/assets/images/homepage/core-04.png';
 import core5 from 'src/assets/images/homepage/core-05.png';
+import Dashbord from 'src/assets/images/homepage/Dashbord.png';
 import CustomerCase, { CaseType } from 'src/app/Homepage/components/CustomerCase';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import gsap from 'gsap';
@@ -57,7 +60,6 @@ const cw = document.body.clientWidth;
 const Index = () => {
   const { lang, i18n, changeLanguage } = useI18n(locale);
   const [selectItem, setSelectItem] = useState<TabType>(TabType.Home);
-  const [activeCore, setActiveItem] = useState<CoreType>(CoreType.First);
   const containerRef = useRef<HTMLDivElement>(null);
   const homeRef = useRef<HTMLDivElement>(null);
   const coreFunctionRef = useRef<HTMLDivElement>(null);
@@ -67,8 +69,9 @@ const Index = () => {
   const position = useScroll();
   const navigate = useNavigate();
   const q = gsap.utils.selector(containerRef);
-  const handleChangeSelectItem = (item: TabType) => {
+  const handleChangeSelectItem = (item: TabType, ref: React.RefObject<HTMLDivElement>) => {
     setSelectItem(item);
+    handleScrollTo(ref);
   };
   const toLogin = () => {
     navigate('/login');
@@ -114,13 +117,43 @@ const Index = () => {
       ref.current?.scrollIntoView({ block: 'start' });
     }, 10);
   };
+  const { ref: ref1, inView: inView1 } = useInView({
+    threshold: 0,
+  });
+  const { ref: ref2, inView: inView2 } = useInView({
+    threshold: 0,
+  });
+  const { ref: ref3, inView: inView3 } = useInView({
+    threshold: 0,
+  });
+  const { ref: ref4, inView: inView4 } = useInView({
+    threshold: 0,
+  });
+  useEffect(() => {
+    if (inView1) {
+      setSelectItem(TabType.Home);
+      return;
+    }
+    if (inView2) {
+      setSelectItem(TabType.Advantage);
+      return;
+    }
+    if (inView3) {
+      setSelectItem(TabType.Market);
+      return;
+    }
+    if (inView4) {
+      setSelectItem(TabType.Example);
+      return;
+    }
+  }, [inView1, inView2, inView3, inView4]);
 
   useMount(() => {
     gsap.fromTo(
       q('#customer-case'),
-      { transform: 'translateX(2240px)' },
+      { transform: 'translateX(1910px)' },
       {
-        transform: 'translateX(-2180px)',
+        transform: 'translateX(-2020px)',
         scrollTrigger: {
           trigger: q('#customer-case-outer'),
           start: 'bottom bottom',
@@ -131,25 +164,6 @@ const Index = () => {
       },
     );
   });
-  useEffect(() => {
-    if (position) {
-      const top = position.top;
-      let aa;
-      if (top > ch + 1230) {
-        aa = CoreType.Fifth;
-      } else if (top > ch + 1080) {
-        aa = CoreType.Fourth;
-      } else if (top > 1700) {
-        aa = CoreType.Third;
-      } else if (top > 1440) {
-        aa = CoreType.Seconde;
-      } else {
-        aa = CoreType.First;
-      }
-      setActiveItem(aa);
-      handleChangeSwiper(aa);
-    }
-  }, [position]);
   return (
     <div className={styles['container']} ref={containerRef}>
       <div
@@ -161,7 +175,7 @@ const Index = () => {
             <img src={Logo} alt="" className={styles['head-log']} />
             <div
               className={classNames(styles['head-item'], selectItem === TabType.Home && styles['select-head-item'])}
-              onClick={() => handleChangeSelectItem(TabType.Home)}
+              onClick={() => handleChangeSelectItem(TabType.Home, homeRef)}
             >
               {i18n[lang]['intro.home']}
             </div>
@@ -170,19 +184,19 @@ const Index = () => {
                 styles['head-item'],
                 selectItem === TabType.Advantage && styles['select-head-item'],
               )}
-              onClick={() => handleChangeSelectItem(TabType.Advantage)}
+              onClick={() => handleChangeSelectItem(TabType.Advantage, coreFunctionRef)}
             >
-              {i18n[lang]['intro.advantage']}
+              {i18n[lang]['intro.core.title']}
             </div>
             <div
               className={classNames(styles['head-item'], selectItem === TabType.Market && styles['select-head-item'])}
-              onClick={() => handleChangeSelectItem(TabType.Market)}
+              onClick={() => handleChangeSelectItem(TabType.Market, marketRef)}
             >
-              {i18n[lang]['intro.market']}
+              {i18n[lang]['intro.crypto']}
             </div>
             <div
               className={classNames(styles['head-item'], selectItem === TabType.Example && styles['select-head-item'])}
-              onClick={() => handleChangeSelectItem(TabType.Example)}
+              onClick={() => handleChangeSelectItem(TabType.Example, customercaseRef)}
             >
               {i18n[lang]['intro.example']}
             </div>
@@ -198,7 +212,7 @@ const Index = () => {
         </div>
       </div>
       <div className={styles['home-area']} ref={homeRef}>
-        <div className={styles['home-title-1']}>
+        <div className={styles['home-title-1']} ref={ref1}>
           {i18n[lang]['intro.home.title1']} <span>{i18n[lang]['intro.home.title2']}</span>
         </div>
         <div className={styles['home-title-2']}>{i18n[lang]['intro.home.title3']}</div>
@@ -206,6 +220,10 @@ const Index = () => {
         <div className={styles['home-describle']}>{i18n[lang]['intro.home.describle1']}</div>
         <div className={styles['start-now-button']} onClick={toLogin}>
           {i18n[lang]['intro.home.start.now']}
+        </div>
+        <div className={styles['starland-text']}> Starland </div>
+        <div className={styles['dashbord-image']}>
+          <LazyLoadImage src={Dashbord} alt={'image'} effect="blur" width={968} height={480}></LazyLoadImage>
         </div>
       </div>
       <div className={styles['web2-scroll']}>
@@ -228,7 +246,7 @@ const Index = () => {
         />
       </div>
       <div className={styles['core-function-area']} ref={coreFunctionRef}>
-        <div className={classNames(styles['core-left'])}>
+        <div className={classNames(styles['core-left'])} ref={ref2}>
           <div className={classNames(styles['core-function-title'], isStick && styles['core-title-stick'])}>
             <div className={classNames()}>{i18n[lang]['intro.core.title']}</div>
           </div>
@@ -273,57 +291,35 @@ const Index = () => {
           </div>
         </div>
         <div className={classNames(styles['core-right'])}>
-          <div className={styles['core-item']}>
-            <div
-              className={classNames(styles['core-title'], activeCore === CoreType.First && styles['core-title-active'])}
-            >
-              {i18n[lang]['intro.core1.title']}
-            </div>
+          <div className={styles['core-item']} onMouseEnter={() => handleChangeSwiper(CoreType.First)}>
+            <div className={classNames(styles['core-title'])}>{i18n[lang]['intro.core1.title']}</div>
             <div className={styles['core-paragraph']}>{i18n[lang]['intro.core1.p1']}</div>
             <div className={styles['core-paragraph']}>{i18n[lang]['intro.core1.p2']}</div>
             <div className={styles['core-paragraph']}>{i18n[lang]['intro.core1.p3']}</div>
           </div>
-          <div className={styles['core-item']}>
-            <div
-              className={classNames(
-                styles['core-title'],
-                activeCore === CoreType.Seconde && styles['core-title-active'],
-              )}
-            >
-              {i18n[lang]['intro.core2.title']}
-            </div>
+          <div className={styles['core-item']} onMouseEnter={() => handleChangeSwiper(CoreType.Seconde)}>
+            <div className={classNames(styles['core-title'])}>{i18n[lang]['intro.core2.title']}</div>
             <div className={styles['core-paragraph']}>{i18n[lang]['intro.core2.p1']}</div>
             <div className={styles['core-paragraph']}>{i18n[lang]['intro.core2.p2']}</div>
             <div className={styles['core-paragraph']}>{i18n[lang]['intro.core2.p3']}</div>
           </div>
-          <div className={styles['core-item']}>
-            <div
-              className={classNames(styles['core-title'], activeCore === CoreType.Third && styles['core-title-active'])}
-            >
-              {i18n[lang]['intro.core3.title']}
-            </div>
+          <div className={styles['core-item']} onMouseEnter={() => handleChangeSwiper(CoreType.Third)}>
+            <div className={classNames(styles['core-title'])}>{i18n[lang]['intro.core3.title']}</div>
             <div className={styles['core-paragraph']}>{i18n[lang]['intro.core3.p1']}</div>
             <div className={styles['core-paragraph']}>{i18n[lang]['intro.core3.p2']}</div>
             <div className={styles['core-paragraph']}>{i18n[lang]['intro.core3.p3']}</div>
           </div>
-          <div className={styles['core-item']}>
-            <div
-              className={classNames(
-                styles['core-title'],
-                activeCore === CoreType.Fourth && styles['core-title-active'],
-              )}
-            >
-              {i18n[lang]['intro.core4.title']}
-            </div>
+          <div className={styles['core-item']} onMouseEnter={() => handleChangeSwiper(CoreType.Fourth)}>
+            <div className={classNames(styles['core-title'])}>{i18n[lang]['intro.core4.title']}</div>
             <div className={styles['core-paragraph']}>{i18n[lang]['intro.core4.p1']}</div>
             <div className={styles['core-paragraph']}>{i18n[lang]['intro.core4.p2']}</div>
           </div>
-          <div className={styles['core-item']} style={{ borderBottom: 'none', paddingBottom: 0, marginBottom: 0 }}>
-            <div
-              className={classNames(styles['core-title'], activeCore === CoreType.Fifth && styles['core-title-active'])}
-            >
-              {i18n[lang]['intro.core5.title']}
-            </div>
+          <div
+            className={styles['core-item']}
+            style={{ borderBottom: 'none', paddingBottom: 0, marginBottom: 0 }}
+            onMouseEnter={() => handleChangeSwiper(CoreType.Fifth)}
+          >
+            <div className={classNames(styles['core-title'])}>{i18n[lang]['intro.core5.title']}</div>
             <div className={styles['core-sub-title']}>{i18n[lang]['intro.core5.sub.title1']}</div>
             <div className={styles['core-paragraph']}>{i18n[lang]['intro.core5.p1']}</div>
             <div className={styles['core-sub-title']}>{i18n[lang]['intro.core5.sub.title2']}</div>
@@ -335,8 +331,10 @@ const Index = () => {
           </div>
         </div>
       </div>
-      <div ref={marketRef}>
-        <Matter />
+      <div ref={ref3}>
+        <div ref={marketRef}>
+          <Matter />
+        </div>
       </div>
       <div className={styles['customer-case']} id="customer-case-outer" ref={customercaseRef}>
         <div className={styles['customer-case-title']}>{i18n[lang]['intro.case.title']}</div>
@@ -345,8 +343,11 @@ const Index = () => {
           <CustomerCase caseType={CaseType.Dehero}></CustomerCase>
           <CustomerCase caseType={CaseType.Unipass}></CustomerCase>
           <CustomerCase caseType={CaseType.Gate3}></CustomerCase>
+          <div ref={ref4}></div>
         </div>
       </div>
+
+      <div className={styles['page-footer']}>Copyright© 2023, Starland</div>
     </div>
   );
 };

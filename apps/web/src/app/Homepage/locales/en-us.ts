@@ -6,6 +6,7 @@ const en: {
   'intro.advantage': 'Product Advantages',
   'intro.market': 'Market',
   'intro.example': 'Customer Cases',
+  'intro.crypto': 'Crypto Channels',
   'intro.login': 'Login',
   'intro.home.title1': 'Starland is an integrated',
   'intro.home.title2': 'web2 and web3 channel',

@@ -62,9 +62,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: url('../../assets/images/homepage/Bannertop.png');
+  background-image: url('../../assets/images/homepage/Bg1.jpeg');
   background-size: cover;
   height: 100vh;
+  position: relative;
+  overflow: hidden;
 }
 .home-title-1 {
   font-family: 'Outfit';
@@ -117,7 +119,7 @@
   margin-top: 32px;
   margin-bottom: 20px;
   &:hover {
-    background: #03369c;
+    background: #0055ff;
   }
 }
 .head-right {
@@ -157,8 +159,10 @@
 .core-function-area {
   display: flex;
   padding-top: 96px;
-  justify-content: center;
+  justify-content: space-between;
   padding-bottom: 64px;
+  width: 1440px;
+  margin: 0 auto;
 }
 .core-left {
   width: 640px;
@@ -174,7 +178,6 @@
   text-transform: capitalize;
   color: #000000;
   width: 100%;
-  text-align: center;
 }
 .customer-case {
   display: flex;
@@ -232,13 +235,18 @@
   line-height: 72px;
   text-transform: capitalize;
   color: #001133;
-  margin-bottom: 96px;
+  margin-bottom: 24px;
+  width: 1440px;
+  margin-left: 24px;
 }
 .core-item {
   padding-bottom: 48px;
   border-bottom: 1px solid #e5e5e7;
   margin-bottom: 48px;
   width: 704px;
+  &:hover .core-title {
+    color: #0055ff;
+  }
 }
 .core-title {
   text-transform: capitalize;
@@ -297,8 +305,34 @@
 }
 .customer-case-list {
   display: flex;
-  padding-bottom: 32px;
+  padding-bottom: 42px;
   > div {
     margin-right: 32px;
   }
+}
+.starland-text {
+  font-size: 26vw;
+  font-weight: bold;
+  -webkit-text-stroke: 1px #000000;
+  -webkit-text-fill-color: transparent;
+  position: absolute;
+  left: 0;
+  bottom: -99px;
+  line-height: 27vw;
+  z-index: 1;
+  //   font-family: 'Outfit';
+}
+.dashbord-image {
+  position: absolute;
+  bottom: -84px;
+  z-index: 2;
+}
+.page-footer {
+  height: 88px;
+  line-height: 88px;
+  text-align: center;
+  width: 100vw;
+  border-top: 1px solid #e5e5e7;
+  font-size: 16px;
+  font-family: 'Outfit';
 }

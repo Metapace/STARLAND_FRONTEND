@@ -1,6 +1,14 @@
 import React, { useEffect, useRef } from 'react';
 import { Engine, Render, Bodies, World, Runner } from 'matter-js';
 import BscScan from 'src/assets/images/homepage/BscScan.png';
+import BlockchainCom from 'src/assets/images/homepage/Blockchain.com.png';
+import Coinscreed from 'src/assets/images/homepage/Coinscreed.png';
+import Cryptoro from 'src/assets/images/homepage/Crypto.ro.png';
+import Cryptopotato from 'src/assets/images/homepage/Cryptopotato.png';
+import Dexscreener from 'src/assets/images/homepage/Dexscreener.png';
+import Etherscan from 'src/assets/images/homepage/Etherscan.png';
+import StormGain from 'src/assets/images/homepage/StormGain.png';
+import TheCrypto from 'src/assets/images/homepage/TheCrypto.png';
 import CoinGape from 'src/assets/images/homepage/CoinGape.png';
 import CoinGecko from 'src/assets/images/homepage/CoinGecko.png';
 import CoinStats from 'src/assets/images/homepage/CoinStats.png';
@@ -13,6 +21,9 @@ import useI18n from 'src/ahooks/useI18n';
 import locale from '../../locales';
 const cw = document.body.clientWidth;
 const ch = document.body.clientHeight - 74;
+
+const scaleX = 0.5;
+const scaleY = 0.5;
 
 function Comp() {
   const scene = useRef<HTMLDivElement>(null);
@@ -41,7 +52,7 @@ function Comp() {
     World.add(engine.current.world, [
       Bodies.rectangle(cw / 2, -10, cw, 20, { isStatic: true, render: { visible: false } }),
       Bodies.rectangle(-10, ch / 2, 20, ch, { isStatic: true, render: { visible: false } }),
-      Bodies.rectangle(cw / 2, ch + 10, cw, 20, { isStatic: true, render: { visible: false } }),
+      Bodies.rectangle(cw / 2, ch - 10, cw, 20, { isStatic: true, render: { visible: false } }),
       Bodies.rectangle(cw + 10, ch / 2, 20, ch, { isStatic: true, render: { visible: false } }),
     ]);
 
@@ -74,7 +85,7 @@ function Comp() {
     const Ycleint = 150;
     if (!isPressed.current) {
       isPressed.current = true;
-      const ball = Bodies.rectangle(850, Ycleint, 278, 72, {
+      const ball = Bodies.rectangle(0.1 * cw, Ycleint, 240, 72, {
         mass: 1,
         restitution: 0.9,
         frictionAir: 0.006,
@@ -82,12 +93,12 @@ function Comp() {
         render: {
           sprite: {
             texture: BscScan,
-            xScale: 0.6,
-            yScale: 0.5,
+            xScale: scaleX,
+            yScale: scaleY,
           },
         },
       });
-      const ball2 = Bodies.rectangle(720, Ycleint, 278, 72, {
+      const ball2 = Bodies.rectangle(0.2 * cw, Ycleint, 216, 72, {
         mass: 1,
         restitution: 0.9,
         frictionAir: 0.006,
@@ -95,12 +106,12 @@ function Comp() {
         render: {
           sprite: {
             texture: CoinGape,
-            xScale: 0.6,
-            yScale: 0.5,
+            xScale: scaleX,
+            yScale: scaleY,
           },
         },
       });
-      const ball3 = Bodies.rectangle(160, Ycleint, 278, 72, {
+      const ball3 = Bodies.rectangle(0.3 * cw, Ycleint, 224, 88, {
         mass: 1,
         restitution: 0.9,
         frictionAir: 0.006,
@@ -108,12 +119,12 @@ function Comp() {
         render: {
           sprite: {
             texture: CoinGecko,
-            xScale: 0.6,
-            yScale: 0.5,
+            xScale: scaleX,
+            yScale: scaleY,
           },
         },
       });
-      const ball4 = Bodies.rectangle(220, Ycleint, 320, 72, {
+      const ball4 = Bodies.rectangle(0.4 * cw, Ycleint, 280, 72, {
         mass: 1,
         restitution: 0.9,
         frictionAir: 0.006,
@@ -121,12 +132,12 @@ function Comp() {
         render: {
           sprite: {
             texture: CoinStats,
-            xScale: 0.6,
-            yScale: 0.5,
+            xScale: scaleX,
+            yScale: scaleY,
           },
         },
       });
-      const ball5 = Bodies.rectangle(280, Ycleint, 298, 72, {
+      const ball5 = Bodies.rectangle(0.5 * cw, Ycleint, 280, 72, {
         mass: 1,
         restitution: 0.9,
         frictionAir: 0.006,
@@ -134,12 +145,12 @@ function Comp() {
         render: {
           sprite: {
             texture: Coincodex,
-            xScale: 0.6,
-            yScale: 0.5,
+            xScale: scaleX,
+            yScale: scaleY,
           },
         },
       });
-      const ball6 = Bodies.rectangle(560, Ycleint, 428, 72, {
+      const ball6 = Bodies.rectangle(0.62 * cw, Ycleint, 280, 72, {
         mass: 1,
         restitution: 0.9,
         frictionAir: 0.006,
@@ -147,12 +158,12 @@ function Comp() {
         render: {
           sprite: {
             texture: Coinpaprika,
-            xScale: 0.6,
-            yScale: 0.5,
+            xScale: scaleX,
+            yScale: scaleY,
           },
         },
       });
-      const ball7 = Bodies.rectangle(1250, Ycleint, 320, 72, {
+      const ball7 = Bodies.rectangle(0.7 * cw, Ycleint, 296, 72, {
         mass: 1,
         restitution: 0.9,
         frictionAir: 0.006,
@@ -160,13 +171,133 @@ function Comp() {
         render: {
           sprite: {
             texture: Whattomine,
-            xScale: 0.6,
-            yScale: 0.5,
+            xScale: scaleX,
+            yScale: scaleY,
+          },
+        },
+      });
+      const ball8 = Bodies.rectangle(0.8 * cw, Ycleint, 276, 64, {
+        mass: 1,
+        restitution: 0.9,
+        frictionAir: 0.006,
+        // friction: 0.005,
+        render: {
+          sprite: {
+            texture: BlockchainCom,
+            xScale: scaleX,
+            yScale: scaleY,
+          },
+        },
+      });
+      const ball9 = Bodies.rectangle(0.9 * cw, Ycleint, 240, 72, {
+        mass: 1,
+        restitution: 0.9,
+        frictionAir: 0.006,
+        // friction: 0.005,
+        render: {
+          sprite: {
+            texture: Coinscreed,
+            xScale: scaleX,
+            yScale: scaleY,
+          },
+        },
+      });
+      const ball10 = Bodies.rectangle(0.95 * cw, Ycleint, 136, 48, {
+        mass: 1,
+        restitution: 0.9,
+        frictionAir: 0.006,
+        // friction: 0.005,
+        render: {
+          sprite: {
+            texture: Cryptoro,
+            xScale: scaleX,
+            yScale: scaleY,
+          },
+        },
+      });
+      const ball11 = Bodies.rectangle(0.16 * cw, Ycleint, 224, 56, {
+        mass: 1,
+        restitution: 0.9,
+        frictionAir: 0.006,
+        // friction: 0.005,
+        render: {
+          sprite: {
+            texture: Cryptopotato,
+            xScale: scaleX,
+            yScale: scaleY,
+          },
+        },
+      });
+      const ball12 = Bodies.rectangle(0.56 * cw, Ycleint, 200, 56, {
+        mass: 1,
+        restitution: 0.9,
+        frictionAir: 0.006,
+        // friction: 0.005,
+        render: {
+          sprite: {
+            texture: Dexscreener,
+            xScale: scaleX,
+            yScale: scaleY,
+          },
+        },
+      });
+      const ball13 = Bodies.rectangle(0.45 * cw, Ycleint, 256, 72, {
+        mass: 1,
+        restitution: 0.9,
+        frictionAir: 0.006,
+        // friction: 0.005,
+        render: {
+          sprite: {
+            texture: Etherscan,
+            xScale: scaleX,
+            yScale: scaleY,
+          },
+        },
+      });
+      const ball14 = Bodies.rectangle(0.75 * cw, Ycleint, 296, 96, {
+        mass: 1,
+        restitution: 0.9,
+        frictionAir: 0.006,
+        // friction: 0.005,
+        render: {
+          sprite: {
+            texture: StormGain,
+            xScale: scaleX,
+            yScale: scaleY,
+          },
+        },
+      });
+      const ball15 = Bodies.rectangle(0.28 * cw, Ycleint, 256, 64, {
+        mass: 1,
+        restitution: 0.9,
+        frictionAir: 0.006,
+        // friction: 0.005,
+        render: {
+          sprite: {
+            texture: TheCrypto,
+            xScale: scaleX,
+            yScale: scaleY,
           },
         },
       });
       //   World.add(engine.current.world, [ball2]);
-      World.add(engine.current.world, [ball, ball2, ball3, ball4, ball5, ball6, ball7]);
+      World.add(engine.current.world, [
+        ball,
+        ball2,
+        ball3,
+        ball4,
+        ball5,
+        ball6,
+        ball7,
+        ball8,
+        ball9,
+        ball10,
+        ball11,
+        ball12,
+        ball13,
+        ball14,
+        ball15,
+      ]);
     }
   };
   useEffect(() => {

@@ -4,6 +4,7 @@ import styles from './index.module.less';
 import classNames from 'classnames';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import metace from 'src/assets/images/homepage/metace.png';
+import dehero from 'src/assets/images/homepage/dehero.png';
 import gate3 from 'src/assets/images/homepage/gate3.png';
 import unipass from 'src/assets/images/homepage/unipass.png';
 import metaLogo from 'src/assets/images/homepage/Logo_Metacene.png';
@@ -45,7 +46,7 @@ const Index: React.FC<CustomerCaseProps> = ({ caseType }) => {
         logSrc: metaLogo,
       },
       [CaseType.Dehero]: {
-        src: metace,
+        src: dehero,
         title: 'Dehero',
         describe: [
           i18n[lang]['intro.dehero.describe1'],
@@ -112,7 +113,7 @@ const Index: React.FC<CustomerCaseProps> = ({ caseType }) => {
         </div>
       </div>
       <div className={styles['container-right']}>
-        <LazyLoadImage src={settingMap[caseType].src} alt={'image'} effect="blur"></LazyLoadImage>
+        <img src={settingMap[caseType].src} alt={'image'} />
       </div>
     </div>
   );
