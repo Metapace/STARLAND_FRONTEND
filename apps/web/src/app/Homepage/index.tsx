@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState, useMemo } from 'react';
 import styles from './index.module.less';
 import locale from './locales';
 import { useNavigate } from 'react-router-dom';
-import { useMount } from 'ahooks';
+import { useMount, useScroll } from 'ahooks';
 import { Menu, Dropdown } from '@arco-design/web-react';
 import useI18n from 'src/ahooks/useI18n';
 import Matter from './components/Matter/index';
@@ -31,7 +31,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import { EffectCreative } from 'swiper';
-import { useScroll } from 'ahooks';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-flip';
 import 'swiper/css';
@@ -53,14 +52,24 @@ const themeStyle = {
   background: 'var(--theme-color)',
   color: '#fff',
 };
+const ch = document.body.clientHeight;
+const cw = document.body.clientWidth;
 const Index = () => {
   const { lang, i18n, changeLanguage } = useI18n(locale);
   const [selectItem, setSelectItem] = useState<TabType>(TabType.Home);
   const [activeCore, setActiveItem] = useState<CoreType>(CoreType.First);
   const containerRef = useRef<HTMLDivElement>(null);
+  const homeRef = useRef<HTMLDivElement>(null);
+  const coreFunctionRef = useRef<HTMLDivElement>(null);
+  const marketRef = useRef<HTMLDivElement>(null);
+  const customercaseRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
   const q = gsap.utils.selector(containerRef);
   const handleChangeSelectItem = (item: TabType) => {
     setSelectItem(item);
+  };
+  const toLogin = () => {
+    navigate('/login');
   };
   const swiperRef = useRef(null);
   const position = useScroll();
@@ -69,7 +78,16 @@ const Index = () => {
   }
   const isStick = useMemo(() => {
     if (position) {
-      if (position.top > 1250 && position.top < 2708) {
+      if (position.top > 280 + ch && position.top < 1200 + ch) {
+        return true;
+      }
+      return false;
+    }
+    return false;
+  }, [position]);
+  const isImageStick = useMemo(() => {
+    if (position) {
+      if (position.top > ch - 80 && position.top < 2108 + ch) {
         return true;
       }
       return false;
@@ -91,18 +109,24 @@ const Index = () => {
       swiperRef.current.swiper.slideTo(index);
     }
   };
+  const handleScrollTo = (ref: React.RefObject<HTMLDivElement>) => {
+    setTimeout(() => {
+      ref.current?.scrollIntoView({ block: 'start' });
+    }, 10);
+  };
+
   useMount(() => {
     gsap.fromTo(
       q('#customer-case'),
-      { x: -1600 },
+      { transform: 'translateX(2240px)' },
       {
-        x: 16,
+        transform: 'translateX(-2180px)',
         scrollTrigger: {
-          trigger: q('#customer-case'),
-          start: 'bottom',
-          end: 'bottom -1000',
+          trigger: q('#customer-case-outer'),
+          start: 'bottom bottom',
+          end: 'bottom -2000',
           scrub: true,
-          pin: q('#customer-case'),
+          pin: q('#customer-case-outer'),
         },
       },
     );
@@ -111,9 +135,9 @@ const Index = () => {
     if (position) {
       const top = position.top;
       let aa;
-      if (top > 2230) {
+      if (top > ch + 1230) {
         aa = CoreType.Fifth;
-      } else if (top > 2080) {
+      } else if (top > ch + 1080) {
         aa = CoreType.Fourth;
       } else if (top > 1700) {
         aa = CoreType.Third;
@@ -167,18 +191,22 @@ const Index = () => {
             <Dropdown trigger="click" droplist={languageList} position="bl">
               <div className={styles['lang-button']}>{lang === 'zh-CN' ? 'CN' : 'EN'}</div>
             </Dropdown>
-            <div className={styles['login-button']}>{i18n[lang]['intro.login']}</div>
+            <div className={styles['login-button']} onClick={toLogin}>
+              {i18n[lang]['intro.login']}
+            </div>
           </div>
         </div>
       </div>
-      <div className={styles['home-area']}>
+      <div className={styles['home-area']} ref={homeRef}>
         <div className={styles['home-title-1']}>
           {i18n[lang]['intro.home.title1']} <span>{i18n[lang]['intro.home.title2']}</span>
         </div>
         <div className={styles['home-title-2']}>{i18n[lang]['intro.home.title3']}</div>
         <div className={styles['home-describle']}>{i18n[lang]['intro.home.describle']}</div>
         <div className={styles['home-describle']}>{i18n[lang]['intro.home.describle1']}</div>
-        <div className={styles['start-now-button']}>{i18n[lang]['intro.home.start.now']}</div>
+        <div className={styles['start-now-button']} onClick={toLogin}>
+          {i18n[lang]['intro.home.start.now']}
+        </div>
       </div>
       <div className={styles['web2-scroll']}>
         <div className={styles['web2-scroll-title']}>{i18n[lang]['web2.scroll.title']}</div>
@@ -199,47 +227,47 @@ const Index = () => {
           ]}
         />
       </div>
-      <div className={styles['core-function-area']}>
-        <div className={styles['core-left']}>
+      <div className={styles['core-function-area']} ref={coreFunctionRef}>
+        <div className={classNames(styles['core-left'])}>
           <div className={classNames(styles['core-function-title'], isStick && styles['core-title-stick'])}>
-            {i18n[lang]['intro.core.title']}
-            <div className={classNames(styles['core-image'])}>
-              <Swiper
-                effect={'creative'}
-                modules={[EffectCreative]}
-                creativeEffect={{
-                  prev: {
-                    shadow: false,
-                    translate: [0, 0, -400],
-                    opacity: 1,
-                  },
-                  next: {
-                    translate: ['100%', 0, 0],
-                  },
-                }}
-                className="mySwiper"
-                ref={swiperRef}
-              >
-                <SwiperSlide>
-                  <img src={core1} className={styles['swiper-image']} />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <img src={core2} className={styles['swiper-image']} />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <img src={core3} className={styles['swiper-image']} />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <img src={core4} className={styles['swiper-image']} />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <img src={core5} className={styles['swiper-image']} />
-                </SwiperSlide>
-              </Swiper>
-            </div>
+            <div className={classNames()}>{i18n[lang]['intro.core.title']}</div>
+          </div>
+          <div className={classNames(styles['core-image'], isImageStick && styles['core-image-stick'])}>
+            <Swiper
+              effect={'creative'}
+              modules={[EffectCreative]}
+              creativeEffect={{
+                prev: {
+                  shadow: false,
+                  translate: [0, 0, -400],
+                  opacity: 1,
+                },
+                next: {
+                  translate: ['100%', 0, 0],
+                },
+              }}
+              className="mySwiper"
+              ref={swiperRef}
+            >
+              <SwiperSlide>
+                <img src={core1} className={styles['swiper-image']} />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img src={core2} className={styles['swiper-image']} />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img src={core3} className={styles['swiper-image']} />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img src={core4} className={styles['swiper-image']} />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img src={core5} className={styles['swiper-image']} />
+              </SwiperSlide>
+            </Swiper>
           </div>
         </div>
-        <div className={styles['core-right']}>
+        <div className={classNames(styles['core-right'])}>
           <div className={styles['core-item']}>
             <div
               className={classNames(styles['core-title'], activeCore === CoreType.First && styles['core-title-active'])}
@@ -302,39 +330,17 @@ const Index = () => {
           </div>
         </div>
       </div>
-      <Matter />
-      <div className={styles['customer-case']} id="customer-case">
+      <div ref={marketRef}>
+        <Matter />
+      </div>
+      <div className={styles['customer-case']} id="customer-case-outer" ref={customercaseRef}>
         <div className={styles['customer-case-title']}>{i18n[lang]['intro.case.title']}</div>
-        {/* <Swiper
-          spaceBetween={50}
-          slidesPerView={1}
-          mousewheel={{ releaseOnEdges: true }}
-          pagination={{
-            type: 'progressbar',
-          }}
-          effect={'cube'}
-          cubeEffect={{
-            shadow: true,
-            slideShadows: true,
-            shadowOffset: 20,
-            shadowScale: 0.94,
-          }}
-          modules={[Pagination, Mousewheel, EffectCube]}
-          direction={'horizontal'}
-        >
-          <SwiperSlide>
-            <CustomerCase caseType={CaseType.Metacene}></CustomerCase>
-          </SwiperSlide>
-          <SwiperSlide>
-            <CustomerCase caseType={CaseType.Dehero}></CustomerCase>
-          </SwiperSlide>
-          <SwiperSlide>
-            <CustomerCase caseType={CaseType.Unipass}></CustomerCase>
-          </SwiperSlide>
-          <SwiperSlide>
-            <CustomerCase caseType={CaseType.Gate3}></CustomerCase>
-          </SwiperSlide>
-        </Swiper> */}
+        <div className={styles['customer-case-list']} id="customer-case">
+          <CustomerCase caseType={CaseType.Metacene}></CustomerCase>
+          <CustomerCase caseType={CaseType.Dehero}></CustomerCase>
+          <CustomerCase caseType={CaseType.Unipass}></CustomerCase>
+          <CustomerCase caseType={CaseType.Gate3}></CustomerCase>
+        </div>
       </div>
     </div>
   );

@@ -87,13 +87,7 @@ const Index: React.FC<CustomerCaseProps> = ({ caseType }) => {
     >
       <div className={styles['container-left']}>
         <div className={styles['item-logo']}>
-          <LazyLoadImage
-            src={settingMap[caseType].logSrc}
-            alt={'image'}
-            width={96}
-            height={96}
-            effect="blur"
-          ></LazyLoadImage>
+          <LazyLoadImage src={settingMap[caseType].logSrc} alt={'image'} effect="blur"></LazyLoadImage>
         </div>
         <div className={styles['item-title']}>{settingMap[caseType].title}</div>
         <div className={styles['item-paragraph-list']}>
@@ -118,13 +112,7 @@ const Index: React.FC<CustomerCaseProps> = ({ caseType }) => {
         </div>
       </div>
       <div className={styles['container-right']}>
-        <LazyLoadImage
-          src={settingMap[caseType].src}
-          alt={'image'}
-          width={560}
-          height={714}
-          effect="blur"
-        ></LazyLoadImage>
+        <LazyLoadImage src={settingMap[caseType].src} alt={'image'} effect="blur"></LazyLoadImage>
       </div>
     </div>
   );

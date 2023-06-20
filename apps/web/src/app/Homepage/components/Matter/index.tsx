@@ -156,7 +156,7 @@ function Comp() {
           },
         },
       });
-      const ball7 = Bodies.rectangle(1250, Ycleint, 240, 72, {
+      const ball7 = Bodies.rectangle(1250, Ycleint, 320, 72, {
         mass: 1,
         restitution: 0.9,
         frictionAir: 0.006,
@@ -174,10 +174,10 @@ function Comp() {
     }
   };
   useEffect(() => {
-    if (postion?.top > 2890) {
+    if (inView) {
       handleAddCircle();
     }
-  }, [postion?.top]);
+  }, [inView]);
 
   return (
     <div className={styles['container']}>

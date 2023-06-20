@@ -1,10 +1,11 @@
 .container {
   width: 1440px;
-  height: 810px;
+  height: 80vh;
   border-radius: 48px;
-  padding: 48px 48px 48px 72px;
+  padding: 6vh 48px 6vh 72px;
   display: flex;
   box-sizing: border-box;
+  position: relative;
 }
 .metacene-container {
   background-color: #cceeff;
@@ -27,12 +28,25 @@
     .lazy-load-image-background {
       border-radius: 24px;
       overflow: hidden;
+
+      img {
+        height: 68vh;
+        width: auto;
+      }
     }
   }
 }
 .item-logo {
   margin-bottom: 8px;
   text-align: left;
+  :global {
+    .lazy-load-image-background {
+      img {
+        height: 12vh;
+        width: 12vh;
+      }
+    }
+  }
 }
 .item-title {
   color: #001133;
@@ -41,7 +55,7 @@
   line-height: 40px;
   font-family: 'Outfit';
   font-style: normal;
-  margin-bottom: 48px;
+  margin-bottom: 6vh;
   text-align: left;
 }
 .item-paragraph-list {
@@ -54,12 +68,14 @@
   line-height: 32px;
 }
 .item-paragraph {
-  margin-bottom: 24px;
+  margin-bottom: 3vh;
   text-align: left;
 }
 .show-numbers {
   display: flex;
   column-gap: 72px;
+  position: absolute;
+  bottom: 14vh;
 }
 .numbers-top {
   font-family: 'Outfit';
@@ -81,6 +97,8 @@
   color: #001133;
 }
 .icon-area {
+  position: absolute;
+  bottom: 6vh;
   .left-arrow {
     width: 48px !important;
     height: 14px !important;

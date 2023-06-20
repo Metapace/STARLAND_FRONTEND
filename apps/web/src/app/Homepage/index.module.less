@@ -62,9 +62,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 960px;
   background-image: url('../../assets/images/homepage/Bannertop.png');
   background-size: cover;
+  height: 100vh;
 }
 .home-title-1 {
   font-family: 'Outfit';
@@ -75,7 +75,7 @@
   text-align: center;
   text-transform: capitalize;
   color: #000000;
-  margin-top: 144px;
+  margin-top: 14vh;
   span {
     font-weight: 900;
     color: #0055ff;
@@ -163,6 +163,7 @@
 .core-left {
   width: 640px;
   margin-top: -16px;
+  position: relative;
 }
 .core-function-title {
   font-family: 'Outfit';
@@ -177,6 +178,7 @@
 }
 .customer-case {
   display: flex;
+  width: 100vw;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -251,6 +253,7 @@
 .core-title-active {
   color: #0055ff;
 }
+
 .core-sub-title {
   ont-family: 'Outfit';
   font-style: normal;
@@ -275,11 +278,27 @@
   position: sticky;
   top: 112px;
 }
+.core-image-stick {
+  position: sticky;
+  height: 320px;
+  top: calc(100vh - 382px);
+}
 .core-image {
-  margin-top: 128px;
+  margin-top: 64px;
   .swiper-image {
     width: 520px;
     height: 320px;
     background-color: #ffffff;
+  }
+}
+.customer-case {
+  width: 100vw;
+  overflow: hidden;
+}
+.customer-case-list {
+  display: flex;
+  padding-bottom: 32px;
+  > div {
+    margin-right: 32px;
   }
 }
