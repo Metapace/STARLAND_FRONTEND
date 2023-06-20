@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Engine, Render, Bodies, World, Runner, Mouse, MouseConstraint } from 'matter-js';
+import { Engine, Render, Bodies, World, Runner } from 'matter-js';
 import BscScan from 'src/assets/images/homepage/BscScan.png';
 import CoinGape from 'src/assets/images/homepage/CoinGape.png';
 import CoinGecko from 'src/assets/images/homepage/CoinGecko.png';
@@ -8,7 +8,6 @@ import Coincodex from 'src/assets/images/homepage/Coincodex.png';
 import Coinpaprika from 'src/assets/images/homepage/Coinpaprika.png';
 import Whattomine from 'src/assets/images/homepage/Whattomine.png';
 import { useInView } from 'react-intersection-observer';
-import { useScroll } from 'ahooks';
 import styles from './index.module.less';
 import useI18n from 'src/ahooks/useI18n';
 import locale from '../../locales';
@@ -20,7 +19,6 @@ function Comp() {
   const isPressed = useRef(false);
   const engine = useRef(Engine.create());
   const { lang, i18n } = useI18n(locale);
-  const postion = useScroll();
   const { ref: inviewRef, inView } = useInView({
     threshold: 0,
   });
@@ -41,10 +39,10 @@ function Comp() {
       },
     });
     World.add(engine.current.world, [
-      Bodies.rectangle(cw / 2, -10, cw, 20, { isStatic: true }),
-      Bodies.rectangle(-10, ch / 2, 20, ch, { isStatic: true }),
-      Bodies.rectangle(cw / 2, ch + 10, cw, 20, { isStatic: true }),
-      Bodies.rectangle(cw + 10, ch / 2, 20, ch, { isStatic: true }),
+      Bodies.rectangle(cw / 2, -10, cw, 20, { isStatic: true, render: { visible: false } }),
+      Bodies.rectangle(-10, ch / 2, 20, ch, { isStatic: true, render: { visible: false } }),
+      Bodies.rectangle(cw / 2, ch + 10, cw, 20, { isStatic: true, render: { visible: false } }),
+      Bodies.rectangle(cw + 10, ch / 2, 20, ch, { isStatic: true, render: { visible: false } }),
     ]);
 
     Runner.run(engine.current);
@@ -53,25 +51,23 @@ function Comp() {
     return () => {
       if (render) {
         Render.stop(render);
-        World.clear(engine.current.world);
+        World.clear(engine.current.world, false);
         Engine.clear(engine.current);
         render.canvas.remove();
-        render.canvas = null;
-        render.context = null;
         render.textures = {};
       }
     };
   }, []);
   useEffect(() => {
     if (!inView && !inViewTop) {
-      World.clear(engine.current.world);
+      World.clear(engine.current.world, true);
       isPressed.current = false;
-      World.add(engine.current.world, [
-        Bodies.rectangle(cw / 2, -10, cw, 20, { isStatic: true }),
-        Bodies.rectangle(-10, ch / 2, 20, ch, { isStatic: true }),
-        Bodies.rectangle(cw / 2, ch + 10, cw, 20, { isStatic: true }),
-        Bodies.rectangle(cw + 10, ch / 2, 20, ch, { isStatic: true }),
-      ]);
+      //   World.add(engine.current.world, [
+      //     Bodies.rectangle(cw / 2, -10, cw, 20, { isStatic: true }),
+      //     Bodies.rectangle(-10, ch / 2, 20, ch, { isStatic: true }),
+      //     Bodies.rectangle(cw / 2, ch + 10, cw, 20, { isStatic: true }),
+      //     Bodies.rectangle(cw + 10, ch / 2, 20, ch, { isStatic: true }),
+      //   ]);
     }
   }, [inView, inViewTop]);
   const handleAddCircle = () => {

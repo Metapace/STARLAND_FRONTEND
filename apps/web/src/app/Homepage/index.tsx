@@ -63,6 +63,8 @@ const Index = () => {
   const coreFunctionRef = useRef<HTMLDivElement>(null);
   const marketRef = useRef<HTMLDivElement>(null);
   const customercaseRef = useRef<HTMLDivElement>(null);
+  const swiperRef = useRef<any>(null);
+  const position = useScroll();
   const navigate = useNavigate();
   const q = gsap.utils.selector(containerRef);
   const handleChangeSelectItem = (item: TabType) => {
@@ -71,8 +73,6 @@ const Index = () => {
   const toLogin = () => {
     navigate('/login');
   };
-  const swiperRef = useRef(null);
-  const position = useScroll();
   if (position) {
     console.log(position.top);
   }
@@ -250,19 +250,24 @@ const Index = () => {
               ref={swiperRef}
             >
               <SwiperSlide>
-                <img src={core1} className={styles['swiper-image']} />
+                <img src={core1} className={styles['swiper-image']} loading="lazy" />
+                <div className="swiper-lazy-preloader"></div>
               </SwiperSlide>
               <SwiperSlide>
-                <img src={core2} className={styles['swiper-image']} />
+                <img src={core2} className={styles['swiper-image']} loading="lazy" />
+                <div className="swiper-lazy-preloader"></div>
               </SwiperSlide>
               <SwiperSlide>
-                <img src={core3} className={styles['swiper-image']} />
+                <img src={core3} className={styles['swiper-image']} loading="lazy" />
+                <div className="swiper-lazy-preloader"></div>
               </SwiperSlide>
               <SwiperSlide>
-                <img src={core4} className={styles['swiper-image']} />
+                <img src={core4} className={styles['swiper-image']} loading="lazy" />
+                <div className="swiper-lazy-preloader"></div>
               </SwiperSlide>
               <SwiperSlide>
-                <img src={core5} className={styles['swiper-image']} />
+                <img src={core5} className={styles['swiper-image']} loading="lazy" />
+                <div className="swiper-lazy-preloader"></div>
               </SwiperSlide>
             </Swiper>
           </div>
