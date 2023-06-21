@@ -325,24 +325,19 @@ const Index = () => {
               ref={swiperRef}
             >
               <SwiperSlide>
-                <img src={core1} className={styles['swiper-image']} loading="lazy" />
-                <div className="swiper-lazy-preloader"></div>
+                <img src={core1} className={styles['swiper-image']} />
               </SwiperSlide>
               <SwiperSlide>
-                <img src={core2} className={styles['swiper-image']} loading="lazy" />
-                <div className="swiper-lazy-preloader"></div>
+                <img src={core2} className={styles['swiper-image']} />
               </SwiperSlide>
               <SwiperSlide>
-                <img src={core3} className={styles['swiper-image']} loading="lazy" />
-                <div className="swiper-lazy-preloader"></div>
+                <img src={core3} className={styles['swiper-image']} />
               </SwiperSlide>
               <SwiperSlide>
-                <img src={core4} className={styles['swiper-image']} loading="lazy" />
-                <div className="swiper-lazy-preloader"></div>
+                <img src={core4} className={styles['swiper-image']} />
               </SwiperSlide>
               <SwiperSlide>
-                <img src={core5} className={styles['swiper-image']} loading="lazy" />
-                <div className="swiper-lazy-preloader"></div>
+                <img src={core5} className={styles['swiper-image']} />
               </SwiperSlide>
             </Swiper>
           </div>
