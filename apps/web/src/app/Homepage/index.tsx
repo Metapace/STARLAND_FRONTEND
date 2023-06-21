@@ -11,6 +11,7 @@ import Matter from './components/Matter/index';
 import Logo from 'src/assets/images/homepage/head-log.png';
 import classNames from 'classnames';
 import ScrollBar from './components/scrollBar';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 import web2AppFlys from 'src/assets/images/home/web2-appFlys.png';
 import web2AppLovin from 'src/assets/images/home/web2-appLovin.png';
 import web2Djust from 'src/assets/images/home/web2-Djust.png';
@@ -23,15 +24,21 @@ import web2Trackingio from 'src/assets/images/home/web2-Trackingio.png';
 import web2Vungle from 'src/assets/images/home/web2-Vungle.png';
 import web2GoogleAds from 'src/assets/images/home/web2-Google Ads.png';
 import web2Mintegral from 'src/assets/images/home/web2-Mintegral.png';
+import spendLine from 'src/assets/images/homepage/spendLine.png';
 import core1 from 'src/assets/images/homepage/core-01.png';
 import core2 from 'src/assets/images/homepage/core-02.png';
 import core3 from 'src/assets/images/homepage/core-03.png';
 import core4 from 'src/assets/images/homepage/core-04.png';
 import core5 from 'src/assets/images/homepage/core-05.png';
-import Dashbord from 'src/assets/images/homepage/Dashbord.png';
+import Dashbord from 'src/assets/images/homepage/Dashbord-bg.png';
+import DataCircle from 'src/assets/images/homepage/Data-Cirlcle.png';
+import Metaicon from 'src/assets/images/homepage/Meta-icon.png';
+import tiktokicon from 'src/assets/images/homepage/tiktok-icon.png';
+import unityicon from 'src/assets/images/homepage/unity-icon.png';
 import CustomerCase, { CaseType } from 'src/app/Homepage/components/CustomerCase';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import gsap from 'gsap';
+import downArrow from 'src/assets/images/homepage/downArrow.png';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import { EffectCreative } from 'swiper';
 import 'swiper/css/pagination';
@@ -90,7 +97,7 @@ const Index = () => {
   }, [position]);
   const isImageStick = useMemo(() => {
     if (position) {
-      if (position.top > ch - 80 && position.top < 2108 + ch) {
+      if (position.top > ch - 88 && position.top < 2108 + ch) {
         return true;
       }
       return false;
@@ -203,7 +210,9 @@ const Index = () => {
           </div>
           <div className={styles['head-right']}>
             <Dropdown trigger="click" droplist={languageList} position="bl">
-              <div className={styles['lang-button']}>{lang === 'zh-CN' ? 'CN' : 'EN'}</div>
+              <div className={styles['lang-button']}>
+                {lang === 'zh-CN' ? 'CN' : 'EN'} <img src={downArrow} alt="" className={styles['down-arrow']} />
+              </div>
             </Dropdown>
             <div className={styles['login-button']} onClick={toLogin}>
               {i18n[lang]['intro.login']}
@@ -223,7 +232,52 @@ const Index = () => {
         </div>
         <div className={styles['starland-text']}> Starland </div>
         <div className={styles['dashbord-image']}>
-          <LazyLoadImage src={Dashbord} alt={'image'} effect="blur" width={968} height={480}></LazyLoadImage>
+          <LazyLoadImage src={Dashbord} alt={'image'} effect="blur" width={720} height={480}></LazyLoadImage>
+          <div className={styles['dataCircle']}>
+            <LazyLoadImage src={DataCircle} alt={'image'} effect="blur" width={200} height={200}></LazyLoadImage>
+          </div>
+          <div className={styles['total-spend']}>
+            <div className={styles['total-spend-title']}>Total Spend</div>
+            <div className={styles['total-spend-number']}>$ 14,700.00</div>
+            <LazyLoadImage src={spendLine} alt={'image'} effect="blur" width={272} height={112}></LazyLoadImage>
+          </div>
+          <div className={styles['channel-list']}>
+            <div className={styles['channel-list-item']}>
+              <LazyLoadImage src={Metaicon} alt={'image'} effect="blur" width={32} height={32}></LazyLoadImage>
+              <div className={styles['channel-list-item-title']}>Meta</div>
+              <div className={styles['channel-list-item-des']}>
+                $ 208.00 <span className={styles['channel-list-item-des-green']}>+19%</span>
+              </div>
+            </div>
+            <div className={styles['channel-list-item']}>
+              <LazyLoadImage src={tiktokicon} alt={'image'} effect="blur" width={32} height={32}></LazyLoadImage>
+              <div className={styles['channel-list-item-title']}>Tik Tok</div>
+              <div className={styles['channel-list-item-des']}>
+                $ 199.00 <span className={styles['channel-list-item-des-green']}>+17%</span>
+              </div>
+            </div>
+            <div className={styles['channel-list-item']}>
+              <LazyLoadImage src={unityicon} alt={'image'} effect="blur" width={32} height={32}></LazyLoadImage>
+              <div className={styles['channel-list-item-title']}>Unity</div>
+              <div className={styles['channel-list-item-des']}>
+                $ 296.00 <span className={styles['channel-list-item-des-green']}>+24%</span>
+              </div>
+            </div>
+          </div>
+          <div className={styles['data-list']}>
+            <div className={styles['data-list-item']}>
+              <div className={styles['data-list-item-title']}>Cost</div>
+              <div className={styles['data-list-item-number']}>$ 91.00</div>
+            </div>
+            <div className={styles['data-list-item']}>
+              <div className={styles['data-list-item-title']}>Cpm</div>
+              <div className={styles['data-list-item-number']}>$ 0.50</div>
+            </div>
+            <div className={styles['data-list-item']}>
+              <div className={styles['data-list-item-title']}>Cpc</div>
+              <div className={styles['data-list-item-number']}>$ 0.02</div>
+            </div>
+          </div>
         </div>
       </div>
       <div className={styles['web2-scroll']}>
