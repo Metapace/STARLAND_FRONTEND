@@ -1,0 +1,42 @@
+.container {
+  width: calc(100vw - 32px);
+  height: 76px;
+  line-height: 76px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  margin: 4px 32px;
+  :global {
+    .lazy-load-image-background {
+      margin-right: 96px;
+    }
+  }
+}
+.wrapper {
+  position: absolute;
+  display: flex;
+  section {
+    display: flex;
+    align-items: center;
+    line-height: 100%;
+  }
+}
+
+section {
+  display: flex;
+  animation: swipe var(--speed) linear infinite backwards;
+}
+
+@keyframes swipe {
+  0% {
+    transform: translate(0);
+  }
+
+  100% {
+    transform: translate(-100%);
+  }
+}
+.content-image {
+  margin-right: 50px;
+}

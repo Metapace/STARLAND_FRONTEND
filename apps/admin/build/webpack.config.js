@@ -179,7 +179,7 @@ module.exports = {
     new FriendlyErrorsWebpackPlugin({
       compilationSuccessInfo: {
         // messages: [`You application is running here ${env.stringified['process.env'].REACT_APP_SERVER_DOMAIN}`],
-        messages: ['You application is running here http://localhost:8090'],
+        messages: ['admin is running here http://localhost:8090'],
         notes: ['successful 🚀'],
       },
     }),

@@ -54,7 +54,7 @@ module.exports = {
       '@': path.resolve(rootDir, 'src'),
       src: path.resolve(rootDir, 'src'),
     },
-    extensions: ['.tsx', '.ts', '.js', '.jsx', 'css', 'less', '.json'],
+    extensions: ['.tsx', '.ts', '.js', '.jsx', '.css', '.less', '.json'],
   },
   module: {
     rules: [

@@ -28,7 +28,7 @@ const Home = React.lazy(
       './app/Home'
     ),
 );
-const Introduction = React.lazy(() => import('./app/Introduction'));
+const Homepage = React.lazy(() => import('./app/Homepage'));
 
 const App = () => {
   useTheme();
@@ -57,7 +57,7 @@ const App = () => {
             <BrowserRouter>
               <Suspense fallback={<Loading />}>
                 <Routes>
-                  <Route path="/" element={<Introduction />} />
+                  <Route path="/" element={<Homepage />} />
                   <Route path="/login" element={<Login />} />
                   <Route path="/*" element={<Home />} />
                 </Routes>
