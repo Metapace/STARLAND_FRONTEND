@@ -175,7 +175,10 @@ const Index = () => {
     <div className={styles['container']} ref={containerRef}>
       <div
         className={styles['heade-outer']}
-        style={{ backgroundColor: `rgba(255, 255, 255, ${position ? position.top / 120 : 0})` }}
+        // style={{ backgroundColor: `rgba(255, 255, 255, ${position ? position.top / 120 : 0})` }}
+        style={
+          position && position.top > 74 ? { backdropFilter: 'blur(14px)', background: 'rgba(255, 255, 255, 0.75)' } : {}
+        }
       >
         <div className={styles['head']}>
           <div className={styles['head-left']}>

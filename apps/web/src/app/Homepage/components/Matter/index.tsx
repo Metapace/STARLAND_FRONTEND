@@ -36,6 +36,9 @@ function Comp() {
   const { ref: inviewRefTop, inView: inViewTop } = useInView({
     threshold: 0,
   });
+  const { ref: inviewTriggerTop, inView: inViewTrigger } = useInView({
+    threshold: 0,
+  });
   useEffect(() => {
     if (!scene.current) return;
 
@@ -301,10 +304,10 @@ function Comp() {
     }
   };
   useEffect(() => {
-    if (inView) {
+    if (inViewTrigger) {
       handleAddCircle();
     }
-  }, [inView]);
+  }, [inViewTrigger]);
 
   return (
     <div className={styles['container']}>
@@ -314,6 +317,7 @@ function Comp() {
       <div className={styles['top-paragraph']} ref={inviewRefTop}>
         {i18n[lang]['intro.channel.describe2']}
       </div>
+      <div className={styles['trigger-item']} ref={inviewTriggerTop}></div>
       <div ref={scene} style={{ position: 'absolute', left: 0, top: 0, right: 0, bottom: 0 }} />
       <div className={styles['container-bottom']} ref={inviewRef}></div>
     </div>
