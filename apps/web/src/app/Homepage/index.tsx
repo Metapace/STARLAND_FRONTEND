@@ -230,9 +230,9 @@ const Index = () => {
         <div className={styles['home-title-2']}>{i18n[lang]['intro.home.title3']}</div>
         <div className={styles['home-describle']}>{i18n[lang]['intro.home.describle']}</div>
         <div className={styles['home-describle']}>{i18n[lang]['intro.home.describle1']}</div>
-        <div className={styles['start-now-button']} onClick={toLogin}>
+        {/* <div className={styles['start-now-button']} onClick={toLogin}>
           {i18n[lang]['intro.home.start.now']}
-        </div>
+        </div> */}
         <div className={styles['starland-text']}> Starland </div>
         <div className={styles['dashbord-image']}>
           <LazyLoadImage src={Dashbord} alt={'image'} effect="blur" width={720} height={480}></LazyLoadImage>
