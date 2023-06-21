@@ -17,6 +17,7 @@ function useI18n(locale: II18n = i18n) {
       setLang('en-US');
       setLanguage('en-US');
     }
+    window.location.reload();
   };
   return {
     lang,
