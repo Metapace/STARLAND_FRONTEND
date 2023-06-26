@@ -20,6 +20,10 @@ const en: {
   'login.back.home': 'back home',
   'login.enter.email': 'Enter Email',
   'login.enter.verify.code': 'Enter Verification Code',
+  'intro.home.describle':
+    'StarLand is a tool that integrates global advertising channels, MMPs, and monetization platforms.',
+  'intro.home.describle1':
+    'Simplify operations, so that your project can obtain strong exposure and accurate user growth.',
 };
 
 export default en;

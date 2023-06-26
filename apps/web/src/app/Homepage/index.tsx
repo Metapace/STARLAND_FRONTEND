@@ -406,10 +406,11 @@ const Index = () => {
             <img src={stalandTextLog} alt="" />
             <div className={styles['starland-des-footer']}>
               {i18n[lang]['intro.home.title1']}
+              {'\u00A0'}
               {i18n[lang]['intro.home.title2']}
-              {i18n[lang]['intro.home.title3']}
+              {lang === 'zh-CN' ? i18n[lang]['intro.home.title3'] : <div>{i18n[lang]['intro.home.title3']}</div>}
             </div>
-            <div>Copyright© 2023, Starland</div>
+            <div className={styles['cpyright']}>Copyright© 2023, Starland</div>
           </div>
           <div className={styles['footer-right']}>
             <div className={styles['footer-right-line']}>

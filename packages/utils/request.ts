@@ -22,7 +22,6 @@ service.interceptors.request.use(
   (config: AxiosRequestConfig) => {
     // 配置自定义请求头
     const token = getLocalToken() || getSessionToken() || "";
-    console.log(token, "---");
     let customHeaders: AxiosRequestHeaders = {
       token: token ? JSON.parse(token) : "",
     };

@@ -19,6 +19,9 @@ const zh: {
   'login.back.home': '回到首页',
   'login.enter.email': '请输入邮箱',
   'login.enter.verify.code': '请输入验证码',
+  'intro.home.describle':
+    '整合全球广告渠道、MMP、变现平台的工具，StarLand通过极速批量搭建广告、素材精细化运营、打通 ROAS 数据、SDK 平台精准拓量等功能。',
+  'intro.home.describle1': '化繁为简的操作方式，让你的项目获得综合实力曝光极强以及精准的用户增长。',
 };
 
 export default zh;

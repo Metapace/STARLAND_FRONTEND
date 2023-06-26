@@ -223,9 +223,9 @@ const Login: React.FC = () => {
       <div className={styles.left}>
         <div className={styles['left-inner']}>
           <div className={styles['star-title']}>starland</div>
-          <div className={styles['star-des']}>Powerful Web2 traffic support</div>
-          <div className={styles['star-des']}>Precisely located marketing strategy</div>
-          <div className={styles['star-des']}>Unique Media Package</div>
+          <div className={styles['star-des']}>{i18n[lang]['intro.home.describle']}</div>
+          <div className={styles['star-des']}>{i18n[lang]['intro.home.describle1']}</div>
+          {/* <div className={styles['star-des']}>Unique Media Package</div> */}
         </div>
       </div>
     </div>
