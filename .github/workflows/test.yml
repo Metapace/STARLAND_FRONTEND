@@ -22,9 +22,10 @@ jobs:
           connect_timeout: 60s
           last_ssh: |
             cd  starland/STARLAND_FRONTEND/
-            git checkout .
-            git checkout test
+            git checkout main
+            git branch -D test
             git pull
+            git checkout test
             export NVM_DIR=~/.nvm
             source ~/.nvm/nvm.sh
             sudo pnpm install

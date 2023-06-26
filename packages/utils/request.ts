@@ -92,7 +92,7 @@ const requestHandler = <T>(
               content: data.msg,
             });
           }
-          resolve(data);
+          resolve(data.data);
           console.log(`请求错误：${e}`);
           // 数据请求错误 使用reject将错误返回
           // reject(data);
