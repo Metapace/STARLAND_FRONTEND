@@ -71,6 +71,7 @@ const getMenu = (menus: IMenusItem[], selectedKey: string[]) => {
     return (
       <MenuItem key={item.path} className={styles['menu-item-container']}>
         <Link to={item.path} style={{ display: 'flex', flex: '1' }}>
+          {item.icon && icons[item.icon]}
           {item.name}
         </Link>
       </MenuItem>
@@ -85,10 +86,10 @@ export const MenuComponent = () => {
   const { data } = useRequestUserIndfo();
   data?.author_rights;
   const location = useLocation();
-  useEffect(() => {
-    console.log(location.pathname);
-    initMenus();
-  }, [location.pathname]);
+  //   useEffect(() => {
+  //     console.log(location.pathname);
+  //     initMenus();
+  //   }, [location.pathname]);
 
   function initMenus() {
     const key = location.pathname.split('/') ? '/' + location.pathname.split('/')[1] : '';

@@ -16,13 +16,6 @@ interface IMenu {
   menu: IMenusItem[];
 }
 
-// IconDashboard: <DashbordIcon />,
-//   IconAfterData: <AfterDataIcon />,
-//   IconChannel: <ChannelIcon />,
-//   IconInvite: <InviteIcon />,
-//   IconPublish: <PublishIcon />,
-//   IconUser: <UserIcon />,
-
 export const menuConfig: IMenu = {
   menu: [
     {
@@ -30,7 +23,6 @@ export const menuConfig: IMenu = {
       key: '/finance-verify',
       path: '/finance-verify',
       icon: 'IconPublish',
-      auth: [AuthRightEnum.Finance],
       children: [
         {
           name: '财务审核',
@@ -44,12 +36,29 @@ export const menuConfig: IMenu = {
       key: '/material-verify',
       path: '/material-verify',
       icon: 'IconChannel',
-      auth: [AuthRightEnum.Delivery, AuthRightEnum.Design],
       children: [
         {
           name: '物料审核',
           key: '/material-verify',
           path: '/material-verify',
+        },
+      ],
+    },
+    {
+      name: '权限管理',
+      key: '/permission-manage',
+      path: '/permission-manage',
+      icon: 'IconChannel',
+      children: [
+        {
+          name: '角色管理',
+          key: '/role-manage',
+          path: '/role-manage',
+        },
+        {
+          name: '用户管理',
+          key: '/user-manage',
+          path: '/user-manage',
         },
       ],
     },

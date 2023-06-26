@@ -14,23 +14,46 @@
         }
       }
     }
-  }
-}
-.sub-menu-container {
-  color: #ffffff;
-
-  :global {
     .arco-menu-inline-header {
-      background-color: var(--blue-text-color);
-      color: #ffffff;
-
-      &:hover {
-        background-color: var(--blue-text-color);
-      }
-    }
-    .arco-icon {
+      background-color: rgb(3, 31, 78);
       color: #ffffff !important;
     }
+    .arco-menu-light .arco-menu-inline-header.arco-menu-selected {
+      color: #ffffff;
+    }
+  }
+}
+:global {
+  .arco-menu-light .arco-menu-inline-header.arco-menu-selected:hover {
+    background-color: rgb(53 117 229 / 55%) !important;
+  }
+  .arco-menu-light .arco-menu-inline-header.arco-menu-selected .arco-icon {
+    color: #ffffff;
+  }
+  .arco-menu-light .arco-menu-item,
+  .arco-menu-light .arco-menu-group-title,
+  .arco-menu-light .arco-menu-pop-header,
+  .arco-menu-light .arco-menu-inline-header {
+    background-color: rgb(53 117 229 / 55%);
+  }
+  .arco-menu-light .arco-menu-item:hover,
+  .arco-menu-light .arco-menu-group-title:hover,
+  .arco-menu-light .arco-menu-pop-header:hover,
+  .arco-menu-light .arco-menu-inline-header:hover {
+    background-color: rgb(53 117 229 / 55%);
+  }
+  .arco-menu a,
+  .arco-menu a:hover {
+    color: #ffffff;
+  }
+  .arco-menu-light .arco-menu-item:hover,
+  .arco-menu-light .arco-menu-group-title:hover,
+  .arco-menu-light .arco-menu-pop-header:hover,
+  .arco-menu-light .arco-menu-inline-header:hover {
+    background-color: rgba(5, 57, 146, 0.55) !important;
+  }
+  .arco-menu-inline-header {
+    padding-left: 20px !important;
   }
 }
 
