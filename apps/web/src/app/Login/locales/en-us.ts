@@ -13,6 +13,13 @@ const en: {
   'login.wallet': 'Wallet Login',
   'login.sendCode': 'Send Code',
   'login.email.text': 'Email',
+  'login.email.verify': 'Email verification code',
+  'login.7.days': 'No login required for 7 days',
+  'login.other': 'Or Other',
+  'login.wallet.connect': 'wallet connect',
+  'login.back.home': 'back home',
+  'login.enter.email': 'Enter Email',
+  'login.enter.verify.code': 'Enter Verification Code',
 };
 
 export default en;

@@ -342,13 +342,20 @@
   }
 }
 .page-footer {
-  height: 88px;
-  line-height: 88px;
-  text-align: center;
+  height: 344px;
   width: 100vw;
-  border-top: 1px solid #e5e5e7;
   font-size: 16px;
+  color: #001133;
   font-family: 'Outfit';
+  background: #f5f5f7;
+  padding-top: 72px;
+  display: flex;
+  justify-content: center;
+}
+.page-footer-inner {
+  width: 1440px;
+  display: flex;
+  justify-content: space-between;
 }
 .dataCircle {
   position: absolute;
@@ -485,5 +492,42 @@
   }
   100% {
     transform: translateX(-3px);
+  }
+}
+.footer-left {
+  font-size: 14px;
+  img {
+    height: 66px;
+    width: auto;
+    margin-bottom: 24px;
+  }
+}
+.starland-des-footer {
+  margin-bottom: 46px;
+}
+.footer-right {
+  margin-top: 32px;
+}
+.footer-right-line {
+  display: flex;
+  justify-content: space-between;
+  row-gap: 64px;
+  margin-bottom: 24px;
+  a {
+    text-decoration: none;
+  }
+}
+.footer-right-item {
+  color: #013;
+  font-size: 16px;
+  font-family: Outfit;
+  font-weight: 500;
+  line-height: 24px;
+  text-transform: capitalize;
+  width: 160px;
+  cursor: pointer;
+
+  &:hover {
+    color: #0055ff;
   }
 }

@@ -36,6 +36,7 @@ import Metaicon from 'src/assets/images/homepage/Meta-icon.png';
 import tiktokicon from 'src/assets/images/homepage/tiktok-icon.png';
 import unityicon from 'src/assets/images/homepage/unity-icon.png';
 import CustomerCase, { CaseType } from 'src/app/Homepage/components/CustomerCase';
+import stalandTextLog from 'src/assets/images/homepage/Logo_Starland.png';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import gsap from 'gsap';
 import downArrow from 'src/assets/images/homepage/downArrow.png';
@@ -399,7 +400,49 @@ const Index = () => {
         </div>
       </div>
 
-      <div className={styles['page-footer']}>Copyright© 2023, Starland</div>
+      <div className={styles['page-footer']}>
+        <div className={styles['page-footer-inner']}>
+          <div className={styles['footer-left']}>
+            <img src={stalandTextLog} alt="" />
+            <div className={styles['starland-des-footer']}>
+              {i18n[lang]['intro.home.title1']}
+              {i18n[lang]['intro.home.title2']}
+              {i18n[lang]['intro.home.title3']}
+            </div>
+            <div>Copyright© 2023, Starland</div>
+          </div>
+          <div className={styles['footer-right']}>
+            <div className={styles['footer-right-line']}>
+              <a
+                href="https://stargate-doc.gitbook.io/product-docs/products/starland"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div className={styles['footer-right-item']}>{i18n[lang]['intro.docs']}</div>
+              </a>
+              <a
+                href="https://metapace-starland.notion.site/Starland-Terms-Of-Service-2b6a64994ad64f31b1fe4962854bea5e?pvs=4"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div className={styles['footer-right-item']}>{i18n[lang]['intro.terms']}</div>
+              </a>
+            </div>
+            <div className={styles['footer-right-line']}>
+              <a href="mailto:Starland@marvelhz.com" target="_blank" rel="noopener noreferrer">
+                <div className={styles['footer-right-item']}>{i18n[lang]['intro.contact']}</div>
+              </a>
+              <a
+                href="https://metapace-starland.notion.site/Starland-Privacy-Policy-22ed6aac2f334f559741e94d8e77ede4?pvs=4"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div className={styles['footer-right-item']}>{i18n[lang]['intro.privacy']}</div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

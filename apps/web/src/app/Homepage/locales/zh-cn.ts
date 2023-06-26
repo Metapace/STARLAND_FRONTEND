@@ -72,6 +72,10 @@ const zh: {
   'intro.channel.title': '在顶级加密货币网站上做广告',
   'intro.channel.describe1': '我们每天与加密货币行业的顶级网站合作，为您提供独家优惠和优惠价格。',
   'intro.channel.describe2': '通过我们以性能为导向的加密广告网络提高您的投资回报率并获得新的潜在客户。',
+  'intro.docs': '文档',
+  'intro.terms': '服务条款',
+  'intro.contact': '联系我们',
+  'intro.privacy': '隐私政策',
 };
 
 export default zh;

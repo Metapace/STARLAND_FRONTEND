@@ -12,6 +12,13 @@ const zh: {
   'login.wallet': '钱包登录',
   'login.sendCode': '获取验证码',
   'login.email.text': '邮箱',
+  'login.email.verify': '邮箱验证码',
+  'login.7.days': '7天内不重复登录',
+  'login.other': '其他登录方式',
+  'login.wallet.connect': '钱包登录',
+  'login.back.home': '回到首页',
+  'login.enter.email': '请输入邮箱',
+  'login.enter.verify.code': '请输入验证码',
 };
 
 export default zh;
