@@ -46,12 +46,17 @@ const RouterConfig: IRouterConfig[] = [
     page: <Finance />,
   },
   {
-    path: '/role-manage',
+    path: '/material-verify',
+    text: '物料管理',
+    page: <Material />,
+  },
+  {
+    path: '/permission-manage/role-manage',
     text: '角色管理',
     page: <RoleManage />,
   },
   {
-    path: '/user-manage',
+    path: '/permission-manage/user-manage',
     text: '用户管理',
     page: <UserManage />,
   },

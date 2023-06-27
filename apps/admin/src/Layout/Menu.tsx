@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { Menu } from '@arco-design/web-react';
 import { IMenusItem, menuConfig } from '../conifg/menuConfig';
-import { useRequestUserIndfo } from 'apis';
 import { useLocation, Link } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 import DashbordIcon from 'src/assets/images/menu/dashbord-menu.svg';
@@ -11,6 +10,7 @@ import InviteIcon from 'src/assets/images/menu/invite-menu.svg';
 import PublishIcon from 'src/assets/images/menu/publish-menu.svg';
 import UserIcon from 'src/assets/images/menu/user-menu.svg';
 import styles from './menu.module.less';
+import usePermission from 'src/ahooks/usePermission';
 import classNames from 'classnames';
 const MenuItem = Menu.Item;
 const SubMenu = Menu.SubMenu;
@@ -34,7 +34,6 @@ const icons: IconsPros = {
 const menu: IMenusItem[] = menuConfig.menu;
 
 const getMenu = (menus: IMenusItem[], selectedKey: string[]) => {
-  console.log(selectedKey, 'selectedKeys');
   const list = menus.map((item) => {
     if (item.children && item.children.length > 1) {
       return (
@@ -71,8 +70,10 @@ const getMenu = (menus: IMenusItem[], selectedKey: string[]) => {
     return (
       <MenuItem key={item.path} className={styles['menu-item-container']}>
         <Link to={item.path} style={{ display: 'flex', flex: '1' }}>
-          {item.icon && icons[item.icon]}
-          {item.name}
+          <span>
+            {item.icon && icons[item.icon]}
+            {item.name}
+          </span>
         </Link>
       </MenuItem>
     );
@@ -83,13 +84,12 @@ const getMenu = (menus: IMenusItem[], selectedKey: string[]) => {
 export const MenuComponent = () => {
   const [selectedKey, setSelectedKey] = useState<string[]>([]);
   const [openKeys, setOpenKeys] = useState<string[]>([]);
-  const { data } = useRequestUserIndfo();
-  data?.author_rights;
   const location = useLocation();
-  //   useEffect(() => {
-  //     console.log(location.pathname);
-  //     initMenus();
-  //   }, [location.pathname]);
+  const permissionList = usePermission();
+  useEffect(() => {
+    console.log(location.pathname);
+    initMenus();
+  }, [location.pathname]);
 
   function initMenus() {
     const key = location.pathname.split('/') ? '/' + location.pathname.split('/')[1] : '';
@@ -99,22 +99,28 @@ export const MenuComponent = () => {
   const onClickMenuItem = (key: string) => {
     setSelectedKey([key]);
   };
-
+  console.log(permissionList, 'permissionList');
   const showMemu = useMemo(() => {
-    const authRight = data?.author_rights;
-    if (!authRight) return menu;
-    const returnMemu: IMenusItem[] = [];
-    menu.forEach((item) => {
-      if (!item.auth) {
-        returnMemu.push(item);
-        return;
-      }
-      if (item.auth.includes(authRight)) {
-        returnMemu.push(item);
-      }
-    });
-    return returnMemu;
-  }, [data, menu]);
+    console.log(permissionList, '----');
+    if (permissionList) {
+      const filterArray = (array: IMenusItem[], permissionList: string[]) => {
+        return array
+          .map((item) => {
+            if (permissionList.includes(item.path)) {
+              if (item.children) {
+                item.children = filterArray(item.children, permissionList);
+              }
+              return item;
+            }
+            return null;
+          })
+          .filter((v) => v);
+      };
+      console.log(filterArray(menu, permissionList), '======');
+    }
+
+    return menu;
+  }, [menu, permissionList]);
 
   return (
     <Menu

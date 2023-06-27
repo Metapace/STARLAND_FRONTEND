@@ -11,7 +11,7 @@ const StatusSwitch = (props: { status: UserStatus; user_id: number }) => {
   const { mutateAsync, isLoading } = useMutationEditUserStatus();
   useEffect(() => {
     setInnerStatus(props.status === UserStatus.Normal);
-  }, [status]);
+  }, [props.status]);
   const handelChange = async (res: boolean) => {
     await mutateAsync({ user_id: props.user_id, status: res ? UserStatus.Normal : UserStatus.Forbidden });
     setInnerStatus(res);

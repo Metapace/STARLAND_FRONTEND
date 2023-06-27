@@ -102,6 +102,7 @@ export const userInfoRequest = () => {
     create_time: number;
     avatar_uri: string;
     author_rights: AuthRightEnum;
+    role_id: string;
   }>;
 };
 

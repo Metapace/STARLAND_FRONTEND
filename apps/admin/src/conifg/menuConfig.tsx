@@ -52,13 +52,13 @@ export const menuConfig: IMenu = {
       children: [
         {
           name: '角色管理',
-          key: '/role-manage',
-          path: '/role-manage',
+          key: '/permission-manage/role-manage',
+          path: '/permission-manage/role-manage',
         },
         {
           name: '用户管理',
-          key: '/user-manage',
-          path: '/user-manage',
+          key: '/permission-manage/user-manage',
+          path: '/permission-manage/user-manage',
         },
       ],
     },

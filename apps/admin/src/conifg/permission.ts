@@ -7,15 +7,15 @@ type PermissionData = {
 const permissionData: PermissionData[] = [
   {
     title: '权限管理',
-    key: '/role-manage',
+    key: '/permission-manage',
     children: [
       {
         title: '角色管理',
-        key: '/api/role/list',
+        key: '/permission-manage/role-manage',
         children: [
           {
             title: '角色菜单',
-            key: '/api/role/menu_list',
+            key: '/api/role/list',
           },
           {
             title: '增加角色',
@@ -29,7 +29,7 @@ const permissionData: PermissionData[] = [
       },
       {
         title: '用户管理',
-        key: '/user-manage',
+        key: '/permission-manage/user-manage',
         children: [
           {
             title: '用户菜单',
@@ -84,5 +84,17 @@ const permissionData: PermissionData[] = [
     ],
   },
 ];
+
+export const findKey = (arr: PermissionData[]) => {
+  let aa: Array<string> = [];
+  arr.forEach((item) => {
+    aa.push(item.key);
+    if (item.children) {
+      const back = findKey(item.children);
+      aa = [...aa, ...back];
+    }
+  });
+  return aa;
+};
 
 export default permissionData;

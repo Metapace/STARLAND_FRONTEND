@@ -130,4 +130,4 @@ export const UpdataUserStatus = (params: UpdataUserStatus) =>
  */
 
 export const getUserPermission = () =>
-  request.get("user/menu_list") as Promise<Array<UserListItem>>;
+  request.get("user/menu_list") as Promise<string>;
