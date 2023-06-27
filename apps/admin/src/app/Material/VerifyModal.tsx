@@ -89,8 +89,6 @@ const FromItem: React.FC<FromItemProps> = ({ item, handlCloseModal, type }) => {
       }
     }
   };
-  console.log(innerStatus, 'innerStatus');
-  console.log(FormItemType.Delivery);
   return (
     <>
       <div className={styles['opreate-title']}>

@@ -5,13 +5,19 @@ import { Button, TableColumnProps, Table } from '@arco-design/web-react';
 import { useToggle } from 'ahooks';
 import { useRequestRoleList, AdminRole } from 'apis';
 import AddRole from './addRole';
+import EditRole from './editRole';
 
 const Index = () => {
   const [selectItem, setSelectItem] = useState<AdminRole>();
   const { data, isLoading, refetch } = useRequestRoleList();
   const [open, { toggle }] = useToggle(false);
+  const [EditOpen, { toggle: Edittoggle }] = useToggle(false);
   const handleCloseAddmodal = () => {
     toggle();
+    refetch();
+  };
+  const handleCloseEditModal = () => {
+    Edittoggle();
   };
   const columns: TableColumnProps[] = [
     {
@@ -41,7 +47,7 @@ const Index = () => {
             type="outline"
             onClick={() => {
               setSelectItem(col);
-              toggle();
+              Edittoggle();
             }}
           >
             编辑
@@ -62,6 +68,13 @@ const Index = () => {
         <Table columns={columns} data={data || []} loading={isLoading} pagination={false}></Table>
       </div>
       <AddRole open={open} handlCloseModal={handleCloseAddmodal}></AddRole>
+      {EditOpen && (
+        <EditRole
+          open={EditOpen}
+          handlCloseModal={handleCloseEditModal}
+          selectItem={selectItem as AdminRole}
+        ></EditRole>
+      )}
     </div>
   );
 };

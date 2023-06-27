@@ -4,7 +4,7 @@ import { Message } from "@arco-design/web-react";
 import { getLocalToken, removeLocalToken } from "./localStorage";
 
 const baseURL =
-  process.env.VITE_base === "admin"
+  process.env.app_name === "admin"
     ? process.env.VITE_admin_url
     : process.env.VITE_base_url;
 
