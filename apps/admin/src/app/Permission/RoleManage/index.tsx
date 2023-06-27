@@ -1,157 +1,67 @@
 import React, { useState } from 'react';
 import styles from './index.module.less';
-import { Form, Grid, Select, Button, TableColumnProps, Tag, Table } from '@arco-design/web-react';
+import dayjs from 'dayjs';
+import { Button, TableColumnProps, Table } from '@arco-design/web-react';
 import { useToggle } from 'ahooks';
-import {
-  useRequestFinanceVerifyList,
-  FinanceDataEnum,
-  FinanceVerifyStatusEnum,
-  FinanceDataEnumMap,
-  FinanceVerifyStatusEnumMap,
-  FinanceVerifyListParams,
-  FinanceVerifyListReturnItem,
-} from 'apis';
+import { useRequestRoleList, AdminRole } from 'apis';
+import AddRole from './addRole';
 
-const initialValues = {
-  date_type: FinanceDataEnum.LastHalfYear,
-  status: FinanceVerifyStatusEnum.All,
-  page_no: 1,
-  page_size: 10,
-};
-
-const Option = Select.Option;
 const Index = () => {
-  const [form] = Form.useForm();
-  const [selectItem, setSelectItem] = useState<FinanceVerifyListReturnItem>();
-  const [SearchValue, setSearchValue] = useState<FinanceVerifyListParams>(initialValues);
-  const { data, isLoading, refetch } = useRequestFinanceVerifyList(SearchValue);
+  const [selectItem, setSelectItem] = useState<AdminRole>();
+  const { data, isLoading, refetch } = useRequestRoleList();
   const [open, { toggle }] = useToggle(false);
-  const handleSearch = async () => {
-    const res = await form.getFieldsValue();
-    const tempValue: FinanceVerifyListParams = {
-      page_no: 1,
-      page_size: SearchValue.page_size,
-      date_type: +res.date_type || FinanceDataEnum.LastHalfYear,
-      status: +res.status || FinanceVerifyStatusEnum.All,
-    };
-    setSearchValue(tempValue);
+  const handleCloseAddmodal = () => {
+    toggle();
   };
   const columns: TableColumnProps[] = [
     {
-      title: '日期时间',
+      title: 'ID',
       dataIndex: 'data',
-      render: (_, col: FinanceVerifyListReturnItem) => {
-        return col.date;
+      render: (_, col: AdminRole) => {
+        return col.id;
       },
     },
     {
-      title: '充值主体',
-      dataIndex: 'user_name',
+      title: '角色名称',
+      dataIndex: 'name',
     },
     {
-      title: '主体类别',
-      dataIndex: 'user_type',
-      render: (_, col: FinanceVerifyListReturnItem) => {
-        return col.user_type === 1 ? '公司' : '个人';
-      },
-    },
-    {
-      title: '充值金额',
-      dataIndex: 'amount',
-      render: (_, col: FinanceVerifyListReturnItem) => {
-        return `$${col.amount}`;
-      },
-    },
-    {
-      title: '状态',
+      title: '创建日期',
       dataIndex: 'status',
-      render: (_, col: FinanceVerifyListReturnItem) => {
-        if (col.status === 1) {
-          return <Tag color="orange">待审核</Tag>;
-        }
-        if (col.status === 2) {
-          return <Tag color="green">已通过</Tag>;
-        }
-        if (col.status === 3) {
-          return <Tag color="red">已驳回</Tag>;
-        }
+      render: (_, col: AdminRole) => {
+        return dayjs.unix(col.createTime).format('YYYY-MM-DD');
       },
     },
     {
-      title: '具体信息',
+      title: '操作',
       dataIndex: 'email',
-      render: (_, col: FinanceVerifyListReturnItem) => {
+      render: (_, col: AdminRole) => {
         return (
           <Button
+            type="outline"
             onClick={() => {
               setSelectItem(col);
               toggle();
             }}
           >
-            查看详情
+            编辑
           </Button>
         );
       },
     },
   ];
-  const handlePageChange = (page: number) => {
-    const tempSearchProps = { ...SearchValue };
-    tempSearchProps.page_no = page;
-    setSearchValue(tempSearchProps);
-  };
 
   return (
     <div className={styles['container']}>
-      <div className={styles['search-area']}>
-        <Form
-          form={form}
-          layout="horizontal"
-          initialValues={{ status: initialValues.status.toString(), date_type: initialValues.date_type.toString() }}
-        >
-          <Grid.Row gutter={24}>
-            <Grid.Col span={8}>
-              <Form.Item label="时间" field="date_type" labelAlign="left" labelCol={{ span: 4 }}>
-                <Select placeholder="请选择时间">
-                  {Object.keys(FinanceDataEnumMap).map((key) => (
-                    <Option key={key} value={key}>
-                      {FinanceDataEnumMap[key as unknown as FinanceDataEnum]}
-                    </Option>
-                  ))}
-                </Select>
-              </Form.Item>
-            </Grid.Col>
-            <Grid.Col span={8}>
-              <Form.Item label="审核状态" field="status">
-                <Select placeholder="请选择审核状态">
-                  {Object.keys(FinanceVerifyStatusEnumMap).map((key) => (
-                    <Option key={key} value={key}>
-                      {FinanceVerifyStatusEnumMap[key as unknown as FinanceVerifyStatusEnum]}
-                    </Option>
-                  ))}
-                </Select>
-              </Form.Item>
-            </Grid.Col>
-            <Grid.Col span={2} style={{ textAlign: 'right' }}>
-              <Button onClick={handleSearch} type="primary">
-                搜索
-              </Button>
-            </Grid.Col>
-          </Grid.Row>
-        </Form>
+      <div>
+        <Button type="primary" onClick={toggle}>
+          新增角色
+        </Button>
       </div>
       <div className={styles['table-body']}>
-        <Table
-          columns={columns}
-          data={data?.list || []}
-          loading={isLoading}
-          pagination={{
-            total: data?.num,
-            pageSize: SearchValue.page_size,
-            onChange: handlePageChange,
-            current: SearchValue.page_no,
-          }}
-        ></Table>
+        <Table columns={columns} data={data || []} loading={isLoading} pagination={false}></Table>
       </div>
+      <AddRole open={open} handlCloseModal={handleCloseAddmodal}></AddRole>
     </div>
   );
 };

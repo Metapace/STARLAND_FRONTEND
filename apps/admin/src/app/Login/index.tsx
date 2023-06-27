@@ -30,7 +30,7 @@ export const Login: React.FC = () => {
   const login = async (params: IUserParams) => {
     const res = await loginRequestBypassword(params);
     if (res) {
-      setUserToken(res);
+      setUserToken(res.token);
       navigateTo();
     }
   };
@@ -60,17 +60,7 @@ export const Login: React.FC = () => {
           }}
           onSubmit={onSubmit}
         >
-          <FormItem
-            field="email"
-            rules={[
-              { required: true, message: '请输入邮箱' },
-              {
-                type: 'email',
-                validateLevel: 'error',
-                message: 'please enter right email',
-              },
-            ]}
-          >
+          <FormItem field="username" rules={[{ required: true, message: '请输入用户名' }]}>
             <Input type="text" placeholder="Enter Email" />
           </FormItem>
           <FormItem>

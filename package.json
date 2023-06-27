@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "start:web": "cross-env SERVICES_ENV=development turbo run dev --filter=web --filter=utils --filter=apis",
-    "start:admin": "cross-env SERVICES_ENV=development turbo run dev --filter=admin --filter=utils --filter=apis",
+    "start:admin": "cross-env SERVICES_ENV=development cross-env VITE_base=admin turbo run dev --filter=admin --filter=utils --filter=apis",
     "build:web": "cross-env SERVICES_ENV=production turbo run build --filter=web --filter=utils --filter=apis",
     "build:admin": "cross-env SERVICES_ENV=development turbo run build --filter=admin --filter=utils --filter=apis",
     "build": "cross-env SERVICES_ENV=production turbo run build",

@@ -6,6 +6,7 @@ import {
   reviewMaterial,
   MaterialVerifyListParams,
 } from "./api";
+import * as permission from "./permission";
 import { useQuery, useMutation } from "@tanstack/react-query";
 
 /**
@@ -53,3 +54,12 @@ export const useMutationReviewMaterial = () =>
   useMutation({
     mutationFn: reviewMaterial,
   });
+
+/**
+ * @description 获取角色列表
+ *
+ */
+export const useRequestRoleList = () => {
+  const query = useQuery(["role-list"], () => permission.getRoleList());
+  return query;
+};

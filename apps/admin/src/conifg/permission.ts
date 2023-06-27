@@ -15,11 +15,11 @@ const permissionData: PermissionData[] = [
         children: [
           {
             title: '增加角色',
-            key: '0-0-2-1',
+            key: '0-0-1-1',
           },
           {
             title: '编辑',
-            key: '0-0-2-1',
+            key: '0-0-1-1',
           },
         ],
       },
