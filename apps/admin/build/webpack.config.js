@@ -24,7 +24,6 @@ function getClientEnvironment() {
       },
     );
   raw['app_name'] = 'admin';
-  console.log(raw, '--11111111111111111--');
   // 注入环境变量
   const stringified = {
     'process.env': Object.keys(raw).reduce((env, key) => {

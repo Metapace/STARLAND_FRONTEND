@@ -1,157 +1,109 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './index.module.less';
-import { Form, Grid, Select, Button, TableColumnProps, Tag, Table } from '@arco-design/web-react';
+import { Button, TableColumnProps, Table, Switch } from '@arco-design/web-react';
 import { useToggle } from 'ahooks';
-import {
-  useRequestFinanceVerifyList,
-  FinanceDataEnum,
-  FinanceVerifyStatusEnum,
-  FinanceDataEnumMap,
-  FinanceVerifyStatusEnumMap,
-  FinanceVerifyListParams,
-  FinanceVerifyListReturnItem,
-} from 'apis';
+import { useRequestUserList, UserListItem, UserStatus, useMutationEditUserStatus } from 'apis';
+import AddUser from './AddUser';
+import EditUser from './editUser';
 
-const initialValues = {
-  date_type: FinanceDataEnum.LastHalfYear,
-  status: FinanceVerifyStatusEnum.All,
-  page_no: 1,
-  page_size: 10,
+const StatusSwitch = (props: { status: UserStatus; user_id: number }) => {
+  const [innerStatus, setInnerStatus] = useState(false);
+  const { mutateAsync, isLoading } = useMutationEditUserStatus();
+  useEffect(() => {
+    setInnerStatus(props.status === UserStatus.Normal);
+  }, [status]);
+  const handelChange = async (res: boolean) => {
+    await mutateAsync({ user_id: props.user_id, status: res ? UserStatus.Normal : UserStatus.Forbidden });
+    setInnerStatus(res);
+  };
+  return (
+    <Switch checkedText="启用" uncheckedText="禁用" checked={innerStatus} onChange={handelChange} loading={isLoading} />
+  );
 };
 
-const Option = Select.Option;
 const Index = () => {
-  const [form] = Form.useForm();
-  const [selectItem, setSelectItem] = useState<FinanceVerifyListReturnItem>();
-  const [SearchValue, setSearchValue] = useState<FinanceVerifyListParams>(initialValues);
-  const { data, isLoading, refetch } = useRequestFinanceVerifyList(SearchValue);
+  const [selectItem, setSelectItem] = useState<UserListItem>();
+  const { data, isLoading, refetch } = useRequestUserList();
   const [open, { toggle }] = useToggle(false);
-  const handleSearch = async () => {
-    const res = await form.getFieldsValue();
-    const tempValue: FinanceVerifyListParams = {
-      page_no: 1,
-      page_size: SearchValue.page_size,
-      date_type: +res.date_type || FinanceDataEnum.LastHalfYear,
-      status: +res.status || FinanceVerifyStatusEnum.All,
-    };
-    setSearchValue(tempValue);
+  const [EditOpen, { toggle: Edittoggle }] = useToggle(false);
+  const handleCloseAddmodal = () => {
+    toggle();
+    refetch();
+  };
+  const handleCloseEditModal = () => {
+    Edittoggle();
   };
   const columns: TableColumnProps[] = [
     {
-      title: '日期时间',
+      title: '账户',
+      key: 'data',
       dataIndex: 'data',
-      render: (_, col: FinanceVerifyListReturnItem) => {
-        return col.date;
+      render: (_, col: UserListItem) => {
+        return col.account;
       },
     },
     {
-      title: '充值主体',
-      dataIndex: 'user_name',
+      title: '用户名',
+      dataIndex: 'name',
+      key: 'name',
     },
     {
-      title: '主体类别',
-      dataIndex: 'user_type',
-      render: (_, col: FinanceVerifyListReturnItem) => {
-        return col.user_type === 1 ? '公司' : '个人';
-      },
-    },
-    {
-      title: '充值金额',
-      dataIndex: 'amount',
-      render: (_, col: FinanceVerifyListReturnItem) => {
-        return `$${col.amount}`;
-      },
+      title: '角色名称',
+      dataIndex: 'role_name',
+      key: 'role_name',
     },
     {
       title: '状态',
       dataIndex: 'status',
-      render: (_, col: FinanceVerifyListReturnItem) => {
-        if (col.status === 1) {
-          return <Tag color="orange">待审核</Tag>;
-        }
-        if (col.status === 2) {
-          return <Tag color="green">已通过</Tag>;
-        }
-        if (col.status === 3) {
-          return <Tag color="red">已驳回</Tag>;
-        }
+      key: 'status',
+      render: (_, col: UserListItem) => {
+        return <StatusSwitch status={col.status} user_id={col.user_id}></StatusSwitch>;
       },
     },
     {
-      title: '具体信息',
+      title: '创建日期',
+      dataIndex: 'create_time',
+      key: 'create_time',
+    },
+    {
+      title: '操作',
       dataIndex: 'email',
-      render: (_, col: FinanceVerifyListReturnItem) => {
+      key: 'email',
+      render: (_, col: UserListItem) => {
         return (
           <Button
+            type="outline"
             onClick={() => {
               setSelectItem(col);
-              toggle();
+              Edittoggle();
             }}
           >
-            查看详情
+            编辑
           </Button>
         );
       },
     },
   ];
-  const handlePageChange = (page: number) => {
-    const tempSearchProps = { ...SearchValue };
-    tempSearchProps.page_no = page;
-    setSearchValue(tempSearchProps);
-  };
 
   return (
     <div className={styles['container']}>
-      <div className={styles['search-area']}>
-        <Form
-          form={form}
-          layout="horizontal"
-          initialValues={{ status: initialValues.status.toString(), date_type: initialValues.date_type.toString() }}
-        >
-          <Grid.Row gutter={24}>
-            <Grid.Col span={8}>
-              <Form.Item label="时间" field="date_type" labelAlign="left" labelCol={{ span: 4 }}>
-                <Select placeholder="请选择时间">
-                  {Object.keys(FinanceDataEnumMap).map((key) => (
-                    <Option key={key} value={key}>
-                      {FinanceDataEnumMap[key as unknown as FinanceDataEnum]}
-                    </Option>
-                  ))}
-                </Select>
-              </Form.Item>
-            </Grid.Col>
-            <Grid.Col span={8}>
-              <Form.Item label="审核状态" field="status">
-                <Select placeholder="请选择审核状态">
-                  {Object.keys(FinanceVerifyStatusEnumMap).map((key) => (
-                    <Option key={key} value={key}>
-                      {FinanceVerifyStatusEnumMap[key as unknown as FinanceVerifyStatusEnum]}
-                    </Option>
-                  ))}
-                </Select>
-              </Form.Item>
-            </Grid.Col>
-            <Grid.Col span={2} style={{ textAlign: 'right' }}>
-              <Button onClick={handleSearch} type="primary">
-                搜索
-              </Button>
-            </Grid.Col>
-          </Grid.Row>
-        </Form>
+      <div>
+        <Button type="primary" onClick={toggle}>
+          新增用户
+        </Button>
       </div>
       <div className={styles['table-body']}>
-        <Table
-          columns={columns}
-          data={data?.list || []}
-          loading={isLoading}
-          pagination={{
-            total: data?.num,
-            pageSize: SearchValue.page_size,
-            onChange: handlePageChange,
-            current: SearchValue.page_no,
-          }}
-        ></Table>
+        <Table columns={columns} data={data || []} loading={isLoading} pagination={false}></Table>
       </div>
+      <AddUser open={open} handlCloseModal={handleCloseAddmodal}></AddUser>
+
+      {EditOpen && (
+        <EditUser
+          open={EditOpen}
+          handlCloseModal={handleCloseEditModal}
+          selectItem={selectItem as UserListItem}
+        ></EditUser>
+      )}
     </div>
   );
 };

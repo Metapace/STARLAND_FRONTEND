@@ -92,3 +92,50 @@ export const useMutationEditRole = () =>
   useMutation({
     mutationFn: permission.editRole,
   });
+
+/**
+ * @description 获取用户列表
+ *
+ */
+export const useRequestUserList = () => {
+  const query = useQuery(["User-list"], () => permission.getUserList());
+  return query;
+};
+
+/**
+ * @description 获取用户权限列表
+ *
+ */
+export const useRequestUserPermissionList = () => {
+  const query = useQuery(["User-permission-list"], () =>
+    permission.getUserPermission()
+  );
+  return query;
+};
+
+/**
+ *
+ *  @description 新增用户
+ */
+export const useMutationAddUser = () =>
+  useMutation({
+    mutationFn: permission.addUser,
+  });
+
+/**
+ *
+ *  @description 更改用户角色
+ */
+export const useMutationEditUserRole = () =>
+  useMutation({
+    mutationFn: permission.UpdataUserRole,
+  });
+
+/**
+ *
+ *  @description 更改用户状态
+ */
+export const useMutationEditUserStatus = () =>
+  useMutation({
+    mutationFn: permission.UpdataUserStatus,
+  });

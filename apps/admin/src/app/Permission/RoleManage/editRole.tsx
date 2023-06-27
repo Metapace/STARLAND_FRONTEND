@@ -42,7 +42,7 @@ const Index: React.FC<FVerifyProps> = ({ open, handlCloseModal, selectItem }) =>
   return (
     <Modal
       visible={open}
-      title="新增角色"
+      title="编辑角色"
       footer={null}
       onCancel={handlCloseModal}
       style={{ width: '800px', height: '60vh' }}
