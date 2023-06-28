@@ -23,7 +23,7 @@ function getClientEnvironment() {
         NODE_ENV: process.env.NODE_ENV || 'development',
       },
     );
-
+  raw['app_name'] = 'admin';
   // 注入环境变量
   const stringified = {
     'process.env': Object.keys(raw).reduce((env, key) => {

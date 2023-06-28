@@ -170,7 +170,41 @@ export const getMaterialVerifyList = (params: MaterialVerifyListParams) =>
 /**
  *
  *
- * @description 管理后台获取物料审核
+ * @description 管理后台投放部物料审核
  */
-export const reviewMaterial = (params: MaterialVerifyPostParams) =>
-  request.post("admin/activity/update", params) as Promise<unknown>;
+export const reviewDeliverMaterial = (params: MaterialVerifyPostParams) =>
+  request.post("admin/activity/deliver/verify", params) as Promise<unknown>;
+
+/**
+ *
+ *
+ * @description 管理后台设计部物料审核
+ */
+export const reviewDesignMaterial = (params: MaterialVerifyPostParams) =>
+  request.post("admin/activity/design/verify", params) as Promise<unknown>;
+
+/**
+ *
+ * @description 获取所有国家和地区
+ *
+ */
+
+export const getAdminCountryList = () =>
+  request.get("country", { ty: 1 }) as Promise<Record<number, string>>;
+
+/**
+ *
+ * @description 获取语言列表
+ *
+ */
+
+export const getAdminLanguageList = () =>
+  request.get("language", { ty: 1 }) as Promise<Record<number, string>>;
+
+/**
+ *
+ *
+ * @description 管理后台更新投放状态
+ */
+export const uodateMaterialStatus = (params: { id: number; status: number }) =>
+  request.post("admin/activity/status/update", params) as Promise<unknown>;

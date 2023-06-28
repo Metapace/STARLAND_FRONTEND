@@ -8,6 +8,7 @@ export * from "./asset/api";
 export * from "./asset/hooks";
 export * from "./admin/api";
 export * from "./admin/hooks";
+export * from "./admin/permission";
 import {
   QueryClient,
   QueryClientProvider,

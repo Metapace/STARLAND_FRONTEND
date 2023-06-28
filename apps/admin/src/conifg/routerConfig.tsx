@@ -9,6 +9,10 @@ const Finance = React.lazy(() => import('../app/Finance/index'));
 
 const Material = React.lazy(() => import('../app/Material/index'));
 
+const RoleManage = React.lazy(() => import('../app/Permission/RoleManage'));
+
+const UserManage = React.lazy(() => import('../app/Permission/UserManage'));
+
 export interface IRouterConfig {
   path: string;
   text: string;
@@ -43,8 +47,18 @@ const RouterConfig: IRouterConfig[] = [
   },
   {
     path: '/material-verify',
-    text: '物料审核审核',
+    text: '物料管理',
     page: <Material />,
+  },
+  {
+    path: '/permission-manage/role-manage',
+    text: '角色管理',
+    page: <RoleManage />,
+  },
+  {
+    path: '/permission-manage/user-manage',
+    text: '用户管理',
+    page: <UserManage />,
   },
 ];
 

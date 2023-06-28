@@ -1,8 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
 import Logo from 'src/assets/images/starland-log.png';
-import { Button, Dropdown, Menu, Divider, Message, Avatar } from '@arco-design/web-react';
-import { IconPoweroff, IconSettings, IconLanguage } from '@arco-design/web-react/icon';
+import { Dropdown, Menu, Divider, Avatar } from '@arco-design/web-react';
+import { IconPoweroff, IconSettings } from '@arco-design/web-react/icon';
+import { useRequestUserIndfo } from 'apis';
 import { useInterval } from 'ahooks';
 import { useTheme } from 'src/ahooks';
 import { removeLocalToken } from 'src/utils/localSet';
@@ -18,7 +19,8 @@ const splitStyle = {
 const Header = () => {
   useTheme();
   const navigate = useNavigate();
-  const { lang, i18n, setLang } = useI18n();
+  const { lang, i18n } = useI18n();
+  const { data } = useRequestUserIndfo();
   const [nowTime, setNowtime] = useState(dayjs().format('YYYY-MM-DD hh:mm:ss'));
 
   const loginOut = () => {
@@ -27,7 +29,7 @@ const Header = () => {
   };
 
   useInterval(() => {
-    setNowtime(dayjs().format('YYYY-MM-DD hh:mm:ss'));
+    setNowtime(dayjs().format('YYYY-MM-DD HH:mm:ss'));
   }, 1000);
 
   const goHome = () => {
@@ -48,10 +50,6 @@ const Header = () => {
             trigger="click"
             droplist={
               <Menu>
-                <Menu.Item key="1">
-                  <IconSettings />
-                  <span>{i18n[lang]['header.userSetting']}</span>
-                </Menu.Item>
                 <Menu.Item key="2" onClick={() => loginOut()}>
                   <IconPoweroff />
                   <span>{i18n[lang]['header.logout']}</span>
@@ -62,6 +60,7 @@ const Header = () => {
             <Avatar autoFixFontSize={false} size={32}>
               <img src="https://avatars.githubusercontent.com/u/42566669?v=4" alt="avatar" />
             </Avatar>
+            <span style={{ marginLeft: '8px' }}>{data?.name}</span>
           </Dropdown>
         </li>
       </ul>
