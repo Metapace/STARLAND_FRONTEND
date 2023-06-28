@@ -14,10 +14,6 @@ const permissionData: PermissionData[] = [
         key: '/permission-manage/role-manage',
         children: [
           {
-            title: '角色菜单',
-            key: '/api/role/list',
-          },
-          {
             title: '增加角色',
             key: '/api/role/add',
           },
@@ -75,11 +71,15 @@ const permissionData: PermissionData[] = [
       },
       {
         title: '设计部物料审核',
-        key: '/api/admin/activity/update2',
+        key: '/api/admin/activity/design/verify',
       },
       {
         title: '投放部物料审核',
-        key: '/api/admin/activity/update1',
+        key: '/api/admin/activity/deliver/verify',
+      },
+      {
+        title: '投放状态更新',
+        key: '/api/admin/activity/status/update',
       },
     ],
   },

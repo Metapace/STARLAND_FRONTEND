@@ -85,7 +85,7 @@ export const MenuComponent = () => {
   const [selectedKey, setSelectedKey] = useState<string[]>([]);
   const [openKeys, setOpenKeys] = useState<string[]>([]);
   const location = useLocation();
-  const permissionList = usePermission();
+  const { permissionList } = usePermission();
   useEffect(() => {
     console.log(location.pathname);
     initMenus();
@@ -99,9 +99,8 @@ export const MenuComponent = () => {
   const onClickMenuItem = (key: string) => {
     setSelectedKey([key]);
   };
-  console.log(permissionList, 'permissionList');
   const showMemu = useMemo(() => {
-    console.log(permissionList, '----');
+    let showMenu = menu;
     if (permissionList) {
       const filterArray = (array: IMenusItem[], permissionList: string[]) => {
         return array
@@ -116,10 +115,10 @@ export const MenuComponent = () => {
           })
           .filter((v) => v);
       };
-      console.log(filterArray(menu, permissionList), '======');
+      showMenu = filterArray(menu, permissionList);
     }
 
-    return menu;
+    return showMenu;
   }, [menu, permissionList]);
 
   return (

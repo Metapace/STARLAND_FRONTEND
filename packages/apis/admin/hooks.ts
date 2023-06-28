@@ -3,8 +3,12 @@ import {
   getFinanceVerifyList,
   FinanceVerifyListParams,
   getMaterialVerifyList,
-  reviewMaterial,
+  reviewDeliverMaterial,
+  reviewDesignMaterial,
   MaterialVerifyListParams,
+  getAdminCountryList,
+  getAdminLanguageList,
+  uodateMaterialStatus,
 } from "./api";
 import * as permission from "./permission";
 import { useQuery, useMutation } from "@tanstack/react-query";
@@ -48,11 +52,20 @@ export const useRequestMaterialVerifyList = (
 
 /**
  *
- *  @description 审核物料
+ *  @description 投放部审核物料
  */
-export const useMutationReviewMaterial = () =>
+export const useMutationDeliverReviewMaterial = () =>
   useMutation({
-    mutationFn: reviewMaterial,
+    mutationFn: reviewDeliverMaterial,
+  });
+
+/**
+ *
+ *  @description 投放部审核物料
+ */
+export const useMutationDesignReviewMaterial = () =>
+  useMutation({
+    mutationFn: reviewDesignMaterial,
   });
 
 /**
@@ -97,8 +110,10 @@ export const useMutationEditRole = () =>
  * @description 获取用户列表
  *
  */
-export const useRequestUserList = () => {
-  const query = useQuery(["User-list"], () => permission.getUserList());
+export const useRequestUserList = (enabled = false) => {
+  const query = useQuery(["User-list"], () => permission.getUserList(), {
+    enabled,
+  });
   return query;
 };
 
@@ -138,4 +153,31 @@ export const useMutationEditUserRole = () =>
 export const useMutationEditUserStatus = () =>
   useMutation({
     mutationFn: permission.UpdataUserStatus,
+  });
+
+/**
+ * @description 获取国家列表
+ *
+ */
+export const useRequestAdminCountryList = () => {
+  const query = useQuery(["country-list"], () => getAdminCountryList());
+  return query;
+};
+
+/**
+ * @description 获取语言列表
+ *
+ */
+export const useRequestAdminLanuageList = () => {
+  const query = useQuery(["Lanuage-list"], () => getAdminLanguageList());
+  return query;
+};
+
+/**
+ *
+ *  @description 更改物料投放状态
+ */
+export const useMutationMaterialStatus = () =>
+  useMutation({
+    mutationFn: uodateMaterialStatus,
   });

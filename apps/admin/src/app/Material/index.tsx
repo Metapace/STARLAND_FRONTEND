@@ -3,16 +3,15 @@ import styles from './index.module.less';
 import { Form, Grid, Select, Button, TableColumnProps, Tag, Table, Switch } from '@arco-design/web-react';
 import { useToggle } from 'ahooks';
 import VerifyModal from './VerifyModal';
+import usePermission from 'src/ahooks/usePermission';
 import {
   useRequestMaterialVerifyList,
   MaterialVerifyListParams,
   MaterialListItem,
   FinanceDataEnum,
   FinanceDataEnumMap,
-  useRequestUserIndfo,
-  useMutationUpdateMaterial,
+  useMutationMaterialStatus,
   DemandType,
-  AuthRightEnum,
 } from 'apis';
 import dayjs from 'dayjs';
 
@@ -22,30 +21,14 @@ const initialValues = {
   page_size: 10,
 };
 
-const TableSwitch = ({ item }: { item: MaterialListItem }) => {
-  const { data } = useRequestUserIndfo();
+const TableSwitch = ({ item, isSwicthPermission }: { item: MaterialListItem; isSwicthPermission: boolean }) => {
   const [innerStatus, setInnerStatus] = useState<DemandType>(item.status);
-  const { mutateAsync, isLoading } = useMutationUpdateMaterial();
+  const { mutateAsync, isLoading } = useMutationMaterialStatus();
   const handleChangeSwitch = async (value: boolean) => {
     const status = value ? 6 : 7;
     await mutateAsync({ status, id: item.id });
     setInnerStatus(status);
   };
-  const isDisable = useMemo(() => {
-    if (item.deliver !== 2) {
-      return true;
-    }
-    if (item.design !== 2) {
-      return true;
-    }
-    const author_rights = data?.author_rights;
-    if (!author_rights) return true;
-
-    if (author_rights !== AuthRightEnum.Delivery) {
-      return true;
-    }
-    return false;
-  }, [data, item]);
   return (
     <div className={styles['switch-container']}>
       <Switch
@@ -53,7 +36,7 @@ const TableSwitch = ({ item }: { item: MaterialListItem }) => {
         checked={innerStatus === DemandType.Going || innerStatus === DemandType.CloseWait}
         onChange={handleChangeSwitch}
         loading={isLoading}
-        disabled={isDisable}
+        disabled={!isSwicthPermission}
       ></Switch>
       {innerStatus === DemandType.CloseWait && <div className={styles['close-tag']}>用户申请关闭</div>}
     </div>
@@ -66,7 +49,11 @@ const Index = () => {
   const [selectItem, setSelectItem] = useState<MaterialListItem>();
   const [SearchValue, setSearchValue] = useState<MaterialVerifyListParams>(initialValues);
   const { data, isLoading, refetch } = useRequestMaterialVerifyList(SearchValue);
+  const { isPermission } = usePermission();
   const [open, { toggle }] = useToggle(false);
+  const isSwicthPermission = useMemo(() => {
+    return isPermission('/api/admin/activity/status/update');
+  }, [isPermission]);
   const handleSearch = async () => {
     const res = await form.getFieldsValue();
     const tempValue: MaterialVerifyListParams = {
@@ -138,7 +125,7 @@ const Index = () => {
       title: '投放状态',
       dataIndex: 'status',
       render: (_, col: MaterialListItem) => {
-        return <TableSwitch item={col}></TableSwitch>;
+        return <TableSwitch item={col} isSwicthPermission={isSwicthPermission || false}></TableSwitch>;
       },
     },
   ];
@@ -154,7 +141,14 @@ const Index = () => {
   };
   return (
     <div className={styles['container']}>
-      {open && <VerifyModal open={open} handlCloseModal={handleClose} item={selectItem}></VerifyModal>}
+      {open && (
+        <VerifyModal
+          open={open}
+          handlCloseModal={handleClose}
+          item={selectItem}
+          isPermission={isPermission}
+        ></VerifyModal>
+      )}
 
       <div className={styles['search-area']}>
         <Form form={form} layout="horizontal" initialValues={{ date_type: initialValues.date_type.toString() }}>

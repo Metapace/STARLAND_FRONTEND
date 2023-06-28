@@ -4,13 +4,12 @@ import { IconCheckCircle } from '@arco-design/web-react/icon';
 import styles from './index.module.less';
 import {
   MaterialListItem,
-  useMutationReviewMaterial,
+  useMutationDeliverReviewMaterial,
+  useMutationDesignReviewMaterial,
   AgeEnum,
   GenderEnum,
-  useRequestUserIndfo,
-  AuthRightEnum,
-  useRequestCountry,
-  useRequestLanguage,
+  useRequestAdminCountryList,
+  useRequestAdminLanuageList,
 } from 'apis';
 
 import dayjs from 'dayjs';
@@ -21,6 +20,7 @@ export interface FVerifyProps {
   open: boolean;
   handlCloseModal: () => void;
   item?: MaterialListItem;
+  isPermission: (params: string) => boolean | undefined;
 }
 
 const ageMap = {
@@ -48,24 +48,29 @@ interface FromItemProps {
   item: MaterialListItem;
   handlCloseModal: () => void;
   type: FormItemType;
+  isPermission: (params: string) => boolean | undefined;
 }
 
-const FromItem: React.FC<FromItemProps> = ({ item, handlCloseModal, type }) => {
-  console.log(item, 'item');
+const FromItem: React.FC<FromItemProps> = ({ item, handlCloseModal, type, isPermission }) => {
   const [form] = Form.useForm();
-  const { mutateAsync, isLoading } = useMutationReviewMaterial();
-  const { data } = useRequestUserIndfo();
+  const { mutateAsync: mutateDeliverAsync, isLoading: isDeliverLoading } = useMutationDeliverReviewMaterial();
+  const { mutateAsync: mutateDesignAsync, isLoading: isDesignLoading } = useMutationDesignReviewMaterial();
   const isDisable = useMemo(() => {
-    const author_rights = data?.author_rights;
-    if (!author_rights) return true;
-    if (type === FormItemType.Delivery && author_rights === AuthRightEnum.Delivery) {
-      return false;
+    if (type === FormItemType.Delivery) {
+      console.log(type, '00000000', isPermission('/api/admin/activity/deliver/verify'));
+      if (isPermission('/api/admin/activity/deliver/verify')) {
+        return false;
+      }
+      return true;
     }
-    if (type === FormItemType.Design && author_rights === AuthRightEnum.Design) {
-      return false;
+    if (type === FormItemType.Design) {
+      if (isPermission('/api/admin/activity/design/verify')) {
+        return false;
+      }
+      return true;
     }
     return true;
-  }, [data]);
+  }, [isPermission]);
   const innerStatus = useMemo(() => {
     if (type === FormItemType.Delivery) return item.deliver;
     if (type === FormItemType.Design) return item.design;
@@ -73,6 +78,7 @@ const FromItem: React.FC<FromItemProps> = ({ item, handlCloseModal, type }) => {
   const handleReject = async () => {
     form.validate().then(async (res) => {
       if (item) {
+        const mutateAsync = type === FormItemType.Delivery ? mutateDeliverAsync : mutateDesignAsync;
         await mutateAsync({ id: item?.id, status: 1, reason: res.reason });
         Message.success('操作成功！');
         handlCloseModal();
@@ -83,17 +89,18 @@ const FromItem: React.FC<FromItemProps> = ({ item, handlCloseModal, type }) => {
   const handlePass = async () => {
     if (item?.id) {
       if (item) {
+        const mutateAsync = type === FormItemType.Delivery ? mutateDeliverAsync : mutateDesignAsync;
         await mutateAsync({ id: item?.id, status: 2 });
         Message.success('操作成功！');
         handlCloseModal();
       }
     }
   };
+  const isDelivery = type === FormItemType.Delivery;
+  console.log(isDisable, 'isDisable');
   return (
     <>
-      <div className={styles['opreate-title']}>
-        {type === FormItemType.Delivery ? '投放部审核意见' : '设计部审核意见'}
-      </div>
+      <div className={styles['opreate-title']}>{isDelivery ? '投放部审核意见' : '设计部审核意见'}</div>
       {innerStatus === 0 && (
         <div className={styles['opreate-area']}>
           <div className={styles['red-alert']}>若不通过，请输入驳回理由:</div>
@@ -108,7 +115,7 @@ const FromItem: React.FC<FromItemProps> = ({ item, handlCloseModal, type }) => {
               style={{ width: '140px' }}
               status="danger"
               onClick={handleReject}
-              loading={isLoading}
+              loading={isDelivery ? isDeliverLoading : isDesignLoading}
               disabled={isDisable}
             >
               驳回
@@ -125,7 +132,7 @@ const FromItem: React.FC<FromItemProps> = ({ item, handlCloseModal, type }) => {
                 type="secondary"
                 status="success"
                 style={{ width: '140px' }}
-                loading={isLoading}
+                loading={isDelivery ? isDeliverLoading : isDesignLoading}
                 disabled={isDisable}
               >
                 通过
@@ -148,19 +155,16 @@ const FromItem: React.FC<FromItemProps> = ({ item, handlCloseModal, type }) => {
       {innerStatus === 1 && (
         <div className={styles['reject-area']}>
           <div className={styles['red-alert']}>驳回理由</div>
-          <TextArea
-            value={type === FormItemType.Delivery ? item.deliver_reason : item.design_reason}
-            disabled
-          ></TextArea>
+          <TextArea value={isDelivery ? item.deliver_reason : item.design_reason} disabled></TextArea>
         </div>
       )}
     </>
   );
 };
 
-const Index: React.FC<FVerifyProps> = ({ open, item, handlCloseModal }) => {
-  const { data: countryObject } = useRequestCountry(1);
-  const { data: languageObject } = useRequestLanguage(1);
+const Index: React.FC<FVerifyProps> = ({ open, item, handlCloseModal, isPermission }) => {
+  const { data: countryObject } = useRequestAdminCountryList();
+  const { data: languageObject } = useRequestAdminLanuageList();
   const dataSource = useMemo(() => {
     if (item && countryObject && languageObject) {
       const ages = item?.age
@@ -199,8 +203,6 @@ const Index: React.FC<FVerifyProps> = ({ open, item, handlCloseModal }) => {
         showItemList.splice(0, 1);
         return { label: showItemList.join(''), value: item };
       });
-
-      return [];
     }
     return [];
   }, [item]);
@@ -231,8 +233,18 @@ const Index: React.FC<FVerifyProps> = ({ open, item, handlCloseModal }) => {
             ))}
           </div>
           <div className={styles['bottom-right']}>
-            <FromItem item={item!} type={FormItemType.Delivery} handlCloseModal={handlCloseModal} />
-            <FromItem item={item!} type={FormItemType.Design} handlCloseModal={handlCloseModal} />
+            <FromItem
+              item={item!}
+              type={FormItemType.Delivery}
+              handlCloseModal={handlCloseModal}
+              isPermission={isPermission}
+            />
+            <FromItem
+              item={item!}
+              type={FormItemType.Design}
+              handlCloseModal={handlCloseModal}
+              isPermission={isPermission}
+            />
           </div>
         </div>
       </div>

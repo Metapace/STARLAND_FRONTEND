@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import styles from './index.module.less';
-import dayjs from 'dayjs';
 import { Button, TableColumnProps, Table } from '@arco-design/web-react';
 import { useToggle } from 'ahooks';
 import { useRequestRoleList, AdminRole } from 'apis';
+import usePermission from 'src/ahooks/usePermission';
 import AddRole from './addRole';
 import EditRole from './editRole';
 
@@ -12,6 +12,7 @@ const Index = () => {
   const { data, isLoading, refetch } = useRequestRoleList();
   const [open, { toggle }] = useToggle(false);
   const [EditOpen, { toggle: Edittoggle }] = useToggle(false);
+  const { isPermission } = usePermission();
   const handleCloseAddmodal = () => {
     toggle();
     refetch();
@@ -22,6 +23,7 @@ const Index = () => {
   const columns: TableColumnProps[] = [
     {
       title: 'ID',
+      key: 'id',
       dataIndex: 'data',
       render: (_, col: AdminRole) => {
         return col.id;
@@ -29,17 +31,20 @@ const Index = () => {
     },
     {
       title: '角色名称',
+      key: 'name',
       dataIndex: 'name',
     },
     {
       title: '创建日期',
+      key: 'status',
       dataIndex: 'status',
       render: (_, col: AdminRole) => {
-        return dayjs.unix(col.createTime).format('YYYY-MM-DD');
+        return col.create_time;
       },
     },
     {
       title: '操作',
+      key: 'email',
       dataIndex: 'email',
       render: (_, col: AdminRole) => {
         return (
@@ -49,6 +54,7 @@ const Index = () => {
               setSelectItem(col);
               Edittoggle();
             }}
+            disabled={!isPermission('/api/role/menu_update')}
           >
             编辑
           </Button>
@@ -56,11 +62,10 @@ const Index = () => {
       },
     },
   ];
-
   return (
     <div className={styles['container']}>
       <div>
-        <Button type="primary" onClick={toggle}>
+        <Button type="primary" onClick={toggle} disabled={!isPermission('/api/role/add')}>
           新增角色
         </Button>
       </div>

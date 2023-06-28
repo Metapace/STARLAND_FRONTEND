@@ -3,10 +3,11 @@ import styles from './index.module.less';
 import { Button, TableColumnProps, Table, Switch } from '@arco-design/web-react';
 import { useToggle } from 'ahooks';
 import { useRequestUserList, UserListItem, UserStatus, useMutationEditUserStatus } from 'apis';
+import usePermission from 'src/ahooks/usePermission';
 import AddUser from './AddUser';
 import EditUser from './editUser';
 
-const StatusSwitch = (props: { status: UserStatus; user_id: number }) => {
+const StatusSwitch = (props: { status: UserStatus; user_id: number; isPermission: boolean }) => {
   const [innerStatus, setInnerStatus] = useState(false);
   const { mutateAsync, isLoading } = useMutationEditUserStatus();
   useEffect(() => {
@@ -17,18 +18,28 @@ const StatusSwitch = (props: { status: UserStatus; user_id: number }) => {
     setInnerStatus(res);
   };
   return (
-    <Switch checkedText="启用" uncheckedText="禁用" checked={innerStatus} onChange={handelChange} loading={isLoading} />
+    <Switch
+      checkedText="启用"
+      uncheckedText="禁用"
+      checked={innerStatus}
+      onChange={handelChange}
+      loading={isLoading}
+      disabled={!props.isPermission}
+    />
   );
 };
 
 const Index = () => {
+  const { isPermission, permissionLoading } = usePermission();
   const [selectItem, setSelectItem] = useState<UserListItem>();
-  const { data, isLoading, refetch } = useRequestUserList();
+  const { data, isLoading, refetch, isFetching } = useRequestUserList(isPermission('/api/user/list'));
   const [open, { toggle }] = useToggle(false);
   const [EditOpen, { toggle: Edittoggle }] = useToggle(false);
   const handleCloseAddmodal = () => {
     toggle();
-    refetch();
+    if (isPermission('/api/user/list')) {
+      refetch();
+    }
   };
   const handleCloseEditModal = () => {
     Edittoggle();
@@ -57,7 +68,13 @@ const Index = () => {
       dataIndex: 'status',
       key: 'status',
       render: (_, col: UserListItem) => {
-        return <StatusSwitch status={col.status} user_id={col.user_id}></StatusSwitch>;
+        return (
+          <StatusSwitch
+            status={col.status}
+            user_id={col.user_id}
+            isPermission={isPermission('/api/user/update_status') || false}
+          ></StatusSwitch>
+        );
       },
     },
     {
@@ -77,6 +94,7 @@ const Index = () => {
               setSelectItem(col);
               Edittoggle();
             }}
+            disabled={!isPermission('/api/user/update_role')}
           >
             编辑
           </Button>
@@ -88,12 +106,18 @@ const Index = () => {
   return (
     <div className={styles['container']}>
       <div>
-        <Button type="primary" onClick={toggle}>
+        <Button type="primary" onClick={toggle} disabled={!isPermission('/api/user/regist')}>
           新增用户
         </Button>
       </div>
       <div className={styles['table-body']}>
-        <Table columns={columns} data={data || []} loading={isLoading} pagination={false}></Table>
+        <Table
+          columns={columns}
+          data={data || []}
+          loading={isLoading && isFetching}
+          pagination={false}
+          noDataElement={!isPermission('/api/user/list') && !permissionLoading && '没有查看权限'}
+        ></Table>
       </div>
       <AddUser open={open} handlCloseModal={handleCloseAddmodal}></AddUser>
 

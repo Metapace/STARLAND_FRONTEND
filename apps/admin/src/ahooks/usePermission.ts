@@ -4,7 +4,7 @@ import permission, { findKey } from 'src/conifg/permission';
 
 const usePermission = () => {
   const { data } = useRequestUserIndfo();
-  const { data: permissionDat } = useRequestUserPermissionList();
+  const { data: permissionDat, isLoading: permissionLoading } = useRequestUserPermissionList();
   const allPermissionList = useMemo(() => {
     return findKey(permission);
   }, []);
@@ -15,7 +15,12 @@ const usePermission = () => {
       return permissionDat?.split(',');
     }
   }, [data, permissionDat, allPermissionList]);
-  return permissionList;
+
+  const isPermission = (permission: string) => {
+    return permissionList?.includes(permission);
+  };
+  console.log(permissionList, '--');
+  return { permissionList, isPermission, permissionLoading };
 };
 
 export default usePermission;

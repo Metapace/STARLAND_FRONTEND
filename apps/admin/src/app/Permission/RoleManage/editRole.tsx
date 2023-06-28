@@ -33,6 +33,7 @@ const Index: React.FC<FVerifyProps> = ({ open, handlCloseModal, selectItem }) =>
         id: selectItem.id,
         menu_id: res.roles.join(','),
       };
+
       await mutateAsync(params);
       Message.success('操作成功！');
       form.resetFields();
@@ -63,7 +64,7 @@ const Index: React.FC<FVerifyProps> = ({ open, handlCloseModal, selectItem }) =>
           style={{ width: '200px', marginTop: '12px' }}
           loading={isLoading}
         >
-          新增
+          提交
         </Button>
       </div>
     </Modal>

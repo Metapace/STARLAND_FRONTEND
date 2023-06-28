@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styles from './index.module.less';
 import { Form, Grid, Select, Button, TableColumnProps, Tag, Table } from '@arco-design/web-react';
 import { useToggle } from 'ahooks';
+import usePermission from 'src/ahooks/usePermission';
 import VerifyModal from './VerifyModal';
 import {
   useRequestFinanceVerifyList,
@@ -26,6 +27,7 @@ const Index = () => {
   const [selectItem, setSelectItem] = useState<FinanceVerifyListReturnItem>();
   const [SearchValue, setSearchValue] = useState<FinanceVerifyListParams>(initialValues);
   const { data, isLoading, refetch } = useRequestFinanceVerifyList(SearchValue);
+  const { isPermission } = usePermission();
   const [open, { toggle }] = useToggle(false);
   const handleSearch = async () => {
     const res = await form.getFieldsValue();
@@ -88,6 +90,7 @@ const Index = () => {
               setSelectItem(col);
               toggle();
             }}
+            disabled={!isPermission('/api/admin/recharge/verify')}
           >
             查看详情
           </Button>
