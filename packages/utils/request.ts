@@ -1,7 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios, { AxiosRequestConfig, AxiosRequestHeaders } from "axios";
 import { Message } from "@arco-design/web-react";
-import { getLocalToken, removeLocalToken } from "./localStorage";
+import {
+  getLocalToken,
+  removeLocalToken,
+  removeSessionToken,
+  getSessionToken,
+} from "./localStorage";
 
 const baseURL =
   process.env.app_name === "admin"
@@ -19,7 +24,7 @@ const service = axios.create({
 service.interceptors.request.use(
   (config: AxiosRequestConfig) => {
     // 配置自定义请求头
-    const token = getLocalToken() || "";
+    const token = getLocalToken() || getSessionToken() || "";
     let customHeaders: AxiosRequestHeaders = {
       token: token ? JSON.parse(token) : "",
     };
@@ -75,20 +80,22 @@ const requestHandler = <T>(
         if (data.code !== 200) {
           if (data.code == 10004) {
             removeLocalToken();
+            removeSessionToken();
             Message.warning({
               id: "need_to_login",
               content: "您的账号已登出或超时，即将登出...",
             });
             window.location.reload();
           }
-          const token = getLocalToken() || "";
+          const token = getLocalToken() || getSessionToken() || "";
           let e = JSON.stringify(data);
-          if (method === "post" && token) {
+          if (method.toLocaleLowerCase() === "post") {
             Message.error({
               id: "need_to_login",
               content: data.msg,
             });
           }
+          resolve(data);
           console.log(`请求错误：${e}`);
           // 数据请求错误 使用reject将错误返回
           // reject(data);

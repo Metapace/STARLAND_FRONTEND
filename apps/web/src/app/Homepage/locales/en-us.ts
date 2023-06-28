@@ -83,6 +83,10 @@ const en: {
   'intro.channel.describe1':
     'We work daily with top websites from the cryptocurrency industry to provide you with exclusive offers at discounted rates.',
   'intro.channel.describe2': 'Increase your ROI and achieve new leads with our performance-driven crypto ad network.',
+  'intro.docs': 'Docs',
+  'intro.terms': 'Terms of Service',
+  'intro.contact': 'Contact Us',
+  'intro.privacy': 'privacy policy',
 };
 
 export default en;

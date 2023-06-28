@@ -101,7 +101,7 @@ function Comp() {
           },
         },
       });
-      const ball2 = Bodies.rectangle(0.2 * cw, Ycleint, 216, 72, {
+      const ball2 = Bodies.rectangle(0.19 * cw, Ycleint, 216, 72, {
         mass: 1,
         restitution: 0.9,
         frictionAir: 0.006,
@@ -156,7 +156,7 @@ function Comp() {
       const ball6 = Bodies.rectangle(0.62 * cw, Ycleint, 280, 72, {
         mass: 1,
         restitution: 0.9,
-        frictionAir: 0.006,
+        frictionAir: 0.05,
         // friction: 0.005,
         render: {
           sprite: {
@@ -273,7 +273,7 @@ function Comp() {
       const ball15 = Bodies.rectangle(0.28 * cw, Ycleint, 256, 64, {
         mass: 1,
         restitution: 0.9,
-        frictionAir: 0.006,
+        frictionAir: 0.01,
         // friction: 0.005,
         render: {
           sprite: {
