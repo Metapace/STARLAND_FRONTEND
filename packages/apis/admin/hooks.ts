@@ -19,10 +19,13 @@ import { useQuery, useMutation } from "@tanstack/react-query";
  * @description 获取审核列表
  */
 export const useRequestFinanceVerifyList = (
-  params: FinanceVerifyListParams
+  params: FinanceVerifyListParams,
+  enabled
 ) => {
-  const query = useQuery([`${JSON.stringify(params)}financeVerifyList`], () =>
-    getFinanceVerifyList(params)
+  const query = useQuery(
+    [`${JSON.stringify(params)}financeVerifyList`],
+    () => getFinanceVerifyList(params),
+    { enabled }
   );
   return query;
 };
@@ -42,10 +45,13 @@ export const useMutationReviewFinance = () =>
  * @description 获取物料审核列表
  */
 export const useRequestMaterialVerifyList = (
-  params: MaterialVerifyListParams
+  params: MaterialVerifyListParams,
+  enabled: boolean
 ) => {
-  const query = useQuery([`${JSON.stringify(params)}MaterialVerifyList`], () =>
-    getMaterialVerifyList(params)
+  const query = useQuery(
+    [`${JSON.stringify(params)}MaterialVerifyList`],
+    () => getMaterialVerifyList(params),
+    { enabled }
   );
   return query;
 };

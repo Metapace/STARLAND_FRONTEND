@@ -46,10 +46,14 @@ const TableSwitch = ({ item, isSwicthPermission }: { item: MaterialListItem; isS
 const Option = Select.Option;
 const Index = () => {
   const [form] = Form.useForm();
+  const { isPermission } = usePermission();
   const [selectItem, setSelectItem] = useState<MaterialListItem>();
   const [SearchValue, setSearchValue] = useState<MaterialVerifyListParams>(initialValues);
-  const { data, isLoading, refetch } = useRequestMaterialVerifyList(SearchValue);
-  const { isPermission } = usePermission();
+  const { data, isLoading, refetch } = useRequestMaterialVerifyList(
+    SearchValue,
+    isPermission('/api/admin/act/list') || false,
+  );
+
   const [open, { toggle }] = useToggle(false);
   const isSwicthPermission = useMemo(() => {
     return isPermission('/api/admin/activity/status/update');
@@ -136,7 +140,10 @@ const Index = () => {
   };
 
   const handleClose = () => {
-    refetch();
+    if (isPermission('/api/admin/act/list')) {
+      refetch();
+    }
+
     toggle();
   };
   return (
