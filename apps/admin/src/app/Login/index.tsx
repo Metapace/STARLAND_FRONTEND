@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Form, Input, Grid } from '@arco-design/web-react';
+import { Form, Input, Grid, Message } from '@arco-design/web-react';
 import { useNavigate } from 'react-router-dom';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { useLocalStorageState } from 'ahooks';
@@ -28,10 +28,14 @@ export const Login: React.FC = () => {
   }, []);
 
   const login = async (params: IUserParams) => {
-    const res = await loginRequestBypassword(params);
-    if (res) {
-      setUserToken(res.token);
-      navigateTo();
+    try {
+      const res = await loginRequestBypassword(params);
+      if (res) {
+        setUserToken(res.token);
+        navigateTo();
+      }
+    } catch (error: any) {
+      Message.error(error?.msg);
     }
   };
 
@@ -40,11 +44,11 @@ export const Login: React.FC = () => {
   });
 
   const onSubmit = () => {
-    form.validate((err, values) => {
+    form.validate(async (err, values) => {
       if (err) {
         return;
       }
-      mutationlogin.mutate(values);
+      await mutationlogin.mutate(values);
     });
   };
 

@@ -14,6 +14,7 @@ const Index: React.FC<TreeProps> = (props) => {
       <Tree
         checkedStrategy={Tree.SHOW_ALL}
         checkable
+        autoExpandParent={false}
         checkedKeys={value.filter((v) => v.startsWith('/api'))}
         selectedKeys={value}
         onCheck={(value, extra) => {

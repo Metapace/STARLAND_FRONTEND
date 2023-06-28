@@ -6,48 +6,6 @@ type PermissionData = {
 
 const permissionData: PermissionData[] = [
   {
-    title: '权限管理',
-    key: '/permission-manage',
-    children: [
-      {
-        title: '角色管理',
-        key: '/permission-manage/role-manage',
-        children: [
-          {
-            title: '增加角色',
-            key: '/api/role/add',
-          },
-          {
-            title: '编辑',
-            key: '/api/role/menu_update',
-          },
-        ],
-      },
-      {
-        title: '用户管理',
-        key: '/permission-manage/user-manage',
-        children: [
-          {
-            title: '用户菜单',
-            key: '/api/user/list',
-          },
-          {
-            title: '增加用户',
-            key: '/api/user/regist',
-          },
-          {
-            title: '编辑用户',
-            key: '/api/user/update_role',
-          },
-          {
-            title: '更改用户状态',
-            key: '/api/user/update_status',
-          },
-        ],
-      },
-    ],
-  },
-  {
     title: '财务审核',
     key: '/finance-verify',
     children: [
@@ -80,6 +38,48 @@ const permissionData: PermissionData[] = [
       {
         title: '投放状态更新',
         key: '/api/admin/activity/status/update',
+      },
+    ],
+  },
+  {
+    title: '权限管理',
+    key: '/permission-manage',
+    children: [
+      {
+        title: '角色管理',
+        key: '/permission-manage/role-manage',
+        children: [
+          {
+            title: '增加角色',
+            key: '/api/role/add',
+          },
+          {
+            title: '编辑',
+            key: '/api/role/menu_update',
+          },
+        ],
+      },
+      {
+        title: '用户管理',
+        key: '/permission-manage/user-manage',
+        children: [
+          {
+            title: '用户列表',
+            key: '/api/user/list',
+          },
+          {
+            title: '增加用户',
+            key: '/api/user/regist',
+          },
+          {
+            title: '编辑用户',
+            key: '/api/user/update_role',
+          },
+          {
+            title: '更改用户状态',
+            key: '/api/user/update_status',
+          },
+        ],
       },
     ],
   },

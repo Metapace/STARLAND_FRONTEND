@@ -87,7 +87,6 @@ const requestHandler = <T>(
             });
             window.location.reload();
           }
-          const token = getLocalToken() || getSessionToken() || "";
           let e = JSON.stringify(data);
           if (method.toLocaleLowerCase() === "post") {
             Message.error({
@@ -95,8 +94,8 @@ const requestHandler = <T>(
               content: data.msg,
             });
           }
-          resolve(data);
-          console.log(`请求错误：${e}`);
+          reject(data);
+          console.log(`请求错误：${e}`, method.toLocaleLowerCase() === "post");
           // 数据请求错误 使用reject将错误返回
           // reject(data);
         } else {
@@ -106,7 +105,7 @@ const requestHandler = <T>(
       })
       .catch((error) => {
         if (method === "post") {
-          Message.warning(`network is busy, please try again later!`);
+          Message.warning(error.message);
         }
         // reject(error);
       });

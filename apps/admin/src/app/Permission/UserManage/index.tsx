@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import styles from './index.module.less';
-import { Button, TableColumnProps, Table, Switch } from '@arco-design/web-react';
+import { Button, TableColumnProps, Table, Switch, Input } from '@arco-design/web-react';
 import { useToggle } from 'ahooks';
+import { IconSearch } from '@arco-design/web-react/icon';
 import { useRequestUserList, UserListItem, UserStatus, useMutationEditUserStatus } from 'apis';
 import usePermission from 'src/ahooks/usePermission';
 import AddUser from './AddUser';
@@ -52,6 +53,7 @@ const Index = () => {
       render: (_, col: UserListItem) => {
         return col.account;
       },
+      onFilter: (value, row) => (value ? row.name.indexOf(value) !== -1 : true),
     },
     {
       title: '用户名',
@@ -94,7 +96,8 @@ const Index = () => {
               setSelectItem(col);
               Edittoggle();
             }}
-            disabled={!isPermission('/api/user/update_role')}
+            // 超级管理员和没有权限的不能编辑
+            disabled={!isPermission('/api/user/update_role') || col.role_id[0] === 1}
           >
             编辑
           </Button>
