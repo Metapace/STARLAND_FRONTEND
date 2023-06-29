@@ -8,6 +8,8 @@ import {
   getSessionToken,
 } from "./localStorage";
 
+console.log(process.env, process.env.app, "--");
+
 const baseURL =
   process.env.app_name === "admin"
     ? process.env.VITE_admin_url
