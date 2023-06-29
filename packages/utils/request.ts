@@ -29,6 +29,7 @@ const service = axios.create({
   baseURL,
   withCredentials: false,
 });
+console.log(service, "000000000asd");
 
 // 统一请求拦截 可配置自定义headers 例如 language、token等
 service.interceptors.request.use(
