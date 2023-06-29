@@ -44,7 +44,7 @@ export const Login: React.FC = () => {
   });
 
   const onSubmit = () => {
-    console.log('login', process.env.app_name === 'admin', process.env, ';;;;;;;;;s');
+    console.log('login', process.env.app_name === 'admin', process.env, ';;;;;1111;;;;s');
     form.validate(async (err, values) => {
       if (err) {
         return;
