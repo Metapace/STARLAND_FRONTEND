@@ -19,7 +19,7 @@ export const Login: React.FC = () => {
   const navigate = useNavigate();
   const [userToken, setUserToken] = useLocalStorageState(TokenName);
   const navigateTo = () => navigate('/dashboard/workplace');
-
+  console.log(process.env, '-----');
   useEffect(() => {
     // 判断是否登陆
     if (userToken) {
