@@ -8,7 +8,15 @@ import {
   getSessionToken,
 } from "./localStorage";
 
-console.log(process.env, process.env.app, "--");
+console.log("-------------------------------------------");
+
+console.log(
+  process.env,
+  process.env.app,
+  "-------------------------------------"
+);
+
+console.log("-------------------------------------------");
 
 const baseURL =
   process.env.app_name === "admin"
