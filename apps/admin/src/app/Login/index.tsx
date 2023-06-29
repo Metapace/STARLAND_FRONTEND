@@ -44,7 +44,6 @@ export const Login: React.FC = () => {
   });
 
   const onSubmit = () => {
-    console.log('login', process.env.app_name === 'admin', process.env, 'kkkkk');
     form.validate(async (err, values) => {
       if (err) {
         return;
@@ -55,7 +54,7 @@ export const Login: React.FC = () => {
 
   return (
     <div className={styles.login}>
-      <div className={styles['login-title']}>Starland1111 管理后台</div>
+      <div className={styles['login-title']}>Starland 管理后台</div>
       <div className={styles['login-form']}>
         <Form
           form={form}

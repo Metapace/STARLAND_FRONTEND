@@ -8,16 +8,6 @@ import {
   getSessionToken,
 } from "./localStorage";
 
-console.log("-------------------------------------------");
-
-console.log(
-  process.env,
-  process.env.app_name,
-  "-------------------------------------"
-);
-
-console.log("-------------------------------------------");
-
 const baseURL =
   process.env.app_name !== "admin"
     ? process.env.VITE_base_url
@@ -28,7 +18,6 @@ const service = axios.create({
   baseURL,
   withCredentials: false,
 });
-console.log("-----0000000001333331111111110000------");
 
 // 统一请求拦截 可配置自定义headers 例如 language、token等
 service.interceptors.request.use(
