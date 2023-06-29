@@ -81,13 +81,13 @@ export const loginRequest = (params: { email: string; code: string }) =>
  *
  * @param email 邮箱
  * @param password 密码
- * @description 邮箱密码登录
+ * @description 邮箱密码asdas登录
  * @returns token
  */
-export const loginRequestBypassword = (params: {
+export const loginRequestBypassword = (data: {
   email: string;
   password: string;
-}) => request.post("user/login", params) as Promise<{ token: string }>;
+}) => request.post("user/login", data) as Promise<{ token: string }>;
 
 /**
  *
