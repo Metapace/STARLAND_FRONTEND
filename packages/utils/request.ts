@@ -28,7 +28,7 @@ const service = axios.create({
   baseURL,
   withCredentials: false,
 });
-console.log("-----00000000011111asd------");
+console.log("-----0000000000000------");
 
 // 统一请求拦截 可配置自定义headers 例如 language、token等
 service.interceptors.request.use(
