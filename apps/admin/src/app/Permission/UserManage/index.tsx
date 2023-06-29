@@ -44,6 +44,7 @@ const Index = () => {
   };
   const handleCloseEditModal = () => {
     Edittoggle();
+    refetch();
   };
   const columns: TableColumnProps[] = [
     {
