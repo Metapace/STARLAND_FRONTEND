@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Input, Checkbox, Grid, Message, Dropdown, Menu } from '@arco-design/web-react';
+import { Form, Input, Checkbox, Grid, Message, Dropdown, Menu, Spin, Notification } from '@arco-design/web-react';
 import { useNavigate } from 'react-router-dom';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { useLocalStorageState, useCountDown, useSessionStorageState } from 'ahooks';
@@ -59,10 +59,24 @@ const Login: React.FC = () => {
         signer = await provider.getSigner();
         const sig = await signer.signMessage(signMessage);
         const res = await loginRequestByWallet({ sign: sig, address: signer.address, message: signMessage });
-        console.log(res, 'res');
-        console.log(sig);
+        if (res.token) {
+          setUserToken(res.token);
+          navigateTo();
+        }
       } catch (error) {
-        console.log(serializeError(error));
+        const data = serializeError(error).data as { originalError: { action: string } };
+        if (data.originalError.action === 'signMessage') {
+          Notification.error({
+            title: 'Signature rejected',
+            content: 'Please sign the message in you wallet to continue.',
+          });
+        }
+        if (data.originalError.action === 'requestAccess') {
+          Notification.error({
+            title: 'Connect Error',
+            content: 'Please authorize this website to access your account.',
+          });
+        }
       } finally {
         setWalletLoading(false);
       }
@@ -243,7 +257,7 @@ const Login: React.FC = () => {
             <div className={styles['other-line']}></div>
           </div>
           <div className={styles['wallet-connect']} onClick={handelConnectWallet}>
-            <img src={Icon_Metamask} alt="" /> {i18n[lang]['login.wallet.connect']}
+            {walletLoading && <Spin></Spin>} <img src={Icon_Metamask} alt="" /> {i18n[lang]['login.wallet.connect']}
           </div>
         </div>
       </div>
