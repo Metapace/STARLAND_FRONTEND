@@ -7,12 +7,14 @@ import { TokenName } from 'utils';
 import Sbutton from 'src/components/Sbutton';
 import useI18n from 'src/ahooks/useI18n';
 import locales from './locales';
+import { serializeError } from 'eth-rpc-errors';
 import styles from './index.module.less';
 import downArrow from 'src/assets/images/homepage/downArrow.png';
-import { sendCodeRequest, loginRequest, useMutations } from 'apis';
+import { sendCodeRequest, loginRequest, useMutations, loginRequestByWallet } from 'apis';
 import Icon_Metamask from 'src/assets/images/homepage/Icon_Metamask.png';
 import posterImgae from 'src/assets/images/homepage/poster.png';
-
+import { ethers } from 'ethers';
+const signMessage = 'welcome to starland';
 type IUserParams = {
   email: string;
   code: string;
@@ -27,6 +29,7 @@ const Login: React.FC = () => {
   const [form] = Form.useForm();
   const { lang, i18n, changeLanguage } = useI18n(locales);
   const [leftTime, setLeftTime] = useState<number>(0);
+  const [walletLoading, setWalletLoading] = useState<boolean>(false);
   const [sevenDay, setSevenDay] = useState<boolean>(true);
   const navigate = useNavigate();
   const [userToken, setUserToken] = useLocalStorageState(TokenName);
@@ -43,10 +46,33 @@ const Login: React.FC = () => {
     }
   }, []);
 
+  const handelConnectWallet = async () => {
+    let signer = null;
+
+    let provider;
+    if (window.ethereum == null) {
+      console.log('MetaMask not installed; using read-only defaults');
+    } else {
+      try {
+        setWalletLoading(true);
+        provider = new ethers.BrowserProvider(window.ethereum);
+        signer = await provider.getSigner();
+        const sig = await signer.signMessage(signMessage);
+        const res = await loginRequestByWallet({ sign: sig, address: signer.address, message: signMessage });
+        console.log(res, 'res');
+        console.log(sig);
+      } catch (error) {
+        console.log(serializeError(error));
+      } finally {
+        setWalletLoading(false);
+      }
+    }
+  };
+
   const handleSendCode = async () => {
     await form.validate(['email']);
     const email = form.getFieldValue('email');
-    await sendCodeRequest(email);
+    await sendCodeRequest(email, lang === 'en-US' ? 2 : 1);
     Message.success('Code has been send');
     setLeftTime(60 * 1000);
   };
@@ -160,6 +186,7 @@ const Login: React.FC = () => {
                 <Sbutton
                   className={styles['send-code-button']}
                   onClick={mutation.mutateAsync}
+                  loading={mutation.isLoading}
                   style={{
                     borderRadius: '32px',
                     border: '1px solid #05F',
@@ -215,7 +242,7 @@ const Login: React.FC = () => {
             <div className={styles['other-title']}>{i18n[lang]['login.other']}</div>
             <div className={styles['other-line']}></div>
           </div>
-          <div className={styles['wallet-connect']}>
+          <div className={styles['wallet-connect']} onClick={handelConnectWallet}>
             <img src={Icon_Metamask} alt="" /> {i18n[lang]['login.wallet.connect']}
           </div>
         </div>
