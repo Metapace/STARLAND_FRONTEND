@@ -22,7 +22,7 @@ const baseURL =
   process.env.app_name === "admin"
     ? process.env.VITE_admin_url
     : "https://servicadadasdasdasd.io";
-console.log(baseURL, "-----1111-----------------");
+console.log(baseURL, "-----1111-------11111----------");
 const timeout = 30000;
 const service = axios.create({
   timeout,
