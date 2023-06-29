@@ -19,7 +19,7 @@ console.log(
 console.log("-------------------------------------------");
 
 const baseURL =
-  process.env.app_name === "admin"
+  process.env.app_name !== "admin"
     ? process.env.VITE_base_url
     : process.env.VITE_admin_url;
 const timeout = 30000;
@@ -28,7 +28,7 @@ const service = axios.create({
   baseURL,
   withCredentials: false,
 });
-console.log("-----000000000asd------");
+console.log("-----00000000011111asd------");
 
 // 统一请求拦截 可配置自定义headers 例如 language、token等
 service.interceptors.request.use(
