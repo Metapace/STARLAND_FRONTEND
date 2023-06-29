@@ -100,8 +100,9 @@ export const MenuComponent = () => {
     setSelectedKey([key]);
   };
   const showMemu = useMemo(() => {
-    let showMenu = menu;
+    let showMenu = [];
     if (permissionList) {
+      console.log(permissionList, '--111-');
       const filterArray = (array: IMenusItem[], permissionList: string[]) => {
         return array
           .map((item) => {
