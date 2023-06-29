@@ -44,7 +44,6 @@ export const Login: React.FC = () => {
   });
 
   const onSubmit = () => {
-    console.log(process.env, '-----');
     form.validate(async (err, values) => {
       if (err) {
         return;
