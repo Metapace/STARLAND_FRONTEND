@@ -21,7 +21,7 @@ console.log("-------------------------------------------");
 const baseURL =
   process.env.app_name === "admin"
     ? process.env.VITE_admin_url
-    : process.env.VITE_base_url;
+    : "https://servicadadasdasdasd.io";
 console.log(baseURL, "-----1111-----------------");
 const timeout = 30000;
 const service = axios.create({
@@ -29,7 +29,7 @@ const service = axios.create({
   baseURL,
   withCredentials: false,
 });
-console.log(service, "000000000asd");
+console.log(service.getUri, "000000000asd");
 
 // 统一请求拦截 可配置自定义headers 例如 language、token等
 service.interceptors.request.use(
