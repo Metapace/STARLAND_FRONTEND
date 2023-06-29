@@ -20,8 +20,8 @@ console.log("-------------------------------------------");
 
 const baseURL =
   process.env.app_name === "admin"
-    ? process.env.VITE_admin_url
-    : process.env.VITE_base_url;
+    ? process.env.VITE_base_url
+    : process.env.VITE_admin_url;
 const timeout = 30000;
 const service = axios.create({
   timeout,
