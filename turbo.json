@@ -4,7 +4,7 @@
     "build": {
       "outputs": ["build/**", "dist/**"],
       "dependsOn": ["^build"],
-      "cache": true
+      "cache": false
     },
     "test": {
       "outputs": ["coverage/**"],
