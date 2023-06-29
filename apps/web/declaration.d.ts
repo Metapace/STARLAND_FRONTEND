@@ -1,5 +1,6 @@
 // @ts-ignore
 // @eslint-ignore
+import { MetaMaskInpageProvider } from '@metamask/providers';
 declare module '@arco-design/color' {
   export { generate, getRgbStr } from './node_modules/@arco-design/color/src/index';
 }
@@ -30,4 +31,10 @@ declare module '*.svg' {
   export const ReactComponent: React.FC<React.SVGProps<SVGSVGElement>>;
   const src: string;
   export default src;
+}
+
+declare global {
+  interface Window {
+    ethereum?: MetaMaskInpageProvider;
+  }
 }

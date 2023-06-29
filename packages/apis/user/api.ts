@@ -62,32 +62,35 @@ export interface UpdateParams {
 /**
  *
  * @param email 邮箱
+ * @params ty 1- 中文 2-英文
  * @description 邮箱发送验证码
  */
-export const sendCodeRequest = (email: string) =>
-  request.post("user/email/send", { email });
+export const sendCodeRequest = (email: string, ty: 1 | 2) =>
+  request.post("user/email/send", { email, ty });
 
 /**
  *
  * @param email 邮箱
- * @param code 验证码
- * @description 邮箱验证码登录
+ * @param message 签名信息
+ * @description 钱包登录
  * @returns token
  */
 export const loginRequest = (params: { email: string; code: string }) =>
-  request.post("user/login1", params) as Promise<{ token: string }>;
+  request.post("user/login", params) as Promise<{ token: string }>;
 
 /**
  *
- * @param email 邮箱
- * @param password 密码
- * @description 邮箱密码asdas登录
+ * @param address 钱包地址
+ * @param code 验证码
+ * @param sign 签名
+ * @description 邮箱验证码登录
  * @returns token
  */
-export const loginRequestBypassword = (data: {
-  email: string;
-  password: string;
-}) => request.post("user/login", data) as Promise<{ token: string }>;
+export const loginRequestByWallet = (params: {
+  address: string;
+  message: string;
+  sign: string;
+}) => request.post("user/wallet/login", params) as Promise<{ token: string }>;
 
 /**
  *

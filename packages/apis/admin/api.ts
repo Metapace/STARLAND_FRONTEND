@@ -145,6 +145,18 @@ export interface MaterialVerifyListReturn {
  * @returns
  */
 
+/**
+ *
+ * @param email 邮箱
+ * @param password 密码
+ * @description 邮箱密码登录
+ * @returns token
+ */
+export const loginRequestBypassword = (params: {
+  email: string;
+  password: string;
+}) => request.post("user/login", params) as Promise<{ token: string }>;
+
 export const getFinanceVerifyList = (params: FinanceVerifyListParams) =>
   request.get(
     "admin/recharge/list",

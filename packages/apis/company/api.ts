@@ -10,4 +10,4 @@ export const companyInfoRequest = () =>
     swift: string;
   }>;
 
-export const minInAmountRequest = () => request.get("assets/get", {});
+export const minInAmountRequest = () => request.get("assets/const/get", {});
