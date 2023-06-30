@@ -8,14 +8,13 @@ import Sbutton from 'src/components/Sbutton';
 import useI18n from 'src/ahooks/useI18n';
 import locales from './locales';
 import { serializeError } from 'eth-rpc-errors';
-import erc20abi from '';
+import erc20abi from 'erc-20-abi';
 import styles from './index.module.less';
 import downArrow from 'src/assets/images/homepage/downArrow.png';
 import { sendCodeRequest, loginRequest, useMutations, loginRequestByWallet } from 'apis';
 import Icon_Metamask from 'src/assets/images/homepage/Icon_Metamask.png';
 import posterImgae from 'src/assets/images/homepage/poster.png';
-import abi from 'erc-20-abi';
-import { ethers } from 'ethers';
+import { ethers, formatUnits } from 'ethers';
 const signMessage = 'welcome to starland';
 type IUserParams = {
   email: string;
@@ -26,7 +25,7 @@ const themeStyle = {
   background: 'var(--theme-color)',
   color: '#fff',
 };
-const approve_amount = '115792089237316195423570985008687907853269984665640564039457584007913129639935';
+const Saddress = '0x4E43B1d1ea7b3479E1e0f8E84731612DfDc09Ad6';
 const Login: React.FC = () => {
   const [form] = Form.useForm();
   const { lang, i18n, changeLanguage } = useI18n(locales);
@@ -63,16 +62,37 @@ const Login: React.FC = () => {
         const JsonRpcProvider = new ethers.JsonRpcProvider('https://node.wallet.unipass.id/eth-goerli');
         // const sig = await signer.signMessage(signMessage);
 
-        const tokenContract = new ethers.Contract('0x1877a35bf9b8f1cc02d76e7af7f75b37ef906dd0', abi, JsonRpcProvider);
-        // const res = await tokenContract.symbol();
-        const res = await tokenContract.allowance(account, '0x4E43B1d1ea7b3479E1e0f8E84731612DfDc09Ad6');
-        console.log(res, 'res');
+        const tokenContract = new ethers.Contract(
+          '0x1877a35bf9b8f1cc02d76e7af7f75b37ef906dd0',
+          erc20abi,
+          JsonRpcProvider,
+        );
+        const contractInterface = new ethers.Interface(erc20abi);
+        const inputData = contractInterface.encodeFunctionData('approve', [Saddress, ethers.MaxUint256]);
+        const res2 = await tokenContract.symbol();
+        // const res = await tokenContract.allowance(account, '0x4E43B1d1ea7b3479E1e0f8E84731612DfDc09Ad6');
+        // const res = await tokenContract.balanceOf(account);
+        // const res = await tokenContract.approve('0x1877a35bf9b8f1cc02d76e7af7f75b37ef906dd0', ethers.MaxUint256);
+        const contractData = {
+          to: '0x1877a35bf9b8f1cc02d76e7af7f75b37ef906dd0' || '0x0000000000000000000000000000000000000000', // test usdt
+          data: inputData,
+          gasLimit: 500000,
+          value: '0x0',
+        };
+        console.log(contractData, '----');
+        console.log(res2);
+        // console.log(res, 'res');
+        const res1 = await signer.sendTransaction(contractData);
+        // console.log(res1, 'res');
+
+        // console.log(formatUnits(res), 'res');
         // const res = await loginRequestByWallet({ sign: sig, address: signer.address, message: signMessage });
         // if (res.token) {
         //   setUserToken(res.token);
         //   navigateTo();
         // }
       } catch (error) {
+        console.log(error);
         const data = serializeError(error).data as { originalError: { action: string } };
         if (data.originalError.action === 'signMessage') {
           Notification.error({
