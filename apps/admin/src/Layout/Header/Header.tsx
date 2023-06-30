@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Logo from 'src/assets/images/starland-log.png';
 import { Dropdown, Menu, Divider, Avatar } from '@arco-design/web-react';
 import { IconPoweroff, IconSettings } from '@arco-design/web-react/icon';
-import { useRequestUserIndfo } from 'apis';
+import { useRequestUserIndfo, QueryCaches } from 'apis';
 import { useInterval } from 'ahooks';
 import { useTheme } from 'src/ahooks';
 import { removeLocalToken } from 'src/utils/localSet';
@@ -25,6 +25,7 @@ const Header = () => {
 
   const loginOut = () => {
     removeLocalToken();
+    new QueryCaches().clear();
     navigate('/login');
   };
 

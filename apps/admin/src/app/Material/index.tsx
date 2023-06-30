@@ -46,10 +46,10 @@ const TableSwitch = ({ item, isSwicthPermission }: { item: MaterialListItem; isS
 const Option = Select.Option;
 const Index = () => {
   const [form] = Form.useForm();
-  const { isPermission } = usePermission();
+  const { isPermission, permissionLoading } = usePermission();
   const [selectItem, setSelectItem] = useState<MaterialListItem>();
   const [SearchValue, setSearchValue] = useState<MaterialVerifyListParams>(initialValues);
-  const { data, isLoading, refetch } = useRequestMaterialVerifyList(
+  const { data, isLoading, refetch, isFetching } = useRequestMaterialVerifyList(
     SearchValue,
     isPermission('/api/admin/act/list') || false,
   );
@@ -183,7 +183,8 @@ const Index = () => {
         <Table
           columns={columns}
           data={data?.list || []}
-          loading={isLoading}
+          loading={isLoading && isFetching}
+          noDataElement={!isPermission('/api/admin/act/list') && !permissionLoading && '没有查看权限'}
           pagination={{
             total: data?.num,
             pageSize: SearchValue.page_size,
