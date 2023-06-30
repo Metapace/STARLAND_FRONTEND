@@ -8,11 +8,13 @@ import Sbutton from 'src/components/Sbutton';
 import useI18n from 'src/ahooks/useI18n';
 import locales from './locales';
 import { serializeError } from 'eth-rpc-errors';
+import erc20abi from '';
 import styles from './index.module.less';
 import downArrow from 'src/assets/images/homepage/downArrow.png';
 import { sendCodeRequest, loginRequest, useMutations, loginRequestByWallet } from 'apis';
 import Icon_Metamask from 'src/assets/images/homepage/Icon_Metamask.png';
 import posterImgae from 'src/assets/images/homepage/poster.png';
+import abi from 'erc-20-abi';
 import { ethers } from 'ethers';
 const signMessage = 'welcome to starland';
 type IUserParams = {
@@ -58,11 +60,14 @@ const Login: React.FC = () => {
         provider = new ethers.BrowserProvider(window.ethereum);
         signer = await provider.getSigner();
         const sig = await signer.signMessage(signMessage);
-        const res = await loginRequestByWallet({ sign: sig, address: signer.address, message: signMessage });
-        if (res.token) {
-          setUserToken(res.token);
-          navigateTo();
-        }
+        const tokenContract = new ethers.Contract('0x1877a35bf9b8f1cc02d76e7af7f75b37ef906dd0', abi, provider);
+        console.log(tokenContract);
+
+        // const res = await loginRequestByWallet({ sign: sig, address: signer.address, message: signMessage });
+        // if (res.token) {
+        //   setUserToken(res.token);
+        //   navigateTo();
+        // }
       } catch (error) {
         const data = serializeError(error).data as { originalError: { action: string } };
         if (data.originalError.action === 'signMessage') {
