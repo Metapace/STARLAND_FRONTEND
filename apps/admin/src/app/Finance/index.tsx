@@ -23,11 +23,11 @@ const initialValues = {
 
 const Option = Select.Option;
 const Index = () => {
-  const { isPermission } = usePermission();
+  const { isPermission, permissionLoading } = usePermission();
   const [form] = Form.useForm();
   const [selectItem, setSelectItem] = useState<FinanceVerifyListReturnItem>();
   const [SearchValue, setSearchValue] = useState<FinanceVerifyListParams>(initialValues);
-  const { data, isLoading, refetch } = useRequestFinanceVerifyList(
+  const { data, isLoading, refetch, isFetching } = useRequestFinanceVerifyList(
     SearchValue,
     isPermission('/api/admin/recharge/list') || false,
   );
@@ -159,7 +159,8 @@ const Index = () => {
         <Table
           columns={columns}
           data={data?.list || []}
-          loading={isLoading}
+          loading={isLoading && isFetching}
+          noDataElement={!isPermission('/api/admin/recharge/list') && !permissionLoading && '没有查看权限'}
           pagination={{
             total: data?.num,
             pageSize: SearchValue.page_size,

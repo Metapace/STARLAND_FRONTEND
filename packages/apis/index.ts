@@ -13,6 +13,7 @@ import {
   QueryClient,
   QueryClientProvider,
   useMutation,
+  QueryCache,
 } from "@tanstack/react-query";
 
 export const queryClient = new QueryClient({
@@ -27,3 +28,5 @@ export const queryClient = new QueryClient({
 export const QueryClientProviders = QueryClientProvider;
 
 export const useMutations = useMutation;
+
+export const QueryCaches = QueryCache;
