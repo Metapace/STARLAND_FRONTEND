@@ -26,7 +26,7 @@ const themeStyle = {
   background: 'var(--theme-color)',
   color: '#fff',
 };
-
+const approve_amount = '115792089237316195423570985008687907853269984665640564039457584007913129639935';
 const Login: React.FC = () => {
   const [form] = Form.useForm();
   const { lang, i18n, changeLanguage } = useI18n(locales);
@@ -59,10 +59,14 @@ const Login: React.FC = () => {
         setWalletLoading(true);
         provider = new ethers.BrowserProvider(window.ethereum);
         signer = await provider.getSigner();
-        const sig = await signer.signMessage(signMessage);
-        const tokenContract = new ethers.Contract('0x1877a35bf9b8f1cc02d76e7af7f75b37ef906dd0', abi, provider);
-        console.log(tokenContract);
+        const account = await signer.getAddress();
+        const JsonRpcProvider = new ethers.JsonRpcProvider('https://node.wallet.unipass.id/eth-goerli');
+        // const sig = await signer.signMessage(signMessage);
 
+        const tokenContract = new ethers.Contract('0x1877a35bf9b8f1cc02d76e7af7f75b37ef906dd0', abi, JsonRpcProvider);
+        // const res = await tokenContract.symbol();
+        const res = await tokenContract.allowance(account, '0x4E43B1d1ea7b3479E1e0f8E84731612DfDc09Ad6');
+        console.log(res, 'res');
         // const res = await loginRequestByWallet({ sign: sig, address: signer.address, message: signMessage });
         // if (res.token) {
         //   setUserToken(res.token);
