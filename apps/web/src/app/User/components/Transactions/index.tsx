@@ -15,6 +15,8 @@ interface CompanyBoxProps {
 
 const TransactionBox: React.FC<CompanyBoxProps> = ({ type, time, amount, state }) => {
   const { lang, i18n } = useI18n(locale);
+  const innnerAmount = amount.toString();
+  console.log(amount, type);
   return (
     <div className={styles['transactionbox']}>
       <div className={styles['transactionbox-left']}>
@@ -24,14 +26,22 @@ const TransactionBox: React.FC<CompanyBoxProps> = ({ type, time, amount, state }
       <div className={styles['transactionbox-right']}>
         {type === 1 ? (
           state === 1 || state === 3 ? (
-            <div style={{ color: '#F12D50', width: '50px' }}>+{amount.substring(0, amount.indexOf('.') + 3)}USD</div>
+            <div style={{ color: '#F12D50', width: '50px' }}>
+              +{innnerAmount.substring(0, innnerAmount.indexOf('.') + 3)}USD
+            </div>
           ) : (
-            <div style={{ color: '#16C4A7', width: '50px' }}>+{amount.substring(0, amount.indexOf('.') + 3)}USD</div>
+            <div style={{ color: '#16C4A7', width: '50px' }}>
+              +{innnerAmount.substring(0, innnerAmount.indexOf('.') + 3)}USD
+            </div>
           )
         ) : state === 1 || state === 3 ? (
-          <div style={{ color: '#F12D50', width: '50px' }}>+{amount.substring(0, amount.indexOf('.') + 3)}USDT</div>
+          <div style={{ color: '#F12D50', width: '50px' }}>
+            +{innnerAmount.substring(0, innnerAmount.indexOf('.') + 3)}USDT
+          </div>
         ) : (
-          <div style={{ color: '#16C4A7', width: '50px' }}>+{amount.substring(0, amount.indexOf('.') + 3)}USDT</div>
+          <div style={{ color: '#16C4A7', width: '50px' }}>
+            +{innnerAmount.substring(0, innnerAmount.indexOf('.') + 3)}USDT
+          </div>
         )}
 
         {state === 1 ? (
