@@ -54,7 +54,7 @@ const Index = () => {
               setSelectItem(col);
               Edittoggle();
             }}
-            disabled={!isPermission('/api/role/menu_update')}
+            disabled={!isPermission('/api/role/menu_update') || +col.id === 1}
           >
             编辑
           </Button>
