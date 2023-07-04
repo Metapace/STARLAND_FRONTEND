@@ -20,6 +20,7 @@ type IUserParams = {
   email: string;
   code: string;
 };
+
 const FormItem = Form.Item;
 const themeStyle = {
   background: 'var(--theme-color)',
@@ -61,28 +62,31 @@ const Login: React.FC = () => {
         const account = await signer.getAddress();
         const JsonRpcProvider = new ethers.JsonRpcProvider('https://node.wallet.unipass.id/eth-goerli');
         // const sig = await signer.signMessage(signMessage);
+        provider.getBalance(account).then((value) => {
+          console.log('>>> native token balance: ', formatUnits(value.toString(), 18));
+        });
 
         const tokenContract = new ethers.Contract(
-          '0x1877a35bf9b8f1cc02d76e7af7f75b37ef906dd0',
+          '0x2290EC24Ba6A8693Ae835b3c2095c1E56db39584',
           erc20abi,
           JsonRpcProvider,
         );
-        const contractInterface = new ethers.Interface(erc20abi);
-        const inputData = contractInterface.encodeFunctionData('approve', [Saddress, ethers.MaxUint256]);
         const res2 = await tokenContract.symbol();
-        // const res = await tokenContract.allowance(account, '0x4E43B1d1ea7b3479E1e0f8E84731612DfDc09Ad6');
-        // const res = await tokenContract.balanceOf(account);
+        const res3 = await tokenContract.balanceOf(account);
+        console.log(res2, formatUnits(res3.toString(), 18));
+        // const res4 = await tokenContract.allowance(account, '0x4E43B1d1ea7b3479E1e0f8E84731612DfDc09Ad6');
         // const res = await tokenContract.approve('0x1877a35bf9b8f1cc02d76e7af7f75b37ef906dd0', ethers.MaxUint256);
-        const contractData = {
-          to: '0x1877a35bf9b8f1cc02d76e7af7f75b37ef906dd0' || '0x0000000000000000000000000000000000000000', // test usdt
-          data: inputData,
-          gasLimit: 500000,
-          value: '0x0',
-        };
-        console.log(contractData, '----');
-        console.log(res2);
+        // const inputData = contractInterface.encodeFunctionData('approve', [Saddress, ethers.MaxUint256]);
+        // const contractInterface = new ethers.Interface(erc20abi);
+        // const contractData = {
+        //   to: '0x1877a35bf9b8f1cc02d76e7af7f75b37ef906dd0', // test usdt
+        //   data: inputData,
+        //   gasLimit: 500000,
+        //   value: '0x0',
+        // };
+
         // console.log(res, 'res');
-        const res1 = await signer.sendTransaction(contractData);
+        // const res1 = await signer.sendTransaction(contractData);
         // console.log(res1, 'res');
 
         // console.log(formatUnits(res), 'res');
