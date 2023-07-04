@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import styles from './index.module.less';
 import { Form, Grid, Select, Button, TableColumnProps, Tag, Table, Switch } from '@arco-design/web-react';
 import { useToggle } from 'ahooks';
@@ -29,6 +29,9 @@ const TableSwitch = ({ item, isSwicthPermission }: { item: MaterialListItem; isS
     await mutateAsync({ status, id: item.id });
     setInnerStatus(status);
   };
+  useEffect(() => {
+    setInnerStatus(item.status);
+  }, [item.status]);
   return (
     <div className={styles['switch-container']}>
       <Switch
